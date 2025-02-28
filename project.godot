@@ -19,6 +19,16 @@ config/icon="res://icon.svg"
 Actions="*res://Globals/Actions.gd"
 Globals="*res://Globals/Globals.gd"
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "orange",
+"res://Globals/": "gray",
+"res://Material/": "green",
+"res://Resources/": "pink",
+"res://Shaders/": "blue"
+}
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
