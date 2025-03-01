@@ -7,6 +7,7 @@ extends VehicleBody3D
 @export var MAX_STEER = 0.8
 ##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are
 @export var ENGINE_POWER : float = 200
+@export var SOUND_MAX_SPEED : float = 75
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	change_engine_pitch()
 	steering = move_toward(steering,Input.get_axis("D","A") * MAX_STEER,delta*2.5)
 	engine_force = max(Input.get_axis("S","W") * ENGINE_POWER,-ENGINE_POWER/1.5)
 
@@ -44,3 +46,6 @@ func handle_cam_rotation():
 	$Cameras/Windshield.transform.basis = Basis() #reset rot
 	$Cameras/Windshield.rotate_object_local(Vector3(0,1,0),-rot_x)
 	$Cameras/Windshield.rotate_object_local(Vector3(1,0,0),-rot_y)
+	
+func change_engine_pitch():
+	$Engine.pitch_scale = min(1, linear_velocity.length()/SOUND_MAX_SPEED)

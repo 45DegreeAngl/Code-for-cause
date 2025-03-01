@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=4 uid="uid://bup5hafnqfbh2"]
+[gd_scene load_steps=24 format=4 uid="uid://bup5hafnqfbh2"]
 
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_dt86f"]
+[ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="2_sfu7x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_woict"]
 resource_name = "tire"
@@ -274,7 +275,8 @@ emission_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjesp"]
 resource_name = "glass"
-albedo_color = Color(0.749103, 0.749103, 0.749103, 1)
+transparency = 1
+albedo_color = Color(0.74902, 0.74902, 0.74902, 0.145098)
 roughness = 0.903922
 emission_enabled = true
 
@@ -521,7 +523,6 @@ mesh = SubResource("ArrayMesh_a4tyk")
 skeleton = NodePath("")
 
 [node name="Body" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("ArrayMesh_k7tlo")
 skeleton = NodePath("")
 
@@ -531,7 +532,7 @@ shape = SubResource("ConvexPolygonShape3D_ntnqi")
 [node name="Cameras" type="Node3D" parent="."]
 
 [node name="Windshield" type="Camera3D" parent="Cameras"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.243888, 0.67402, 0.414197)
 
 [node name="Light" type="Node3D" parent="."]
 
@@ -554,3 +555,8 @@ transform = Transform3D(1, 0, 0, 0, 0.973515, 0.228623, 0, -0.228623, 0.973515, 
 light_color = Color(1, 0, 0, 1)
 light_energy = 2.0
 spot_range = 2.0
+
+[node name="Engine" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_sfu7x")
+volume_db = -6.0
+autoplay = true
