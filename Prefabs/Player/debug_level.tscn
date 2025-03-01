@@ -1,18 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxwqiv7jwr7gx"]
+[gd_scene load_steps=7 format=3 uid="uid://dxwqiv7jwr7gx"]
 
 [ext_resource type="PackedScene" uid="uid://bup5hafnqfbh2" path="res://Prefabs/Player/Player Car.tscn" id="1_wi26b"]
 [ext_resource type="Script" path="res://Prefabs/debug_camera.gd" id="2_3myqa"]
+[ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="2_v74su"]
 [ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="3_mo707"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hq2ha"]
 shader = ExtResource("3_mo707")
-shader_parameter/amplitude = 0.05
-shader_parameter/frequency = 0.355
-shader_parameter/height_mult = 4.37
+shader_parameter/amplitude = 0.04
+shader_parameter/frequency = 0.2
+shader_parameter/height_mult = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yoks4"]
+shader = ExtResource("2_v74su")
+shader_parameter/alpha = 1.0
+shader_parameter/scale = 1.1
+shader_parameter/red_shift = 1.0
+shader_parameter/blue_shift = 2.0
+shader_parameter/green_shift = 3.0
+shader_parameter/red_mult = 1.0
 
 [node name="Debug Level" type="Node3D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="WobbleShader" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_hq2ha")
 use_parent_material = true
 anchors_preset = 15
@@ -21,6 +31,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="."]
+position = Vector2(576, 323.5)
+scale = Vector2(5.76, 3.235)
+copy_mode = 2
+
+[node name="ChromaticShader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_yoks4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
