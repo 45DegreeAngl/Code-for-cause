@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=3 uid="uid://w6db6ap8erh4"]
+
+[ext_resource type="Script" path="res://car_interior.gd" id="1_7oot5"]
+[ext_resource type="Texture2D" uid="uid://fsmp8wi4qsg8" path="res://Assets/Textures/car interior 2.png" id="1_aen0v"]
+[ext_resource type="PackedScene" uid="uid://drc0h8qkimbd2" path="res://Prefabs/viewports/Real Viewport.tscn" id="2_evbb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7amtj"]
+size = Vector2(562, 656)
+
+[node name="Car Interior" type="Node"]
+script = ExtResource("1_7oot5")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left Window" type="SubViewportContainer" parent="Control"]
+layout_mode = 0
+offset_left = -145.0
+offset_top = 20.0
+offset_right = 415.0
+offset_bottom = 380.0
+stretch = true
+
+[node name="RealViewport" parent="Control/Left Window" instance=ExtResource("2_evbb3")]
+handle_input_locally = false
+size = Vector2i(560, 360)
+render_target_update_mode = 4
+
+[node name="Right Window" type="SubViewportContainer" parent="Control"]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 20.0
+offset_right = 1310.0
+offset_bottom = 380.0
+stretch = true
+
+[node name="RealViewport" parent="Control/Right Window" instance=ExtResource("2_evbb3")]
+handle_input_locally = false
+size = Vector2i(560, 360)
+render_target_update_mode = 4
+
+[node name="Windshield" type="SubViewportContainer" parent="Control"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 20.0
+offset_right = 835.0
+offset_bottom = 380.0
+stretch = true
+
+[node name="RealViewport" parent="Control/Windshield" instance=ExtResource("2_evbb3")]
+handle_input_locally = false
+size = Vector2i(560, 360)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_aen0v")
+
+[node name="Left Mirror" type="SubViewportContainer" parent="Control"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 279.0
+offset_right = 160.0
+offset_bottom = 335.0
+stretch = true
+
+[node name="RealViewport" parent="Control/Left Mirror" instance=ExtResource("2_evbb3")]
+handle_input_locally = false
+size = Vector2i(67, 56)
+render_target_update_mode = 4
+
+[node name="Right Mirror" type="SubViewportContainer" parent="Control"]
+layout_mode = 0
+offset_left = 978.0
+offset_top = 279.0
+offset_right = 1039.0
+offset_bottom = 343.0
+stretch = true
+
+[node name="RealViewport" parent="Control/Right Mirror" instance=ExtResource("2_evbb3")]
+handle_input_locally = false
+size = Vector2i(61, 64)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera" type="CharacterBody2D" parent="CanvasLayer/SubViewportContainer"]
+position = Vector2(567, 321)
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer/Camera"]
+zoom = Vector2(2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(572, 318)
+shape = SubResource("RectangleShape2D_7amtj")
