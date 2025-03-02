@@ -3,7 +3,7 @@ extends Node
 @export var road_segments : Array[PackedScene] = []
 #each packed scene has a marker labeled "Entrance" and "Exit"
 
-var balls : Dictionary = {}
+var packed_offsets : Dictionary = {}
 
 func _ready():
 	for segment in road_segments:
@@ -11,8 +11,8 @@ func _ready():
 		add_child(instanced_segment)
 		var offset = instanced_segment.find_child("Entrance").global_position - instanced_segment.find_child("Exit").global_position
 		instanced_segment.queue_free()
-		balls[segment] = offset * $Roads.scale * Vector3(1,0,1)
-	print(balls)
+		packed_offsets[segment] = offset * $Roads.scale * Vector3(1,1,1)
+	print(packed_offsets)
 	spawn_road(road_segments[0])
 	spawn_road(road_segments[0])
 	spawn_road(road_segments[0])
@@ -31,7 +31,7 @@ func spawn_road(segment:PackedScene)->Node3D:
 	#move_child
 	instanced_segment.global_position = current_offset
 	current_road = segment
-	current_offset = current_offset+balls[segment]
+	current_offset = current_offset+packed_offsets[segment]
 	#set current_road
 	#set current_offset
 	return instanced_segment
