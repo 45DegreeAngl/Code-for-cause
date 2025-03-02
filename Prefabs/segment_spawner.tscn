@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=8 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
 [ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://bfe2n5yc1ofd5" path="res://Prefabs/Roads/debug_straight.tscn" id="4_l3tqm"]
 [ext_resource type="PackedScene" uid="uid://bbgxfmxgrga4r" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
 [ext_resource type="PackedScene" uid="uid://bup5hafnqfbh2" path="res://Prefabs/Player/Player Car.tscn" id="5_kebmv"]
+[ext_resource type="PackedScene" uid="uid://dlcqplxybhtkb" path="res://Prefabs/Roads/Narrow Segment.tscn" id="6_6oinw"]
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
-road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf")])
+road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("6_6oinw")])
 
 [node name="Roads" type="Node3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
