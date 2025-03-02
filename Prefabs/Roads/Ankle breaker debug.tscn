@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ci6ln5dw5x4oe"]
 
-[ext_resource type="MeshLibrary" uid="uid://dijf42bc3wwdu" path="res://Assets/Models/Mesh Libraries/Street Debug.tres" id="1_xn0x0"]
+[ext_resource type="MeshLibrary" uid="uid://dijf42bc3wwdu" path="res://Assets/Models/Mesh Libraries/Street debug.tres" id="1_xn0x0"]
 
 [node name="Debug Straight" type="GridMap"]
 mesh_library = ExtResource("1_xn0x0")

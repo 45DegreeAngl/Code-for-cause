@@ -14,7 +14,7 @@ func _ready():
 		packed_offsets[segment] = offset * $Roads.scale * Vector3(1,1,1)
 	print(packed_offsets)
 	spawn_road(road_segments[0])
-	for num_roads in range(20):
+	for num_roads in range(1000):
 		spawn_road(road_segments.pick_random())
 	
 
