@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://co4e704qneqr8"]
+
+[ext_resource type="MeshLibrary" uid="uid://c8h4di68bxqvq" path="res://Assets/Models/Mesh Libraries/Street.tres" id="1_p7ijf"]
+
+[node name="Normal Turns Segment" type="GridMap"]
+mesh_library = ExtResource("1_p7ijf")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65531, 655363, 65534, 65531, 655360, 65533, 65531, 655360, 65532, 65531, 655360, 65530, 65531, 3, 65530, 65529, 1441792, 65530, 65528, 1441792, 65530, 65526, 1441795, 65533, 65526, 655363, 65533, 65528, 2, 65534, 65528, 1048578, 65534, 65527, 1048576, 65534, 65525, 1048576, 65534, 65526, 1048576)
+}
+
+[node name="Exit" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -11)

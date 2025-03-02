@@ -71,7 +71,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Debug Camera/ViewportContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(486, 321)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Debug Camera/ViewportContainer/SubViewportContainer/SubViewport"]
@@ -84,7 +84,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Debug Camera/ViewportContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(486, 322)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Debug Camera/ViewportContainer/SubViewportContainer2/SubViewport"]
