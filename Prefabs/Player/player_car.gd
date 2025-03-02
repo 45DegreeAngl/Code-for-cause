@@ -20,7 +20,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	change_engine_pitch()
 	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
-	engine_force = max(Input.get_axis("S","W") * ENGINE_POWER,-ENGINE_POWER/1.5)
+	engine_force = -max(Input.get_axis("S","W") * ENGINE_POWER,-ENGINE_POWER/1.5)
 
 @export var camera_sense : float = 0.001
 var rot_x = 180

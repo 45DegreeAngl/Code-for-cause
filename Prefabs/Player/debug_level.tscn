@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dxwqiv7jwr7gx"]
 
-[ext_resource type="PackedScene" uid="uid://bup5hafnqfbh2" path="res://Prefabs/Player/Player Car.tscn" id="1_wi26b"]
 [ext_resource type="Script" path="res://Prefabs/debug_camera.gd" id="2_3myqa"]
 [ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="2_v74su"]
 [ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="3_mo707"]
+[ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Player/Player Car.tscn" id="4_gxalm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hq2ha"]
 shader = ExtResource("3_mo707")
@@ -48,9 +48,6 @@ grow_vertical = 2
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
 size = Vector3(139.498, 1, 150.768)
-
-[node name="Player" parent="." instance=ExtResource("1_wi26b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.11436, 0)
 
 [node name="Debug Camera" type="Control" parent="."]
 layout_mode = 3
@@ -118,5 +115,8 @@ size = Vector3(1, 20.0283, 1)
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4281, 9.51416, -41.2022)
 size = Vector3(1, 20.0283, 1)
+
+[node name="Car_2" parent="." instance=ExtResource("4_gxalm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.6863, 0)
 
 [connection signal="toggled" from="Debug Camera/PanelContainer/Visible debug camera" to="Debug Camera" method="_on_visible_debug_camera_toggled"]
