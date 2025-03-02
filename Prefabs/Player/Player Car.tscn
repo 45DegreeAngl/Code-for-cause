@@ -367,6 +367,7 @@ shadow_mesh = SubResource("ArrayMesh_aa2y5")
 
 [node name="Car_2" type="VehicleBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.392039)
+gravity_scale = 2.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, -1.1)
 script = ExtResource("1_1nk5a")
@@ -384,7 +385,7 @@ shape = SubResource("ConvexPolygonShape3D_43niw")
 [node name="Back_Left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56473, -0.0467228, 0.692075)
 use_as_traction = true
-suspension_travel = 0.05
+suspension_travel = 0.08
 suspension_stiffness = 80.0
 
 [node name="Back_Left" type="MeshInstance3D" parent="Back_Left"]
@@ -394,7 +395,7 @@ skeleton = NodePath("")
 [node name="Back_Right" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37882, -0.0467228, 0.692075)
 use_as_traction = true
-suspension_travel = 0.05
+suspension_travel = 0.08
 suspension_stiffness = 80.0
 
 [node name="Back_Right" type="MeshInstance3D" parent="Back_Right"]
@@ -405,7 +406,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37559, -0.0467228, -3.07874)
 use_as_traction = true
 use_as_steering = true
-suspension_travel = 0.05
+suspension_travel = 0.08
 suspension_stiffness = 80.0
 
 [node name="Front_Right" type="MeshInstance3D" parent="Front_Right"]
@@ -416,7 +417,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36333, -0.0467228, -3.07874)
 use_as_traction = true
 use_as_steering = true
-suspension_travel = 0.05
+suspension_travel = 0.08
 suspension_stiffness = 80.0
 
 [node name="Front_Left" type="MeshInstance3D" parent="Front_Left"]
