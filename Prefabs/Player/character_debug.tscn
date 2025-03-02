@@ -1,10 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://rvdfkmlx6dio"]
+[gd_scene load_steps=9 format=3 uid="uid://rvdfkmlx6dio"]
 
 [ext_resource type="Script" path="res://Prefabs/debug_camera.gd" id="1_sbw8l"]
-[ext_resource type="PackedScene" uid="uid://cd70x3de3pbl4" path="res://Prefabs/Player/character.tscn" id="2_bp3b5"]
+[ext_resource type="PackedScene" uid="uid://cfvnef13jksl5" path="res://Prefabs/Player/test character.tscn" id="3_co8uv"]
 [ext_resource type="Script" path="res://Prefabs/Clock Rotation.gd" id="3_rl5pk"]
+[ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="4_jc7w4"]
+[ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="5_l7bya"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yldlh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cey7s"]
+shader = ExtResource("4_jc7w4")
+shader_parameter/amplitude = 0.04
+shader_parameter/frequency = 0.2
+shader_parameter/height_mult = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bhukl"]
+shader = ExtResource("5_l7bya")
+shader_parameter/alpha = 1.0
+shader_parameter/scale = 1.1
+shader_parameter/red_shift = 1.0
+shader_parameter/blue_shift = 2.0
+shader_parameter/green_shift = 3.0
+shader_parameter/red_mult = 1.0
 
 [node name="Character Debug" type="Node3D"]
 
@@ -65,9 +82,6 @@ button_pressed = true
 text = "Visible Debug Camera
 "
 
-[node name="Character" parent="." instance=ExtResource("2_bp3b5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.56592, 0)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.302886, 0.953027, 0, -0.953027, -0.302886, 0, 0, 0)
 script = ExtResource("3_rl5pk")
@@ -116,5 +130,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48842, 3.16339, -3.60869)
 shape = SubResource("BoxShape3D_yldlh")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D5"]
+
+[node name="Character" parent="." instance=ExtResource("3_co8uv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7884, 0)
+
+[node name="WobbleShader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cey7s")
+use_parent_material = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="."]
+position = Vector2(576, 323.5)
+scale = Vector2(5.76, 3.235)
+copy_mode = 2
+
+[node name="ChromaticShader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_bhukl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="toggled" from="Debug Camera/PanelContainer/Visible debug camera" to="Debug Camera" method="_on_visible_debug_camera_toggled"]
