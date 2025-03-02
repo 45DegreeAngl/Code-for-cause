@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfe2n5yc1ofd5"]
 
-[ext_resource type="MeshLibrary" uid="uid://c8n66fyu0fvek" path="res://Assets/Models/Mesh Libraries/Streets(New) debug.tres" id="1_ikm3f"]
+[ext_resource type="MeshLibrary" uid="uid://c8h4di68bxqvq" path="res://Assets/Models/Mesh Libraries/Street.tres" id="1_gwu8o"]
 
 [node name="Debug Straight" type="GridMap"]
-mesh_library = ExtResource("1_ikm3f")
+mesh_library = ExtResource("1_gwu8o")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 0, 65530, 1441792, 0, 65529, 1441792, 0, 65528, 1441792, 0, 65527, 1441792, 0, 65526, 1441792, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792)
