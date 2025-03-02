@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://7yiw8v4t5rt7" path="res://Prefabs/Roads/Death.tscn" id="3_tg4gt"]
 [ext_resource type="PackedScene" uid="uid://bfe2n5yc1ofd5" path="res://Prefabs/Roads/debug_straight.tscn" id="4_l3tqm"]
 [ext_resource type="PackedScene" uid="uid://bbgxfmxgrga4r" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
-[ext_resource type="PackedScene" uid="uid://bup5hafnqfbh2" path="res://Prefabs/Player/Player Car.tscn" id="5_kebmv"]
+[ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Player/Player Car.tscn" id="5_kebmv"]
 [ext_resource type="PackedScene" uid="uid://dlcqplxybhtkb" path="res://Prefabs/Roads/Narrow Segment.tscn" id="6_6oinw"]
 
 [node name="Segment Spawner" type="Node"]
@@ -13,12 +13,12 @@ script = ExtResource("1_rkbci")
 road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("6_6oinw")])
 
 [node name="Roads" type="Node3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
 [node name="Debug Straight" parent="Roads" instance=ExtResource("4_l3tqm")]
 
 [node name="Player" parent="." instance=ExtResource("5_kebmv")]
-transform = Transform3D(-0.999969, 0, 0.00788886, 0, 1, 0, -0.00788886, 0, -0.999969, 5.99212, 29.9894, -9.93195)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99212, 29.9894, -9.93195)
 MAX_STEER = 0.4
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
