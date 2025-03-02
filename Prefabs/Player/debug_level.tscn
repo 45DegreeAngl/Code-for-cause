@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Prefabs/debug_camera.gd" id="2_3myqa"]
 [ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="2_v74su"]
 [ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="3_mo707"]
-[ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Player/Player Car.tscn" id="4_gxalm"]
+[ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="4_gfkuo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hq2ha"]
 shader = ExtResource("3_mo707")
@@ -71,7 +71,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Debug Camera/ViewportContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(486, 321)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Debug Camera/ViewportContainer/SubViewportContainer/SubViewport"]
@@ -84,7 +84,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Debug Camera/ViewportContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(486, 322)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Debug Camera/ViewportContainer/SubViewportContainer2/SubViewport"]
@@ -116,7 +116,7 @@ size = Vector3(1, 20.0283, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4281, 9.51416, -41.2022)
 size = Vector3(1, 20.0283, 1)
 
-[node name="Car_2" parent="." instance=ExtResource("4_gxalm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.6863, 0)
+[node name="The_Car" parent="." instance=ExtResource("4_gfkuo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.81551, 0)
 
 [connection signal="toggled" from="Debug Camera/PanelContainer/Visible debug camera" to="Debug Camera" method="_on_visible_debug_camera_toggled"]
