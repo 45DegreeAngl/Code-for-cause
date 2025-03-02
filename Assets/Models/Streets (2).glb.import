@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b2gf107hd3ttf"
-path="res://.godot/imported/Streets (1).glb-50b746f4078d956911457da4d5a835ca.scn"
+uid="uid://gt2xc1w2kdvy"
+path="res://.godot/imported/Streets (2).glb-4efef80019843e27fb03051a3a0255d1.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Mesh Libraries/Streets (1).glb"
-dest_files=["res://.godot/imported/Streets (1).glb-50b746f4078d956911457da4d5a835ca.scn"]
+source_file="res://Assets/Models/Streets (2).glb"
+dest_files=["res://.godot/imported/Streets (2).glb-4efef80019843e27fb03051a3a0255d1.scn"]
 
 [params]
 

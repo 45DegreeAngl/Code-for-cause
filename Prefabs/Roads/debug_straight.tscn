@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfe2n5yc1ofd5"]
 
-[ext_resource type="MeshLibrary" uid="uid://cq76ahvncltr1" path="res://Assets/Models/Mesh Libraries/Street debug.tres" id="1_addpo"]
+[ext_resource type="MeshLibrary" uid="uid://dijf42bc3wwdu" path="res://Assets/Models/Mesh Libraries/Street Debug.tres" id="1_ghpan"]
 
 [node name="Debug Straight" type="GridMap"]
-mesh_library = ExtResource("1_addpo")
+mesh_library = ExtResource("1_ghpan")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(65536, 10, 1048576, 65536, 9, 1048576, 65536, 8, 1048576, 65536, 7, 1048576, 65536, 6, 1048576, 65536, 5, 1048576, 65536, 4, 1048576, 65536, 3, 1048576, 65536, 2, 1048576, 65536, 1, 1048576, 65536, 0, 1048576, 65536, 65535, 1048576, 65536, 65534, 1048576, 65536, 65533, 1048576, 65536, 65532, 1048576, 65536, 65524, 1048576, 65536, 65527, 1048576, 65536, 65528, 1048576, 65536, 65529, 1048576, 65536, 65530, 1048576, 65536, 65531, 1048576, 65536, 65526, 1048576, 65536, 65525, 1048576)

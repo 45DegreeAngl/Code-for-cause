@@ -483,6 +483,7 @@ script = ExtResource("1_dt86f")
 [node name="BackLeft" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.35, -1.65)
 use_as_traction = true
+wheel_rest_length = 0.3
 suspension_travel = 0.15
 suspension_stiffness = 80.0
 
@@ -494,6 +495,7 @@ skeleton = NodePath("")
 [node name="BackRight" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.35, -1.65)
 use_as_traction = true
+wheel_rest_length = 0.3
 suspension_travel = 0.15
 suspension_stiffness = 80.0
 
@@ -506,6 +508,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.35, 1.95)
 use_as_traction = true
 use_as_steering = true
+wheel_rest_length = 0.3
 
 [node name="Circle" type="MeshInstance3D" parent="FrontLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.35, -1.95)
@@ -516,6 +519,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.35, 1.95)
 use_as_traction = true
 use_as_steering = true
+wheel_rest_length = 0.3
 
 [node name="Circle_001" type="MeshInstance3D" parent="FrontRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.35, -1.95)
