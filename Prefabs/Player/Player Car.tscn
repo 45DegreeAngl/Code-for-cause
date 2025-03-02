@@ -1,7 +1,12 @@
-[gd_scene load_steps=24 format=4 uid="uid://bup5hafnqfbh2"]
+[gd_scene load_steps=25 format=4 uid="uid://bup5hafnqfbh2"]
 
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_dt86f"]
 [ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="2_sfu7x"]
+
+[sub_resource type="Curve" id="Curve_1dypo"]
+min_value = 0.1
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3, 0.426374), -1.06365, -1.06365, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_woict"]
 resource_name = "tire"
@@ -479,13 +484,14 @@ points = PackedVector3Array(1.20388, -0.438554, -1.13051, 1.1928, 0.0953528, 2.1
 gravity_scale = 2.0
 center_of_mass_mode = 1
 script = ExtResource("1_dt86f")
+STEERING_CURVE = SubResource("Curve_1dypo")
 
 [node name="BackLeft" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.35, -1.65)
 use_as_traction = true
 wheel_rest_length = 0.3
 suspension_travel = 0.15
-suspension_stiffness = 80.0
+suspension_stiffness = 120.0
 
 [node name="Circle_003" type="MeshInstance3D" parent="BackLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.35, 1.65)
@@ -497,7 +503,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.35, -1.65)
 use_as_traction = true
 wheel_rest_length = 0.3
 suspension_travel = 0.15
-suspension_stiffness = 80.0
+suspension_stiffness = 120.0
 
 [node name="Circle_002" type="MeshInstance3D" parent="BackRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.35, 1.65)
@@ -509,6 +515,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.35, 1.95)
 use_as_traction = true
 use_as_steering = true
 wheel_rest_length = 0.3
+suspension_stiffness = 120.0
 
 [node name="Circle" type="MeshInstance3D" parent="FrontLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.35, -1.95)
@@ -520,6 +527,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.35, 1.95)
 use_as_traction = true
 use_as_steering = true
 wheel_rest_length = 0.3
+suspension_stiffness = 120.0
 
 [node name="Circle_001" type="MeshInstance3D" parent="FrontRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.35, -1.95)

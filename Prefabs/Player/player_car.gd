@@ -3,7 +3,7 @@ extends VehicleBody3D
 ##https://poly.pizza/m/a_HKCtYAv2W
 ##the creative commons liscence is this Nissan GTR by David Sirera [CC-BY] via Poly Pizza
 ##Nissan GTR by David Sirera [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/a_HKCtYAv2W)
-
+@export var STEERING_CURVE : Curve
 @export var MAX_STEER = 0.8
 ##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are
 @export var ENGINE_POWER : float = 200
@@ -19,7 +19,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	change_engine_pitch()
-	steering = move_toward(steering,Input.get_axis("D","A") * MAX_STEER,delta*2.5)
+	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
 	engine_force = max(Input.get_axis("S","W") * ENGINE_POWER,-ENGINE_POWER/1.5)
 
 @export var camera_sense : float = 0.001
@@ -54,3 +54,8 @@ func change_engine_pitch():
 	if pitch <= 0.01:
 		$Engine.stop()
 	$Engine.pitch_scale = pitch
+
+func get_max_steer():
+	if linear_velocity.length() >= 100:
+		return MAX_STEER * 0.1
+	return MAX_STEER * STEERING_CURVE.sample(linear_velocity.length()/100)

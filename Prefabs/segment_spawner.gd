@@ -13,9 +13,10 @@ func _ready():
 		instanced_segment.queue_free()
 		packed_offsets[segment] = offset * $Roads.scale * Vector3(1,1,1)
 	print(packed_offsets)
-	spawn_road(road_segments[1])
-	spawn_road(road_segments[1])
-	spawn_road(road_segments[1])
+	spawn_road(road_segments[0])
+	for num_roads in range(20):
+		spawn_road(road_segments.pick_random())
+	
 
 var current_road : PackedScene
 var current_offset : Vector3 = Vector3.ZERO
