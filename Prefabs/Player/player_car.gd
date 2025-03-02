@@ -18,6 +18,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("F"):#toggle Headlights
+		for child in $Light.get_children():
+			if child is Light3D and child.name.findn("Head")!=-1 and child.has_method("get_param"):
+				#print(child)
+				var cur_energy = child.get_param(Light3D.PARAM_ENERGY)
+				if cur_energy:
+					child.set_param(Light3D.PARAM_ENERGY,0)
+				else:
+					child.set_param(Light3D.PARAM_ENERGY,1)
+	
 	change_engine_pitch()
 	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
 	engine_force = -max(Input.get_axis("S","W") * ENGINE_POWER,-ENGINE_POWER/1.5)

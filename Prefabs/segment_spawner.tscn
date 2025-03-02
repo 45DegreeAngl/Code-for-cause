@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
 [ext_resource type="PackedScene" uid="uid://7yiw8v4t5rt7" path="res://Prefabs/Roads/Death.tscn" id="3_tg4gt"]
 [ext_resource type="PackedScene" uid="uid://bfe2n5yc1ofd5" path="res://Prefabs/Roads/debug_straight.tscn" id="4_l3tqm"]
-[ext_resource type="PackedScene" uid="uid://bbgxfmxgrga4r" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
+[ext_resource type="PackedScene" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
 [ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Player/Player Car.tscn" id="5_kebmv"]
-[ext_resource type="PackedScene" uid="uid://dlcqplxybhtkb" path="res://Prefabs/Roads/Narrow Segment.tscn" id="6_6oinw"]
+[ext_resource type="PackedScene" path="res://Prefabs/Roads/Narrow Segment.tscn" id="6_6oinw"]
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsp07qx1cf5a"
-path.s3tc="res://.godot/imported/Car_2_Right_Mirror_Mat.png-e0425737459b7284e030d993670c0a21.s3tc.ctex"
+uid="uid://b77626kh0b61k"
+path.s3tc="res://.godot/imported/Car_2_Chassis_Color.png-0e219a7e3ae394b8ae4fd21f4c8d06de.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "f290401f0a6bd3a989805b459bff540a"
+"md5": "cc350f7d678cb292bc0fa88aece22a6c"
 }
 
 [deps]
 
-source_file="res://Assets/Models/Car_2_Right_Mirror_Mat.png"
-dest_files=["res://.godot/imported/Car_2_Right_Mirror_Mat.png-e0425737459b7284e030d993670c0a21.s3tc.ctex"]
+source_file="res://Assets/Models/Car/Car_2_Chassis_Color.png"
+dest_files=["res://.godot/imported/Car_2_Chassis_Color.png-0e219a7e3ae394b8ae4fd21f4c8d06de.s3tc.ctex"]
 
 [params]
 
