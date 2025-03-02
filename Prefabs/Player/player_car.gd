@@ -48,4 +48,9 @@ func handle_cam_rotation():
 	$Cameras/Windshield.rotate_object_local(Vector3(1,0,0),-rot_y)
 	
 func change_engine_pitch():
-	$Engine.pitch_scale = min(1, linear_velocity.length()/SOUND_MAX_SPEED)
+	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:
+		$Engine.play()
+	var pitch = min(1, linear_velocity.length()/SOUND_MAX_SPEED)
+	if pitch <= 0.01:
+		$Engine.stop()
+	$Engine.pitch_scale = pitch
