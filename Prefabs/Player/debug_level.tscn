@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Prefabs/debug_camera.gd" id="2_3myqa"]
 [ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="2_v74su"]
 [ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="3_mo707"]
-[ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="4_gfkuo"]
+[ext_resource type="PackedScene" uid="uid://dy62t7wqo0r7i" path="res://Prefabs/Player/the_car.tscn" id="4_gfkuo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hq2ha"]
 shader = ExtResource("3_mo707")

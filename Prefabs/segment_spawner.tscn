@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" path="res://Prefabs/Roads/Stairway to Hellven.tscn" id="7_e26yy"]
 [ext_resource type="PackedScene" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
 [ext_resource type="PackedScene" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
-[ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
+[ext_resource type="PackedScene" uid="uid://dy62t7wqo0r7i" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
