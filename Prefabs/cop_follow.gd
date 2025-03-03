@@ -24,8 +24,9 @@ func align_with_ground():
 	if current_y.is_equal_approx(normalized_target):
 		return
 	var rotation_axis = current_y.cross(normalized_target).normalized()
-	var angle = current_y.angle_to(normalized_target)
-	$Mesh.rotate(rotation_axis, angle)
+	if rotation_axis != Vector3.ZERO:
+		var angle = current_y.angle_to(normalized_target)
+		$Mesh.rotate(rotation_axis.normalized(), angle)
 	
 
 func assign_to_nearest_path():
