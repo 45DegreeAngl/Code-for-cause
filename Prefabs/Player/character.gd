@@ -47,7 +47,7 @@ var grabbing_arm_right = false
 var current_delta:float
 
 func _ready():
-	physical_skel.physical_bones_start_simulation()# activate ragdoll
+	#physical_skel.physical_bones_start_simulation()# activate ragdoll
 	physics_bones = physical_skel.get_children().filter(func(x): return x is PhysicalBone3D) # get all the physical bones
 	
 
@@ -76,6 +76,10 @@ func _process(delta):
 	else:
 		animation_tree.set("parameters/grab_dir/blend_position",0)
 
+var car : Node3D = null
+func set_car_door(value):
+	car_door = value
+var car_door = null
 
 func _physics_process(delta):
 	current_delta = delta
@@ -96,6 +100,8 @@ func _physics_process(delta):
 		if Input.is_action_pressed("S"):
 			dir -= animated_skel.global_transform.basis.z
 			walking = true
+		if Input.is_action_just_pressed("E") and car_door:
+			car.enter_car()
 		dir = dir.normalized()
 
 		physical_bone_body.linear_velocity += dir*SPEED*delta #move character
