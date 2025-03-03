@@ -23,6 +23,7 @@ shader_parameter/red_mult = 1.0
 [node name="Debug Level" type="Node3D"]
 
 [node name="WobbleShader" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_hq2ha")
 use_parent_material = true
 anchors_preset = 15
@@ -38,6 +39,7 @@ scale = Vector2(5.76, 3.235)
 copy_mode = 2
 
 [node name="ChromaticShader" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_yoks4")
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,6 +119,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4281, 9.51416, -41.2022)
 size = Vector3(1, 20.0283, 1)
 
 [node name="The_Car" parent="." instance=ExtResource("4_gfkuo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.81551, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [connection signal="toggled" from="Debug Camera/PanelContainer/Visible debug camera" to="Debug Camera" method="_on_visible_debug_camera_toggled"]
