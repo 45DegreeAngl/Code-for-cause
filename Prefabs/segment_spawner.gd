@@ -1,11 +1,12 @@
 extends Node
 
 @export var road_segments : Array[PackedScene] = []
+signal road_generated
 
 func _ready():
 	for num_roads in range(200):
 		spawn_road(road_segments.pick_random())
-
+	road_generated.emit()
 @onready var previous_road : Node3D = $"Roads/Debug Straight"
 
 #spawn road at given location

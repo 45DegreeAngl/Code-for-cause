@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=12 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
 [ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
 [ext_resource type="PackedScene" uid="uid://7yiw8v4t5rt7" path="res://Prefabs/Roads/Death.tscn" id="3_tg4gt"]
 [ext_resource type="PackedScene" uid="uid://bfe2n5yc1ofd5" path="res://Prefabs/Roads/debug_straight.tscn" id="4_l3tqm"]
-[ext_resource type="PackedScene" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
-[ext_resource type="PackedScene" path="res://Prefabs/Roads/Narrow Segment.tscn" id="6_6oinw"]
-[ext_resource type="PackedScene" path="res://Prefabs/Roads/Stairway to Hellven.tscn" id="7_e26yy"]
-[ext_resource type="PackedScene" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
-[ext_resource type="PackedScene" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
+[ext_resource type="PackedScene" uid="uid://c7afy5ct7o7c1" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
+[ext_resource type="PackedScene" uid="uid://b83pixbx6roc1" path="res://Prefabs/Roads/Narrow Segment.tscn" id="6_6oinw"]
+[ext_resource type="PackedScene" uid="uid://cgk8q7mcfa465" path="res://Prefabs/Roads/Stairway to Hellven.tscn" id="7_e26yy"]
+[ext_resource type="PackedScene" uid="uid://bsawvuh1yr6x3" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
+[ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
 [ext_resource type="PackedScene" uid="uid://dy62t7wqo0r7i" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
+[ext_resource type="Script" path="res://Prefabs/cop_follow.gd" id="11_ugciq"]
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
@@ -25,3 +26,15 @@ transform = Transform3D(0.82466, -0.565629, 0, 0.547531, 0.798273, 0.250938, -0.
 
 [node name="The_Car" parent="." instance=ExtResource("10_lxkwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 11, -5)
+
+[node name="CopFollow" type="PathFollow3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6607, 16.0487, 0)
+loop = false
+script = ExtResource("11_ugciq")
+speed = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CopFollow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+size = Vector3(5, 5, 5)
+
+[connection signal="road_generated" from="." to="CopFollow" method="_on_segment_spawner_road_generated"]

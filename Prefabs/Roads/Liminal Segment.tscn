@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bogolnxixbr31"]
+[gd_scene load_steps=3 format=3 uid="uid://bsawvuh1yr6x3"]
 
-[ext_resource type="MeshLibrary" uid="uid://c8h4di68bxqvq" path="res://Assets/Models/Mesh Libraries/Street.tres" id="1_tekci"]
+[ext_resource type="MeshLibrary" uid="uid://dq2ytrri8ksfq" path="res://Assets/Models/Mesh Libraries/Street.tres" id="1_tekci"]
+
+[sub_resource type="Curve3D" id="Curve3D_lr348"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.505595, 0.6706, -0.0683007, 0.00361645, 5.43594e-05, 0.528921, -0.00361645, -5.43594e-05, -0.528921, 0.535724, 0.6706, -9.77515, 1.4341, 5.43594e-05, 0.00878334, -1.4341, -5.43594e-05, -0.00878334, -0.951969, 0.6706, -10.4945, 0.0778487, 5.43594e-05, 1.13959, -0.0778487, -5.43594e-05, -1.13959, -2.45601, 0.6706, -11.835, 1.34654, 6.77109e-05, 0.510499, -1.34654, -6.77109e-05, -0.510499, -4.58129, 0.6706, -13.5353, 0.0511184, 5.43594e-05, 0.573928, -0.0511184, -5.43594e-05, -0.573928, -5.67993, 0.670654, -14.942, -1.18047, 5.43594e-05, 0.0105019, 1.18047, -5.43594e-05, -0.0105019, -4.09724, 0.670654, -16.4675, -0.0232236, 5.43594e-05, 1.13573, 0.0232236, -5.43594e-05, -1.13573, -2.54852, 0.6706, -18.2515, -0.955207, 5.43594e-05, 0.0953999, 0.955207, -5.43594e-05, -0.0953999, -1.04448, 0.6706, -19.4613, 0, 0, 0, 0, 0, 0, 0.492257, 0.6706, -20.7528),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
 
 [node name="Liminal Segment" type="GridMap"]
 mesh_library = ExtResource("1_tekci")
@@ -12,3 +19,6 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Exit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
+
+[node name="Path3D" type="Path3D" parent="." groups=["road_path"]]
+curve = SubResource("Curve3D_lr348")
