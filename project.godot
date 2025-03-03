@@ -30,6 +30,10 @@ folder_colors={
 "res://Shaders/": "blue"
 }
 
+[physics]
+
+common/physics_interpolation=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
