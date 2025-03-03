@@ -80,7 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4281, 9.51416, -41.2022)
 size = Vector3(1, 20.0283, 1)
 
 [node name="The_Car" parent="." instance=ExtResource("4_gfkuo")]
-transform = Transform3D(-0.998711, -0.0507672, 0, 0.0507672, -0.998711, 0, 0, 0, 1, 0, 6.50312, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9293, 6.18651, 0)

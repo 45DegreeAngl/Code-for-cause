@@ -1,0 +1,167 @@
+[gd_scene load_steps=5 format=3 uid="uid://p88stdkcx0dp"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_kvc74"]
+[ext_resource type="PackedScene" uid="uid://c0isynyusocwo" path="res://Prefabs/segment_spawner.tscn" id="2_st1sx"]
+[ext_resource type="FontFile" uid="uid://0luaa6cfm0c3" path="res://Assets/Themes/Fonts/SpaceMadness.ttf" id="3_aruaa"]
+
+[sub_resource type="Theme" id="Theme_nutix"]
+default_font = ExtResource("3_aruaa")
+default_font_size = 44
+
+[node name="Main Menu" type="Node"]
+script = ExtResource("1_kvc74")
+game_packed = ExtResource("2_st1sx")
+
+[node name="Main Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -101.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Start" type="Button" parent="Main Menu/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Options" type="Button" parent="Main Menu/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Credits" type="Button" parent="Main Menu/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Options" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="Options"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back"
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Close" type="Button" parent="Credits"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Close"
+
+[node name="Animations" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="Animations"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Continue"
+
+[node name="Game Over" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Game Over"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -233.0
+offset_right = 233.0
+offset_bottom = 214.0
+grow_horizontal = 2
+theme = SubResource("Theme_nutix")
+bbcode_enabled = true
+text = "GAME OVER YOU'RE [color=red]SOBER"
+
+[node name="Main Menu" type="Button" parent="Game Over"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Main Menu
+"
+
+[node name="Game World" type="Node" parent="."]
+
+[connection signal="pressed" from="Main Menu/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Main Menu/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Main Menu/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Options/Back" to="." method="on_back"]
+[connection signal="pressed" from="Credits/Close" to="." method="on_back"]
+[connection signal="pressed" from="Animations/Continue" to="." method="_on_start_game"]
+[connection signal="pressed" from="Game Over/Main Menu" to="." method="on_back"]

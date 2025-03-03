@@ -17,7 +17,8 @@ var occupied:bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	pass # Replace with function body.
+	MainShaderCanvas.toggle_filter("drunk")
+	Globals.drunkenness=Globals.drunkenness
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,7 +40,8 @@ func _process(delta: float) -> void:
 				spawned_player = spawn_player_character()
 				
 			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
-				pass
+				Globals.drunkenness+=1
+				#print("glug glug glug")
 			looking_at.Radio:#change radio
 				pass
 	
@@ -80,7 +82,9 @@ func change_engine_pitch():
 	var pitch = min(1, linear_velocity.length()/SOUND_MAX_SPEED)
 	if pitch <= 0.01:
 		$Engine.stop()
-	$Engine.pitch_scale = pitch
+	if pitch>0.0:
+		$Engine.pitch_scale = pitch
+
 
 func get_max_steer():
 	if linear_velocity.length() >= 100:
@@ -139,5 +143,17 @@ func _on_raycast_exit(area:Area3D)->void:
 	if area == driver_look_area:
 		cur_look_at = null
 		print("null")
-	elif area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
+	if area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
 		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door(null)
+
+
+func _on_sobriety_timer_timeout() -> void:
+	Globals.drunkenness-=1
+	print(Globals.drunkenness)
+	if Globals.drunkenness<=0:
+		Globals.game_lost.emit()
+	elif Globals.drunkenness<11:
+		$"Sobriety Alarm".play()
+	else:
+		$"Sobriety Alarm".stop()
+	
