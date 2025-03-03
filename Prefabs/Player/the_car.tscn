@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://dy62t7wqo0r7i"]
+[gd_scene load_steps=48 format=4 uid="uid://dy62t7wqo0r7i"]
 
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
@@ -312,6 +312,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_eccq3")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_2lpkt"]
+viewport_path = NodePath("Cameras/LeftViewPort")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jbagv"]
+viewport_path = NodePath("Cameras/LeftViewPort")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxpoq"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_2lpkt")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_jbagv")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs6ok"]
 resource_name = "Material.002"
 cull_mode = 2
@@ -349,6 +361,18 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_age31")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oo0l3"]
+viewport_path = NodePath("Cameras/RightViewPort")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_02si6"]
+viewport_path = NodePath("Cameras/RightViewPort")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ke275"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_oo0l3")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_02si6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j1f8"]
 resource_name = "Material.003"
@@ -472,11 +496,13 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58522, 1.83675, -2.18483)
 mesh = SubResource("ArrayMesh_co2kh")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_dxpoq")
 
 [node name="Right_Mirror" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58522, 1.83675, -2.18483)
 mesh = SubResource("ArrayMesh_ugnnj")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_ke275")
 
 [node name="Top_Mirror" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47319, -1.41985)
@@ -507,6 +533,28 @@ fov = 80.0
 [node name="RearViewRemote" type="RemoteTransform3D" parent="Cameras"]
 transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 0, 1.77, -0.824)
 remote_path = NodePath("../RearViewPort/RearView")
+
+[node name="LeftViewPort" type="SubViewport" parent="Cameras"]
+size = Vector2i(128, 152)
+
+[node name="LeftView" type="Camera3D" parent="Cameras/LeftViewPort"]
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -1.53068, 1.87315, -2.11568)
+fov = 28.3
+
+[node name="LeftViewRemote" type="RemoteTransform3D" parent="Cameras"]
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -1.53068, 1.23008, -2.11568)
+remote_path = NodePath("../LeftViewPort/LeftView")
+
+[node name="RightViewPort" type="SubViewport" parent="Cameras"]
+size = Vector2i(128, 152)
+
+[node name="RightView" type="Camera3D" parent="Cameras/RightViewPort"]
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 1.63082, 1.87315, -2.11568)
+fov = 28.3
+
+[node name="RightViewRemote" type="RemoteTransform3D" parent="Cameras"]
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 1.63082, 1.23008, -2.11568)
+remote_path = NodePath("../RightViewPort/RightView")
 
 [node name="Light" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
