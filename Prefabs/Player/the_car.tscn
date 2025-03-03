@@ -465,7 +465,7 @@ mesh = SubResource("ArrayMesh_llvle")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51981, -1.44867)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00600743, 2.53772, -1.44675)
 shape = SubResource("ConvexPolygonShape3D_1tvv8")
 
 [node name="Back_Left" type="VehicleWheel3D" parent="."]

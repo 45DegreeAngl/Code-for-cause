@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://co5a8x7qh30nb"]
+
+[ext_resource type="Texture2D" uid="uid://bvx8ni30b8k20" path="res://Assets/Models/Buildings/bwick_2.png" id="1_x15b3"]
+[ext_resource type="Texture2D" uid="uid://bgwo44mq8ntmy" path="res://Assets/Models/Buildings/House_1_bwick_n.jpg" id="2_vpi8j"]
+
+[resource]
+resource_name = "bwick"
+cull_mode = 2
+albedo_texture = ExtResource("1_x15b3")
+roughness = 0.5
+normal_enabled = true
+normal_texture = ExtResource("2_vpi8j")
