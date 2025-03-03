@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://dy62t7wqo0r7i"]
+[gd_scene load_steps=58 format=4 uid="uid://diakwvg84vkiw"]
 
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://cw8ifdi80fcme" path="res://Assets/Models/Car/The_Car_Right_Mirror_Mat.png" id="6_pfeyb"]
 [ext_resource type="Texture2D" uid="uid://bm1ompqyy2io7" path="res://Assets/Models/Car/The_Car_Top_Mirror_Mat.png" id="7_qgxyv"]
 [ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="8_etipi"]
+[ext_resource type="Texture2D" uid="uid://6ok3wwem53q" path="res://Assets/Models/godot-prototype-texture/PNG/checker_blue_512x512.png" id="11_rn8n4"]
+[ext_resource type="Texture2D" uid="uid://crhdx7ojehre8" path="res://Assets/Models/godot-prototype-texture/PNG/checker_lime_512x512.png" id="12_whm7s"]
+[ext_resource type="Texture2D" uid="uid://dc5kiekdkk2lc" path="res://Assets/Models/godot-prototype-texture/PNG/checker_red_512x512.png" id="13_ibe3o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eejqu"]
 resource_name = "Material"
@@ -425,6 +428,27 @@ albedo_texture = SubResource("ViewportTexture_1fn4a")
 emission_enabled = true
 emission_texture = SubResource("ViewportTexture_a6l4v")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mde6f"]
+size = Vector3(0.234375, 1.35938, 2.21973)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_055nn"]
+albedo_texture = ExtResource("11_rn8n4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_67v7v"]
+size = Vector3(0.65, 0.875, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfpqe"]
+albedo_texture = ExtResource("12_whm7s")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_csasn"]
+size = Vector3(0.5, 0.88, 0.45)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlc4a"]
+albedo_texture = ExtResource("13_ibe3o")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u68fw"]
+radius = 0.0250014
+
 [node name="The_Car" type="VehicleBody3D"]
 gravity_scale = 2.0
 center_of_mass_mode = 1
@@ -510,8 +534,44 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wndiq")
 [node name="Engine" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
 stream = ExtResource("8_etipi")
-volume_db = -6.0
+volume_db = -50.0
 autoplay = true
+
+[node name="Interactibles" type="Node3D" parent="."]
+
+[node name="EnterExit" type="Area3D" parent="Interactibles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17055, 1.51428, -1.43528)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/EnterExit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.335973, 0)
+shape = SubResource("BoxShape3D_mde6f")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/EnterExit"]
+size = Vector3(0.234375, 1.35938, 2.21973)
+material = SubResource("StandardMaterial3D_055nn")
+
+[node name="Alcholol" type="Area3D" parent="Interactibles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539667, 1.33833, -1.25203)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Alcholol"]
+shape = SubResource("BoxShape3D_67v7v")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/Alcholol"]
+size = Vector3(0.65, 0.875, 0.6)
+material = SubResource("StandardMaterial3D_pfpqe")
+
+[node name="Radio" type="Area3D" parent="Interactibles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37649, -1.88388)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Radio"]
+shape = SubResource("BoxShape3D_csasn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/Radio"]
+size = Vector3(0.5, 0.88, 0.45)
+material = SubResource("StandardMaterial3D_nlc4a")
+
+[node name="Player Location" type="Marker3D" parent="Interactibles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71618, 1.79814, -1.19713)
 
 [node name="Cameras" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
@@ -519,6 +579,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
 [node name="Windshield" type="Camera3D" parent="Cameras"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.522313, 1.64713, -1.12866)
 current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Cameras/Windshield"]
+target_position = Vector3(0, 0, -3)
+
+[node name="Area3D" type="Area3D" parent="Cameras/Windshield"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cameras/Windshield/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1.02363)
+shape = SubResource("CylinderShape3D_u68fw")
 
 [node name="RearViewPort" type="SubViewport" parent="Cameras"]
 size = Vector2i(36, 128)
@@ -576,5 +645,9 @@ light_color = Color(1, 0, 0, 1)
 light_energy = 2.0
 spot_range = 2.0
 
-[node name="Marker3D" type="Marker3D" parent="."]
+[node name="Center of mass" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
+
+[connection signal="area_entered" from="Interactibles/EnterExit" to="." method="_on_enter_exit_area_entered"]
+[connection signal="area_entered" from="Interactibles/Alcholol" to="." method="_on_alcholol_area_entered"]
+[connection signal="area_entered" from="Interactibles/Radio" to="." method="_on_radio_area_entered"]

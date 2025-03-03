@@ -9,6 +9,10 @@ extends VehicleBody3D
 @export var ENGINE_POWER : float = 200
 @export var SOUND_MAX_SPEED : float = 75
 
+var occupied:bool = true
+
+@onready var driver_look_area:Area3D = $Cameras/Windshield/Area3D
+@onready var character_raycast : RayCast3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +22,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if !occupied:
+		return
 	if Input.is_action_just_pressed("F"):#toggle Headlights
 		for child in $Light.get_children():
 			if child is Light3D and child.name.findn("Head")!=-1 and child.has_method("get_param"):
@@ -27,6 +33,15 @@ func _process(delta: float) -> void:
 					child.set_param(Light3D.PARAM_ENERGY,0)
 				else:
 					child.set_param(Light3D.PARAM_ENERGY,1)
+	elif Input.is_action_just_pressed("E"):
+		match cur_look_at:
+			looking_at.Door:#spawn human player, switch camera
+				spawned_player = spawn_player_character()
+				
+			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
+				pass
+			looking_at.Radio:#change radio
+				pass
 	
 	change_engine_pitch()
 	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
@@ -36,6 +51,8 @@ func _process(delta: float) -> void:
 var rot_x = 180
 var rot_y = 0
 func _input(event: InputEvent) -> void:
+	if !occupied:
+		return
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_ESCAPE:
 			match Input.mouse_mode:
@@ -69,3 +86,58 @@ func get_max_steer():
 	if linear_velocity.length() >= 100:
 		return MAX_STEER * 0.1
 	return MAX_STEER * STEERING_CURVE.sample(linear_velocity.length()/100)
+
+var spawned_player : Node3D = null
+
+func spawn_player_character()->Node3D:
+	if spawned_player:
+		return
+	#instantiate player character
+	var player_instance : Node3D = Globals.player_packed.instantiate()
+	#update car occupation
+	occupied = false
+	#add character to scene
+	Globals.world_node.add_child(player_instance)
+	#move player to this location
+	player_instance.global_transform.origin = $"Interactibles/Player Location".global_position
+	#activate player camera
+	player_instance.find_child("CameraPivot").get_child(0).get_child(0).current = true
+	#deactivate car camera
+	$Cameras/Windshield.current = false
+	player_instance.car = self
+	#activate player_instance
+	player_instance.physical_skel.physical_bones_start_simulation()
+	return player_instance
+
+func enter_car():
+	occupied = true
+	$Cameras/Windshield.current = true
+	spawned_player.call_deferred("queue_free")
+	set_deferred("player_instance",null)
+
+enum looking_at{Door,Alchohol,Radio}
+var cur_look_at = null
+
+func _on_enter_exit_area_entered(area: Area3D) -> void:
+	if area == driver_look_area:
+		cur_look_at = looking_at.Door
+		print("door")
+	elif area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
+		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door("Car")
+
+func _on_alcholol_area_entered(area: Area3D) -> void:
+	if area == driver_look_area:
+		cur_look_at = looking_at.Alchohol
+		print("alchohol")
+
+func _on_radio_area_entered(area: Area3D) -> void:
+	if area == driver_look_area:
+		cur_look_at = looking_at.Radio
+		print("radio")
+
+func _on_raycast_exit(area:Area3D)->void:
+	if area == driver_look_area:
+		cur_look_at = null
+		print("null")
+	elif area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
+		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door(null)
