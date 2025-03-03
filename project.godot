@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Actions="*res://Globals/Actions.gd"
 Globals="*res://Globals/Globals.gd"
 
+[dotnet]
+
+project/assembly_name="Code-for-cause"
+
 [file_customization]
 
 folder_colors={

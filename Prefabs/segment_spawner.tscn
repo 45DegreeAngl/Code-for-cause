@@ -14,7 +14,7 @@
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
-road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("6_6oinw"), ExtResource("7_e26yy"), ExtResource("8_mfdpi"), ExtResource("9_f8h36")])
+road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("8_mfdpi"), ExtResource("6_6oinw"), ExtResource("9_f8h36"), ExtResource("7_e26yy")])
 
 [node name="Roads" type="Node3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)

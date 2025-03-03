@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=4 uid="uid://bo48lfun8rb8p"]
 
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_1nk5a"]
-[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_74y1x"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_74y1x"]
 [ext_resource type="Texture2D" uid="uid://b77626kh0b61k" path="res://Assets/Models/Car/Car_2_Chassis_Color.png" id="3_jdui3"]
 [ext_resource type="Texture2D" uid="uid://bdccdu01hbyeo" path="res://Assets/Models/Car/Car_2_Left_Mirror_Mat.png" id="4_suqod"]
 [ext_resource type="Texture2D" uid="uid://dsp07qx1cf5a" path="res://Assets/Models/Car/Car_2_Right_Mirror_Mat.png" id="5_xw3gc"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfe2n5yc1ofd5"]
+[gd_scene load_steps=4 format=3 uid="uid://bfe2n5yc1ofd5"]
 
 [ext_resource type="MeshLibrary" uid="uid://dq2ytrri8ksfq" path="res://Assets/Models/Mesh Libraries/Street.tres" id="1_gwu8o"]
 
@@ -8,6 +8,8 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lejiu"]
 
 [node name="Debug Straight" type="GridMap"]
 mesh_library = ExtResource("1_gwu8o")
@@ -22,3 +24,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 
 [node name="Path3D" type="Path3D" parent="." groups=["road_path"]]
 curve = SubResource("Curve3D_5u1vu")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 8, 0.0266571, 0.45803, -8.02176)
+use_collision = true
+mesh = SubResource("PlaneMesh_lejiu")

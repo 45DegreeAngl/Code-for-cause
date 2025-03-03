@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgk8q7mcfa465"]
+[gd_scene load_steps=5 format=3 uid="uid://cgk8q7mcfa465"]
 
 [ext_resource type="MeshLibrary" uid="uid://dq2ytrri8ksfq" path="res://Assets/Models/Mesh Libraries/Street.tres" id="1_w6n5j"]
 
@@ -8,6 +8,10 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vvpt2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v8l46"]
 
 [node name="Stairway to Hellven" type="GridMap"]
 mesh_library = ExtResource("1_w6n5j")
@@ -22,3 +26,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
 
 [node name="Path3D" type="Path3D" parent="." groups=["road_path"]]
 curve = SubResource("Curve3D_4ckwr")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 0.895036, 4.24587, 0, -0.445995, 8.52074, 0, -3.754, -8.5)
+use_collision = true
+mesh = SubResource("PlaneMesh_vvpt2")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 0.990432, -2.68481, 0, 0.331394, 8.02407, 0, -2.193, -21.962)
+use_collision = true
+mesh = SubResource("PlaneMesh_vvpt2")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 2.5, -0.00258446, -4.51, -12.4523)
+use_collision = true
+mesh = SubResource("PlaneMesh_v8l46")
