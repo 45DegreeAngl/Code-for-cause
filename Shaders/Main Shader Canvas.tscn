@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgvfmnxljilu"]
+[gd_scene load_steps=6 format=3 uid="uid://cetv46bv2jvyl"]
 
+[ext_resource type="Script" path="res://Shaders/main_shader_canvas.gd" id="1_10y2y"]
 [ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="1_22wnm"]
 [ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="2_brygk"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm7ci"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqh6k"]
 shader = ExtResource("1_22wnm")
 shader_parameter/amplitude = 0.04
 shader_parameter/frequency = 0.02
@@ -19,10 +20,20 @@ shader_parameter/green_shift = 3.0
 shader_parameter/red_mult = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_10y2y")
 
-[node name="WobbleShader" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_sm7ci")
-use_parent_material = true
+[node name="Drunk" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WobbleShader" type="ColorRect" parent="Drunk"]
+material = SubResource("ShaderMaterial_iqh6k")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,13 +41,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BackBufferCopy2" type="BackBufferCopy" parent="."]
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Drunk"]
 position = Vector2(576, 323.5)
 scale = Vector2(5.76, 3.235)
 copy_mode = 2
 
-[node name="ChromaticShader" type="ColorRect" parent="."]
+[node name="ChromaticShader" type="ColorRect" parent="Drunk"]
 material = SubResource("ShaderMaterial_0h4qc")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

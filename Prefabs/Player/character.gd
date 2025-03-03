@@ -51,7 +51,7 @@ func _ready():
 	physics_bones = physical_skel.get_children().filter(func(x): return x is PhysicalBone3D) # get all the physical bones
 	
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("R"): ragdoll_mode = bool(1-int(ragdoll_mode)) # toggle ragdoll mode
 
 	active_arm_left = Input.is_action_pressed("Left Button")# activate left arm with mouse left click
@@ -69,7 +69,7 @@ func _input(event):
 		grab_joint_right.node_a = NodePath()
 		grab_joint_right.node_b = NodePath()
 
-func _process(delta):
+func _process(_delta):
 	var r = clamp((camera_pivot.rotation.x*2)/(PI)*2.1,-1,1)
 	if active_arm_left or active_arm_right:
 		animation_tree.set("parameters/grab_dir/blend_position",r) # move the arms toward the direction you're looking at
