@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwh72emd0kt0o"]
+
+[ext_resource type="PackedScene" uid="uid://lvgwnfheptfj" path="res://Prefabs/Alcohol Crate.tscn" id="1_1nonp"]
+
+[node name="Milk Crate Debug" type="Node3D"]
+
+[node name="Milk_Crate" parent="." instance=ExtResource("1_1nonp")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.190449, 0.981697, 0, -0.981697, 0.190449, 0, 9.13436, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.609813, 0.792545, 0, -0.792545, 0.609813, 0, 1.34301, 0.74171)

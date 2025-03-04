@@ -49,9 +49,9 @@ func _process(delta: float) -> void:
 				
 			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
 				print(Globals.player_voice_lines.size())
-				$"Voice Lines".stream = Globals.player_voice_lines[randi_range(2, Globals.player_voice_lines.size()-1)]
-				$"Voice Lines".play()
-				Globals.drunkenness+=1
+				
+				
+				drink_random()
 				#print("glug glug glug")
 			looking_at.Radio:#change radio
 				pass
@@ -60,6 +60,30 @@ func _process(delta: float) -> void:
 	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
 	var forward_axis = Input.get_axis("S","W")
 	engine_force = max(forward_axis * ENGINE_POWER,-ENGINE_POWER/1.5)
+
+func drink_random():
+	var temp_array :Array = []
+	for bottle in $Milk_Crate.content:
+		if $Milk_Crate.content[bottle]>0:
+			temp_array.append(bottle)
+	if temp_array.is_empty():
+		return
+	$"Voice Lines".stream = Globals.player_voice_lines[randi_range(2, Globals.player_voice_lines.size()-1)]
+	$"Voice Lines".play()
+	var picked_bottle : String = temp_array.pick_random()
+	match picked_bottle:
+		"Beer":
+			Globals.drunkenness+=5
+		"Sake":
+			Globals.drunkenness+=10
+		"Jaeger":
+			Globals.drunkenness+=20
+		_:
+			Globals.drunkenness+=1
+	
+	$Milk_Crate.content[picked_bottle] -= 1
+	$Milk_Crate.update_bottles()
+	
 
 @export var camera_sense : float = 0.001
 var rot_x = 180

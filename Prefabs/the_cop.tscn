@@ -1,7 +1,7 @@
-[gd_scene load_steps=47 format=4 uid="uid://chbdp8ugr241n"]
+[gd_scene load_steps=44 format=4 uid="uid://cxp2kocirrm37"]
 
 [ext_resource type="Script" path="res://Prefabs/cop_controller.gd" id="1_5c3t6"]
-[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_tcl5t"]
+[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_tcl5t"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="3_uw1wd"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="5_gc1n0"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="6_85u88"]
@@ -311,15 +311,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_eccq3")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2lpkt"]
-viewport_path = NodePath("Cameras/LeftViewPort")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_jbagv"]
 viewport_path = NodePath("Cameras/LeftViewPort")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxpoq"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_2lpkt")
 emission_enabled = true
 emission_texture = SubResource("ViewportTexture_jbagv")
 
@@ -361,15 +357,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_age31")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_oo0l3"]
-viewport_path = NodePath("Cameras/RightViewPort")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_02si6"]
 viewport_path = NodePath("Cameras/RightViewPort")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ke275"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_oo0l3")
 emission_enabled = true
 emission_texture = SubResource("ViewportTexture_02si6")
 
@@ -411,16 +403,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qxxtn")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_1fn4a"]
-viewport_path = NodePath("Cameras/RearViewPort")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_a6l4v"]
 viewport_path = NodePath("Cameras/RearViewPort")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wndiq"]
 resource_local_to_scene = true
 cull_mode = 1
-albedo_texture = SubResource("ViewportTexture_1fn4a")
 emission_enabled = true
 emission_texture = SubResource("ViewportTexture_a6l4v")
 

@@ -52,10 +52,10 @@ func _process(delta: float) -> void:
 				#print("Changing amplitude to: ",str(minf(0.04+drunkenness*0.008,0.2))," From: ",str(shader_mat.get_shader_parameter("amplitude")))
 				var current_amplitude = shader_mat.get_shader_parameter("amplitude")
 				var interp_amplitude = move_toward(current_amplitude, minf(0.04+drunkenness*0.008,0.2), delta/100)
-				print(interp_amplitude)
+				#print(interp_amplitude)
 				shader_mat.set_shader_parameter("amplitude",interp_amplitude)
 			if shader_params["name"]=="frequency":
-				print("Changing frequency")
+				#print("Changing frequency")
 				var current_frequency = shader_mat.get_shader_parameter("frequency")
 				var interp_frequency = move_toward(current_frequency, minf(0.04+drunkenness*0.008,0.2), delta/100)
 				shader_mat.set_shader_parameter("freqency",interp_frequency)

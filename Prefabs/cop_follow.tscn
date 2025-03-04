@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://1fvs3l7ug8ch"]
+[gd_scene load_steps=39 format=4 uid="uid://c8ckrpx8lvwfa"]
 
 [ext_resource type="Script" path="res://Prefabs/cop_follow.gd" id="1_o73gh"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="2_d5nx1"]
