@@ -4,7 +4,7 @@ extends VehicleBody3D
 ##the creative commons liscence is this Nissan GTR by David Sirera [CC-BY] via Poly Pizza
 ##Nissan GTR by David Sirera [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/a_HKCtYAv2W)
 @export var STEERING_CURVE : Curve
-@export var MAX_STEER = 0.8
+@export var MAX_STEER_DEG : float = 45.0
 ##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are
 @export var ENGINE_POWER : float = 200
 @export var SOUND_MAX_SPEED : float = 75
@@ -17,14 +17,16 @@ var occupied:bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	MainShaderCanvas.toggle_filter("drunk")
-	Globals.drunkenness=Globals.drunkenness
+	#MainShaderCanvas.toggle_filter("drunk")
+	Globals.drunkenness=3000 #Globals.drunkenness
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !occupied:
 		return
+	#The line thats commented out below should remain here but commented as a reminder to check the cars max speed every time it's tweaked
+	#print(linear_velocity.length())
 	if Input.is_action_just_pressed("F"):#toggle Headlights
 		for child in $Light.get_children():
 			if child is Light3D and child.name.findn("Head")!=-1 and child.has_method("get_param"):
@@ -47,7 +49,8 @@ func _process(delta: float) -> void:
 	
 	change_engine_pitch()
 	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
-	engine_force = -max(Input.get_axis("S","W") * ENGINE_POWER,-ENGINE_POWER/1.5)
+	var forward_axis = Input.get_axis("S","W")
+	engine_force = max(forward_axis * ENGINE_POWER,-ENGINE_POWER/1.5)
 
 @export var camera_sense : float = 0.001
 var rot_x = 180
@@ -87,9 +90,9 @@ func change_engine_pitch():
 
 
 func get_max_steer():
-	if linear_velocity.length() >= 100:
-		return MAX_STEER * 0.1
-	return MAX_STEER * STEERING_CURVE.sample(linear_velocity.length()/100)
+	if linear_velocity.length() >= 60:
+		return deg_to_rad(MAX_STEER_DEG) * 0.1
+	return deg_to_rad(MAX_STEER_DEG) * STEERING_CURVE.sample(linear_velocity.length()/60)
 
 var spawned_player : Node3D = null
 

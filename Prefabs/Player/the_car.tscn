@@ -463,38 +463,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00600743, 2.53772, -1.4467
 shape = SubResource("ConvexPolygonShape3D_1tvv8")
 
 [node name="Back_Left" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28712, 0.741371, 0.692075)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.28712, 0.891, 0.692075)
 use_as_traction = true
 suspension_stiffness = 75.0
+damping_compression = 1.9
+damping_relaxation = 2.0
 
 [node name="Back_Left" type="MeshInstance3D" parent="Back_Left"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_8j4td")
 skeleton = NodePath("")
 
 [node name="Back_Right" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27066, 0.741371, 0.692075)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.27066, 0.891, 0.692075)
 use_as_traction = true
 suspension_stiffness = 75.0
+damping_compression = 1.9
+damping_relaxation = 2.0
 
 [node name="Back_Right" type="MeshInstance3D" parent="Back_Right"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gg6f8")
 skeleton = NodePath("")
 
 [node name="Front_Right" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28903, 0.741371, -3.07874)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.28903, 0.891, -3.07874)
 use_as_steering = true
 suspension_stiffness = 75.0
+damping_compression = 1.9
+damping_relaxation = 2.0
 
 [node name="Front_Right" type="MeshInstance3D" parent="Front_Right"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_5kv0l")
 skeleton = NodePath("")
 
 [node name="Front_Left" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32195, 0.741371, -3.07874)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.32195, 0.891, -3.07874)
 use_as_steering = true
 suspension_stiffness = 75.0
+damping_compression = 1.9
+damping_relaxation = 2.0
 
 [node name="Front_Left" type="MeshInstance3D" parent="Front_Left"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gv2vx")
 skeleton = NodePath("")
 
