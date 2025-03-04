@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dm77xju6eqqve"
+path="res://.godot/imported/MoreBeer_Sad.mp3-9ff8bac9e094fa0b013dbc77dc3396a7.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Voice Lines/MoreBeer_Sad.mp3"
+dest_files=["res://.godot/imported/MoreBeer_Sad.mp3-9ff8bac9e094fa0b013dbc77dc3396a7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

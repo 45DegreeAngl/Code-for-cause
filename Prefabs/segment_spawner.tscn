@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=15 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
 [ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://bsawvuh1yr6x3" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
 [ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
 [ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
+[ext_resource type="PackedScene" uid="uid://chbdp8ugr241n" path="res://Prefabs/the_cop.tscn" id="11_1v58q"]
 [ext_resource type="PackedScene" uid="uid://1fvs3l7ug8ch" path="res://Prefabs/cop_follow.tscn" id="11_s0tq6"]
-[ext_resource type="PackedScene" uid="uid://chbdp8ugr241n" path="res://Prefabs/the_cop.tscn" id="12_74eii"]
+[ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Player/Player Car.tscn" id="12_rhmin"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="13_78w30"]
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
@@ -29,8 +31,15 @@ transform = Transform3D(0.82466, -0.565629, 0, 0.547531, 0.798273, 0.250938, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 11, -5)
 
 [node name="CopFollow" parent="." instance=ExtResource("11_s0tq6")]
+visible = false
 
-[node name="The_Cop" parent="." instance=ExtResource("12_74eii")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.11679, 9.85217, -7)
+[node name="Car_2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("12_rhmin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.633, 14.1248, -27.5548)
+target = NodePath("../The_Car")
+STEERING_CURVE = ExtResource("13_78w30")
+
+[node name="The_Cop" parent="." instance=ExtResource("11_1v58q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1784, 10.4884, -5)
+ENGINE_POWER = 400.0
 
 [connection signal="road_generated" from="." to="CopFollow" method="_on_segment_spawner_road_generated"]

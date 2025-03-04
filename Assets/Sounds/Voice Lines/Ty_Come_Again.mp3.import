@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://l8iyubif54al"
+path="res://.godot/imported/Ty_Come_Again.mp3-546dc952a43edd41c55ce5d6319f997e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Voice Lines/Ty_Come_Again.mp3"
+dest_files=["res://.godot/imported/Ty_Come_Again.mp3-546dc952a43edd41c55ce5d6319f997e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
