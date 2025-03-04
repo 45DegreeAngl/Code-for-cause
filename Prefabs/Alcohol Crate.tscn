@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://lvgwnfheptfj"]
+
+[ext_resource type="PackedScene" uid="uid://bwdqgapq4qwvq" path="res://Assets/Models/Car/Milk_Crate.glb" id="1_o3ytk"]
+
+[node name="Milk_Crate" instance=ExtResource("1_o3ytk")]

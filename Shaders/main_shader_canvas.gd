@@ -1,7 +1,8 @@
 extends CanvasLayer
 
 ##dictionary is as follows: String:Array[Control,Rectangle(ShaderA),Rectangle(ShaderB),...]
-@onready var filter_dict : Dictionary = {"drunk":[$Drunk,$Drunk/WobbleShader,$Drunk/ChromaticShader]}
+@onready var filter_dict : Dictionary = {"drunk":[$Drunk,$Drunk/WobbleShader,$Drunk/ChromaticShader],
+"BeerMeter":[$"Beer Meter"]}
 
 func toggle_filter(key:String):
 	var control:Control = filter_dict[key][0]
@@ -18,3 +19,6 @@ func get_shaders(key:String)->Array[ShaderMaterial]:
 func _ready():
 	var shader_mats = get_shaders("drunk")[0].shader.get_shader_uniform_list()
 	print(shader_mats)
+
+func _update_bar(value):
+	$"Beer Meter/TextureProgressBar".value = value

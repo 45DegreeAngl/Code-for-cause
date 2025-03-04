@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ddsu2crq8o1xt"
+path="res://.godot/imported/Best_Driver.mp3-f265aef3552a633b6ca5077eef17b799.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Voice Lines/Best_Driver.mp3"
+dest_files=["res://.godot/imported/Best_Driver.mp3-f265aef3552a633b6ca5077eef17b799.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

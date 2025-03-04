@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0c4u7mgtpsam"
+path="res://.godot/imported/ilovebeer.mp3-0d53a13f401bf6ee1435627e849e3b6d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Voice Lines/ilovebeer.mp3"
+dest_files=["res://.godot/imported/ilovebeer.mp3-0d53a13f401bf6ee1435627e849e3b6d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

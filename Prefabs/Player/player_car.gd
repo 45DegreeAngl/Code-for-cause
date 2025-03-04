@@ -23,6 +23,7 @@ func _ready() -> void:
 	if DEBUG_MODE:
 		return
 	MainShaderCanvas.toggle_filter("drunk")
+	MainShaderCanvas.toggle_filter("BeerMeter")
 	Globals.drunkenness= Globals.drunkenness
 
 
@@ -47,6 +48,9 @@ func _process(delta: float) -> void:
 				spawned_player = spawn_player_character()
 				
 			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
+				print(Globals.player_voice_lines.size())
+				$"Voice Lines".stream = Globals.player_voice_lines[randi_range(2, Globals.player_voice_lines.size()-1)]
+				$"Voice Lines".play()
 				Globals.drunkenness+=1
 				#print("glug glug glug")
 			looking_at.Radio:#change radio
@@ -156,13 +160,16 @@ func _on_raycast_exit(area:Area3D)->void:
 
 
 func _on_sobriety_timer_timeout() -> void:
+	Globals.timer+=1
 	if DEBUG_MODE:
 		return
 	Globals.drunkenness-=1
 	print(Globals.drunkenness)
 	if Globals.drunkenness<=0:
 		Globals.game_lost.emit()
-	elif Globals.drunkenness<11:
+		MainShaderCanvas.toggle_filter("BeerMeter")
+	elif Globals.drunkenness==10:
+		$"Sobriety Alarm".stream = Globals.player_voice_lines[randi_range(0,1)]
 		$"Sobriety Alarm".play()
 	else:
 		$"Sobriety Alarm".stop()
