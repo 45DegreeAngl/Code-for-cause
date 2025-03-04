@@ -26,17 +26,24 @@ const starting_scale = 1.1
 @onready var drunkenness : float = 10:
 	set(value):
 		drunkenness = value
-		var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")
-		for shader_mat in shader_mats:
-			for shader_params:Dictionary in shader_mat.shader.get_shader_uniform_list():
-				if shader_params["name"]=="amplitude":
-					print("Changing amplitude to: ",str(drunkenness*0.008)," From: ",str(shader_mat.get_shader_parameter("amplitude")))
-					shader_mat.set_shader_parameter("amplitude",minf(0.04+drunkenness*0.008,0.2))
-				if shader_params["name"]=="frequency":
-					print("Changing frequency")
-					shader_mat.set_shader_parameter("frequency",minf(0.04+drunkenness*0.008,0.2))
-				if shader_params["name"]=="red_mult":
-					var anger = 1+drunkenness/100.0
-					shader_mat.set_shader_parameter("red_mult",anger)
+		
 @onready var world_node : Node
 @onready var filter_canvas : CanvasLayer
+
+func _process(delta: float) -> void:
+	var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")
+	for shader_mat in shader_mats:
+		for shader_params:Dictionary in shader_mat.shader.get_shader_uniform_list():
+			if shader_params["name"]=="amplitude":
+				print("Changing amplitude to: ",str(drunkenness*0.008)," From: ",str(shader_mat.get_shader_parameter("amplitude")))
+				var current_amplitude = shader_mat.get_shader_parameter("amplitude")
+				var interp_amplitude = move_toward(current_amplitude, minf(0.04+drunkenness*0.008,0.2), delta/100)
+				shader_mat.set_shader_parameter("amplitude",interp_amplitude)
+			if shader_params["name"]=="frequency":
+				print("Changing frequency")
+				var current_frequency = shader_mat.get_shader_parameter("frequency")
+				var interp_frequency = move_toward(current_frequency, minf(0.04+drunkenness*0.008,0.2), delta/100)
+				shader_mat.set_shader_parameter("freqency",interp_frequency)
+			if shader_params["name"]=="red_mult":
+				var anger = 1+drunkenness/100.0
+				shader_mat.set_shader_parameter("red_mult",anger)
