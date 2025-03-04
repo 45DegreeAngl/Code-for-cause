@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b83pixbx6roc1"]
 
-[ext_resource type="MeshLibrary" uid="uid://b6hboq0c7psvu" path="res://Assets/Models/Mesh Libraries/Streets.tres" id="1_5g5qk"]
+[ext_resource type="MeshLibrary" uid="uid://cbgd8rwe06qm6" path="res://Assets/Models/Mesh Libraries/Street Meshes.tres" id="1_hq5j8"]
 
 [sub_resource type="Curve3D" id="Curve3D_jcb3w"]
 _data = {
@@ -12,7 +12,7 @@ point_count = 13
 [sub_resource type="PlaneMesh" id="PlaneMesh_gwxgw"]
 
 [node name="Narrow Segment" type="GridMap"]
-mesh_library = ExtResource("1_5g5qk")
+mesh_library = ExtResource("1_hq5j8")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1048576, 0, 65534, 1441801, 0, 65533, 1441802, 0, 65532, 1441802, 0, 65530, 655372, 65534, 65530, 655370, 65533, 65530, 655370, 65532, 65530, 11, 65532, 65529, 1441803, 65534, 65529, 1048588, 65534, 65527, 1441808, 65534, 65522, 1048592, 65534, 65518, 1441804, 1, 65518, 1048588, 65534, 65520, 1048586, 65534, 65521, 1048586, 1, 65516, 1048585)

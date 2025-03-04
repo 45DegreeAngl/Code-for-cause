@@ -3,6 +3,8 @@ extends VehicleBody3D
 ##https://poly.pizza/m/a_HKCtYAv2W
 ##the creative commons liscence is this Nissan GTR by David Sirera [CC-BY] via Poly Pizza
 ##Nissan GTR by David Sirera [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/a_HKCtYAv2W)
+@export var DEBUG_MODE : bool = false
+
 @export var STEERING_CURVE : Curve
 @export var MAX_STEER_DEG : float = 45.0
 ##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are
@@ -16,9 +18,12 @@ var occupied:bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	#MainShaderCanvas.toggle_filter("drunk")
-	Globals.drunkenness=3000 #Globals.drunkenness
+	if DEBUG_MODE:
+		return
+	MainShaderCanvas.toggle_filter("drunk")
+	Globals.drunkenness= Globals.drunkenness
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -151,6 +156,8 @@ func _on_raycast_exit(area:Area3D)->void:
 
 
 func _on_sobriety_timer_timeout() -> void:
+	if DEBUG_MODE:
+		return
 	Globals.drunkenness-=1
 	print(Globals.drunkenness)
 	if Globals.drunkenness<=0:

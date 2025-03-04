@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ci6ln5dw5x4oe"]
 
-[ext_resource type="MeshLibrary" uid="uid://b6hboq0c7psvu" path="res://Assets/Models/Mesh Libraries/Streets.tres" id="1_66ye1"]
+[ext_resource type="MeshLibrary" uid="uid://cbgd8rwe06qm6" path="res://Assets/Models/Mesh Libraries/Street Meshes.tres" id="1_eofas"]
 
 [sub_resource type="Curve3D" id="Curve3D_68sxk"]
 _data = {
@@ -12,7 +12,7 @@ point_count = 13
 [sub_resource type="PlaneMesh" id="PlaneMesh_8wc81"]
 
 [node name="Debug Ankle Breaker" type="GridMap"]
-mesh_library = ExtResource("1_66ye1")
+mesh_library = ExtResource("1_eofas")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65532, 1441795, 3, 65532, 1048579, 3, 65529, 655363, 0, 65529, 3, 0, 65527, 1441794, 1, 65527, 1048578, 1, 65526, 655362, 0, 65526, 2, 0, 65522, 1441799, 65541, 65522, 655363, 65541, 65525, 1048579, 65539, 65525, 0, 65538, 65525, 0, 65536, 65525, 3, 65536, 65523, 1441792, 0, 65520, 1048582)
