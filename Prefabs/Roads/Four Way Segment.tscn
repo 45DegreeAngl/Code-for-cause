@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c7afy5ct7o7c1"]
 
-[ext_resource type="MeshLibrary" uid="uid://dq2ytrri8ksfq" path="res://Assets/Models/Mesh Libraries/Street.tres" id="1_kjtbm"]
+[ext_resource type="MeshLibrary" uid="uid://b6hboq0c7psvu" path="res://Assets/Models/Mesh Libraries/Streets.tres" id="1_4ssa3"]
 
 [sub_resource type="Curve3D" id="Curve3D_di578"]
 _data = {
@@ -12,7 +12,7 @@ point_count = 6
 [sub_resource type="PlaneMesh" id="PlaneMesh_yx414"]
 
 [node name="Four Way Segment" type="GridMap"]
-mesh_library = ExtResource("1_kjtbm")
+mesh_library = ExtResource("1_4ssa3")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65533, 1441796, 65531, 65533, 7, 65531, 65526, 655367, 0, 65530, 655363, 2, 65530, 1, 2, 65533, 655362, 2, 65534, 2, 3, 65534, 655360, 4, 65534, 655360, 5, 65534, 655360, 7, 65534, 1048579, 7, 65532, 1441792, 7, 65530, 655363, 5, 65530, 655360, 4, 65530, 655360, 3, 65530, 655360, 65534, 65530, 655360, 65533, 65530, 655360, 65532, 65530, 655360, 65531, 65530, 655360, 65530, 65530, 655360, 65529, 65530, 655360, 65528, 65530, 655360, 65526, 65530, 1048581, 65526, 65526, 1441795, 65526, 65528, 1441792, 65521, 65530, 7, 131057, 65526, 1441792, 131057, 65525, 1441792, 131057, 65524, 1441792, 131057, 65523, 1441792)

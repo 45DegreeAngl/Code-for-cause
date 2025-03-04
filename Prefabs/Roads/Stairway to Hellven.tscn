@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgk8q7mcfa465"]
 
-[ext_resource type="MeshLibrary" uid="uid://dq2ytrri8ksfq" path="res://Assets/Models/Mesh Libraries/Street.tres" id="1_w6n5j"]
+[ext_resource type="MeshLibrary" uid="uid://b6hboq0c7psvu" path="res://Assets/Models/Mesh Libraries/Streets.tres" id="1_kit04"]
 
 [sub_resource type="Curve3D" id="Curve3D_4ckwr"]
 _data = {
@@ -14,7 +14,7 @@ point_count = 4
 [sub_resource type="PlaneMesh" id="PlaneMesh_v8l46"]
 
 [node name="Stairway to Hellven" type="GridMap"]
-mesh_library = ExtResource("1_w6n5j")
+mesh_library = ExtResource("1_kit04")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(-65536, 65534, 1048577, -131072, 65532, 1048577, -196608, 65530, 1048577, -262144, 65528, 1048577, -327680, 65526, 1048577, -327680, 65525, 1048576, -327680, 65524, 1048584, -327680, 65523, 1048584, -327680, 65522, 1048584, -327680, 65521, 1048576, -327680, 65520, 1441798, -262144, 65517, 1441798, -196608, 65514, 1441798, -131072, 65511, 1441798, -65536, 65508, 1441798)
