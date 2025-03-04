@@ -4,7 +4,7 @@ extends PathFollow3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$Mesh.top_level = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -36,6 +36,7 @@ func assign_to_nearest_path():
 	if path == get_parent():
 		printerr("Path equal to parent!")
 	reparent(path)
+
 func find_nearest_path() -> Path3D:
 	var paths : Array[Node] = get_tree().get_nodes_in_group("road_path")
 	var closest_path = null

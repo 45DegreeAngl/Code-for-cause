@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=13 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
 [ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
 [ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
 [ext_resource type="PackedScene" uid="uid://1fvs3l7ug8ch" path="res://Prefabs/cop_follow.tscn" id="11_s0tq6"]
+[ext_resource type="PackedScene" uid="uid://chbdp8ugr241n" path="res://Prefabs/the_cop.tscn" id="12_74eii"]
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
@@ -28,5 +29,8 @@ transform = Transform3D(0.82466, -0.565629, 0, 0.547531, 0.798273, 0.250938, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 11, -5)
 
 [node name="CopFollow" parent="." instance=ExtResource("11_s0tq6")]
+
+[node name="The_Cop" parent="." instance=ExtResource("12_74eii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.11679, 9.85217, -7)
 
 [connection signal="road_generated" from="." to="CopFollow" method="_on_segment_spawner_road_generated"]
