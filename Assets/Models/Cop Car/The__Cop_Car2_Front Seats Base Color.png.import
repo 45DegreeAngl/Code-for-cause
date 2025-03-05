@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://6pnhfahrd6oa"
+path.s3tc="res://.godot/imported/The__Cop_Car2_Front Seats Base Color.png-4eeb229ec5c76223875ed16a2a4b0705.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "88e36d5fe9302a64cc74767b67d15404"
+}
+
+[deps]
+
+source_file="res://Assets/Models/Cop Car/The__Cop_Car2_Front Seats Base Color.png"
+dest_files=["res://.godot/imported/The__Cop_Car2_Front Seats Base Color.png-4eeb229ec5c76223875ed16a2a4b0705.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

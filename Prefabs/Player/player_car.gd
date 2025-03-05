@@ -11,6 +11,7 @@ extends VehicleBody3D
 @export var ENGINE_POWER : float = 200
 @export var SOUND_MAX_SPEED : float = 75
 
+@export var radio_on : bool = false
 var occupied:bool = true
 
 @onready var driver_look_area:Area3D = $Cameras/Windshield/Area3D
@@ -25,12 +26,15 @@ func _ready() -> void:
 	MainShaderCanvas.toggle_filter("drunk")
 	MainShaderCanvas.toggle_filter("BeerMeter")
 	Globals.drunkenness= Globals.drunkenness
+	_on_radio_finished()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	Globals.timer+=delta
 	if !occupied:
+		engine_force = move_toward(engine_force,0,delta)
 		return
 	#The line thats commented out below should remain here but commented as a reminder to check the cars max speed every time it's tweaked
 	#print(linear_velocity.length())
@@ -50,21 +54,39 @@ func _process(delta: float) -> void:
 				
 			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
 				#print(Globals.player_voice_lines.size())
-				
-				
 				drink_random()
 				#print("glug glug glug")
-			looking_at.Radio:#change radio
-				pass
+			looking_at.Radio:#change radio 
+				print("BALLS")
+				#toggle on and off
+				if radio_on:
+					$Sounds/Radio.volume_db = -80
+					radio_on = false
+				else:
+					$Sounds/Radio.volume_db = 0
+					radio_on = true
+					
+	elif Input.is_action_just_pressed("Q"):#change radio track if playing
+		if radio_on and cur_look_at == looking_at.Radio:
+			$Sounds/Radio.stop()
+			_on_radio_finished()
+			seek_random_position()
 	
 	change_engine_pitch()
 	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
+	##Fix rotate code when smarter
+	$Wheel/Wheel.rotate_object_local(-Vector3(deg_to_rad(-60),deg_to_rad(180),0).normalized(),-steering)
 	var forward_axis = Input.get_axis("S","W")
 	engine_force = max(forward_axis * ENGINE_POWER,-ENGINE_POWER/1.5)
+	##Fix rotate code when smarter
+	$Spedometer/Tick.rotate_object_local(-Vector3(deg_to_rad(0),deg_to_rad(-90),deg_to_rad(30)).normalized(),move_toward((engine_force/ENGINE_POWER),(engine_force/ENGINE_POWER),delta))
+	saved_linear_velocity = linear_velocity
 
+var saved_linear_velocity : Vector3
 func _on_collide(body):
-	if linear_velocity.length()>10 and !$Crash.playing:
-		$Crash.play()
+	if abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
+		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
+		$Sounds/Crash.play()
 
 func drink_random():
 	var temp_array :Array = []
@@ -74,8 +96,8 @@ func drink_random():
 	if temp_array.is_empty():
 		return
 	if randi_range(0,2)==0:
-		$"Voice Lines".stream = Globals.player_voice_lines[randi_range(2, Globals.player_voice_lines.size()-1)]
-		$"Voice Lines".play()
+		$"Sounds/Voice Lines".stream = Globals.player_voice_lines[randi_range(2, Globals.player_voice_lines.size()-1)]
+		$"Sounds/Voice Lines".play()
 	var picked_bottle : String = temp_array.pick_random()
 	match picked_bottle:
 		"Beer":
@@ -123,13 +145,13 @@ func handle_cam_rotation():
 	$Cameras/Windshield.rotate_object_local(Vector3(1,0,0),-rot_y)
 	
 func change_engine_pitch():
-	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:
-		$Engine.play()
+	if (not $Sounds/Engine.playing) and $Sounds/Engine.pitch_scale > 0.01:
+		$Sounds/Engine.play()
 	var pitch = min(1, linear_velocity.length()/SOUND_MAX_SPEED)
 	if pitch <= 0.01:
-		$Engine.stop()
+		$Sounds/Engine.stop()
 	if pitch>0.0:
-		$Engine.pitch_scale = pitch
+		$Sounds/Engine.pitch_scale = pitch
 
 
 func get_max_steer():
@@ -197,13 +219,35 @@ func _on_sobriety_timer_timeout() -> void:
 	if DEBUG_MODE:
 		return
 	Globals.drunkenness-=1
-	print(Globals.drunkenness)
+	#print(Globals.drunkenness)
 	if Globals.drunkenness<=0:
 		Globals.game_lost.emit()
 		MainShaderCanvas.toggle_filter("BeerMeter")
 	elif Globals.drunkenness==10:
-		$"Sobriety Alarm".stream = Globals.player_voice_lines[randi_range(0,1)]
-		$"Sobriety Alarm".play()
+		$"Sounds/Sobriety Alarm".stream = Globals.player_voice_lines[randi_range(0,1)]
+		$"Sounds/Sobriety Alarm".play()
 	else:
-		$"Sobriety Alarm".stop()
-	
+		$"Sounds/Sobriety Alarm".stop()
+
+var step : int = 1
+var cur_index : int = 0
+
+#go to next track
+func _on_radio_finished() -> void:
+	print("RADIO CHANGED")
+	step = randi_range(1,Globals.radio.size())
+	cur_index += step
+	cur_index = cur_index%Globals.radio.size()
+	print(Globals.radio.keys()[cur_index])
+	$Sounds/Radio.stream = Globals.radio[Globals.radio.keys()[cur_index]]
+	$Sounds/Radio.play()
+
+# Function to seek to a random position in the audio stream
+func seek_random_position():
+	var stream_length = $Sounds/Radio.get_stream().get_length()
+	if stream_length > 0:
+		var random_position = roundi(randf()) % roundi(stream_length)
+		$Sounds/Radio.seek(random_position)
+		print("Seeking to position:", random_position)
+	else:
+		print("Stream length is zero or undefined.")

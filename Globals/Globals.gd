@@ -14,6 +14,22 @@ signal game_lost()
 "Thank you come again":preload("res://Assets/Sounds/Voice Lines/Ty_Come_Again.mp3"),
 "Best Driver":preload("res://Assets/Sounds/Voice Lines/Best_Driver.mp3")
 }
+
+@onready var crash_sounds:Dictionary = {
+	"Crash 1":preload("res://Assets/Sounds/Crashes/CarCrash.mp3"),
+	"Crash 2":preload("res://Assets/Sounds/Crashes/Crash2.mp3"),
+	"Crash 3":preload("res://Assets/Sounds/Crashes/Crash3.mp3"),
+	"Crash 4":preload("res://Assets/Sounds/Crashes/Crash4.mp3"),
+}
+
+@onready var radio : Dictionary = {
+	"8Rounds":preload("res://Assets/Sounds/Music/8RoundsFixed.mp3"),
+	"Firearm":preload("res://Assets/Sounds/Music/FirearmFixed.mp3"),
+	"Fish2":preload("res://Assets/Sounds/Music/Fish2Fixed.mp3"),
+	"FishForgotten":preload("res://Assets/Sounds/Music/ForgetfulFixed.mp3"),
+	"MoleInHole":preload("res://Assets/Sounds/Music/MoleFixed.mp3"),
+	"NightcoreAHA":preload("res://Assets/Sounds/Music/NightcoreAhaFixed.mp3")
+}
 var timer:float = 0
 const starting_amplitude = 0.04
 const starting_frequency = 0.02
@@ -48,17 +64,17 @@ func _process(delta: float) -> void:
 	var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")
 	for shader_mat in shader_mats:
 		for shader_params:Dictionary in shader_mat.shader.get_shader_uniform_list():
-			if shader_params["name"]=="amplitude":
+			#if shader_params["name"]=="amplitude":
 				#print("Changing amplitude to: ",str(minf(0.04+drunkenness*0.008,0.2))," From: ",str(shader_mat.get_shader_parameter("amplitude")))
-				var current_amplitude = shader_mat.get_shader_parameter("amplitude")
-				var interp_amplitude = move_toward(current_amplitude, minf(0.04+drunkenness*0.008,0.2), delta/100)
-				#print(interp_amplitude)
-				shader_mat.set_shader_parameter("amplitude",interp_amplitude)
-			if shader_params["name"]=="frequency":
-				#print("Changing frequency")
-				var current_frequency = shader_mat.get_shader_parameter("frequency")
-				var interp_frequency = move_toward(current_frequency, minf(0.04+drunkenness*0.008,0.2), delta/100)
-				shader_mat.set_shader_parameter("freqency",interp_frequency)
+				#var current_amplitude = shader_mat.get_shader_parameter("amplitude")
+				#var interp_amplitude = minf(0.04+drunkenness*0.008,0.2)#move_toward(current_amplitude, minf(0.04+drunkenness*0.008,0.2), delta/100)
+				##print(interp_amplitude)
+				#shader_mat.set_shader_parameter("amplitude",interp_amplitude)
+			#if shader_params["name"]=="frequency":
+				##print("Changing frequency")
+				#var current_frequency = shader_mat.get_shader_parameter("frequency")
+				#var interp_frequency = minf(0.04+drunkenness*0.008,0.2)#move_toward(current_frequency, minf(0.04+drunkenness*0.008,0.2), delta/100)
+				#shader_mat.set_shader_parameter("freqency",interp_frequency)
 			if shader_params["name"]=="red_mult":
 				var anger = 1+drunkenness/100.0
 				shader_mat.set_shader_parameter("red_mult",anger)

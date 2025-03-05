@@ -28,7 +28,6 @@ transform = Transform3D(0.82466, -0.565629, 0, 0.547531, 0.798273, 0.250938, -0.
 
 [node name="The_Car" parent="." instance=ExtResource("10_lxkwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 11, -5)
-DEBUG_MODE = true
 
 [node name="Car_2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("12_rhmin")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.633, 14.1248, -27.5548)
