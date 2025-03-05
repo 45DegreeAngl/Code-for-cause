@@ -39,6 +39,8 @@ func change_engine_pitch():
 		$Engine.pitch_scale = pitch
 
 func talk():
+	if randi_range(0,5)!=0:
+		return
 	if int(Globals.timer)%2==0:
 		$Announcement.stream = Globals.world_voice_lines["Pull Over"]
 		$Announcement.play()

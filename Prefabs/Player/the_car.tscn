@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="2_am8ur"]
-[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_x726e"]
+[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_x726e"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="3_ye32b"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="4_qxn2i"]
 [ext_resource type="Texture2D" uid="uid://b4w5o83874l4n" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="5_e365b"]
@@ -1023,8 +1023,6 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("16_d020y")
-text = "E to TOGGLE
-Q to SWITCH STATION"
 horizontal_alignment = 1
 vertical_alignment = 1
 

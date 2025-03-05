@@ -19,15 +19,16 @@ var occupied:bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_on_radio_finished()
+	Globals.update_bottles.emit()
 	if DEBUG_MODE:
 		return
 	MainShaderCanvas.toggle_filter("drunk")
 	MainShaderCanvas.toggle_filter("BeerMeter")
 	Globals.drunkenness= Globals.drunkenness
-	Globals.update_bottles.emit()
-	_on_radio_finished()
+	
+	
 
 
 
@@ -198,7 +199,7 @@ func _on_enter_exit_area_entered(area: Area3D) -> void:
 	if area == driver_look_area:
 		cur_look_at = looking_at.Door
 		$CanvasLayer/Tooltips/Label.text = "E to EXIT"
-		print("door")
+		#print("door")
 	elif area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
 		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door("Car")
 		$CanvasLayer/Tooltips/Label.text = "E to ENTER"
@@ -210,18 +211,18 @@ func _on_alcholol_area_entered(area: Area3D) -> void:
 			$CanvasLayer/Tooltips/Label.text = "E to DRINK"
 		else:
 			$CanvasLayer/Tooltips/Label.text = "NEED MORE ALCOHOL"
-		print("alchohol")
+		#print("alchohol")
 
 func _on_radio_area_entered(area: Area3D) -> void:
 	if area == driver_look_area:
 		cur_look_at = looking_at.Radio
 		$CanvasLayer/Tooltips/Label.text = "E to TOGGLE\nQ to SWITCH STATION"
-		print("radio")
+		#print("radio")
 
 func _on_raycast_exit(area:Area3D)->void:
 	if area == driver_look_area:
 		cur_look_at = null
-		print("null")
+		#print("null")
 	if area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
 		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door(null)
 	$CanvasLayer/Tooltips/Label.text = ""

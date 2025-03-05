@@ -106,9 +106,9 @@ sleeping = true
 metadata/Bottle = "Beer"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.6, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("ArrayMesh_up2s3")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.6, 0, 0, 0, 0.3, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_jt4pf")
