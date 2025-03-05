@@ -1,6 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://coa1buyxhvtlm"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_l6kl3"]
+[ext_resource type="MeshLibrary" uid="uid://c54tq411i32v5" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_i48l3"]
 
 [sub_resource type="Curve3D" id="Curve3D_6ce3a"]
 _data = {
@@ -8,8 +9,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 11
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_45ub5"]
 
 [node name="Normal Turns Segment" type="GridMap"]
 mesh_library = ExtResource("1_l6kl3")
@@ -24,7 +23,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -11)
 [node name="Path3D" type="Path3D" parent="." groups=["road_path"]]
 curve = SubResource("Curve3D_6ce3a")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 5.5, 0, 0.49, -5.5)
-use_collision = true
-mesh = SubResource("PlaneMesh_45ub5")
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_i48l3")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 0, 65530, 1441792, 0, 65529, 1441792, 0, 65528, 1441792, 0, 65527, 1441792, 0, 65526, 1441792, 0, 65525, 1048576)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)

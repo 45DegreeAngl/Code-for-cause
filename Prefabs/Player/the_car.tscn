@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="2_am8ur"]
-[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_x726e"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_x726e"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="3_ye32b"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="4_qxn2i"]
 [ext_resource type="Texture2D" uid="uid://b4w5o83874l4n" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="5_e365b"]
@@ -20,7 +20,7 @@
 friction = 0.1
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1tvv8"]
-points = PackedVector3Array(1.74461, -0.575504, -0.875132, 1.74461, -0.755339, -0.875132, 1.27464, -1.10055, -2.82608, 1.1592, -0.961626, -2.93354, 1.15101, 0.135463, -0.0101008, 1.15101, 0.135463, 1.76056, 1.73061, -0.575504, -0.713946, 1.27464, -1.80866, -2.82608, 1.73061, -0.755339, -0.713946, 1.27464, -1.80866, 3.16467, 1.1592, -1.33633, -2.93354, -1.15954, -0.961626, -2.93354, -1.15135, 0.135463, -0.0101008, -1.15135, 0.135463, 1.76056, 1.05127, 0.0625778, 1.88115, 1.17901, -0.662282, 3.0787, 1.27464, -0.714424, 3.16467, -1.27499, -1.80866, -2.82608, -1.27499, -1.80866, 3.16467, -1.15954, -1.33633, -2.93354, -1.27499, -1.10055, -2.82608, -1.74461, -0.575504, -0.875132, -1.27499, -0.714424, 3.16467, -1.17935, -0.662282, 3.0787, -1.05162, 0.0625778, 1.88115, -1.73095, -0.575504, -0.713946, -1.74461, -0.755339, -0.875132, -1.73095, -0.755339, -0.713946)
+points = PackedVector3Array(1.74461, -0.575504, -0.875132, 1.74461, -0.755339, -0.875132, 1.27464, -1.10055, -2.82608, 1.1592, -0.961626, -2.93354, 1.15101, 0.135463, -0.0101008, 1.15101, 0.135463, 1.76056, 1.73061, -0.575504, -0.713946, 1.275, -1.509, -2.826, 1.73061, -0.755339, -0.713946, 1.27464, -1.80866, 3.16467, 1.1592, -1.33633, -2.93354, -1.15954, -0.961626, -2.93354, -1.15135, 0.135463, -0.0101008, -1.15135, 0.135463, 1.76056, 1.05127, 0.0625778, 1.88115, 1.17901, -0.662282, 3.0787, 1.27464, -0.714424, 3.16467, -1.275, -1.509, -2.826, -1.27499, -1.80866, 3.16467, -1.15954, -1.33633, -2.93354, -1.27499, -1.10055, -2.82608, -1.74461, -0.575504, -0.875132, -1.27499, -0.714424, 3.16467, -1.17935, -0.662282, 3.0787, -1.05162, 0.0625778, 1.88115, -1.73095, -0.575504, -0.713946, -1.74461, -0.755339, -0.875132, -1.73095, -0.755339, -0.713946)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmacr"]
 resource_name = "Material.006"
@@ -680,6 +680,9 @@ linear_damp = 0.1
 script = ExtResource("1_evy4q")
 STEERING_CURVE = ExtResource("2_x726e")
 ENGINE_POWER = 300.0
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30538, 0.702559, -4.30117)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00600743, 2.53772, -1.44675)

@@ -1,43 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgk8q7mcfa465"]
+[gd_scene load_steps=4 format=3 uid="uid://cgk8q7mcfa465"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_0r240"]
+[ext_resource type="MeshLibrary" uid="uid://c54tq411i32v5" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_h7btp"]
 
 [sub_resource type="Curve3D" id="Curve3D_4ckwr"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.58768, 0.553694, -0.0531751, 0, 0, 0, 0, 0, 0, 0.173689, -4.46415, -10.0104, 0, 0, 0, 0, 0, 0, 0.226915, -4.44108, -15.0091, 0, 0, 0, 0, 0, 0, 0.532784, 0.576764, -30.0113),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.58768, 0.553694, -0.0531751, 0, 0, 0, 0, 0, 0, 0.173689, -4.46415, -10.0104, 0, 0, 0, 0, 0, 0, 0.226915, -4.44108, -15.0091, 0, 0, 0, 0, 0, 0, 0.532784, 0.660705, -30.8157),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_vvpt2"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_v8l46"]
 
 [node name="Stairway to Hellven" type="GridMap"]
 mesh_library = ExtResource("1_0r240")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(-65536, 65534, 1048577, -131072, 65532, 1048577, -196608, 65530, 1048577, -262144, 65528, 1048577, -327680, 65524, 1048576, -327680, 65523, 1048576, -327680, 65525, 1048592, -327680, 65522, 1048576, -327680, 65521, 1441811, -262144, 65517, 1441797, -196608, 65514, 1441797, -131072, 65511, 1441797, -65536, 65508, 1441797)
+"cells": PackedInt32Array(-327680, 65523, 1048576, -327680, 65522, 1048576, -327680, 65521, 1441811, -262144, 65517, 1441797, -196608, 65514, 1441797, -131072, 65511, 1441797, -65536, 65508, 1441812, -65536, 65533, 1048593, -131072, 65531, 1048577, -196608, 65529, 1048577, -262144, 65527, 1048577, -327680, 65524, 1048592)
 }
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="Exit" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -31)
 
 [node name="Path3D" type="Path3D" parent="." groups=["road_path"]]
 curve = SubResource("Curve3D_4ckwr")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 0.895036, 4.24587, 0, -0.445995, 8.52074, 0, -3.754, -8.5)
-use_collision = true
-mesh = SubResource("PlaneMesh_vvpt2")
-
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 0.990432, -2.68481, 0, 0.331394, 8.02407, 0, -2.193, -21.962)
-use_collision = true
-mesh = SubResource("PlaneMesh_vvpt2")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 2.5, -0.00258446, -4.51, -12.4523)
-use_collision = true
-mesh = SubResource("PlaneMesh_v8l46")
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_h7btp")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(-65536, 65533, 1048577, -131072, 65531, 1048580, -196608, 65529, 1048580, -262144, 65527, 1048580, -327680, 65524, 1048579, -327680, 65521, 1441799, -327680, 65523, 1441792, -327680, 65522, 1441792, -262144, 65517, 1441800, -196608, 65514, 1441800, -131072, 65511, 1441800, -65536, 65508, 1441797)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
