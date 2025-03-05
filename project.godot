@@ -29,6 +29,8 @@ project/assembly_name="Code-for-cause"
 
 folder_colors={
 "res://Assets/": "orange",
+"res://DEBUG/": "purple",
+"res://Deprecated/": "red",
 "res://Globals/": "gray",
 "res://Material/": "green",
 "res://Resources/": "pink",

@@ -27,7 +27,7 @@ func update_bottles():
 		#print(str(randomize_array),bottle_type)
 		randomize_array.erase(bottle_type)
 		#print(bottle_type)
-		var cur_multimesh_instance : MultiMeshInstance3D = multimeshes[bottle_type]
+		#var cur_multimesh_instance : MultiMeshInstance3D = multimeshes[bottle_type]
 		#print(multimeshes[bottle_type].name)
 		
 		var beg_marker_pos : Vector3 = $Beginning.position

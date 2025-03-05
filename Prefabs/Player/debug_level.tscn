@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxwqiv7jwr7gx"]
 
-[ext_resource type="Script" path="res://Prefabs/debug_camera.gd" id="2_3myqa"]
+[ext_resource type="PackedScene" uid="uid://d14r56j2s6lbi" path="res://DEBUG/debug_camera.tscn" id="1_mjx0c"]
 [ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="4_gfkuo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7r7xq"]
@@ -11,58 +11,7 @@
 use_collision = true
 size = Vector3(139.498, 1, 150.768)
 
-[node name="Debug Camera" type="Control" parent="."]
-layout_mode = 3
-anchor_right = 0.422743
-anchor_bottom = 0.998457
-script = ExtResource("2_3myqa")
-metadata/_edit_use_anchors_ = true
-
-[node name="ViewportContainer" type="VBoxContainer" parent="Debug Camera"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Debug Camera/ViewportContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="Debug Camera/ViewportContainer/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(2, 2)
-render_target_update_mode = 0
-
-[node name="Camera3D" type="Camera3D" parent="Debug Camera/ViewportContainer/SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.0273336, -0.26633, 0.963494, -0.00755253, 0.963882, 0.266223, -0.999598, -1.35555e-10, -0.0283578, 28.676, 14.209, 0)
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="Debug Camera/ViewportContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="Debug Camera/ViewportContainer/SubViewportContainer2"]
-handle_input_locally = false
-size = Vector2i(2, 2)
-render_target_update_mode = 0
-
-[node name="Camera3D" type="Camera3D" parent="Debug Camera/ViewportContainer/SubViewportContainer2/SubViewport"]
-transform = Transform3D(-1, -1.70844e-15, -8.74228e-08, -2.77657e-08, 0.948224, 0.317603, 8.28964e-08, 0.317603, -0.948224, 0, 14.5, -40)
-
-[node name="PanelContainer" type="PanelContainer" parent="Debug Camera"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Visible debug camera" type="CheckButton" parent="Debug Camera/PanelContainer"]
-layout_mode = 2
-toggle_mode = false
-text = "Visible Debug Camera
-"
+[node name="Debug Camera" parent="." instance=ExtResource("1_mjx0c")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.302886, 0.953027, 0, -0.953027, -0.302886, 0, 0, 0)
@@ -89,5 +38,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9293, 6.18651, 0)
 shape = SubResource("BoxShape3D_7r7xq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
-
-[connection signal="toggled" from="Debug Camera/PanelContainer/Visible debug camera" to="Debug Camera" method="_on_visible_debug_camera_toggled"]

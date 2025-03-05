@@ -10,6 +10,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if !subviewport:
+		return
 	var mat = StandardMaterial3D.new()
 	mat.uv1_triplanar = true
 	mat.albedo_texture = subviewport.get_texture()

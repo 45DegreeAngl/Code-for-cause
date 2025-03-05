@@ -4,8 +4,10 @@ extends Node
 signal road_generated
 
 func _ready():
+
 	spawn_road(road_segments[7])
-	for num_roads in range(200):
+	for num_roads in range(100):
+
 		spawn_road(road_segments.pick_random())
 	road_generated.emit()
 @onready var previous_road : Node3D = $"Roads/Debug Straight"

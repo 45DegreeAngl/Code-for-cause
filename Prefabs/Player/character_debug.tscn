@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://rvdfkmlx6dio"]
 
 [ext_resource type="Script" path="res://Prefabs/debug_camera.gd" id="1_sbw8l"]
-[ext_resource type="PackedScene" path="res://Prefabs/Player/test character.tscn" id="3_co8uv"]
-[ext_resource type="Script" path="res://Prefabs/Clock Rotation.gd" id="3_rl5pk"]
+[ext_resource type="PackedScene" uid="uid://cfvnef13jksl5" path="res://Prefabs/Player/test character.tscn" id="3_co8uv"]
+[ext_resource type="Script" path="res://Deprecated/Clock Rotation.gd" id="3_rl5pk"]
 [ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="4_jc7w4"]
 [ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="5_l7bya"]
 

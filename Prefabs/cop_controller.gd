@@ -95,8 +95,9 @@ func _process(delta: float) -> void:
 	engine_force = max(engine_input * ENGINE_POWER,-ENGINE_POWER/1.5)
 	
 func _physics_process(delta: float) -> void:
-	print("Steer " + str(steer_input))
-	print("Engine " + str(engine_input))
+	pass
+	#print("Steer " + str(steer_input))
+	#print("Engine " + str(engine_input))
 	
 func change_engine_pitch():
 	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:

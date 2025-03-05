@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://c861nwsdfaplo"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oo0l3"]
+viewport_path = NodePath("Cameras/RightViewPort")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_02si6"]
+viewport_path = NodePath("Cameras/RightViewPort")
+
+[resource]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_oo0l3")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_02si6")

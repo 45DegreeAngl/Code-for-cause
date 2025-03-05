@@ -1,6 +1,6 @@
 [gd_scene load_steps=39 format=4 uid="uid://c8ckrpx8lvwfa"]
 
-[ext_resource type="Script" path="res://Prefabs/cop_follow.gd" id="1_o73gh"]
+[ext_resource type="Script" path="res://Deprecated/cop_follow.gd" id="1_o73gh"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="2_d5nx1"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="3_mdpfh"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="4_m3xqg"]

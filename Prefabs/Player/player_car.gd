@@ -29,6 +29,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	Globals.timer+=delta
 	if !occupied:
 		return
 	#The line thats commented out below should remain here but commented as a reminder to check the cars max speed every time it's tweaked
@@ -48,7 +49,7 @@ func _process(delta: float) -> void:
 				spawned_player = spawn_player_character()
 				
 			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
-				print(Globals.player_voice_lines.size())
+				#print(Globals.player_voice_lines.size())
 				
 				
 				drink_random()
@@ -61,6 +62,10 @@ func _process(delta: float) -> void:
 	var forward_axis = Input.get_axis("S","W")
 	engine_force = max(forward_axis * ENGINE_POWER,-ENGINE_POWER/1.5)
 
+func _on_collide(body):
+	if linear_velocity.length()>10 and !$Crash.playing:
+		$Crash.play()
+
 func drink_random():
 	var temp_array :Array = []
 	for bottle in $Milk_Crate.content:
@@ -68,8 +73,9 @@ func drink_random():
 			temp_array.append(bottle)
 	if temp_array.is_empty():
 		return
-	$"Voice Lines".stream = Globals.player_voice_lines[randi_range(2, Globals.player_voice_lines.size()-1)]
-	$"Voice Lines".play()
+	if randi_range(0,2)==0:
+		$"Voice Lines".stream = Globals.player_voice_lines[randi_range(2, Globals.player_voice_lines.size()-1)]
+		$"Voice Lines".play()
 	var picked_bottle : String = temp_array.pick_random()
 	match picked_bottle:
 		"Beer":
@@ -91,8 +97,12 @@ var rot_y = 0
 func _input(event: InputEvent) -> void:
 	if !occupied:
 		return
+	
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index==MOUSE_BUTTON_LEFT:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_ESCAPE:
+		if event.keycode == KEY_ESCAPE or event.keycode == KEY_ASCIITILDE:
 			match Input.mouse_mode:
 				Input.MOUSE_MODE_CAPTURED:
 					Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -184,7 +194,6 @@ func _on_raycast_exit(area:Area3D)->void:
 
 
 func _on_sobriety_timer_timeout() -> void:
-	Globals.timer+=1
 	if DEBUG_MODE:
 		return
 	Globals.drunkenness-=1

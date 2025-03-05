@@ -62,3 +62,14 @@ func _process(delta: float) -> void:
 			if shader_params["name"]=="red_mult":
 				var anger = 1+drunkenness/100.0
 				shader_mat.set_shader_parameter("red_mult",anger)
+
+func format_seconds_as_time(seconds:float)->String:
+	var hours = int(seconds / 3600)
+	
+	@warning_ignore("integer_division")
+	var minutes = int((int(seconds)%3600)/60)
+	
+	var secs = int(seconds)%60
+	
+	var deciseconds = int((seconds-int(seconds))*10)
+	return "%02d:%02d:%02d.%01d"%[hours, minutes, secs, deciseconds]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4sr7qm56p2mn"]
 
-[ext_resource type="MeshLibrary" uid="uid://cq76ahvncltr1" path="res://Assets/Models/Mesh Libraries/Street debug.tres" id="1_eum62"]
-[ext_resource type="Script" path="res://Prefabs/debug_grid_generation.gd" id="2_pyih5"]
+[ext_resource type="MeshLibrary" path="res://Assets/Models/Mesh Libraries/Street debug.tres" id="1_eum62"]
+[ext_resource type="Script" path="res://Deprecated/debug_grid_generation.gd" id="2_pyih5"]
 
 [node name="Debug Grid Generation" type="GridMap"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
