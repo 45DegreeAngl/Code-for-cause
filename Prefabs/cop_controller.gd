@@ -24,24 +24,57 @@ var current_path : Path3D = null
 func _ready() -> void:
 	pass
 
+func curve_point_to_global(point : Vector3, path : Path3D):
+	return path.global_basis * point + path.global_position
+
 func control(delta) -> void:
 	var lookahead_dist = 1.5
+	var throttle_lookahead_dist = 2 + 0.5* sqrt(linear_velocity.length())
+	
 	if current_path == null:
 		current_path = find_nearest_path()
 	
 	var global_to_curve_space_pos = current_path.global_basis.inverse() * (global_position - current_path.global_position)
 	var closest_point_offset = current_path.curve.get_closest_offset(global_to_curve_space_pos)
 	var lookahead_point = current_path.curve.sample_baked(closest_point_offset + lookahead_dist)
-	var lookahead_point_global = current_path.global_basis * lookahead_point + current_path.global_position
+	var lookahead_point_global = curve_point_to_global(lookahead_point, current_path)
 	var lookahead_vector = (lookahead_point_global - global_position).normalized()
-	
 	var angle_to_lookahead = (-basis.z).signed_angle_to(lookahead_vector, global_basis.y)
-	if(closest_point_offset/current_path.curve.get_baked_length() > 0.99):
+	
+	var closest_point = current_path.curve.get_closest_point(global_to_curve_space_pos)
+	var slightly_ahead_point = current_path.curve.sample_baked(closest_point_offset + 0.1)
+	var global_slightly_ahead_point = curve_point_to_global(slightly_ahead_point, current_path)
+	var global_closest_point = curve_point_to_global(closest_point, current_path)
+	var closest_path_tangent = (global_slightly_ahead_point - global_closest_point).normalized()
+	var closest_path_normal = closest_path_tangent.rotated(Vector3.UP, PI/2)
+	var cross_track_error = (global_closest_point - global_position).dot(closest_path_normal)
+	
+	steer_input = angle_to_lookahead/(PI/4)
+	
+	var sample_pts = []
+	
+	for i in range(3):
+		var this_lookahead_dist = throttle_lookahead_dist/3.0 * (i+1)
+		var this_lookahead_point = current_path.curve.sample_baked(closest_point_offset + this_lookahead_dist)
+		var this_lookahead_point_global = curve_point_to_global(this_lookahead_point, current_path)
+		sample_pts.append(this_lookahead_point_global)
+	
+	var A = area(sample_pts[0], sample_pts[1], sample_pts[2])
+	var curvature = 4*A/(distance_to(sample_pts[0], sample_pts[1]) * distance_to(sample_pts[1], sample_pts[2]) * distance_to(sample_pts[2], sample_pts[0]))
+	if abs(curvature) > 1e-5 and linear_velocity.length() > ENGINE_POWER/15:
+		engine_input = -1
+	else:
+		engine_input = 1
+	
+	if(closest_point_offset/current_path.curve.get_baked_length() > 0.95):
 		current_path = null
-	
-	steer_input = angle_to_lookahead/(PI/2)
-	
-	engine_input = 1-2*abs(steer_input)
+
+#returns triangle area in xz plane
+func area(a,b,c):
+	return (b.x-a.x)*(c.z-a.z) - (b.z-a.z)*(c.x-a.x)
+
+func distance_to(a, b):
+	return sqrt(pow((a.x-b.x),2) + pow((a.z-b.z),2))
 
 func find_nearest_path() -> Path3D:
 	var paths : Array[Node] = get_tree().get_nodes_in_group("road_path")
@@ -60,6 +93,10 @@ func _process(delta: float) -> void:
 	change_engine_pitch()
 	steering = move_toward(steering,steer_input * get_max_steer(),delta*2.5)
 	engine_force = max(engine_input * ENGINE_POWER,-ENGINE_POWER/1.5)
+	
+func _physics_process(delta: float) -> void:
+	print("Steer " + str(steer_input))
+	print("Engine " + str(engine_input))
 	
 func change_engine_pitch():
 	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:
