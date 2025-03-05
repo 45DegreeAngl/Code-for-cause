@@ -1,22 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=13 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
 [ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
 [ext_resource type="PackedScene" uid="uid://7yiw8v4t5rt7" path="res://Prefabs/Roads/Death.tscn" id="3_tg4gt"]
 [ext_resource type="PackedScene" uid="uid://bfe2n5yc1ofd5" path="res://Prefabs/Roads/debug_straight.tscn" id="4_l3tqm"]
-[ext_resource type="PackedScene" uid="uid://bbgxfmxgrga4r" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
-[ext_resource type="PackedScene" uid="uid://dlcqplxybhtkb" path="res://Prefabs/Roads/Narrow Segment.tscn" id="6_6oinw"]
-[ext_resource type="PackedScene" path="res://Prefabs/Roads/Stairway to Hellven.tscn" id="7_e26yy"]
-[ext_resource type="PackedScene" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
-[ext_resource type="PackedScene" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
+[ext_resource type="PackedScene" uid="uid://c7afy5ct7o7c1" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
+[ext_resource type="PackedScene" uid="uid://cgk8q7mcfa465" path="res://Prefabs/Roads/Stairway to Hellven.tscn" id="7_e26yy"]
+[ext_resource type="PackedScene" uid="uid://bsawvuh1yr6x3" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
+[ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
 [ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
 [ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Prefabs/the_cop.tscn" id="11_1v58q"]
 [ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Player/Player Car.tscn" id="12_rhmin"]
-[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="13_78w30"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="13_78w30"]
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
-road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("8_mfdpi"), ExtResource("6_6oinw"), ExtResource("9_f8h36"), ExtResource("7_e26yy")])
+road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("8_mfdpi"), ExtResource("9_f8h36"), ExtResource("7_e26yy")])
 
 [node name="Roads" type="Node3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
@@ -28,6 +27,7 @@ transform = Transform3D(0.82466, -0.565629, 0, 0.547531, 0.798273, 0.250938, -0.
 
 [node name="The_Car" parent="." instance=ExtResource("10_lxkwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 11, -5)
+DEBUG_MODE = true
 
 [node name="Car_2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("12_rhmin")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.633, 14.1248, -27.5548)
