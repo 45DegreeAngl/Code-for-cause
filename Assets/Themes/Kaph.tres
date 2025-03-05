@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ccmgdq4tewmwx"]
+
+[ext_resource type="FontFile" uid="uid://cx4tjicshoag1" path="res://Assets/Themes/Fonts/Kaph-Italic.ttf" id="1_elwcw"]
+[ext_resource type="FontFile" uid="uid://ctpyu45vs0ohf" path="res://Assets/Themes/Fonts/Kaph-Regular.ttf" id="2_42l0d"]
+
+[resource]
+default_font = ExtResource("2_42l0d")
+Label/fonts/Italic = ExtResource("1_elwcw")
+Label/fonts/Regular = ExtResource("2_42l0d")

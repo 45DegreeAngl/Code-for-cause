@@ -60,7 +60,7 @@ const starting_scale = 1.1
 @onready var world_node : Node
 @onready var filter_canvas : CanvasLayer
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")
 	for shader_mat in shader_mats:
 		for shader_params:Dictionary in shader_mat.shader.get_shader_uniform_list():
