@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cetv46bv2jvyl"]
+[gd_scene load_steps=8 format=3 uid="uid://cetv46bv2jvyl"]
 
 [ext_resource type="Script" path="res://Shaders/main_shader_canvas.gd" id="1_10y2y"]
 [ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="1_22wnm"]
 [ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="2_brygk"]
-[ext_resource type="Texture2D" uid="uid://n7vxtpbe3ifv" path="res://Assets/Textures/temp meter.png" id="4_yfv28"]
-[ext_resource type="Texture2D" uid="uid://d1m23dpdio0pn" path="res://Assets/Textures/temp Overlay.png" id="5_2e54l"]
-[ext_resource type="Texture2D" uid="uid://dos6ovu1yh1gu" path="res://Assets/Textures/temp Full.png" id="6_45pon"]
+[ext_resource type="Texture2D" uid="uid://b0qeh742ut3rp" path="res://Assets/Textures/Top_Layer_Meter.png" id="4_hysnl"]
+[ext_resource type="Texture2D" uid="uid://dre78bonfm6n7" path="res://Assets/Textures/Bottom_Layer_Meter.png" id="5_idmyt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iqh6k"]
 shader = ExtResource("1_22wnm")
@@ -59,23 +58,24 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Beer Meter" type="Control" parent="."]
-visible = false
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchor_right = 0.103299
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Beer Meter"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_top = 53.0
 offset_right = 119.0
+offset_bottom = -139.0
 grow_vertical = 2
 fill_mode = 3
 nine_patch_stretch = true
-texture_under = ExtResource("4_yfv28")
-texture_over = ExtResource("5_2e54l")
-texture_progress = ExtResource("6_45pon")
+texture_over = ExtResource("4_hysnl")
+texture_progress = ExtResource("5_idmyt")
+metadata/_edit_use_anchors_ = true

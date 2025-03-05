@@ -51,10 +51,13 @@ func _process(delta: float) -> void:
 		match cur_look_at:
 			looking_at.Door:#spawn human player, switch camera
 				spawned_player = spawn_player_character()
+				$CanvasLayer/Tooltips/Label.text = ""
 				
 			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
 				#print(Globals.player_voice_lines.size())
 				drink_random()
+				if $Milk_Crate.alchohol_count>0:
+					$CanvasLayer/Tooltips/Label.text = "NEED MORE ALCOHOL"
 				#print("glug glug glug")
 			looking_at.Radio:#change radio 
 				print("BALLS")
@@ -83,7 +86,7 @@ func _process(delta: float) -> void:
 	saved_linear_velocity = linear_velocity
 
 var saved_linear_velocity : Vector3
-func _on_collide(body):
+func _on_collide(_body):
 	if abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
 		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
 		$Sounds/Crash.play()
@@ -193,18 +196,25 @@ var cur_look_at = null
 func _on_enter_exit_area_entered(area: Area3D) -> void:
 	if area == driver_look_area:
 		cur_look_at = looking_at.Door
+		$CanvasLayer/Tooltips/Label.text = "E to EXIT"
 		print("door")
 	elif area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
 		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door("Car")
+		$CanvasLayer/Tooltips/Label.text = "E to ENTER"
 
 func _on_alcholol_area_entered(area: Area3D) -> void:
 	if area == driver_look_area:
 		cur_look_at = looking_at.Alchohol
+		if $Milk_Crate.alchohol_count>0:
+			$CanvasLayer/Tooltips/Label.text = "E to DRINK"
+		else:
+			$CanvasLayer/Tooltips/Label.text = "NEED MORE ALCOHOL"
 		print("alchohol")
 
 func _on_radio_area_entered(area: Area3D) -> void:
 	if area == driver_look_area:
 		cur_look_at = looking_at.Radio
+		$CanvasLayer/Tooltips/Label.text = "E to TOGGLE\nQ to SWITCH STATION"
 		print("radio")
 
 func _on_raycast_exit(area:Area3D)->void:
@@ -213,6 +223,7 @@ func _on_raycast_exit(area:Area3D)->void:
 		print("null")
 	if area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
 		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door(null)
+	$CanvasLayer/Tooltips/Label.text = ""
 
 
 func _on_sobriety_timer_timeout() -> void:

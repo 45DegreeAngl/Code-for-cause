@@ -3,6 +3,7 @@ extends Node3D
 @onready var drinks:Dictionary = {"Jaeger":$Bottles/Jaeger,"Sake":$Bottles/Sake,"Beer":$Bottles/Beer}
 @onready var multimeshes:Dictionary = {"Beer":$Beer,"Sake":$Sake,"Jaeger":$Jaeger}
 @onready var content:Dictionary = {"Beer":3,"Sake":2,"Jaeger":1}
+@onready var alchohol_count:int = 0
 var randomize_array:Array[String] = []
 
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +15,7 @@ var x = 0
 var z = 0
 
 func update_bottles():
+	alchohol_count=0
 	##add keys to this temp array to remove them one by one
 	for i:String in content.keys():
 		#print(i)
@@ -35,6 +37,7 @@ func update_bottles():
 		var bottle_y_pos : float = drinks[bottle_type].position.y
 		
 		for b in content[bottle_type]:
+			alchohol_count+=1
 			var new_mesh : MeshInstance3D = MeshInstance3D.new()
 			$instances.add_child(new_mesh)
 			new_mesh.mesh = drinks[bottle_type].mesh
