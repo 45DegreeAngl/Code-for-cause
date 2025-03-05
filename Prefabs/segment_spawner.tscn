@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cgk8q7mcfa465" path="res://Prefabs/Roads/Stairway to Hellven.tscn" id="7_e26yy"]
 [ext_resource type="PackedScene" uid="uid://bsawvuh1yr6x3" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
 [ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
-[ext_resource type="PackedScene" path="res://Prefabs/Roads/Halfpipe Segment.tscn" id="9_kn753"]
+[ext_resource type="PackedScene" uid="uid://n0c15of7b78l" path="res://Prefabs/Roads/Halfpipe Segment.tscn" id="9_kn753"]
 [ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
 [ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Prefabs/the_cop.tscn" id="11_1v58q"]
 [ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Player/Player Car.tscn" id="12_rhmin"]

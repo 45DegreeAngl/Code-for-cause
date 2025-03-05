@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://crtu6kjmnipcu"]
+[gd_scene load_steps=4 format=3 uid="uid://n0c15of7b78l"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_fisqc"]
 
-[sub_resource type="Curve3D" id="Curve3D_5u1vu"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.539585, 0.551673, -0.0355971, 0, 0, 0, 0, 0, 0, 0.514456, 0.551673, -15.9936),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_lejiu"]
 
-[node name="Debug Straight" type="GridMap"]
+[sub_resource type="Curve3D" id="Curve3D_udyws"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.470205, 0.580956, -0.0357858, -0.717908, -2.36034e-05, 0.62547, 0.717908, 2.36034e-05, -0.62547, 1.08688, 0.580933, -1.30989, -1.07882, -2.36034e-05, 0.106979, 1.07882, 2.36034e-05, -0.106979, 6.43078, 0.580956, -1.54501, -0.244919, -0.300299, 0.821189, 0.244919, 0.300299, -0.821189, 9.14042, 1.4108, -3.18668, 0.167459, -0.085706, 0.250766, -0.167459, 0.085706, -0.250766, 9.28658, 1.43557, -6.35546, 1.53321, -2.36034e-05, -0.34766, -1.53321, 2.36034e-05, 0.34766, 6.37704, 0.580933, -8.50377, 0.0340986, -2.36034e-05, 2.19938, -0.0340986, 2.36034e-05, -2.19938, 2.49888, 1.5549, -11.4903, -1.75147, -2.36034e-05, 0.0400047, 1.75147, 2.36034e-05, -0.0400047, 5.63899, 0.580956, -15.5291, -0.37693, -2.36034e-05, 0.110135, 0.37693, 2.36034e-05, -0.110135, 9.11529, 0.605526, -15.4528, 0, 0, 0, 0, 0, 0, 9.57314, 0.605526, -16.0039),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
+[node name="Halfpipe" type="GridMap"]
 mesh_library = ExtResource("1_fisqc")
 cell_size = Vector3(1, 1, 1)
 data = {
@@ -22,10 +22,10 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="Exit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -16)
 
-[node name="Path3D" type="Path3D" parent="." groups=["road_path"]]
-curve = SubResource("Curve3D_5u1vu")
-
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 8, 0.0266571, 0.493558, -8.02176)
 use_collision = true
 mesh = SubResource("PlaneMesh_lejiu")
+
+[node name="Path3D2" type="Path3D" parent="." groups=["road_path"]]
+curve = SubResource("Curve3D_udyws")
