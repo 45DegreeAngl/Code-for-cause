@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://7yiw8v4t5rt7"]
 
-[ext_resource type="MeshLibrary" uid="uid://b3rtmi83u8hyb" path="res://Assets/Models/Mesh Libraries/Streets.tres" id="1_y5fdp"]
+[ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_kygmy"]
 
 [sub_resource type="Curve3D" id="Curve3D_mthns"]
 _data = {
