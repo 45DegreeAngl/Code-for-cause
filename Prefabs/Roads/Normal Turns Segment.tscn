@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://coa1buyxhvtlm"]
 
-[ext_resource type="MeshLibrary" uid="uid://7jngr77xxs7i" path="res://Assets/Models/Mesh Libraries/Streets.tres" id="1_coa7u"]
+[ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_l6kl3"]
 
 [sub_resource type="Curve3D" id="Curve3D_6ce3a"]
 _data = {
@@ -12,7 +12,7 @@ point_count = 11
 [sub_resource type="PlaneMesh" id="PlaneMesh_45ub5"]
 
 [node name="Normal Turns Segment" type="GridMap"]
-mesh_library = ExtResource("1_coa7u")
+mesh_library = ExtResource("1_l6kl3")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65531, 655383, 65534, 65531, 655360, 65533, 65531, 655360, 65532, 65531, 655360, 65530, 65531, 23, 65530, 65529, 1441792, 65530, 65528, 1441792, 65530, 65526, 1441815, 65533, 65526, 655383, 65533, 65528, 2, 65534, 65528, 1048578, 65534, 65527, 1048576, 65534, 65525, 1048576, 65534, 65526, 1048576)

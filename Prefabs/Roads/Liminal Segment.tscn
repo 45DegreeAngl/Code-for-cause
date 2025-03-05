@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsawvuh1yr6x3"]
 
-[ext_resource type="MeshLibrary" uid="uid://7jngr77xxs7i" path="res://Assets/Models/Mesh Libraries/Streets.tres" id="1_w0y5y"]
+[ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_oppoi"]
 
 [sub_resource type="Curve3D" id="Curve3D_lr348"]
 _data = {
@@ -12,7 +12,7 @@ point_count = 10
 [sub_resource type="PlaneMesh" id="PlaneMesh_n88oe"]
 
 [node name="Liminal Segment" type="GridMap"]
-mesh_library = ExtResource("1_w0y5y")
+mesh_library = ExtResource("1_oppoi")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65534, 3, 0, 65531, 3, 65533, 65531, 3, 3, 65531, 3, 65533, 65534, 1048580, 3, 65534, 1048580, 6, 65534, 1048580, 65530, 65534, 1048580, 65527, 65531, 4, 65527, 65528, 4, 65527, 65525, 4, 9, 65531, 655364, 9, 65528, 655364, 9, 65525, 655364, 9, 65534, 1048599, 65527, 65534, 23, 65530, 65531, 3, 65530, 65528, 3, 65530, 65525, 3, 65533, 65525, 3, 65533, 65528, 3, 0, 65528, 3, 0, 65525, 3, 3, 65525, 3, 3, 65528, 3, 6, 65528, 3, 6, 65531, 3, 6, 65525, 3, 65530, 65522, 3, 6, 65522, 3, 65527, 65522, 1441815, 9, 65522, 655383, 3, 65522, 1441815, 65533, 65522, 655383, 0, 65520, 1441818, 65543, 65520, 655384, 131079, 65527, 1048600, 6, 65519, 655383, 65530, 65519, 1441815, 65533, 65519, 1048599, 3, 65519, 23, 3, 65516, 655383, 65533, 65516, 1441815, 0, 65516, 1048580, 196608, 65527, 25, 196608, 65520, 1048596, 131072, 65516, 1048595)

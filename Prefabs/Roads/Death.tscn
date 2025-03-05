@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://7yiw8v4t5rt7"]
 
-[ext_resource type="MeshLibrary" uid="uid://7jngr77xxs7i" path="res://Assets/Models/Mesh Libraries/Streets.tres" id="1_y5fdp"]
+[ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_kygmy"]
 
 [sub_resource type="Curve3D" id="Curve3D_mthns"]
 _data = {
@@ -12,7 +12,7 @@ point_count = 3
 [sub_resource type="PlaneMesh" id="PlaneMesh_m2fvs"]
 
 [node name="Debug Death" type="GridMap"]
-mesh_library = ExtResource("1_y5fdp")
+mesh_library = ExtResource("1_kygmy")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, -65536, 65529, 1048577, 0, 65531, 1441792)

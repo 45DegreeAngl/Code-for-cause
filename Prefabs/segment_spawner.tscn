@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=14 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
 [ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cgk8q7mcfa465" path="res://Prefabs/Roads/Stairway to Hellven.tscn" id="7_e26yy"]
 [ext_resource type="PackedScene" uid="uid://bsawvuh1yr6x3" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
 [ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
+[ext_resource type="PackedScene" uid="uid://crtu6kjmnipcu" path="res://Prefabs/Roads/Halfpipe Segment.tscn" id="9_kn753"]
 [ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
 [ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Prefabs/the_cop.tscn" id="11_1v58q"]
 [ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Player/Player Car.tscn" id="12_rhmin"]
@@ -15,7 +16,7 @@
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
-road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("8_mfdpi"), ExtResource("9_f8h36"), ExtResource("7_e26yy")])
+road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("8_mfdpi"), ExtResource("9_f8h36"), ExtResource("7_e26yy"), ExtResource("9_kn753")])
 
 [node name="Roads" type="Node3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)

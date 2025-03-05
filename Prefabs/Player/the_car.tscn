@@ -1,9 +1,9 @@
-[gd_scene load_steps=59 format=4 uid="uid://diakwvg84vkiw"]
+[gd_scene load_steps=60 format=4 uid="uid://diakwvg84vkiw"]
 
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="2_am8ur"]
-[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_x726e"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_x726e"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="3_ye32b"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="4_qxn2i"]
 [ext_resource type="Texture2D" uid="uid://b4w5o83874l4n" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="5_e365b"]
@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://crhdx7ojehre8" path="res://Assets/Models/godot-prototype-texture/PNG/checker_lime_512x512.png" id="12_whm7s"]
 [ext_resource type="Texture2D" uid="uid://dc5kiekdkk2lc" path="res://Assets/Models/godot-prototype-texture/PNG/checker_red_512x512.png" id="13_ibe3o"]
 [ext_resource type="PackedScene" uid="uid://lvgwnfheptfj" path="res://Prefabs/Alcohol Crate.tscn" id="14_8yrfn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eps3w"]
+friction = 0.1
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1tvv8"]
 points = PackedVector3Array(1.74461, -0.575504, -0.875132, 1.74461, -0.755339, -0.875132, 1.27464, -1.10055, -2.82608, 1.1592, -0.961626, -2.93354, 1.15101, 0.135463, -0.0101008, 1.15101, 0.135463, 1.76056, 1.73061, -0.575504, -0.713946, 1.27464, -1.80866, -2.82608, 1.73061, -0.755339, -0.713946, 1.27464, -1.80866, 3.16467, 1.1592, -1.33633, -2.93354, -1.15954, -0.961626, -2.93354, -1.15135, 0.135463, -0.0101008, -1.15135, 0.135463, 1.76056, 1.05127, 0.0625778, 1.88115, 1.17901, -0.662282, 3.0787, 1.27464, -0.714424, 3.16467, -1.27499, -1.80866, -2.82608, -1.27499, -1.80866, 3.16467, -1.15954, -1.33633, -2.93354, -1.27499, -1.10055, -2.82608, -1.74461, -0.575504, -0.875132, -1.27499, -0.714424, 3.16467, -1.17935, -0.662282, 3.0787, -1.05162, 0.0625778, 1.88115, -1.73095, -0.575504, -0.713946, -1.74461, -0.755339, -0.875132, -1.73095, -0.755339, -0.713946)
@@ -451,6 +454,7 @@ albedo_texture = ExtResource("13_ibe3o")
 radius = 0.0250014
 
 [node name="The_Car" type="VehicleBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_eps3w")
 gravity_scale = 2.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, -1.3)

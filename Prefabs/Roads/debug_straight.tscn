@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfe2n5yc1ofd5"]
 
-[ext_resource type="MeshLibrary" uid="uid://7jngr77xxs7i" path="res://Assets/Models/Mesh Libraries/Streets.tres" id="1_bfdsc"]
+[ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_tdahm"]
 
 [sub_resource type="Curve3D" id="Curve3D_5u1vu"]
 _data = {
@@ -12,7 +12,7 @@ point_count = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_lejiu"]
 
 [node name="Debug Straight" type="GridMap"]
-mesh_library = ExtResource("1_bfdsc")
+mesh_library = ExtResource("1_tdahm")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65531, 1441792, 0, 65529, 1441792, 0, 65527, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792, 0, 65528, 1441792, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65526, 1441792, 0, 65532, 1441792, 0, 65530, 1441792)
@@ -26,6 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 curve = SubResource("Curve3D_5u1vu")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 8, 0.0266571, 0.45803, -8.02176)
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 8, 0.0266571, 0.498972, -8.02176)
 use_collision = true
 mesh = SubResource("PlaneMesh_lejiu")
