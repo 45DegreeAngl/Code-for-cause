@@ -26,6 +26,7 @@ func _ready() -> void:
 	MainShaderCanvas.toggle_filter("drunk")
 	MainShaderCanvas.toggle_filter("BeerMeter")
 	Globals.drunkenness= Globals.drunkenness
+	Globals.update_bottles.emit()
 	_on_radio_finished()
 
 
@@ -93,8 +94,8 @@ func _on_collide(_body):
 
 func drink_random():
 	var temp_array :Array = []
-	for bottle in $Milk_Crate.content:
-		if $Milk_Crate.content[bottle]>0:
+	for bottle in Globals.car_contents:
+		if Globals.car_contents[bottle]>0:
 			temp_array.append(bottle)
 	if temp_array.is_empty():
 		return
@@ -112,8 +113,8 @@ func drink_random():
 		_:
 			Globals.drunkenness+=1
 	
-	$Milk_Crate.content[picked_bottle] -= 1
-	$Milk_Crate.update_bottles()
+	Globals.car_contents[picked_bottle] -= 1
+	Globals.update_bottles.emit()
 	
 
 @export var camera_sense : float = 0.001

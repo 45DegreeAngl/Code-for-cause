@@ -31,6 +31,13 @@ signal game_lost()
 	"NightcoreAHA":preload("res://Assets/Sounds/Music/NightcoreAhaFixed.mp3")
 }
 var timer:float = 0
+
+signal update_bottles
+var car_contents:Dictionary = {"Beer":3,"Sake":2,"Jaeger":1}:
+	set(value):
+		car_contents = value
+		update_bottles.emit()
+
 const starting_amplitude = 0.04
 const starting_frequency = 0.02
 const starting_scale = 1.1
