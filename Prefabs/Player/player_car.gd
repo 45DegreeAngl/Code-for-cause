@@ -101,11 +101,11 @@ func drink_random():
 	var picked_bottle : String = temp_array.pick_random()
 	match picked_bottle:
 		"Beer":
-			Globals.drunkenness+=5
+			Globals.drunkenness+=10
 		"Sake":
 			Globals.drunkenness+=10
 		"Jaeger":
-			Globals.drunkenness+=20
+			Globals.drunkenness+=10
 		_:
 			Globals.drunkenness+=1
 	

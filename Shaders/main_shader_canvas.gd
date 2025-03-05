@@ -8,6 +8,7 @@ func toggle_filter(key:String):
 	var control:Control = filter_dict[key][0]
 	control.visible = !control.visible
 
+
 func get_shaders(key:String)->Array[ShaderMaterial]:
 	var temp : Array[ShaderMaterial]
 	for elem in filter_dict[key]:

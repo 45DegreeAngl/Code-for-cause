@@ -9,6 +9,7 @@ func _on_lose():
 	MainShaderCanvas.toggle_filter("drunk")
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$"Game Over".visible = true
+	MainShaderCanvas.visible = false
 	$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_start_pressed() -> void:
@@ -23,6 +24,7 @@ func _on_start_game() ->void:
 	$"Game World".add_child(game_instance)
 	Globals.world_node = game_instance
 	$Animations.visible = false
+	MainShaderCanvas.visible = true
 
 func _on_options_pressed() -> void:
 	$Options.visible = true
