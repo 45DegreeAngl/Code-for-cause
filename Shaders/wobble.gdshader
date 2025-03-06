@@ -1,4 +1,4 @@
-shader_type spatial;
+shader_type canvas_item;
 //render_mode unshaded;
 
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
@@ -17,9 +17,13 @@ void fragment() {
 	//vec2 new_pos = clamp(SCREEN_UV + vec2(x,y), vec2(0,0), vec2(1,1));
 	//COLOR = textureLod(screen_texture, new_pos, 0.0);
 
+	//create reduced shader distortion at edges to reduce stretching effect
 	float sinWave = sin(SCREEN_UV.y * waveY + TIME) + sin(SCREEN_UV.x * waveX + TIME);
-	vec2 waveUV = vec2(SCREEN_UV.x + sinWave * uvScaleX, SCREEN_UV.y + sinWave * uvScaleY);
-	ALBEDO = textureLod(screen_texture, waveUV, 0.0).rgb;
+	vec2 screenResolution = vec2(1,1)/SCREEN_PIXEL_SIZE;
+	vec2 edgeDistance = vec2(min(SCREEN_UV.x, 1.0 - SCREEN_UV.x), min(SCREEN_UV.y, 1.0 - SCREEN_UV.y));
+	vec2 waveUV = vec2(SCREEN_UV.x + sinWave * uvScaleX * edgeDistance.x, SCREEN_UV.y + sinWave * uvScaleY * edgeDistance.y);
+
+	COLOR = textureLod(screen_texture, waveUV, 0.0);
 }
 void vertex() {
 	// Called for every vertex the material is visible on.

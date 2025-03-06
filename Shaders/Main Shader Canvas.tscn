@@ -7,18 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://dre78bonfm6n7" path="res://Assets/Textures/Bottom_Layer_Meter.png" id="5_idmyt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iqh6k"]
-render_priority = 0
 shader = ExtResource("1_22wnm")
 shader_parameter/waveX = 0.5
 shader_parameter/waveY = 0.5
-shader_parameter/uvScaleX = 0.08
-shader_parameter/uvScaleY = 0.04
+shader_parameter/uvScaleX = 0.16
+shader_parameter/uvScaleY = 0.08
 shader_parameter/drunkScale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0h4qc"]
 shader = ExtResource("2_brygk")
 shader_parameter/alpha = 1.0
-shader_parameter/scale = 1.1
+shader_parameter/scale = 1.0
 shader_parameter/red_shift = 1.0
 shader_parameter/blue_shift = 2.0
 shader_parameter/green_shift = 3.0
@@ -37,7 +36,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="WobbleShader" type="ColorRect" parent="Drunk"]
-visible = false
 material = SubResource("ShaderMaterial_iqh6k")
 layout_mode = 1
 anchors_preset = 15
