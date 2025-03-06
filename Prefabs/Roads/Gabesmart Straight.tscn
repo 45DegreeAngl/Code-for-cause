@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://6ohj54i0nwum"]
+[gd_scene load_steps=5 format=3 uid="uid://dsnp8cra4vmyx"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_j0qfm"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_it1m8"]

@@ -109,6 +109,9 @@ func _process(delta: float) -> void:
 	change_engine_pitch()
 	steering = move_toward(steering,steer_input * get_max_steer(),delta*2.5)
 	engine_force = max(engine_input * ENGINE_POWER,-ENGINE_POWER/1.5)
+
+	#print(distance_to(self.global_position,target.global_position))
+
 	if distance_to(self.global_position,target.global_position)<hunt_distance:
 		hunt = true
 	else:
