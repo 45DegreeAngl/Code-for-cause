@@ -29,16 +29,15 @@ func _ready() -> void:
 	MainShaderCanvas.toggle_filter("drunk")
 	MainShaderCanvas.toggle_filter("BeerMeter")
 	Globals.drunkenness= Globals.drunkenness
-	
-	
-
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	Globals.timer+=delta
 	if !occupied:
-		engine_force = move_toward(engine_force,0,delta)
+		if abs(linear_velocity):
+			engine_force = move_toward(linear_velocity.length(),-linear_velocity.length(),delta)
+		else:
+			engine_force = move_toward(engine_force,0,delta)
 		return
 	#The line thats commented out below should remain here but commented as a reminder to check the cars max speed every time it's tweaked
 	#print(linear_velocity.length())
@@ -82,7 +81,7 @@ func _process(delta: float) -> void:
 	change_engine_pitch()
 	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
 	##Fix rotate code when smarter
-	$Wheel/Wheel.rotate_object_local(-Vector3(deg_to_rad(-60),deg_to_rad(180),0).normalized(),-steering)
+	$Wheel.rotation.z = steering*2*PI
 	var forward_axis = Input.get_axis("S","W")
 	engine_force = max(forward_axis * ENGINE_POWER,-ENGINE_POWER/1.5)
 	##Fix rotate code when smarter
@@ -90,10 +89,13 @@ func _process(delta: float) -> void:
 	saved_linear_velocity = linear_velocity
 
 var saved_linear_velocity : Vector3
-func _on_collide(_body):
+func _on_collide(body):
 	if abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
 		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
 		$Sounds/Crash.play()
+	elif body is Debris:
+		#play debris hit effect
+		pass
 
 func drink_random():
 	var temp_array :Array = []
@@ -191,6 +193,24 @@ func spawn_player_character()->Node3D:
 func enter_car():
 	occupied = true
 	$Cameras/Windshield.current = true
+	var possible_objects : Array = [spawned_player.left_hand,spawned_player.right_hand]
+	for object :RigidBody3D in possible_objects:
+		if object==null:
+			continue
+		if object.has_meta("Bottle"):
+			if object.get_meta("Bottle") == ("Sake"):
+				Globals.car_contents["Sake"] +=1
+			elif object.get_meta("Bottle") == ("Beer"):
+				Globals.car_contents["Beer"] +=1
+			elif object.get_meta("Bottle")==("Jaeger"):
+				Globals.car_contents["Jaeger"] +=1
+			object.call_deferred("queue_free")
+			Globals.update_bottles.emit()
+		elif object is Debris:
+			object.process_mode = Node.PROCESS_MODE_DISABLED
+			object.reparent($Debrie)
+			object.position = $"Debrie Spawns".get_children().pick_random().position
+			object.rotation = Vector3.ZERO
 	spawned_player.call_deferred("queue_free")
 	set_deferred("player_instance",null)
 
