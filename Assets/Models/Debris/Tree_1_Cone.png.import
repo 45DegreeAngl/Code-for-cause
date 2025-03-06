@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0qeh742ut3rp"
-path.s3tc="res://.godot/imported/Top_Layer_Meter.png-02d33e9c2fd7165925a8d1f378f69d3e.s3tc.ctex"
+uid="uid://c7sl5akbr3rnv"
+path.s3tc="res://.godot/imported/Tree_1_Cone.png-56e7fbf943264ceded0b93c9afa155ac.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "9edf3fe3b3caa9bb9cce4f3c1d63aaf4"
+}
 
 [deps]
 
-source_file="res://Assets/Textures/Top_Layer_Meter.png"
-dest_files=["res://.godot/imported/Top_Layer_Meter.png-02d33e9c2fd7165925a8d1f378f69d3e.s3tc.ctex"]
+source_file="res://Assets/Models/Debris/Tree_1_Cone.png"
+dest_files=["res://.godot/imported/Tree_1_Cone.png-56e7fbf943264ceded0b93c9afa155ac.s3tc.ctex"]
 
 [params]
 

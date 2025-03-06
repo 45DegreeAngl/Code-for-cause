@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7afy5ct7o7c1"]
+[gd_scene load_steps=10 format=3 uid="uid://c7afy5ct7o7c1"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_8lrak"]
-[ext_resource type="MeshLibrary" uid="uid://c54tq411i32v5" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_ssymr"]
+[ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_ssymr"]
+[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="3_0dd33"]
 
 [sub_resource type="Curve3D" id="Curve3D_di578"]
 _data = {
@@ -9,6 +10,35 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkymy"]
+transparency = 1
+albedo_texture = ExtResource("3_0dd33")
+uv1_scale = Vector3(3, 1, 1)
+uv1_triplanar_sharpness = 1.05615
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y028b"]
+transparency = 1
+albedo_texture = ExtResource("3_0dd33")
+uv1_triplanar_sharpness = 1.05615
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2cnp"]
+transparency = 1
+albedo_texture = ExtResource("3_0dd33")
+uv1_scale = Vector3(4, 1, 1)
+uv1_triplanar_sharpness = 1.05615
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46h2j"]
+transparency = 1
+albedo_texture = ExtResource("3_0dd33")
+uv1_scale = Vector3(3, 1, 1)
+uv1_triplanar_sharpness = 1.05615
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qt0v8"]
+transparency = 1
+albedo_texture = ExtResource("3_0dd33")
+uv1_scale = Vector3(3, 1, 1)
+uv1_triplanar_sharpness = 1.05615
 
 [node name="Four Way Segment" type="GridMap"]
 mesh_library = ExtResource("1_8lrak")
@@ -28,6 +58,64 @@ curve = SubResource("Curve3D_di578")
 mesh_library = ExtResource("2_ssymr")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 0, 65530, 1441792, 0, 65529, 1441792, 0, 65528, 1441792, 65526, 65528, 1441792, 65526, 65529, 1441792, 65526, 65530, 1441792, 65526, 65531, 1441792, 65526, 65532, 1441792, 65526, 65533, 1441792, 65526, 65534, 1441792, 65526, 65535, 1441792, 0, 65525, 1441794, 65535, 65525, 1441794, 65534, 65525, 1441794, 65533, 65525, 1441794, 65532, 65525, 1441794, 65531, 65525, 1441794, 65530, 65525, 1441794, 65529, 65525, 1441794, 65528, 65525, 1441794, 65527, 65525, 1441794, 65526, 65525, 1441794, 0, 65526, 1441792, 65535, 65526, 1441792, 65534, 65526, 1441792, 65533, 65526, 1441792, 65532, 65526, 1441792, 65531, 65526, 1441792, 65530, 65526, 1441792, 65529, 65526, 1441792, 65528, 65526, 1441792, 65527, 65526, 1441792, 65526, 65526, 1441792, 65535, 65527, 1441792, 65534, 65527, 1441792, 65533, 65527, 1441792, 65532, 65527, 1441792, 65531, 65527, 1441792, 65530, 65527, 1441792, 65529, 65527, 1441792, 65528, 65527, 1441792, 65527, 65527, 1441792, 65526, 65527, 1441792, 0, 65527, 1441792)
+"cells": PackedInt32Array(65526, 65528, 1441792, 65526, 65529, 1441792, 65526, 65530, 1441792, 65526, 65531, 1441792, 65526, 65532, 1441792, 65526, 65533, 1441792, 65526, 65534, 1441792, 65526, 65535, 1441792, 65529, 65526, 1441792, 65528, 65526, 1441792, 65527, 65526, 1441792, 65526, 65526, 1441792, 65528, 65527, 1441792, 65527, 65527, 1441792, 65526, 65527, 1441792, 65520, 65525, 1441794, 65521, 65525, 1441794, 65522, 65525, 1441794, 65523, 65525, 1441794, 65524, 65525, 1441794, 65525, 65525, 1441794, 65526, 65525, 1441794, 65527, 65525, 1441794, 65528, 65525, 1441794, 65529, 65525, 1441794, 65529, 65527, 1441792, 65529, 65528, 1441792, 65529, 65529, 1441792, 65529, 65530, 1441792, 65529, 65531, 1441792, 65529, 65532, 1441792, 65529, 65533, 1441792, 65529, 65534, 1441792, 65529, 65535, 1441792, 65520, 65526, 1441792, 65520, 65527, 1441792, 65520, 65528, 1441792, 65520, 65529, 1441792, 65520, 65530, 1441792, 65520, 65531, 1441792, 65520, 65532, 1441792, 65520, 65533, 1441792, 65520, 65534, 1441792, 65520, 65535, 1441792, 65534, 65535, 1441792, 0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 0, 65530, 1441792, 65535, 65529, 1441792, 0, 65529, 1441792)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Left Tree Box" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.0116, 3.30626, -4.98281)
+use_collision = true
+size = Vector3(9.93382, 5.65918, 0.0811768)
+material = SubResource("StandardMaterial3D_fkymy")
+
+[node name="Left Tree Box2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0.0475248, 0.99887, 2.07738e-09, -0.99887, 0.0475248, -4.3662e-08, -20.9062, 4.10933, -12.0017)
+use_collision = true
+size = Vector3(4.79655, 6.88379, 0.0811768)
+material = SubResource("StandardMaterial3D_y028b")
+
+[node name="Right Tree Box2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.4678, 3.87885, -3.95269)
+use_collision = true
+flip_faces = true
+size = Vector3(8.13383, 6.88379, 0.0811768)
+material = SubResource("StandardMaterial3D_y028b")
+
+[node name="Right Tree Box4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.40445, 3.87885, -10.5196)
+use_collision = true
+flip_faces = true
+size = Vector3(6.85023, 6.88379, 0.0811768)
+material = SubResource("StandardMaterial3D_y028b")
+
+[node name="Right Tree Box3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5391, 3.87885, -7.05361)
+use_collision = true
+size = Vector3(8.13383, 6.88379, 0.0811768)
+material = SubResource("StandardMaterial3D_y028b")
+
+[node name="Left Tree Box3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6245, 4.19688, -14.1854)
+use_collision = true
+size = Vector3(15.9866, 5.65918, 0.0811768)
+material = SubResource("StandardMaterial3D_v2cnp")
+
+[node name="Right Tree Box5" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.41239, 4.19688, -14.0577)
+use_collision = true
+flip_faces = true
+size = Vector3(21.9451, 5.65918, 0.0811768)
+material = SubResource("StandardMaterial3D_46h2j")
+
+[node name="Left Tree Box5" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.999937, 0, -0.0112049, 0, 1, 0, 0.0112049, 0, -0.999937, 8.55766, 3.30626, -0.133485)
+use_collision = true
+size = Vector3(13.7977, 5.65918, 0.0811768)
+material = SubResource("StandardMaterial3D_qt0v8")
+
+[node name="Right Tree Box6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.999937, 0, 0.011205, 0, 1, 0, -0.011205, 0, 0.999937, -15.5247, 3.30626, 0.0507633)
+use_collision = true
+flip_faces = true
+size = Vector3(30.0397, 5.65918, 0.0811768)
+material = SubResource("StandardMaterial3D_qt0v8")

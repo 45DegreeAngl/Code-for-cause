@@ -1491,7 +1491,6 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="Gabes_Mart/Lamp Post Base"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Gabes_Mart/Lamp Post Base/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_o2ywf")
 
 [node name="Gabes_Mart" type="MeshInstance3D" parent="Gabes_Mart"]
@@ -1603,7 +1602,6 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="Gabes_Mart/Lamp Post Base_001"]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Gabes_Mart/Lamp Post Base_001/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_2sgmr")
 
 [connection signal="body_entered" from="Interactibles/Buy Area" to="." method="_on_buy_area_body_entered"]
