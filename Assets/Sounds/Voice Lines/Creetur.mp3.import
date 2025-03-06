@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7lukqmnryktj"
+path="res://.godot/imported/Creetur.mp3-db25fd1ee6b4722de017b6ecf074f513.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Voice Lines/Creetur.mp3"
+dest_files=["res://.godot/imported/Creetur.mp3-db25fd1ee6b4722de017b6ecf074f513.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

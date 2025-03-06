@@ -30,7 +30,6 @@ var physics_bones = [] # all physical bones
 @onready var animation_tree = $Animated/AnimationTree
 @onready var physical_bone_body : PhysicalBone3D = $"Physical/Armature/Skeleton3D/Physical Bone Body"
 
-
 # grabbing related stuff
 var active_arm_left = false
 var active_arm_right = false
@@ -43,6 +42,9 @@ var grabbing_arm_right = false
 @onready var physical_bone_r_arm_2 = $"Physical/Armature/Skeleton3D/Physical Bone RArm2"
 @onready var l_grab_area = $"Physical/Armature/Skeleton3D/Physical Bone LArm2/LGrabArea"
 @onready var r_grab_area = $"Physical/Armature/Skeleton3D/Physical Bone RArm2/RGrabArea"
+
+var left_hand = null
+var right_hand = null
 
 var current_delta:float
 
@@ -63,11 +65,15 @@ func _input(_event):
 		grab_joint_left.node_a = NodePath()
 		grab_joint_left.node_b = NodePath()
 		
+		left_hand = null
+		
 	if (not active_arm_right and grabbing_arm_right) or ragdoll_mode:
 		#release whatever the arm is holding when ragdoll mode or the arm is deactivate
 		grabbing_arm_right = false
 		grab_joint_right.node_a = NodePath()
 		grab_joint_right.node_b = NodePath()
+		
+		right_hand = null
 
 func _process(_delta):
 	var r = clamp((camera_pivot.rotation.x*2)/(PI)*2.1,-1,1)
@@ -148,6 +154,8 @@ func _on_r_grab_area_body_entered(body:Node3D):
 			grab_joint_right.global_position = r_grab_area.global_position
 			grab_joint_right.node_a = physical_bone_r_arm_2.get_path()
 			grab_joint_right.node_b = body.get_path()
+			if body is RigidBody3D:
+				right_hand = body
 
 
 func _on_l_grab_area_body_entered(body:Node3D):
@@ -159,8 +167,8 @@ func _on_l_grab_area_body_entered(body:Node3D):
 			grab_joint_left.global_position = l_grab_area.global_position
 			grab_joint_left.node_a = physical_bone_l_arm_2.get_path()
 			grab_joint_left.node_b = body.get_path()
-
-
+			if body is RigidBody3D:
+				left_hand = body
 
 func _on_jump_timer_timeout():
 	# jump timer to avoid spamming jump and then fly away

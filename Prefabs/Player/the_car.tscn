@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="2_am8ur"]
-[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_x726e"]
+[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_x726e"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="3_ye32b"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="4_qxn2i"]
 [ext_resource type="Texture2D" uid="uid://b4w5o83874l4n" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="5_e365b"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dc5kiekdkk2lc" path="res://Assets/Models/godot-prototype-texture/PNG/checker_red_512x512.png" id="13_ibe3o"]
 [ext_resource type="PackedScene" uid="uid://lvgwnfheptfj" path="res://Prefabs/Alcohol Crate.tscn" id="14_8yrfn"]
 [ext_resource type="PackedScene" uid="uid://ft4n32wk55a8" path="res://Assets/Models/Car/radio.tscn" id="14_ge4il"]
-[ext_resource type="Theme" path="res://Assets/Themes/Kaph.tres" id="16_d020y"]
+[ext_resource type="Theme" uid="uid://ccmgdq4tewmwx" path="res://Assets/Themes/Kaph.tres" id="16_d020y"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eps3w"]
 friction = 0.1
@@ -950,9 +950,10 @@ transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.590161, 1.14082, -
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28392, 2.65554)
 
 [node name="Wheel" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -0.601772, 1.7438, -1.77272)
 
-[node name="Wheel" type="MeshInstance3D" parent="Wheel"]
-transform = Transform3D(-0.15, 1.13565e-08, -6.5567e-09, 0, 0.0749999, 0.129904, 1.31134e-08, 0.129904, -0.0749999, -0.601772, 1.7438, -1.77272)
+[node name="Wheel2" type="MeshInstance3D" parent="Wheel"]
+transform = Transform3D(-0.15, -1.31134e-08, -5.73206e-16, 0, -6.55671e-09, 0.15, -1.31134e-08, 0.15, 6.55671e-09, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pdkh6")
 skeleton = NodePath("../..")
 

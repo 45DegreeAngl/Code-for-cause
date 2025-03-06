@@ -30,7 +30,8 @@ signal game_lost()
 	"MoleInHole":preload("res://Assets/Sounds/Music/MoleFixed.mp3"),
 	"NightcoreAHA":preload("res://Assets/Sounds/Music/NightcoreAhaFixed.mp3"),
 	"Cat Ranch":preload("res://Assets/Sounds/Music/Cat Ranch Song.mp3"),
-	"Underwater":preload("res://Assets/Sounds/Music/Underwater.mp3")
+	"Underwater":preload("res://Assets/Sounds/Music/Underwater.mp3"),
+	"GabesProstateObliteration":preload("res://Assets/Sounds/Music/My Lovely Obliteration.mp3")
 }
 var timer:float = 0
 
@@ -65,7 +66,7 @@ const starting_scale = 1.1
 	set(value):
 		MainShaderCanvas._update_bar(value)
 		drunkenness = value
-		
+
 @onready var world_node : Node
 @onready var filter_canvas : CanvasLayer
 
