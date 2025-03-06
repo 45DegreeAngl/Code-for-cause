@@ -22,6 +22,7 @@ var hunt : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Light/RED.light_color = colors[0]
 	pass
 
 func curve_point_to_global(point : Vector3, path : Path3D):
@@ -133,3 +134,11 @@ func get_max_steer():
 	if linear_velocity.length() >= 60:
 		return deg_to_rad(MAX_STEER_DEG) * 0.1
 	return deg_to_rad(MAX_STEER_DEG) * STEERING_CURVE.sample(linear_velocity.length()/60)
+
+const colors :Array[Color] = [Color.RED,Color.BLUE]
+func _on_flicker_timer_timeout() -> void:
+	match $Light/RED.light_color:
+		Color.RED:
+			$Light/RED.light_color = colors[1]
+		Color.BLUE:
+			$Light/RED.light_color = colors[0]

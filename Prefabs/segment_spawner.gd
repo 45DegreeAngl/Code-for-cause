@@ -15,7 +15,7 @@ func _ready():
 	if not gabesmart_chance:
 		gabesmart_chance = 1/(2*max_gabesmart_pity)
 	spawn_road(road_segments[7])
-	for num_roads in range(100):
+	for num_roads in range(50):
 		spawn_road()
 		
 	road_generated.emit()
