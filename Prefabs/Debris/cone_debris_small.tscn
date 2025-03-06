@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0qjwmfxfhhbl"]
+
+[ext_resource type="PackedScene" uid="uid://cyf4gwwy1p5ut" path="res://Assets/Models/Debris/debris_1.tscn" id="1_1b8sh"]
+[ext_resource type="Script" path="res://Prefabs/Debris/debris_group.gd" id="1_2btv2"]
+
+[node name="ConeDebrisSmall" type="Node3D"]
+script = ExtResource("1_2btv2")
+
+[node name="RigidBody3D" parent="." instance=ExtResource("1_1b8sh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0)
+
+[node name="RigidBody3D3" parent="." instance=ExtResource("1_1b8sh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="RigidBody3D2" parent="." instance=ExtResource("1_1b8sh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)

@@ -1,4 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://cyf4gwwy1p5ut"]
+[gd_scene load_steps=8 format=4 uid="uid://cyf4gwwy1p5ut"]
+
+[ext_resource type="Script" path="res://Prefabs/Debris/debris.gd" id="1_1rna0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_254rj"]
+bounce = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwvkw"]
 resource_name = "Material.005"
@@ -73,11 +78,17 @@ shadow_mesh = SubResource("ArrayMesh_88ktu")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fppkj"]
 points = PackedVector3Array(-1.00055, 0.041582, -0.794488, -0.999574, 0.041582, 0.795663, -1.00055, 0.265124, -0.794488, -0.795859, 0.041582, -0.999574, -0.795663, 0.031485, -0.794684, -0.794684, 0.031485, 0.795467, -0.794488, 0.041582, 1.00055, -0.999574, 0.265124, 0.795663, -0.795859, 0.265124, -0.999574, -0.171395, 2.43033, 0, -0.158271, 2.43033, -0.0654238, -0.121249, 2.43033, -0.121054, 0.794292, 0.041582, -1.00055, 0.794488, 0.031485, -0.795663, 0.795467, 0.031485, 0.794488, 0.795663, 0.041582, 0.999378, -0.794488, 0.265124, 1.00055, -0.121054, 2.43033, 0.121054, -0.158271, 2.43033, 0.0654237, 0.794292, 0.265124, -1.00055, -0.0658156, 2.43033, -0.158271, -0.000195861, 2.43033, -0.171395, 0.999378, 0.041582, -0.795859, 1.00055, 0.041582, 0.794292, 0.795663, 0.265124, 0.999378, 0, 2.43033, 0.171003, -0.0654238, 2.43033, 0.158075, 0.999378, 0.265124, -0.795859, 0.0652279, 2.43033, -0.158271, 0.120858, 2.43033, -0.121249, 1.00055, 0.265124, 0.794292, 0.121054, 2.43033, 0.120858, 0.0654237, 2.43033, 0.158075, 0.158075, 2.43033, -0.0658156, 0.171003, 2.43033, -0.000195861, 0.158075, 2.43033, 0.0652279)
 
-[node name="RigidBody3D" type="RigidBody3D"]
+[node name="Cone Debris" type="RigidBody3D"]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_254rj")
+script = ExtResource("1_1rna0")
 
 [node name="Cone1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
 mesh = SubResource("ArrayMesh_jiu2h")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_fppkj")
