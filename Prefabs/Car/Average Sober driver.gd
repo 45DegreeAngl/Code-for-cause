@@ -20,11 +20,6 @@ var current_path : Path3D = null
 
 var hunt : bool = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	$Light/RED.light_color = colors[0]
-	pass
-
 func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
 
@@ -34,7 +29,7 @@ func control(_delta) -> void:
 	var throttle_lookahead_dist = 2 + 0.5* sqrt(linear_velocity.length())
 	if hunt:
 		current_path = null
-		var target_point_global = target.global_position
+		var target_point_global = Globals.player_vehicle.global_position
 		var target_lookahead_vector = (target_point_global - global_position).normalized()
 		var target_angle_to_lookahead = (-basis.z).signed_angle_to(target_lookahead_vector, global_basis.y)
 		steer_input = target_angle_to_lookahead/(PI/4)

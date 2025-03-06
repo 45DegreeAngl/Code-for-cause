@@ -1,6 +1,7 @@
 extends Node
 @warning_ignore("unused_signal")
 signal game_lost()
+signal game_won()
 
 @onready var player_packed : PackedScene = preload("res://Prefabs/Player/test character.tscn")
 @onready var player_voice_lines:Array = [
@@ -62,13 +63,19 @@ const starting_scale = 1.1
 					#1 red
 					var red = 1+zahness/10.0
 					shader_mat.set_shader_parameter("red_shift",red)
+##change this boolean when tutorial ends
+@onready var tutorial:bool = false
 @onready var drunkenness : float = 20:
 	set(value):
+		if tutorial and value<20:
+			value = 20
 		MainShaderCanvas._update_bar(value)
 		drunkenness = value
 
 @onready var world_node : Node
 @onready var filter_canvas : CanvasLayer
+@onready var player_vehicle : VehicleBody3D
+@onready var player_character : Node3D
 
 func _process(_delta: float) -> void:
 	var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")

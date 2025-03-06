@@ -1,7 +1,7 @@
 [gd_scene load_steps=93 format=4 uid="uid://b4jd38ifumhg7"]
 
-[ext_resource type="Texture2D" uid="uid://dc5kiekdkk2lc" path="res://Assets/Models/godot-prototype-texture/PNG/checker_red_512x512.png" id="1_40p38"]
 [ext_resource type="Script" path="res://Prefabs/Buildings/gabes_mart.gd" id="1_h44nx"]
+[ext_resource type="Texture2D" uid="uid://bdr2idrc3tfjk" path="res://Assets/Textures/buy area texture.png" id="2_aidqn"]
 [ext_resource type="Texture2D" uid="uid://bmkmxv7al3s1n" path="res://Assets/Models/Buildings/Gabes_Mart_Checkered Pattern.jpg" id="5_c044h"]
 [ext_resource type="Texture2D" uid="uid://cclou5gkln0ke" path="res://Assets/Models/Buildings/Gabes_Mart_Untitled.png" id="6_ofigg"]
 [ext_resource type="Texture2D" uid="uid://dsumvt3pmkl2e" path="res://Assets/Models/Buildings/Gabes_Mart_Concreate.png" id="7_yhmur"]
@@ -15,8 +15,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_7q0qq"]
 size = Vector3(0.45, 0.3, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r08nw"]
-albedo_texture = ExtResource("1_40p38")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kr1t"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 1)
+albedo_texture = ExtResource("2_aidqn")
+albedo_texture_msdf = true
+emission_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yfi1j"]
 size = Vector3(0.0375977, 0.442383, 0.246338)
@@ -1443,9 +1447,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0109562, 0.194661, -0.11250
 shape = SubResource("BoxShape3D_7q0qq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/Buy Area"]
-visible = false
-material_override = SubResource("StandardMaterial3D_r08nw")
 size = Vector3(0.45, 0.3, 0.2)
+material = SubResource("StandardMaterial3D_2kr1t")
 
 [node name="VoiceLine" type="Area3D" parent="Interactibles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.214716, 0.178848, 0.437718)

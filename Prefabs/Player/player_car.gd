@@ -21,12 +21,13 @@ var occupied:bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Globals.player_vehicle = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_on_radio_finished()
 	Globals.update_bottles.emit()
 	if DEBUG_MODE:
 		return
-	MainShaderCanvas.toggle_filter("drunk")
+	#MainShaderCanvas.toggle_filter("drunk")
 	MainShaderCanvas.toggle_filter("BeerMeter")
 	Globals.drunkenness= Globals.drunkenness
 
@@ -54,6 +55,7 @@ func _process(delta: float) -> void:
 		match cur_look_at:
 			looking_at.Door:#spawn human player, switch camera
 				spawned_player = spawn_player_character()
+				Globals.player_character = spawned_player
 				$CanvasLayer/Tooltips/Label.text = ""
 				
 			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
@@ -69,7 +71,7 @@ func _process(delta: float) -> void:
 					$Sounds/Radio.volume_db = -80
 					radio_on = false
 				else:
-					$Sounds/Radio.volume_db = -20
+					$Sounds/Radio.volume_db = -25
 					radio_on = true
 					
 	elif Input.is_action_just_pressed("Q"):#change radio track if playing
@@ -96,6 +98,11 @@ func _on_collide(body):
 	elif body is Debris:
 		#play debris hit effect
 		pass
+	if body.has_meta("Cop"):
+		call_deferred("die_by_cop")
+
+func die_by_cop():
+	Globals.game_lost.emit("Cops")
 
 func drink_random():
 	var temp_array :Array = []
@@ -213,6 +220,7 @@ func enter_car():
 			object.rotation = Vector3(0,0,randf_range(0.5,1.0))
 	spawned_player.call_deferred("queue_free")
 	set_deferred("player_instance",null)
+	Globals.set_deferred("player_character",null)
 
 enum looking_at{Door,Alchohol,Radio}
 var cur_look_at = null
@@ -254,9 +262,8 @@ func _on_sobriety_timer_timeout() -> void:
 	if DEBUG_MODE:
 		return
 	Globals.drunkenness-=1
-	#print(Globals.drunkenness)
 	if Globals.drunkenness<6:
-		Globals.game_lost.emit()
+		Globals.game_lost.emit("Sober")
 		MainShaderCanvas.toggle_filter("BeerMeter")
 	elif Globals.drunkenness==16:
 		$"Sounds/Sobriety Alarm".stream = Globals.player_voice_lines[randi_range(0,1)]
@@ -286,9 +293,28 @@ func seek_random_position():
 		print("Seeking to position:", random_position)
 	else:
 		print("Stream length is zero or undefined.")
-
-@export var closest_cop : VehicleBody3D = null
+@export_subgroup("COPS NODE")
+var closest_cop : VehicleBody3D = null
 @onready var label_3d: Label3D = $Cop_Detector/Label3D
+@export var cops_node: Node3D
 
 func update_cop_detector():
-	pass
+	if cops_node.get_child_count()<1:
+		label_3d.text = "NO COPS NEARBY"
+		closest_cop = null
+		return
+	var cur_distance = INF
+	for cop in cops_node.get_children():
+		if !closest_cop:
+			closest_cop = cop
+			cur_distance = self.global_position.distance_to(cop.global_position)
+		if cur_distance>self.global_position.distance_to(cop.global_position):
+			closest_cop = cop
+			cur_distance = self.global_position.distance_to(cop.global_position)
+	label_3d.text = str(roundi(cur_distance)) + "m"
+	if cur_distance<=100:
+		$Cop_Detector/Green/OmniLight3D.light_energy = 0
+		$Cop_Detector/Red/OmniLight3D.light_energy = 0.2
+	else:
+		$Cop_Detector/Green/OmniLight3D.light_energy = 0.1
+		$Cop_Detector/Red/OmniLight3D.light_energy = 0

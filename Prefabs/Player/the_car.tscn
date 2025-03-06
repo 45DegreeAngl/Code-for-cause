@@ -1369,7 +1369,7 @@ transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 
 
 [node name="Crash" type="AudioStreamPlayer3D" parent="Sounds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32381, -3.78877)
-volume_db = -30.0
+volume_db = -15.0
 
 [node name="Engine" type="AudioStreamPlayer3D" parent="Sounds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
@@ -1446,15 +1446,29 @@ transform = Transform3D(0.0281602, 0.161782, -8.39238e-10, -4.89399e-09, 0, -0.1
 mesh = SubResource("ArrayMesh_sk1ao")
 skeleton = NodePath("")
 
-[node name="Sphere" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="Red" type="MeshInstance3D" parent="Cop_Detector"]
 transform = Transform3D(0.0691898, 0, 0, 0, 0.0691898, 0, 0, 0, 0.0691898, 0.0611246, 0.500266, -1.05462)
 mesh = SubResource("ArrayMesh_bl4xp")
 skeleton = NodePath("")
 
-[node name="Sphere_001" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Cop_Detector/Red"]
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.0
+light_indirect_energy = 0.1
+light_volumetric_fog_energy = 0.1
+omni_range = 0.2
+
+[node name="Green" type="MeshInstance3D" parent="Cop_Detector"]
 transform = Transform3D(0.0691898, 0, 0, 0, 0.0691898, 0, 0, 0, 0.0691898, 0.0611246, 0.257946, -1.05462)
 mesh = SubResource("ArrayMesh_ijcum")
 skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Cop_Detector/Green"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+light_indirect_energy = 0.1
+light_volumetric_fog_energy = 0.1
+omni_range = 0.2
 
 [node name="Label3D" type="Label3D" parent="Cop_Detector"]
 transform = Transform3D(0.00898814, 0, 0.999961, 0, 1, 0, -0.999961, 0, 0.00898814, 0.0642061, 0.331797, -0.0190637)
@@ -1462,6 +1476,10 @@ modulate = Color(0.8909, 0.827478, 0.986341, 1)
 text = "12345667788"
 font = ExtResource("17_axgcv")
 font_size = 67
+
+[node name="Cop Detector timer" type="Timer" parent="Cop_Detector"]
+wait_time = 0.5
+autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_collide"]
 [connection signal="area_entered" from="Interactibles/EnterExit" to="." method="_on_enter_exit_area_entered"]
@@ -1472,3 +1490,4 @@ font_size = 67
 [connection signal="area_exited" from="Interactibles/Radio" to="." method="_on_raycast_exit"]
 [connection signal="timeout" from="Sobriety Timer" to="." method="_on_sobriety_timer_timeout"]
 [connection signal="finished" from="Sounds/Radio" to="." method="_on_radio_finished"]
+[connection signal="timeout" from="Cop_Detector/Cop Detector timer" to="." method="update_cop_detector"]

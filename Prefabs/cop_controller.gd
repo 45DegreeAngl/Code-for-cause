@@ -37,7 +37,7 @@ func control(_delta) -> void:
 	#if hunt:
 	if hunt:
 		current_path = null
-		var target_point_global = target.global_position
+		var target_point_global = Globals.player_vehicle.global_position
 		var target_lookahead_vector = (target_point_global - global_position).normalized()
 		var target_angle_to_lookahead = (-basis.z).signed_angle_to(target_lookahead_vector, global_basis.y)
 		steer_input = target_angle_to_lookahead/(PI/4)
@@ -45,7 +45,7 @@ func control(_delta) -> void:
 		var vector_to_target = target_point_global-global_position
 		var dot_product = (-basis.z).dot(vector_to_target.normalized())
 		
-		if dot_product>0 and linear_velocity.length() > ENGINE_POWER/15:
+		if dot_product>0:
 			engine_input = -1
 		else:
 			engine_input = 1
@@ -118,10 +118,15 @@ func _process(delta: float) -> void:
 	engine_force = max(engine_input * ENGINE_POWER,-ENGINE_POWER/1.5)
 
 	#print(distance_to(self.global_position,target.global_position))
-
 	if distance_to(self.global_position,target.global_position)<hunt_distance:
+		if $Timer.is_stopped():
+			$Timer.start()
+			$Siren.playing = true
 		hunt = true
 	else:
+		if !$Timer.is_stopped():
+			$Timer.stop()
+			$Siren.playing = false
 		hunt = false
 	
 func _physics_process(_delta: float) -> void:
@@ -135,6 +140,24 @@ func change_engine_pitch():
 		$Engine.stop()
 	if pitch>0.0:
 		$Engine.pitch_scale = pitch
+
+const colors : Array[Color] = [Color.RED,Color.BLUE]
+var cur = 1
+
+func toggle_colors():
+	$Light/RED.light_color = colors[cur]
+	cur+=1
+	cur = cur%colors.size()
+
+func talk():
+	if randi_range(0,5)!=0:
+		return
+	if int(Globals.timer)%2==0:
+		$Announcement.stream = Globals.world_voice_lines["Pull Over"]
+		$Announcement.play()
+	else:
+		$Announcement.stream = Globals.world_voice_lines["Best Driver"]
+		$Announcement.play()
 
 
 func get_max_steer():

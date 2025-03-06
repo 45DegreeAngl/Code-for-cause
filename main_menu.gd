@@ -4,11 +4,24 @@ extends Node
 
 func _ready()->void:
 	Globals.game_lost.connect(_on_lose)
+	Globals.game_won.connect(_on_win)
 
-func _on_lose():
+func _on_lose(reason:String):
+	$"Game Over/RichTextLabel".text = ""
 	MainShaderCanvas.toggle_filter("drunk")
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$"Game Over".visible = true
+	match reason:
+		"Sober":
+			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]SOBER")
+		"Cops":
+			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]DEAD")
+	MainShaderCanvas.visible = false
+	$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
+
+func _on_win():
+	$"YOU WIN".visible = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	MainShaderCanvas.visible = false
 	$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -40,6 +53,7 @@ func on_back()->void:
 	$Options.visible = false
 	$"Main Menu".visible = true
 	$"Game Over".visible = false
+	$"YOU WIN".visible = false
 	for child in $"Game World".get_children():
 		child.queue_free()
 	

@@ -151,9 +151,37 @@ offset_bottom = 214.0
 grow_horizontal = 2
 theme = SubResource("Theme_nutix")
 bbcode_enabled = true
-text = "GAME OVER YOU'RE [color=red]SOBER"
 
 [node name="Main Menu" type="Button" parent="Game Over"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Main Menu
+"
+
+[node name="YOU WIN" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="YOU WIN"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -233.0
+offset_right = 233.0
+offset_bottom = 214.0
+grow_horizontal = 2
+theme = SubResource("Theme_nutix")
+bbcode_enabled = true
+text = "YOU WIN!!!!!!"
+
+[node name="Main Menu" type="Button" parent="YOU WIN"]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
@@ -169,3 +197,4 @@ text = "Main Menu
 [connection signal="pressed" from="Credits/Close" to="." method="on_back"]
 [connection signal="pressed" from="Animations/Continue" to="." method="_on_start_game"]
 [connection signal="pressed" from="Game Over/Main Menu" to="." method="on_back"]
+[connection signal="pressed" from="YOU WIN/Main Menu" to="." method="on_back"]

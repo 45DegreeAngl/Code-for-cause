@@ -2,6 +2,7 @@ extends Node
 @export_subgroup("Segment Arrays")
 @export var road_segments : Array[PackedScene] = []
 @export var gabesmart_segments : Array[PackedScene] = []
+@export var exes_house : PackedScene = null
 
 @export_subgroup("RNG Settings")
 @export var max_gabesmart_pity : int = 5
@@ -17,6 +18,8 @@ func _ready():
 	spawn_road(road_segments[7])
 	for num_roads in range(50):
 		spawn_road()
+	if exes_house:
+		spawn_road(exes_house)
 		
 	road_generated.emit()
 @onready var previous_road : Node3D = $"Roads/Debug Straight"
