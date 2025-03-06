@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0qeh742ut3rp"
-path.s3tc="res://.godot/imported/Top_Layer_Meter.png-02d33e9c2fd7165925a8d1f378f69d3e.s3tc.ctex"
+uid="uid://b510po5td1va6"
+path.s3tc="res://.godot/imported/Direction_Sign_Cube Base Color.png-e65496429c26574652f9f9b5055cae98.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "00240e19c0b1318054225483dba73e67"
+}
 
 [deps]
 
-source_file="res://Assets/Textures/Top_Layer_Meter.png"
-dest_files=["res://.godot/imported/Top_Layer_Meter.png-02d33e9c2fd7165925a8d1f378f69d3e.s3tc.ctex"]
+source_file="res://Assets/Models/Debris/Direction_Sign_Cube Base Color.png"
+dest_files=["res://.godot/imported/Direction_Sign_Cube Base Color.png-e65496429c26574652f9f9b5055cae98.s3tc.ctex"]
 
 [params]
 

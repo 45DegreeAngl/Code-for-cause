@@ -210,7 +210,7 @@ func enter_car():
 			object.process_mode = Node.PROCESS_MODE_DISABLED
 			object.reparent($Debrie)
 			object.position = $"Debrie Spawns".get_children().pick_random().position
-			object.rotation = Vector3.ZERO
+			object.rotation = Vector3(0,0,randf_range(0.5,1.0))
 	spawned_player.call_deferred("queue_free")
 	set_deferred("player_instance",null)
 

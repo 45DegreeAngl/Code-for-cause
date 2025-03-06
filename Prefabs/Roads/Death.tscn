@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://7yiw8v4t5rt7"]
+[gd_scene load_steps=7 format=3 uid="uid://7yiw8v4t5rt7"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_kygmy"]
-[ext_resource type="MeshLibrary" uid="uid://c54tq411i32v5" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_pil5o"]
+[ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_pil5o"]
+[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="3_xlhwn"]
 
 [sub_resource type="Curve3D" id="Curve3D_mthns"]
 _data = {
@@ -9,6 +10,17 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkggm"]
+transparency = 1
+albedo_texture = ExtResource("3_xlhwn")
+uv1_triplanar_sharpness = 1.05615
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68ijx"]
+transparency = 1
+albedo_texture = ExtResource("3_xlhwn")
+uv1_scale = Vector3(3, 1, 1)
+uv1_triplanar_sharpness = 1.05615
 
 [node name="Debug Death" type="GridMap"]
 mesh_library = ExtResource("1_kygmy")
@@ -31,3 +43,42 @@ data = {
 "cells": PackedInt32Array(1, 65532, 1441792, 1, 65533, 1441792, 1, 65534, 1441792, 1, 65535, 1441792, -65535, 65529, 1048577)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Left Tree Box" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.650605, 2.69396, -3.51465)
+use_collision = true
+size = Vector3(6.99748, 6.88379, 0.0811768)
+material = SubResource("StandardMaterial3D_tkggm")
+
+[node name="Right Tree Box" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.60832, 2.694, -3.53492)
+use_collision = true
+flip_faces = true
+size = Vector3(7.02104, 6.88379, 0.0811768)
+material = SubResource("StandardMaterial3D_tkggm")
+
+[node name="Left Tree Box2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.61365, 3.30626, -5.95601)
+use_collision = true
+size = Vector3(13.7977, 5.65918, 0.0811768)
+material = SubResource("StandardMaterial3D_68ijx")
+
+[node name="Right Tree Box2" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.45875, 3.30626, -6.0498)
+use_collision = true
+flip_faces = true
+size = Vector3(14.0145, 5.65918, 0.0811768)
+material = SubResource("StandardMaterial3D_68ijx")
+
+[node name="Left Tree Box3" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.999937, 0, -0.0112049, 0, 1, 0, 0.0112049, 0, -0.999937, 8.55766, 3.30626, -0.243443)
+use_collision = true
+size = Vector3(13.7977, 5.65918, 0.0811768)
+material = SubResource("StandardMaterial3D_68ijx")
+
+[node name="Right Tree Box3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.999937, 0, 0.011205, 0, 1, 0, -0.011205, 0, 0.999937, -7.56214, 3.30626, 0.0309784)
+use_collision = true
+flip_faces = true
+size = Vector3(13.9156, 5.65918, 0.0811768)
+material = SubResource("StandardMaterial3D_68ijx")

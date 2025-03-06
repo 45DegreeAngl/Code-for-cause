@@ -15,5 +15,5 @@ func _on_buy_area_body_entered(body: Node3D) -> void:
 		Globals.update_bottles.emit()
 
 
-func _on_buy_area_body_exited(body: Node3D) -> void:
+func _on_buy_area_body_exited(_body: Node3D) -> void:
 	pass # Replace with function body.
