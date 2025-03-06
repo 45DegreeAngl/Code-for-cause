@@ -79,6 +79,7 @@ offset_top = 53.0
 offset_right = 119.0
 offset_bottom = -139.0
 grow_vertical = 2
+value = 6.0
 fill_mode = 3
 nine_patch_stretch = true
 texture_over = ExtResource("4_hysnl")

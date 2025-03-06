@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 					$Sounds/Radio.volume_db = -80
 					radio_on = false
 				else:
-					$Sounds/Radio.volume_db = 0
+					$Sounds/Radio.volume_db = -20
 					radio_on = true
 					
 	elif Input.is_action_just_pressed("Q"):#change radio track if playing
@@ -255,10 +255,10 @@ func _on_sobriety_timer_timeout() -> void:
 		return
 	Globals.drunkenness-=1
 	#print(Globals.drunkenness)
-	if Globals.drunkenness<=0:
+	if Globals.drunkenness<6:
 		Globals.game_lost.emit()
 		MainShaderCanvas.toggle_filter("BeerMeter")
-	elif Globals.drunkenness==10:
+	elif Globals.drunkenness==16:
 		$"Sounds/Sobriety Alarm".stream = Globals.player_voice_lines[randi_range(0,1)]
 		$"Sounds/Sobriety Alarm".play()
 	else:
@@ -286,3 +286,9 @@ func seek_random_position():
 		print("Seeking to position:", random_position)
 	else:
 		print("Stream length is zero or undefined.")
+
+@export var closest_cop : VehicleBody3D = null
+@onready var label_3d: Label3D = $Cop_Detector/Label3D
+
+func update_cop_detector():
+	pass

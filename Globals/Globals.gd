@@ -45,7 +45,7 @@ const starting_amplitude = 0.04
 const starting_frequency = 0.02
 const starting_scale = 1.1
 #const max_freq_amp = 0.2
-##this is a float of 0% to 100%
+##this is a float of 6% to 100%
 @onready var zahness : float = 0:
 	set(value):
 		zahness = value
