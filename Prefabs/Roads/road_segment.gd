@@ -9,4 +9,4 @@ func _ready():
 	pass
 
 func spawn_debris(location : DebrisLocation) -> Node3D:
-	
+	return null

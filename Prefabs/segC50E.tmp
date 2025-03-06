@@ -1,0 +1,76 @@
+[gd_scene load_steps=19 format=3 uid="uid://c0isynyusocwo"]
+
+[ext_resource type="Script" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
+[ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
+[ext_resource type="PackedScene" uid="uid://7yiw8v4t5rt7" path="res://Prefabs/Roads/Death.tscn" id="3_tg4gt"]
+[ext_resource type="PackedScene" uid="uid://bfe2n5yc1ofd5" path="res://Prefabs/Roads/debug_straight.tscn" id="4_l3tqm"]
+[ext_resource type="PackedScene" uid="uid://c7afy5ct7o7c1" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
+[ext_resource type="PackedScene" uid="uid://cgk8q7mcfa465" path="res://Prefabs/Roads/Stairway to Hellven.tscn" id="7_e26yy"]
+[ext_resource type="PackedScene" uid="uid://bsawvuh1yr6x3" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
+[ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
+[ext_resource type="PackedScene" uid="uid://n0c15of7b78l" path="res://Prefabs/Roads/Halfpipe Segment.tscn" id="9_kn753"]
+[ext_resource type="PackedScene" uid="uid://6ohj54i0nwum" path="res://Prefabs/Roads/Gabesmart Straight.tscn" id="10_kruma"]
+[ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
+[ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Prefabs/the_cop.tscn" id="11_1v58q"]
+[ext_resource type="PackedScene" uid="uid://cr75h2k10e6eh" path="res://Prefabs/Roads/Ex Straight.tscn" id="11_3gyvj"]
+[ext_resource type="Texture2D" uid="uid://bvk6p748nx6p5" path="res://Assets/Models/Skybox/AllSky_Night_MoonBurst Equirect.png" id="11_ftxy5"]
+[ext_resource type="PackedScene" uid="uid://decdg2b8cnq74" path="res://Prefabs/Car/Average Sober Driver.tscn" id="15_ydc27"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1iptb"]
+panorama = ExtResource("11_ftxy5")
+
+[sub_resource type="Sky" id="Sky_7v2mm"]
+sky_material = SubResource("PanoramaSkyMaterial_1iptb")
+
+[sub_resource type="Environment" id="Environment_v2tje"]
+background_mode = 2
+sky = SubResource("Sky_7v2mm")
+sky_rotation = Vector3(0, 3.14159, 0)
+ambient_light_source = 2
+ambient_light_color = Color(0.236061, 0.284208, 0.387266, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.1
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.001
+adjustment_enabled = true
+adjustment_brightness = 1.5
+adjustment_contrast = 1.1
+adjustment_saturation = 0.8
+
+[node name="Segment Spawner" type="Node"]
+script = ExtResource("1_rkbci")
+road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("8_mfdpi"), ExtResource("9_f8h36"), ExtResource("7_e26yy"), ExtResource("9_kn753")])
+gabesmart_segments = Array[PackedScene]([ExtResource("10_kruma")])
+exes_house = ExtResource("11_3gyvj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, -3.01411e-08, 0.938686, 0.344774, 8.20625e-08, 0.344774, -0.938686, 0, 0, 0)
+light_color = Color(0.623529, 0.772549, 0.94902, 1)
+light_energy = 0.05
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v2tje")
+
+[node name="Roads" type="Node3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="Debug Straight" parent="Roads" instance=ExtResource("4_l3tqm")]
+metadata/_editor_floor_ = Vector3(0, 3, 0)
+
+[node name="The_Car" parent="." node_paths=PackedStringArray("cops_node") instance=ExtResource("10_lxkwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 11, -5)
+cops_node = NodePath("../Cops")
+
+[node name="Sober Driver" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_ydc27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2051, 14.4763, -184.397)
+target = NodePath("../The_Car")
+
+[node name="Cops" type="Node3D" parent="."]
+
+[node name="The_Cop" parent="Cops" node_paths=PackedStringArray("target") instance=ExtResource("11_1v58q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3539, 10.4884, -234.138)
+target = NodePath("../../The_Car")
+ENGINE_POWER = 250.0
