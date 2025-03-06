@@ -75,8 +75,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_88ktu")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fppkj"]
-points = PackedVector3Array(-1.00055, 0.041582, -0.794488, -0.999574, 0.041582, 0.795663, -1.00055, 0.265124, -0.794488, -0.795859, 0.041582, -0.999574, -0.795663, 0.031485, -0.794684, -0.794684, 0.031485, 0.795467, -0.794488, 0.041582, 1.00055, -0.999574, 0.265124, 0.795663, -0.795859, 0.265124, -0.999574, -0.171395, 2.43033, 0, -0.158271, 2.43033, -0.0654238, -0.121249, 2.43033, -0.121054, 0.794292, 0.041582, -1.00055, 0.794488, 0.031485, -0.795663, 0.795467, 0.031485, 0.794488, 0.795663, 0.041582, 0.999378, -0.794488, 0.265124, 1.00055, -0.121054, 2.43033, 0.121054, -0.158271, 2.43033, 0.0654237, 0.794292, 0.265124, -1.00055, -0.0658156, 2.43033, -0.158271, -0.000195861, 2.43033, -0.171395, 0.999378, 0.041582, -0.795859, 1.00055, 0.041582, 0.794292, 0.795663, 0.265124, 0.999378, 0, 2.43033, 0.171003, -0.0654238, 2.43033, 0.158075, 0.999378, 0.265124, -0.795859, 0.0652279, 2.43033, -0.158271, 0.120858, 2.43033, -0.121249, 1.00055, 0.265124, 0.794292, 0.121054, 2.43033, 0.120858, 0.0654237, 2.43033, 0.158075, 0.158075, 2.43033, -0.0658156, 0.171003, 2.43033, -0.000195861, 0.158075, 2.43033, 0.0652279)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_85g15"]
+height = 2.63199
+radius = 0.746777
 
 [node name="Cone Debris" type="RigidBody3D"]
 collision_layer = 3
@@ -85,10 +86,10 @@ physics_material_override = SubResource("PhysicsMaterial_254rj")
 script = ExtResource("1_1rna0")
 
 [node name="Cone1" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0, 0)
 mesh = SubResource("ArrayMesh_jiu2h")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_fppkj")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Please Move"]]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0.0475438, 0)
+shape = SubResource("CylinderShape3D_85g15")

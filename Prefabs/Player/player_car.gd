@@ -5,12 +5,14 @@ extends VehicleBody3D
 ##Nissan GTR by David Sirera [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/a_HKCtYAv2W)
 @export var DEBUG_MODE : bool = false
 
+@export_subgroup("Car Stats")
 @export var STEERING_CURVE : Curve
 @export var MAX_STEER_DEG : float = 45.0
 ##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are
 @export var ENGINE_POWER : float = 200
 @export var SOUND_MAX_SPEED : float = 75
 
+@export_subgroup("Radio")
 @export var radio_on : bool = false
 var occupied:bool = true
 

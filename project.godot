@@ -41,6 +41,10 @@ folder_colors={
 
 import/blender/enabled=false
 
+[global_group]
+
+"Please Move"="Used for collision hitbox handling of debris "
+
 [physics]
 
 common/physics_interpolation=true
