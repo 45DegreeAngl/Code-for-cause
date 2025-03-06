@@ -2,7 +2,6 @@ extends CanvasLayer
 
 @export var max_drunk_effect_multiplier = 8
 
-
 ##dictionary is as follows: String:Array[Control,Rectangle(ShaderA),Rectangle(ShaderB),...]
 @onready var filter_dict : Dictionary = {"drunk":[$Drunk,$Drunk/WobbleShader,$Drunk/ChromaticShader],
 "BeerMeter":[$"Beer Meter"]}
