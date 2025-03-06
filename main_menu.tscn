@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://p88stdkcx0dp"]
+[gd_scene load_steps=6 format=3 uid="uid://p88stdkcx0dp"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_kvc74"]
 [ext_resource type="PackedScene" uid="uid://c0isynyusocwo" path="res://Prefabs/segment_spawner.tscn" id="2_st1sx"]
 [ext_resource type="FontFile" uid="uid://0luaa6cfm0c3" path="res://Assets/Themes/Fonts/SpaceMadness.ttf" id="3_aruaa"]
+[ext_resource type="Theme" uid="uid://ccmgdq4tewmwx" path="res://Assets/Themes/Kaph.tres" id="4_yo6ho"]
 
 [sub_resource type="Theme" id="Theme_nutix"]
 default_font = ExtResource("3_aruaa")
@@ -152,6 +153,22 @@ grow_horizontal = 2
 theme = SubResource("Theme_nutix")
 bbcode_enabled = true
 
+[node name="Label" type="Label" parent="Game Over"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -11.5
+offset_right = 54.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_yo6ho")
+text = "You lived"
+
 [node name="Main Menu" type="Button" parent="Game Over"]
 layout_mode = 0
 offset_right = 8.0
@@ -180,6 +197,21 @@ grow_horizontal = 2
 theme = SubResource("Theme_nutix")
 bbcode_enabled = true
 text = "YOU WIN!!!!!!"
+
+[node name="Label2" type="Label" parent="YOU WIN"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_yo6ho")
 
 [node name="Main Menu" type="Button" parent="YOU WIN"]
 layout_mode = 0

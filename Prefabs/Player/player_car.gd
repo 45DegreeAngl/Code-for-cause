@@ -25,6 +25,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_on_radio_finished()
 	Globals.update_bottles.emit()
+	Globals.timer = 0
 	if DEBUG_MODE:
 		return
 	#MainShaderCanvas.toggle_filter("drunk")

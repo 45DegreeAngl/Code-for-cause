@@ -14,13 +14,16 @@ func _on_lose(reason:String):
 	match reason:
 		"Sober":
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]SOBER")
+			
 		"Cops":
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]DEAD")
+	$"Game Over/Label".text = "YOU SURVIVED FOR: "+Globals.format_seconds_as_time(Globals.timer)
 	MainShaderCanvas.visible = false
 	$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_win():
 	$"YOU WIN".visible = true
+	$"YOU WIN/Label2".text = "YOUR TIME: "+Globals.format_seconds_as_time(Globals.timer)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	MainShaderCanvas.visible = false
 	$"Game World".process_mode = Node.PROCESS_MODE_DISABLED

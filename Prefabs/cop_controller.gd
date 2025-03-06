@@ -45,7 +45,7 @@ func control(_delta) -> void:
 		var vector_to_target = target_point_global-global_position
 		var dot_product = (-basis.z).dot(vector_to_target.normalized())
 		
-		if dot_product>0:
+		if dot_product>0 and linear_velocity.length() > 40:
 			engine_input = -1
 		else:
 			engine_input = 1
