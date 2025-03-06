@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://b4jd38ifumhg7"]
+[gd_scene load_steps=93 format=4 uid="uid://b4jd38ifumhg7"]
 
 [ext_resource type="Texture2D" uid="uid://dc5kiekdkk2lc" path="res://Assets/Models/godot-prototype-texture/PNG/checker_red_512x512.png" id="1_40p38"]
 [ext_resource type="Script" path="res://Prefabs/Buildings/gabes_mart.gd" id="1_h44nx"]
@@ -817,6 +817,12 @@ size = Vector3(16.1158, 41.7031, 3.8315)
 [sub_resource type="BoxShape3D" id="BoxShape3D_56ndf"]
 size = Vector3(34.0601, 26.8214, 8.45728)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_37utb"]
+size = Vector3(18.5918, 19.2854, 0.860901)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_006w7"]
+size = Vector3(6.8136, 7.50311, 10.7307)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhn4p"]
 resource_name = "Base"
 cull_mode = 2
@@ -1461,17 +1467,18 @@ omni_range = 2.0
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176217, 0.309196, 0.299237)
-visible = false
 light_color = Color(1, 1, 0.309804, 1)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.959392, 0.580301, 0.885214)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.872441, 0.606419, 0.916275)
+light_color = Color(1, 1, 0.309804, 1)
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.872441, 0.606419, -0.922084)
 light_color = Color(1, 1, 0.309804, 1)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Lights"]
 transform = Transform3D(0.987061, -7.00896e-09, 0.160346, -0.160346, -4.31458e-08, 0.987061, -2.79208e-15, -1, -4.37114e-08, 0.30098, 1.73572, 0.201625)
-visible = false
 light_energy = 16.0
 light_indirect_energy = 12.0
 spot_range = 2.65979
@@ -1532,9 +1539,17 @@ shape = SubResource("BoxShape3D_gbnl8")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -0.999964, 0, -4.37108e-08, 31.4076, -29.1534, -8.19096)
 shape = SubResource("BoxShape3D_gbnl8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Gabes_Mart/Gabes_Mart/StaticBody3D"]
+[node name="Shed" type="CollisionShape3D" parent="Gabes_Mart/Gabes_Mart/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999971, 50.1748, -41.7954, -8.64256)
 shape = SubResource("BoxShape3D_56ndf")
+
+[node name="Head Bumper 3000" type="CollisionShape3D" parent="Gabes_Mart/Gabes_Mart/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9701, -21.2784, -0.552042)
+shape = SubResource("BoxShape3D_37utb")
+
+[node name="Store counter" type="CollisionShape3D" parent="Gabes_Mart/Gabes_Mart/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1015, -44.2588, -6.33461)
+shape = SubResource("BoxShape3D_006w7")
 
 [node name="Street" type="MeshInstance3D" parent="Gabes_Mart"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220105, -0.01, -6.79876e-05)
