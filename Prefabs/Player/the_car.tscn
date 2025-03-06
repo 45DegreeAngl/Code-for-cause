@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="2_am8ur"]
-[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_x726e"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_x726e"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="3_ye32b"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="4_qxn2i"]
 [ext_resource type="Texture2D" uid="uid://b4w5o83874l4n" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="5_e365b"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dc5kiekdkk2lc" path="res://Assets/Models/godot-prototype-texture/PNG/checker_red_512x512.png" id="13_ibe3o"]
 [ext_resource type="PackedScene" uid="uid://lvgwnfheptfj" path="res://Prefabs/Alcohol Crate.tscn" id="14_8yrfn"]
 [ext_resource type="PackedScene" uid="uid://ft4n32wk55a8" path="res://Assets/Models/Car/radio.tscn" id="14_ge4il"]
-[ext_resource type="Theme" uid="uid://ccmgdq4tewmwx" path="res://Assets/Themes/Kaph.tres" id="16_d020y"]
+[ext_resource type="Theme" path="res://Assets/Themes/Kaph.tres" id="16_d020y"]
 [ext_resource type="FontFile" uid="uid://bkx2pb1ee5qek" path="res://Assets/Themes/Fonts/Digital7Italic-BW658.ttf" id="17_axgcv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eps3w"]
@@ -1330,7 +1330,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="Milk_Crate" parent="." instance=ExtResource("14_8yrfn")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.590161, 1.14082, -1.22905)
+transform = Transform3D(0.047724, 0, 0.0149137, 0, 0.05, 0, -0.0149137, 0, 0.047724, 0.44709, 1.14082, -1.31478)
 
 [node name="Debrie Launch" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28392, 2.65554)
@@ -1374,7 +1374,7 @@ volume_db = -15.0
 [node name="Engine" type="AudioStreamPlayer3D" parent="Sounds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
 stream = ExtResource("8_etipi")
-volume_db = -46.0
+volume_db = -20.0
 autoplay = true
 
 [node name="Radio" type="AudioStreamPlayer3D" parent="Sounds"]

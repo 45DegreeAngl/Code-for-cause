@@ -27,11 +27,13 @@ background_mode = 2
 sky = SubResource("Sky_7v2mm")
 sky_rotation = Vector3(0, 3.14159, 0)
 ambient_light_source = 2
-ambient_light_color = Color(0.10616, 0.108363, 0.169373, 1)
+ambient_light_color = Color(0.236061, 0.284208, 0.387266, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.1
 tonemap_mode = 2
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
-fog_density = 0.02
+fog_density = 0.001
 adjustment_enabled = true
 adjustment_brightness = 1.5
 adjustment_contrast = 1.1
@@ -42,6 +44,12 @@ script = ExtResource("1_rkbci")
 road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("8_mfdpi"), ExtResource("9_f8h36"), ExtResource("7_e26yy"), ExtResource("9_kn753")])
 gabesmart_segments = Array[PackedScene]([ExtResource("10_kruma")])
 exes_house = ExtResource("11_3gyvj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, -3.01411e-08, 0.938686, 0.344774, 8.20625e-08, 0.344774, -0.938686, 0, 0, 0)
+light_color = Color(0.623529, 0.772549, 0.94902, 1)
+light_energy = 0.05
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_v2tje")

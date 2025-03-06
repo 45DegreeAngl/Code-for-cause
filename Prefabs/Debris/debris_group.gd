@@ -1,4 +1,6 @@
 extends Node3D
+class_name DebrisGroup
+
 @export var road_scale_factor : float = 20
 
 func _ready():

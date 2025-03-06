@@ -1,4 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://cmk8hsh2rcdkm"]
+[gd_scene load_steps=11 format=4 uid="uid://cmk8hsh2rcdkm"]
+
+[ext_resource type="Script" path="res://Prefabs/Buildings/lamp_post.gd" id="1_238m1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sg7y"]
 resource_name = "Material"
@@ -111,7 +113,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mpp5u")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcrm8"]
+albedo_color = Color(1, 1, 0.556863, 1)
+emission_enabled = true
+emission = Color(1, 1, 0.556863, 1)
+
 [node name="Lamp_post" type="Node3D"]
+script = ExtResource("1_238m1")
 
 [node name="Lamp Post Base" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.383899, 0, 0, 0, -2.2798, 0, 0, 0, 0.383899, -0.00280718, 8.96707, 0)
@@ -127,10 +135,11 @@ shape = SubResource("ConvexPolygonShape3D_ie6i2")
 transform = Transform3D(0.248499, 0, 0, 0, 0.248499, 0, 0, 0, 0.248499, 0, 11.1631, 0)
 mesh = SubResource("ArrayMesh_wa3st")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_lcrm8")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2256, 0)
-light_color = Color(1, 1, 0, 1)
+light_color = Color(1, 1, 0.556863, 1)
 light_energy = 2.0
 omni_range = 15.0
 omni_attenuation = 0.5
