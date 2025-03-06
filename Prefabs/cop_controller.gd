@@ -9,6 +9,8 @@ extends VehicleBody3D
 @export var ENGINE_POWER : float = 200
 @export var SOUND_MAX_SPEED : float = 75
 
+@onready var WHEEL_BASE = $Back_Left.position.distance_to($Front_Left.position)
+
 var steer_input : float :
 	set(val):
 		steer_input = clampf(val, -1, 1)
@@ -30,7 +32,9 @@ func curve_point_to_global(point : Vector3, path : Path3D):
 func control(_delta) -> void:
 	
 	var lookahead_dist = 1.5
-	var throttle_lookahead_dist = 2 + 0.5* sqrt(linear_velocity.length())
+	var throttle_lookahead_dist = 3 + 1* sqrt(linear_velocity.length())
+	
+	#if hunt:
 	if hunt:
 		current_path = null
 		var target_point_global = target.global_position
@@ -60,11 +64,14 @@ func control(_delta) -> void:
 		var slightly_ahead_point = current_path.curve.sample_baked(closest_point_offset + 0.1)
 		var global_slightly_ahead_point = curve_point_to_global(slightly_ahead_point, current_path)
 		var global_closest_point = curve_point_to_global(closest_point, current_path)
-		var closest_path_tangent = (global_slightly_ahead_point - global_closest_point).normalized()
-		var closest_path_normal = closest_path_tangent.rotated(Vector3.UP, PI/2)
-		var cross_track_error = (global_closest_point - global_position).dot(closest_path_normal)
+		var path_heading = (global_slightly_ahead_point - global_closest_point).normalized()
+		var path_normal = path_heading.rotated(Vector3.UP, PI/2)
+		var cross_track_error = (global_closest_point - global_position).dot(path_normal)
+		var current_heading = -global_basis.z
 		
-		steer_input = angle_to_lookahead/(PI/4)
+		var cross_track_error_gain = 2
+		var stanley_steer_angle = current_heading.signed_angle_to(path_heading, Vector3.UP) + atan2((cross_track_error_gain * cross_track_error),linear_velocity.length())
+		steer_input = angle_to_lookahead * 4
 	
 		var sample_pts = []
 		
@@ -76,7 +83,8 @@ func control(_delta) -> void:
 		
 		var A = area(sample_pts[0], sample_pts[1], sample_pts[2])
 		var curvature = 4*A/(distance_to(sample_pts[0], sample_pts[1]) * distance_to(sample_pts[1], sample_pts[2]) * distance_to(sample_pts[2], sample_pts[0]))
-		if abs(curvature) > 1e-5 and linear_velocity.length() > ENGINE_POWER/15:
+		var trajectory_curvature = stanley_steer_angle/WHEEL_BASE / linear_velocity.length()
+		if abs(curvature) > abs(trajectory_curvature) and abs(steer_input) >= 1 and linear_velocity.length() > 40:
 			engine_input = -1
 		else:
 			engine_input = 1
@@ -115,8 +123,6 @@ func _process(delta: float) -> void:
 	
 func _physics_process(_delta: float) -> void:
 	pass
-	#print("Steer " + str(steer_input))
-	#print("Engine " + str(engine_input))
 	
 func change_engine_pitch():
 	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:
