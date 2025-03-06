@@ -28,9 +28,18 @@ signal game_lost()
 	"Fish2":preload("res://Assets/Sounds/Music/Fish2Fixed.mp3"),
 	"FishForgotten":preload("res://Assets/Sounds/Music/ForgetfulFixed.mp3"),
 	"MoleInHole":preload("res://Assets/Sounds/Music/MoleFixed.mp3"),
-	"NightcoreAHA":preload("res://Assets/Sounds/Music/NightcoreAhaFixed.mp3")
+	"NightcoreAHA":preload("res://Assets/Sounds/Music/NightcoreAhaFixed.mp3"),
+	"Cat Ranch":preload("res://Assets/Sounds/Music/Cat Ranch Song.mp3"),
+	"Underwater":preload("res://Assets/Sounds/Music/Underwater.mp3")
 }
 var timer:float = 0
+
+signal update_bottles
+var car_contents:Dictionary = {"Beer":3,"Sake":2,"Jaeger":1}:
+	set(value):
+		car_contents = value
+		update_bottles.emit()
+
 const starting_amplitude = 0.04
 const starting_frequency = 0.02
 const starting_scale = 1.1

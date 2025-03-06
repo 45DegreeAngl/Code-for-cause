@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=16 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
 [ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
@@ -9,11 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://bsawvuh1yr6x3" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
 [ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
 [ext_resource type="PackedScene" uid="uid://n0c15of7b78l" path="res://Prefabs/Roads/Halfpipe Segment.tscn" id="9_kn753"]
-[ext_resource type="PackedScene" uid="uid://dvxl3ei7hachm" path="res://Prefabs/Roads/GabesMartDebug.tscn" id="10_kruma"]
+[ext_resource type="PackedScene" uid="uid://6ohj54i0nwum" path="res://Prefabs/Roads/Gabesmart Straight.tscn" id="10_kruma"]
 [ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
 [ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Prefabs/the_cop.tscn" id="11_1v58q"]
-[ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Player/Player Car.tscn" id="12_rhmin"]
-[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="13_78w30"]
+[ext_resource type="PackedScene" uid="uid://bo48lfun8rb8p" path="res://Prefabs/Car/HUNT YOU CAR.tscn" id="12_rhmin"]
+[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="13_78w30"]
+[ext_resource type="PackedScene" uid="uid://decdg2b8cnq74" path="res://Prefabs/Car/Average Sober Driver.tscn" id="15_ydc27"]
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
@@ -37,6 +38,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.633, 14.1248, -27.5548)
 target = NodePath("../The_Car")
 STEERING_CURVE = ExtResource("13_78w30")
 
-[node name="The_Cop" parent="." instance=ExtResource("11_1v58q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1784, 10.4884, -5)
+[node name="The_Cop" parent="." node_paths=PackedStringArray("target") instance=ExtResource("11_1v58q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.8226, 10.4884, -62.0388)
+target = NodePath("../The_Car")
+hunt_distance = 80.0
 ENGINE_POWER = 400.0
+
+[node name="The_Cop2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_ydc27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.0551, 14.4763, -111.124)
+target = NodePath("../The_Car")

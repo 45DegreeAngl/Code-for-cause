@@ -58,6 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Beer Meter" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchor_right = 0.103299
 anchor_bottom = 1.0
