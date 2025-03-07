@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfe2n5yc1ofd5"]
+[gd_scene load_steps=16 format=3 uid="uid://bfe2n5yc1ofd5"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_tdahm"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_0313u"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_mgofo"]
+[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="5_ibnvc"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="8_n4k46"]
 
 [sub_resource type="Curve3D" id="Curve3D_5u1vu"]
@@ -14,6 +15,39 @@ point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hs440"]
 size = Vector3(33.7588, 5.26257, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldlsn"]
+transparency = 1
+albedo_texture = ExtResource("5_ibnvc")
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_sasok"]
+material = SubResource("StandardMaterial3D_ldlsn")
+size = Vector2(18, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yesdx"]
+size = Vector3(1, 4.8252, 18)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgs63"]
+transparency = 1
+albedo_texture = ExtResource("5_ibnvc")
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xbhla"]
+material = SubResource("StandardMaterial3D_pgs63")
+size = Vector2(18, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tf65"]
+transparency = 1
+albedo_texture = ExtResource("5_ibnvc")
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_aorjo"]
+material = SubResource("StandardMaterial3D_7tf65")
+size = Vector2(18, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qhubf"]
+size = Vector3(17.8518, 6.13373, 1)
 
 [node name="Debug Straight" type="GridMap"]
 mesh_library = ExtResource("1_tdahm")
@@ -88,5 +122,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.75643)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
 shape = SubResource("BoxShape3D_hs440")
+
+[node name="Boundary" type="Node3D" parent="."]
+
+[node name="Left trees" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.4798, 0.973994, -7.94238)
+mesh = SubResource("QuadMesh_sasok")
+skeleton = NodePath("../..")
+
+[node name="Boundary box" type="StaticBody3D" parent="Boundary/Left trees"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0688138, -0.973994, -1.06203)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Left trees/Boundary box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603683, 2.57542, 0)
+shape = SubResource("BoxShape3D_yesdx")
+
+[node name="Left trees secondary" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.6161, 0.973994, -8.28344)
+mesh = SubResource("QuadMesh_xbhla")
+skeleton = NodePath("../..")
+
+[node name="Right trees" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4423, 0.989509, -8.66668)
+mesh = SubResource("QuadMesh_aorjo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boundary/Right trees"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Right trees/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.56686, -0.484188)
+shape = SubResource("BoxShape3D_qhubf")
+
+[node name="Right trees2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.6521, 0.989509, -9.06709)
+mesh = SubResource("QuadMesh_aorjo")
+skeleton = NodePath("../..")
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

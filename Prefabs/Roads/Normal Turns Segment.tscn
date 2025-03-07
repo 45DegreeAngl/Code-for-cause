@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://coa1buyxhvtlm"]
+[gd_scene load_steps=20 format=3 uid="uid://coa1buyxhvtlm"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_l6kl3"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_i48l3"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_kta5b"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="4_l1gr1"]
+[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="5_8pun8"]
 
 [sub_resource type="Curve3D" id="Curve3D_6ce3a"]
 _data = {
@@ -14,6 +15,56 @@ point_count = 11
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fyx5k"]
 size = Vector3(33.7588, 5.26257, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei2od"]
+transparency = 1
+albedo_texture = ExtResource("5_8pun8")
+uv1_scale = Vector3(2.525, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7mypo"]
+material = SubResource("StandardMaterial3D_ei2od")
+size = Vector2(4.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umump"]
+transparency = 1
+albedo_texture = ExtResource("5_8pun8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wboad"]
+material = SubResource("StandardMaterial3D_umump")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_673d6"]
+transparency = 1
+albedo_texture = ExtResource("5_8pun8")
+uv1_scale = Vector3(1.995, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_oqoks"]
+material = SubResource("StandardMaterial3D_673d6")
+size = Vector2(5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6rwl"]
+transparency = 1
+albedo_texture = ExtResource("5_8pun8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dcs2u"]
+material = SubResource("StandardMaterial3D_o6rwl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugx73"]
+transparency = 1
+albedo_texture = ExtResource("5_8pun8")
+uv1_scale = Vector3(2.265, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_dpp3s"]
+material = SubResource("StandardMaterial3D_ugx73")
+size = Vector2(7, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgop7"]
+transparency = 1
+albedo_texture = ExtResource("5_8pun8")
+uv1_scale = Vector3(2.265, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_tdw47"]
+material = SubResource("StandardMaterial3D_bgop7")
+size = Vector2(6.435, 1)
 
 [node name="Normal Turns Segment" type="GridMap"]
 mesh_library = ExtResource("1_l6kl3")
@@ -133,5 +184,55 @@ transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-0
 
 [node name="Lamp_post43" parent="Lampos" instance=ExtResource("4_l1gr1")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -3.90948, 0.490817, -9.1763)
+
+[node name="Boundary" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9862, 2.02759, -7.52397)
+visible = false
+use_collision = true
+size = Vector3(2.88428, 5.05518, 8.13867)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6047, 1.84125, -8.18391)
+visible = false
+use_collision = true
+size = Vector3(2.32666, 4.6825, 6.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5576, 1.6933, -2.52179)
+visible = false
+use_collision = true
+size = Vector3(2.07617, 4.3866, 4.96094)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1886, 1.823, -1.96073)
+visible = false
+use_collision = true
+size = Vector3(1.42297, 4.646, 4.38867)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.4717, 0.974808, -2.03277)
+mesh = SubResource("QuadMesh_7mypo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.9816, 0.994905, -4.19794)
+mesh = SubResource("QuadMesh_wboad")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4867, 0.982018, -2.52181)
+mesh = SubResource("QuadMesh_oqoks")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9636, 0.995741, -4.91856)
+mesh = SubResource("QuadMesh_dcs2u")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.4825, 0.987942, -7.56126)
+mesh = SubResource("QuadMesh_dpp3s")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.4363, 0.989086, -8.17327)
+mesh = SubResource("QuadMesh_tdw47")
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

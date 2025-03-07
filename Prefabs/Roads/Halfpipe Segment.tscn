@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://n0c15of7b78l"]
+[gd_scene load_steps=35 format=3 uid="uid://n0c15of7b78l"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_fisqc"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_7xu26"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_016fh"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="3_u4eco"]
+[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="5_b4s3q"]
 
 [sub_resource type="Curve3D" id="Curve3D_udyws"]
 _data = {
@@ -13,7 +14,121 @@ _data = {
 point_count = 11
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ny7l2"]
-size = Vector3(33.7588, 5.26257, 1)
+size = Vector3(30.9387, 5.26257, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0yo5"]
+transparency = 1
+albedo_texture = ExtResource("5_b4s3q")
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_v5igj"]
+material = SubResource("StandardMaterial3D_q0yo5")
+size = Vector2(5.5, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6wk7m"]
+load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_usc8x"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_6wk7m")
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_wluxa"]
+material = SubResource("StandardMaterial3D_usc8x")
+size = Vector2(5.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5i3q2"]
+transparency = 1
+albedo_texture = ExtResource("5_b4s3q")
+uv1_scale = Vector3(2.015, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_itrix"]
+material = SubResource("StandardMaterial3D_5i3q2")
+size = Vector2(7, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6hqy"]
+transparency = 1
+albedo_texture = ExtResource("5_b4s3q")
+uv1_scale = Vector3(1.97, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5fdc1"]
+material = SubResource("StandardMaterial3D_i6hqy")
+size = Vector2(7, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nsn20"]
+transparency = 1
+albedo_texture = ExtResource("5_b4s3q")
+uv1_scale = Vector3(1.745, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ukbqv"]
+material = SubResource("StandardMaterial3D_nsn20")
+size = Vector2(4.3, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_krsln"]
+load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ry74r"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_krsln")
+uv1_scale = Vector3(1.515, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_cikei"]
+material = SubResource("StandardMaterial3D_ry74r")
+size = Vector2(3.395, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pnmbb"]
+load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtt82"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_pnmbb")
+uv1_scale = Vector3(3.045, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qacbh"]
+material = SubResource("StandardMaterial3D_gtt82")
+size = Vector2(10, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1pwj"]
+transparency = 1
+albedo_texture = ExtResource("5_b4s3q")
+uv1_scale = Vector3(2.01, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_o2p16"]
+material = SubResource("StandardMaterial3D_u1pwj")
+size = Vector2(6.98, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pu115"]
+load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkfl6"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_pu115")
+uv1_scale = Vector3(1.755, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_a7bwy"]
+material = SubResource("StandardMaterial3D_rkfl6")
+size = Vector2(4.3, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iq8p5"]
+load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eoa6s"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_iq8p5")
+uv1_scale = Vector3(1.765, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_t4j3m"]
+material = SubResource("StandardMaterial3D_eoa6s")
+size = Vector2(4.3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilupm"]
+transparency = 1
+albedo_texture = ExtResource("5_b4s3q")
+uv1_scale = Vector3(2.545, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_2in00"]
+material = SubResource("StandardMaterial3D_ilupm")
+size = Vector2(9.12, 1)
 
 [node name="Halfpipe" type="GridMap"]
 mesh_library = ExtResource("1_fisqc")
@@ -34,7 +149,7 @@ curve = SubResource("Curve3D_udyws")
 mesh_library = ExtResource("2_016fh")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 0, 65530, 1441792, 0, 65529, 1441792, 0, 65528, 1441792, 0, 65527, 1441792, 0, 65526, 1441792, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792, 0, 65519, 1441792)
+"cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 10, 65518, 1048576, 10, 65519, 1048576, 10, 65520, 1048576, 10, 65521, 1048576, 10, 65522, 1048576, 10, 65523, 1048576, 10, 65524, 1048576, 10, 65525, 1048576, 10, 65526, 1048576, 7, 65527, 1048576, 7, 65528, 1048576, 7, 65529, 1048576, 7, 65530, 1048576)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
@@ -129,7 +244,129 @@ transform = Transform3D(-0.0189564, 0, -0.023252, 0, 0.03, 0, 0.023252, 0, -0.01
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.3482)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6331, 3.0215, 0)
 shape = SubResource("BoxShape3D_ny7l2")
+
+[node name="Boundary" type="Node3D" parent="."]
+
+[node name="Left trees" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.4798, 0.973994, -2.05629)
+mesh = SubResource("QuadMesh_v5igj")
+skeleton = NodePath("../..")
+
+[node name="Left trees secondary" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.6161, 0.973994, -2.39735)
+mesh = SubResource("QuadMesh_v5igj")
+skeleton = NodePath("../..")
+
+[node name="Right trees" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4423, 0.989509, -2.25118)
+mesh = SubResource("QuadMesh_v5igj")
+skeleton = NodePath("../..")
+
+[node name="Right trees2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.6521, 0.989509, -2.1935)
+mesh = SubResource("QuadMesh_wluxa")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9896, 2.60455, -7.0575)
+visible = false
+use_collision = true
+size = Vector3(6.93793, 6.20911, 4.09583)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7247, 1.00215, -4.9719)
+mesh = SubResource("QuadMesh_itrix")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1177, 1.00215, -4.9719)
+mesh = SubResource("QuadMesh_5fdc1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05102, 2.57324, -14.351)
+visible = false
+use_collision = true
+size = Vector3(3.40378, 6.14648, 10.629)
+
+[node name="Tree Quad" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.47385, 0.998349, -7.15496)
+mesh = SubResource("QuadMesh_ukbqv")
+
+[node name="Tree Quad6" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.47385, 0.998349, -6.97639)
+mesh = SubResource("QuadMesh_ukbqv")
+
+[node name="Tree Quad2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96261, 1.0193, -9.02068)
+mesh = SubResource("QuadMesh_cikei")
+
+[node name="Tree Quad7" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.57378, 1.0193, -9.02068)
+mesh = SubResource("QuadMesh_cikei")
+
+[node name="Tree Quad3" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.33641, 0.988072, -14.0466)
+mesh = SubResource("QuadMesh_qacbh")
+
+[node name="Tree Quad8" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.33641, 0.988072, -14.3878)
+mesh = SubResource("QuadMesh_qacbh")
+
+[node name="Balls" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 18.9601, 0.987858, -5.04645)
+mesh = SubResource("QuadMesh_o2p16")
+
+[node name="Balls2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 19.2527, 0.987858, -5.04645)
+mesh = SubResource("QuadMesh_o2p16")
+
+[node name="Tree Quad4" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22.4911, 0.975298, -6.88492)
+mesh = SubResource("QuadMesh_a7bwy")
+
+[node name="Tree Quad9" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22.4911, 0.975298, -6.5111)
+mesh = SubResource("QuadMesh_a7bwy")
+
+[node name="Tree Quad5" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24.5296, 0.996324, -9.0099)
+mesh = SubResource("QuadMesh_t4j3m")
+
+[node name="Tree Quad10" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24.8417, 0.996324, -9.0099)
+mesh = SubResource("QuadMesh_t4j3m")
+
+[node name="Quad Quad" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.4983, 0.993998, -13.3942)
+mesh = SubResource("QuadMesh_2in00")
+
+[node name="Quad Quad2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.4983, 0.993998, -13.0075)
+mesh = SubResource("QuadMesh_2in00")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8802, 2.02299, -2.56712)
+visible = false
+use_collision = true
+size = Vector3(6.90527, 5.04602, 5.1377)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0477, 2.17291, -6.79874)
+visible = false
+use_collision = true
+size = Vector3(3.578, 5.34583, 4.45313)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8914, 2.1806, -13.319)
+visible = false
+use_collision = true
+size = Vector3(1, 5.36121, 9.53711)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1635, 1.90436, -2.59677)
+visible = false
+use_collision = true
+size = Vector3(3.41895, 4.80872, 5.23364)
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

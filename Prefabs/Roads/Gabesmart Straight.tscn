@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://6ohj54i0nwum"]
+[gd_scene load_steps=17 format=3 uid="uid://6ohj54i0nwum"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_j0qfm"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_i3xtw"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_it1m8"]
 [ext_resource type="PackedScene" uid="uid://b4jd38ifumhg7" path="res://Prefabs/Buildings/gabes_mart.tscn" id="3_s8ovy"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="5_eg3gs"]
+[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="6_agh5g"]
 
 [sub_resource type="Curve3D" id="Curve3D_5u1vu"]
 _data = {
@@ -16,9 +17,38 @@ point_count = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_8kkxy"]
 size = Vector3(33.7588, 5.26257, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0yo5"]
+transparency = 1
+albedo_texture = ExtResource("6_agh5g")
+uv1_scale = Vector3(6, 1, 1)
+
 [sub_resource type="QuadMesh" id="QuadMesh_88qvo"]
+material = SubResource("StandardMaterial3D_q0yo5")
+size = Vector2(18, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gb846"]
+size = Vector3(1, 4.8252, 18)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_248wv"]
+transparency = 1
+albedo_texture = ExtResource("6_agh5g")
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5q4hn"]
+material = SubResource("StandardMaterial3D_248wv")
+size = Vector2(18, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ix1l"]
+transparency = 1
+albedo_texture = ExtResource("6_agh5g")
+uv1_scale = Vector3(6, 1, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_kgkid"]
+material = SubResource("StandardMaterial3D_5ix1l")
+size = Vector2(18, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qnny"]
+size = Vector3(17.8518, 6.13373, 1)
 
 [node name="Debug Straight" type="GridMap"]
 mesh_library = ExtResource("1_j0qfm")
@@ -27,7 +57,7 @@ data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65531, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792, 0, 65528, 655364, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65526, 1441792, 0, 65532, 1441792, 0, 65530, 1441792)
 }
 script = ExtResource("2_i3xtw")
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Exit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
@@ -94,12 +124,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.55012)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
 shape = SubResource("BoxShape3D_8kkxy")
 
-[node name="Left trees" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.4798, 0.973994, -7.4208)
-mesh = SubResource("QuadMesh_88qvo")
+[node name="Boundary" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.5049, 0.989509, -8.66668)
+[node name="Left trees" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.4798, 0.973994, -7.94238)
+mesh = SubResource("QuadMesh_88qvo")
+skeleton = NodePath("../..")
+
+[node name="Boundary box" type="StaticBody3D" parent="Boundary/Left trees"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0688138, -0.973994, -1.06203)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Left trees/Boundary box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603683, 2.57542, 0)
+shape = SubResource("BoxShape3D_gb846")
+
+[node name="Left trees secondary" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.6161, 0.973994, -8.28344)
+mesh = SubResource("QuadMesh_5q4hn")
+skeleton = NodePath("../..")
+
+[node name="Right trees" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4423, 0.989509, -8.66668)
 mesh = SubResource("QuadMesh_kgkid")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boundary/Right trees"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Right trees/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.56686, -0.484188)
+shape = SubResource("BoxShape3D_8qnny")
+
+[node name="Right trees2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.6521, 0.989509, -9.06709)
+mesh = SubResource("QuadMesh_kgkid")
+skeleton = NodePath("../..")
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]
