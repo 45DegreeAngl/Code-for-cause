@@ -15,11 +15,13 @@ signal road_generated
 func _ready():
 	if not gabesmart_chance:
 		gabesmart_chance = 1/(2*max_gabesmart_pity)
-	spawn_road(road_segments[4])#PENISPENISPENISPENISCOCKOCKCOCKOCKCOCKOCKCOKCOKC
-	for num_roads in range(30):
+
+
+	#spawn_road(road_segments[2])#PENISPENISPENISPENISCOCKOCKCOCKOCKCOCKOCKCOKCOKC
+	for num_roads in range(2):
 		spawn_road()
-	if exes_house:
-		spawn_road(exes_house)
+	#if exes_house:
+		#spawn_road(exes_house)
 		
 	road_generated.emit()
 @onready var previous_road : Node3D = $"Roads/Debug Straight"
@@ -42,10 +44,36 @@ func spawn_road(segment:PackedScene = null)->Node3D:
 		$Roads.add_child(instanced_segment)
 		instanced_segment.global_position = previous_road.find_child("Exit").global_position
 		previous_road = instanced_segment
+		if instanced_segment.has_signal("increment_player_road_counter"):
+			instanced_segment.increment_player_road_counter.connect(increment_player_road)
+			
 		return instanced_segment
 		
 	var instanced_segment : Node3D = segment.instantiate()
 	$Roads.add_child(instanced_segment)
 	instanced_segment.global_position = previous_road.find_child("Exit").global_position
+	if instanced_segment.has_signal("increment_player_road_counter"):
+		instanced_segment.increment_player_road_counter.connect(increment_player_road)
 	previous_road = instanced_segment
 	return instanced_segment
+
+var cur_player_road:int = 0:
+	set(value):
+		print(value)
+		if value > 50:
+			pass
+		elif value == 50:
+			if exes_house:
+				spawn_road(exes_house)
+		elif value%2==0:
+			print("spawning new road")
+			spawn_road()
+			spawn_road()
+		cur_player_road=value
+		if $Roads.get_child_count()>5:
+			var temp_array:Array[Node3D] = [$Roads.get_child(0),$Roads.get_child(1)]
+			for temp:Node3D in temp_array:
+				temp.call_deferred("queue_free")
+
+func increment_player_road():
+	cur_player_road+=1

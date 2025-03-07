@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="4_faqvl"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="4_ln55n"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="5_h1wf1"]
-[ext_resource type="Texture2D" uid="uid://b4w5o83874l4n" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="6_7mrxu"]
+[ext_resource type="Texture2D" uid="uid://hnvpgshyy84f" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="6_7mrxu"]
 [ext_resource type="Texture2D" uid="uid://cw8ifdi80fcme" path="res://Assets/Models/Car/The_Car_Right_Mirror_Mat.png" id="7_ucp20"]
 [ext_resource type="Texture2D" uid="uid://bm1ompqyy2io7" path="res://Assets/Models/Car/The_Car_Top_Mirror_Mat.png" id="8_yc2ao"]
 [ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="9_ki341"]
@@ -1062,3 +1062,10 @@ mesh = SubResource("ArrayMesh_pi6r8")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, -0.0249558, 0.0178337, 0, -0.00148614, -0.299469, 0.214809, 1.74713, -1.30945)
 mesh = SubResource("ArrayMesh_yhxvu")
+
+[node name="Sounds" type="Node3D" parent="."]
+
+[node name="Crash" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919327, -3.98416)
+
+[connection signal="body_entered" from="." to="." method="_on_collide"]

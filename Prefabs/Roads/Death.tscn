@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://7yiw8v4t5rt7"]
+[gd_scene load_steps=7 format=3 uid="uid://7yiw8v4t5rt7"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_kygmy"]
+[ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_k8yhq"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_pil5o"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="4_vjay3"]
 
@@ -11,12 +12,16 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8qpj"]
+size = Vector3(33.7588, 5.26257, 1)
+
 [node name="Debug Death" type="GridMap"]
 mesh_library = ExtResource("1_kygmy")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, -65536, 65529, 1048593)
 }
+script = ExtResource("2_k8yhq")
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="Exit" type="Marker3D" parent="."]
@@ -112,3 +117,12 @@ transform = Transform3D(-1.31134e-09, -4.32285e-18, 0.03, -0.0121586, 0.0274257,
 
 [node name="Lamp_post26" parent="Lamps" instance=ExtResource("4_vjay3")]
 transform = Transform3D(-1.31134e-09, -4.32285e-18, 0.03, -0.0121586, 0.0274257, -5.31467e-10, -0.0274257, -0.0121586, -1.19882e-09, 1.13609, -0.206747, -6.40295)
+
+[node name="Exit Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.60634)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
+shape = SubResource("BoxShape3D_y8qpj")
+
+[connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

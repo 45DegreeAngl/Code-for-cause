@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7afy5ct7o7c1"]
+[gd_scene load_steps=7 format=3 uid="uid://c7afy5ct7o7c1"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_8lrak"]
+[ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_1xwkk"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_ssymr"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="3_utlxj"]
 
@@ -11,12 +12,16 @@ _data = {
 }
 point_count = 6
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vlm7k"]
+size = Vector3(43.3564, 5.26257, 1)
+
 [node name="Four Way Segment" type="GridMap"]
 mesh_library = ExtResource("1_8lrak")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(131057, 65526, 1441792, 131057, 65525, 1441792, 131057, 65524, 1441792, 131057, 65523, 1441792, 65526, 65526, 1441815, 65526, 65528, 1441792, 65521, 65530, 6, 65534, 65530, 655360, 65533, 65530, 655360, 65526, 65530, 1048580, 65528, 65530, 655360, 65529, 65530, 655360, 65530, 65530, 655360, 65531, 65530, 655360, 65532, 65530, 655360, 0, 65530, 655383, 4, 65530, 655360, 5, 65530, 655360, 7, 65532, 1441792, 7, 65530, 655383, 7, 65534, 1048599, 5, 65534, 655360, 4, 65534, 655360, 3, 65534, 655360, 2, 65534, 2, 2, 65533, 655362, 0, 65535, 1048576, 0, 65533, 1048579, 65531, 65533, 6, 65531, 65526, 655366, 3, 65530, 16, 131057, 65522, 1441792)
 }
+script = ExtResource("2_1xwkk")
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Exit" type="Marker3D" parent="."]
@@ -358,3 +363,12 @@ transform = Transform3D(-0.0100384, 0, 0.0282707, 0, 0.03, 0, -0.0282707, 0, -0.
 
 [node name="Lamp_post10" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(-0.0100384, 0, 0.0282707, 0, 0.03, 0, -0.0282707, 0, -0.0100384, 1.06141, 0.495, -4.89061)
+
+[node name="Exit Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7602, 0, -13.3122)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
+shape = SubResource("BoxShape3D_vlm7k")
+
+[connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

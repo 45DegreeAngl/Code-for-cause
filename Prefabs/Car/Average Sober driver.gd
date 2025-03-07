@@ -20,6 +20,8 @@ var current_path : Path3D = null
 
 var hunt : bool = false
 
+var saved_linear_velocity : Vector3 = Vector3.ZERO
+
 func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
 
@@ -79,6 +81,11 @@ func control(_delta) -> void:
 		
 		if(closest_point_offset/current_path.curve.get_baked_length() > 0.95):
 			current_path = null
+
+func _on_collide(body):
+	if abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
+		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
+		$Sounds/Crash.play()
 
 #returns triangle area in xz plane
 func area(a,b,c):

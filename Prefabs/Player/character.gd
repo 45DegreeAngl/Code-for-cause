@@ -54,6 +54,8 @@ func _ready():
 	
 
 func _input(_event):
+	if Globals.game_over:
+		return
 	if Input.is_action_just_pressed("R"): ragdoll_mode = bool(1-int(ragdoll_mode)) # toggle ragdoll mode
 
 	active_arm_left = Input.is_action_pressed("Left Button")# activate left arm with mouse left click
@@ -90,7 +92,9 @@ var car_door = null
 func _physics_process(delta):
 	current_delta = delta
 	if not ragdoll_mode:# if not in ragdoll mode
-		
+		if Globals.game_over:
+			ragdoll_mode = true
+			return
 		# walking control
 		walking = false
 		var dir = Vector3.ZERO

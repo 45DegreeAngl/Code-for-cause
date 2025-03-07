@@ -35,12 +35,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	Globals.timer+=delta
-	if !occupied:
+	if !occupied or Globals.game_over:
 		if abs(linear_velocity):
 			engine_force = move_toward(linear_velocity.length(),-linear_velocity.length(),delta)
 		else:
 			engine_force = move_toward(engine_force,0,delta)
 		return
+	
 	#The line thats commented out below should remain here but commented as a reminder to check the cars max speed every time it's tweaked
 	#print(linear_velocity.length())
 	if Input.is_action_just_pressed("F"):#toggle Headlights
@@ -93,14 +94,15 @@ func _process(delta: float) -> void:
 
 var saved_linear_velocity : Vector3
 func _on_collide(body):
-	if abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
+	if body.has_meta("Cop"):
+		call_deferred("die_by_cop")
+	elif abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
 		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
 		$Sounds/Crash.play()
 	elif body is Debris:
 		#play debris hit effect
 		pass
-	if body.has_meta("Cop"):
-		call_deferred("die_by_cop")
+	
 
 func die_by_cop():
 	Globals.game_lost.emit("Cops")

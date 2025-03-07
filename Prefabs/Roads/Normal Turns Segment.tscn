@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://coa1buyxhvtlm"]
+[gd_scene load_steps=6 format=3 uid="uid://coa1buyxhvtlm"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_l6kl3"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_i48l3"]
+[ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_kta5b"]
 
 [sub_resource type="Curve3D" id="Curve3D_6ce3a"]
 _data = {
@@ -10,12 +11,16 @@ _data = {
 }
 point_count = 11
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fyx5k"]
+size = Vector3(33.7588, 5.26257, 1)
+
 [node name="Normal Turns Segment" type="GridMap"]
 mesh_library = ExtResource("1_l6kl3")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65531, 655383, 65534, 65531, 655360, 65533, 65531, 655360, 65532, 65531, 655360, 65530, 65531, 23, 65530, 65529, 1441792, 65530, 65528, 1441792, 65530, 65526, 1441815, 65533, 65526, 655383, 65533, 65528, 2, 65534, 65528, 1048578, 65534, 65527, 1048576, 65534, 65525, 1048576, 65534, 65526, 1048576)
 }
+script = ExtResource("2_kta5b")
 
 [node name="Exit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -11)
@@ -30,3 +35,12 @@ data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 65535, 65531, 1441792, 65535, 65530, 1441792, 65535, 65529, 1441792, 65535, 65528, 1441792, 65535, 65527, 1441792, 65535, 65526, 1441792, 65535, 65525, 1441792)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Exit Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.4229)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
+shape = SubResource("BoxShape3D_fyx5k")
+
+[connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]
