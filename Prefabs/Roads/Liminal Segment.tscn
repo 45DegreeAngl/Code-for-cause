@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsawvuh1yr6x3"]
+[gd_scene load_steps=5 format=3 uid="uid://bsawvuh1yr6x3"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_oppoi"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_pwcqa"]
+[ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="3_h7e8l"]
 
 [sub_resource type="Curve3D" id="Curve3D_lr348"]
 _data = {
@@ -31,3 +32,136 @@ data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 0, 65530, 1441792, 0, 65529, 1441792, 0, 65528, 1441792, 0, 65527, 1441792, 0, 65526, 1441792, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792, 0, 65519, 1048576, 0, 65518, 1048576, 0, 65517, 1048576, 0, 65516, 1048576, 0, 65515, 1048576)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Lamps" type="Node3D" parent="."]
+
+[node name="Lampos2" parent="Lamps" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0263022, 0.013162, 0.0059125, -0.00541521, 0.0203989, -0.0213204, -0.0133742, 0.0176252, 0.0202603, 1.30097, 0.890204, -2.99875)
+
+[node name="Lampos4" parent="Lamps" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0289072, -0.00577511, -0.00556956, 9.43903e-10, 0.0208254, -0.021594, 0.0080232, 0.0208074, 0.0200669, 1.50528, 0.542497, -2.75743)
+
+[node name="Lampos5" parent="Lamps" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0287368, 0.00200237, -0.00837782, 3.04835e-10, -0.0291782, -0.00697383, -0.00861379, 0.00668018, -0.0279496, 2.19167, 1.19008, -2.75743)
+
+[node name="Lampos6" parent="Lamps" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-0.00928952, -0.0265193, -0.0105087, -0.0283132, 0.0099179, -1.23761e-09, 0.00347413, 0.00991779, -0.0280992, 1.94095, 0.651583, -3.42439)
+
+[node name="Lamp Cluster" type="Node3D" parent="Lamps"]
+
+[node name="Lampos" parent="Lamps/Lamp Cluster" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-1.20068e-09, -0.0120618, 0.0274684, -5.27237e-10, 0.0274684, 0.0120618, -0.03, 0, -1.31134e-09, -0.46279, 1.16431, -2.99875)
+
+[node name="Lampos9" parent="Lamps/Lamp Cluster" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.00360739, -0.0142794, 0.0261359, 0.01739, 0.0223828, 0.00982861, -0.024178, 0.0139682, 0.0109687, -0.843764, 0.64877, -3.40315)
+
+[node name="Lampos10" parent="Lamps/Lamp Cluster" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.00867523, -0.0169273, 0.0231993, 0.0280626, 0.0101456, -0.00309118, -0.0061015, 0.022595, 0.018768, -0.517962, 0.655864, -2.47898)
+
+[node name="Lampos11" parent="Lamps/Lamp Cluster" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0290807, -0.00681406, -0.00280761, 0.00512683, 0.0104943, 0.0276331, -0.00529432, -0.0272661, 0.0113372, -1.59686, 0.655864, -2.52694)
+
+[node name="Lampos8" parent="Lamps/Lamp Cluster" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0184464, 0.00462949, -0.0232012, -0.0150712, -0.0203787, -0.0160489, -0.018237, 0.0215238, -0.0102047, -1.38429, 1.45848, -3.27033)
+
+[node name="Lampos7" parent="Lamps/Lamp Cluster" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0174321, 0.0122114, 0.0211424, -0.00283182, 0.0268141, -0.0131524, -0.0242508, 0.00564676, 0.0167336, -1.10854, 0.77426, -2.62352)
+
+[node name="Lamp Cluster2" type="Node3D" parent="Lamps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.28671, 1.80597, -3.17084)
+
+[node name="Lampos" parent="Lamps/Lamp Cluster2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-1.20068e-09, -0.0120618, 0.0274684, -5.27237e-10, 0.0274684, 0.0120618, -0.03, 0, -1.31134e-09, -0.46279, 1.16431, -2.99875)
+
+[node name="Lampos9" parent="Lamps/Lamp Cluster2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.00360739, -0.0142794, 0.0261359, 0.01739, 0.0223828, 0.00982861, -0.024178, 0.0139682, 0.0109687, -0.843764, 0.64877, -3.40315)
+
+[node name="Lampos10" parent="Lamps/Lamp Cluster2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.00867523, -0.0169273, 0.0231993, 0.0280626, 0.0101456, -0.00309118, -0.0061015, 0.022595, 0.018768, -0.517962, 0.655864, -2.47898)
+
+[node name="Lampos11" parent="Lamps/Lamp Cluster2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0290807, -0.00681406, -0.00280761, 0.00512683, 0.0104943, 0.0276331, -0.00529432, -0.0272661, 0.0113372, -1.59686, 0.655864, -2.52694)
+
+[node name="Lampos8" parent="Lamps/Lamp Cluster2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0184464, 0.00462949, -0.0232012, -0.0150712, -0.0203787, -0.0160489, -0.018237, 0.0215238, -0.0102047, -1.38429, 1.45848, -3.27033)
+
+[node name="Lampos7" parent="Lamps/Lamp Cluster2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0174321, 0.0122114, 0.0211424, -0.00283182, 0.0268141, -0.0131524, -0.0242508, 0.00564676, 0.0167336, -1.10854, 0.77426, -2.62352)
+
+[node name="Lamp_Army" type="Node3D" parent="Lamps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0969931, 0, 0)
+
+[node name="Lampos18" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.60161, 0.505185, -5.5683)
+
+[node name="Lampos20" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.60161, 0.505185, -5.96575)
+
+[node name="Lampos22" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.60161, 0.505185, -6.44011)
+
+[node name="Lampos24" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.446392, 0.0987462, 0.214495, 0.0531985, 0.404876, -0.297104, -0.230063, 0.285219, 0.347485, 4.49191, 0.247123, -14.5432)
+
+[node name="Lampos32" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.341891, -0.0386537, -0.539645, -0.12141, 0.616602, -0.121085, 0.527229, 0.167056, 0.322059, 2.19692, 0.443333, -12.2296)
+
+[node name="Lampos30" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-0.0591518, 0.0715799, -0.111366, 0.116904, 0.0854822, -0.00715034, 0.0621241, -0.0927044, -0.0925823, 4.02551, 3.17109, -8.20547)
+
+[node name="Lampos25" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.183345, 0.094445, -0.0395591, -0.0951197, 0.187129, 0.00590861, 0.0379081, 0.0127597, 0.206156, -7.44886, 0.306892, -6.0718)
+
+[node name="Lampos31" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.111238, 0.118652, -0.0277984, -0.0931636, 0.107061, 0.0841636, 0.0785594, -0.041045, 0.139172, -4.343, 0.372591, -5.4116)
+
+[node name="Lampos26" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.186383, -0.0819181, -0.169634, 0.097091, 0.246269, -0.0122482, 0.16143, -0.0535362, 0.203222, 5.10504, 0.267692, -2.89137)
+
+[node name="Lampos23" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.96612, 0.505185, -5.5683)
+
+[node name="Lampos27" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.96612, 0.505185, -5.96575)
+
+[node name="Lampos28" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.96612, 0.505185, -6.44011)
+
+[node name="Lampos29" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 2.2813, 0.505185, -5.5683)
+
+[node name="Lampos33" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 2.2813, 0.505185, -5.96575)
+
+[node name="Lampos34" parent="Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 2.2813, 0.505185, -6.44011)
+
+[node name="Lamp_Army2" type="Node3D" parent="Lamps"]
+transform = Transform3D(0.921172, 0, -0.389156, 0, 1, 0, 0.389156, 0, 0.921172, -7.94524, 0, -4.16381)
+
+[node name="Lampos18" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.60161, 0.505185, -5.5683)
+
+[node name="Lampos20" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.60161, 0.505185, -5.96575)
+
+[node name="Lampos22" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.60161, 0.505185, -6.44011)
+
+[node name="Lampos23" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.96612, 0.505185, -5.5683)
+
+[node name="Lampos27" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.96612, 0.505185, -5.96575)
+
+[node name="Lampos28" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 1.96612, 0.505185, -6.44011)
+
+[node name="Lampos29" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 2.2813, 0.505185, -5.5683)
+
+[node name="Lampos33" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 2.2813, 0.505185, -5.96575)
+
+[node name="Lampos34" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 2.2813, 0.505185, -6.44011)
