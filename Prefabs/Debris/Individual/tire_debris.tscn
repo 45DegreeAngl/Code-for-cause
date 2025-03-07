@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=4 uid="uid://gq811rsmjlhl"]
+[gd_scene load_steps=8 format=4 uid="uid://gq811rsmjlhl"]
 
-[ext_resource type="Script" path="res://Prefabs/Debris/debris.gd" id="1_3efcr"]
-[ext_resource type="Texture2D" uid="uid://bqjrbla4bw6lp" path="res://Assets/Models/Debris/Debris_2_WheelTexture.png" id="2_jvwr0"]
+[ext_resource type="PhysicsMaterial" uid="uid://cxs5xd0j6m6q1" path="res://Prefabs/Debris/Individual/debris_material.tres" id="1_mjq6j"]
+[ext_resource type="Script" path="res://Prefabs/Debris/Individual/debris.gd" id="2_rokwn"]
+[ext_resource type="Texture2D" uid="uid://bqjrbla4bw6lp" path="res://Assets/Models/Debris/Debris_2_WheelTexture.png" id="3_4xtwh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cidbw"]
 resource_name = "Material.008"
 cull_mode = 2
-albedo_texture = ExtResource("2_jvwr0")
+albedo_texture = ExtResource("3_4xtwh")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_emr4e"]
@@ -43,17 +44,19 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_emr4e")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hu2ep"]
-points = PackedVector3Array(0.130067, -0.000100136, 0.511254, 0.130067, 0.132217, 0.493738, -0.130078, -0.000100136, 0.511254, 0.130067, -0.132418, 0.493738, 0.130037, 0.255527, -0.442793, 0.130037, 0.361421, -0.361521, 0.130037, 0.442693, -0.255727, 0.130037, 0.493738, -0.132418, 0.130037, 0.511254, -0.000100136, 0.130037, 0.493738, 0.132217, 0.130037, 0.442693, 0.255527, 0.130037, 0.361421, 0.361421, 0.130037, 0.255527, 0.442693, -0.130078, 0.132217, 0.493738, 0.130067, -0.442793, 0.255527, 0.130037, 0.132217, -0.493938, -0.172591, 0.0322286, 0.120307, -0.172591, -0.000100136, 0.124511, -0.172591, -0.0323287, 0.120307, -0.130078, -0.132418, 0.493738, 0.130067, -0.255727, 0.442693, -0.130078, 0.255527, -0.442793, -0.130078, 0.361421, -0.361521, -0.130078, 0.442693, -0.255727, -0.130078, 0.493738, -0.132418, -0.130078, 0.511254, -0.000100136, -0.130078, 0.493738, 0.132217, -0.130078, 0.442693, 0.255527, -0.130078, 0.361421, 0.361421, -0.130078, 0.255527, 0.442693, -0.172591, 0.0622553, 0.107896, 0.130067, -0.361521, 0.361421, -0.130078, -0.442793, 0.255527, 0.130037, -0.493938, 0.132217, 0.130037, -0.511254, -0.000100136, 0.130037, -0.493938, -0.132418, 0.130037, -0.442793, -0.255727, 0.130037, -0.361521, -0.361521, 0.130037, -0.255727, -0.442793, 0.130037, -0.132418, -0.493938, 0.130037, -0.000100136, -0.511254, -0.130078, 0.132217, -0.493938, -0.172591, -0.0623554, 0.107896, -0.130078, -0.255727, 0.442693, -0.172591, 0.0622553, -0.107996, -0.172591, 0.0880781, -0.0881783, -0.172591, 0.107896, -0.0623554, -0.172591, 0.120307, -0.0323287, -0.172591, 0.124511, -0.000100136, -0.172591, 0.120307, 0.0322286, -0.172591, 0.107896, 0.0622553, -0.172591, 0.0880781, 0.0880781, -0.130078, -0.361521, 0.361421, -0.130078, -0.493938, 0.132217, -0.172591, -0.0881783, 0.0880781, -0.172591, -0.107996, 0.0622553, -0.130078, -0.511254, -0.000100136, -0.130078, -0.493938, -0.132418, -0.130078, -0.442793, -0.255727, -0.130078, -0.361521, -0.361521, -0.130078, -0.255727, -0.442793, -0.130078, -0.132418, -0.493938, -0.130078, -0.000100136, -0.511254, -0.172591, 0.0322286, -0.120407, -0.172591, -0.120407, 0.0322286, -0.172591, -0.124611, -0.000100136, -0.172591, -0.120407, -0.0323287, -0.172591, -0.107996, -0.0623554, -0.172591, -0.0881783, -0.0881783, -0.172591, -0.0623554, -0.107996, -0.172591, -0.0323287, -0.120407, -0.172591, -0.000100136, -0.124611)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ns42s"]
+height = 0.259516
+radius = 0.488295
 
-[node name="Debris_2" type="RigidBody3D"]
-script = ExtResource("1_3efcr")
+[node name="Tire Debris" type="RigidBody3D"]
+physics_material_override = ExtResource("1_mjq6j")
+script = ExtResource("2_rokwn")
 
-[node name="Front_Left2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -0.0639524, 0.136712, 0.147424)
+[node name="Front_Left2" type="MeshInstance3D" parent="." groups=["Please Move"]]
+transform = Transform3D(-4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0, 0, 0.1, 0, 0.0130523, 0)
 mesh = SubResource("ArrayMesh_3iwnh")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Please Move"]]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -0.0639524, 0.136712, 0.147424)
-shape = SubResource("ConvexPolygonShape3D_hu2ep")
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.013, 0)
+shape = SubResource("CylinderShape3D_ns42s")

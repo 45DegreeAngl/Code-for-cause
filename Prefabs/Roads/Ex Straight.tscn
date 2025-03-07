@@ -3,8 +3,8 @@
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_5oarg"]
 [ext_resource type="Texture2D" uid="uid://dn4s1cbfke242" path="res://Assets/Models/Floors_Granse.jpg" id="2_kti23"]
 [ext_resource type="PackedScene" uid="uid://brg1w0alicchh" path="res://Prefabs/Buildings/ex_house.tscn" id="4_ua8vv"]
-[ext_resource type="PackedScene" uid="uid://b8u6v41tnr240" path="res://Prefabs/Debris/stop_sign.tscn" id="9_j2i50"]
-[ext_resource type="PackedScene" uid="uid://dptwj8d7qoypj" path="res://Prefabs/Debris/direction_sign.tscn" id="10_nuy8g"]
+[ext_resource type="PackedScene" uid="uid://b8u6v41tnr240" path="res://Prefabs/Debris/Individual/stop_sign.tscn" id="9_j2i50"]
+[ext_resource type="PackedScene" uid="uid://dptwj8d7qoypj" path="res://Prefabs/Debris/Individual/direction_sign.tscn" id="10_nuy8g"]
 
 [sub_resource type="Curve3D" id="Curve3D_5u1vu"]
 _data = {

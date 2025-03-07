@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfe2n5yc1ofd5"]
+[gd_scene load_steps=19 format=3 uid="uid://bfe2n5yc1ofd5"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_tdahm"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_0313u"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_mgofo"]
 [ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="5_ibnvc"]
 [ext_resource type="Script" path="res://Prefabs/Debris/debris_location.gd" id="6_ccqnw"]
-[ext_resource type="PackedScene" uid="uid://gq811rsmjlhl" path="res://Prefabs/Debris/debris_2.tscn" id="7_ohs5y"]
+[ext_resource type="PackedScene" uid="uid://ep41w0sah178" path="res://Prefabs/Debris/Groups/tire_debris_small.tscn" id="8_3py7e"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="8_n4k46"]
+[ext_resource type="PackedScene" uid="uid://fnfpbgvblxdg" path="res://Prefabs/Debris/Groups/cone_debris_large.tscn" id="9_cv34d"]
 
 [sub_resource type="Curve3D" id="Curve3D_5u1vu"]
 _data = {
@@ -163,14 +164,39 @@ skeleton = NodePath("../..")
 
 [node name="Debris" type="Node3D" parent="."]
 
-[node name="Debris 1" type="Node3D" parent="Debris" node_paths=PackedStringArray("small_locations")]
+[node name="Debris 1" type="Node3D" parent="Debris" node_paths=PackedStringArray("small_locations", "large_locations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -11.711)
+script = ExtResource("6_ccqnw")
+small_debris = Array[PackedScene]([ExtResource("8_3py7e")])
+large_debris = Array[PackedScene]([ExtResource("9_cv34d")])
+small_spawn_count = Vector2i(1, 2)
+small_locations = [NodePath("S1"), NodePath("S2")]
+large_locations = [NodePath("L")]
+
+[node name="S1" type="Marker3D" parent="Debris/Debris 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
+
+[node name="S2" type="Marker3D" parent="Debris/Debris 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
+
+[node name="L" type="Marker3D" parent="Debris/Debris 1"]
+
+[node name="Debris 2" type="Node3D" parent="Debris" node_paths=PackedStringArray("small_locations", "large_locations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -4.40347)
 script = ExtResource("6_ccqnw")
 accepts_large = false
-small_debris = Array[PackedScene]([ExtResource("7_ohs5y")])
-small_spawn_chance = 1.0
-small_locations = [NodePath("Marker3D")]
+small_debris = Array[PackedScene]([ExtResource("8_3py7e")])
+large_debris = Array[PackedScene]([ExtResource("9_cv34d")])
+small_spawn_count = Vector2i(1, 2)
+small_locations = [NodePath("S1"), NodePath("S2")]
+large_locations = [NodePath("L")]
 
-[node name="Marker3D" type="Marker3D" parent="Debris/Debris 1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.530828, 0.520865, -6.63837)
+[node name="S1" type="Marker3D" parent="Debris/Debris 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
+
+[node name="S2" type="Marker3D" parent="Debris/Debris 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
+
+[node name="L" type="Marker3D" parent="Debris/Debris 2"]
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

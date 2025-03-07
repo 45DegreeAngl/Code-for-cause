@@ -13,6 +13,8 @@ func _ready():
 
 func spawn_debris():
 	for child in debris_node.get_children():
+		if not child.has_method("spawn_debris"):
+			continue
 		child.spawn_debris()
 
 func _on_exit_area_body_entered(body: Node3D) -> void:

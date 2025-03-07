@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://bt2us3w0uvtt3"]
+[gd_scene load_steps=8 format=4 uid="uid://cyf4gwwy1p5ut"]
 
-[ext_resource type="Script" path="res://Prefabs/Debris/debris.gd" id="1_32aqe"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_254rj"]
-bounce = 0.4
+[ext_resource type="PhysicsMaterial" uid="uid://cxs5xd0j6m6q1" path="res://Prefabs/Debris/Individual/debris_material.tres" id="1_mtjtx"]
+[ext_resource type="Script" path="res://Prefabs/Debris/Individual/debris.gd" id="2_ucgq2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwvkw"]
 resource_name = "Material.005"
@@ -82,8 +80,8 @@ radius = 0.746777
 [node name="Cone Debris" type="RigidBody3D"]
 collision_layer = 3
 collision_mask = 3
-physics_material_override = SubResource("PhysicsMaterial_254rj")
-script = ExtResource("1_32aqe")
+physics_material_override = ExtResource("1_mtjtx")
+script = ExtResource("2_ucgq2")
 
 [node name="Cone1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0, 0)
