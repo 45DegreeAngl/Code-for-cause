@@ -47,6 +47,18 @@ transform = Transform3D(0.0287368, 0.00200237, -0.00837782, 3.04835e-10, -0.0291
 [node name="Lampos6" parent="Lamps" instance=ExtResource("3_h7e8l")]
 transform = Transform3D(-0.00928952, -0.0265193, -0.0105087, -0.0283132, 0.0099179, -1.23761e-09, 0.00347413, 0.00991779, -0.0280992, 1.94095, 0.651583, -3.42439)
 
+[node name="Lampos3" parent="Lamps" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0263022, 0.013162, 0.0059125, -0.00541521, 0.0203989, -0.0213204, -0.0133742, 0.0176252, 0.0202603, 4.92042, 0.890204, -9.54342)
+
+[node name="Lampos7" parent="Lamps" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0289072, -0.00577511, -0.00556956, 9.43903e-10, 0.0208254, -0.021594, 0.0080232, 0.0208074, 0.0200669, 5.12473, 0.542497, -9.3021)
+
+[node name="Lampos8" parent="Lamps" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0287368, 0.00200237, -0.00837782, 3.04835e-10, -0.0291782, -0.00697383, -0.00861379, 0.00668018, -0.0279496, 5.81112, 1.19008, -9.3021)
+
+[node name="Lampos9" parent="Lamps" instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-0.00928952, -0.0265193, -0.0105087, -0.0283132, 0.0099179, -1.23761e-09, 0.00347413, 0.00991779, -0.0280992, 5.5604, 0.651583, -9.96906)
+
 [node name="Lamp Cluster" type="Node3D" parent="Lamps"]
 
 [node name="Lampos" parent="Lamps/Lamp Cluster" instance=ExtResource("3_h7e8l")]
@@ -165,3 +177,45 @@ transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09,
 
 [node name="Lampos34" parent="Lamps/Lamp_Army2" instance=ExtResource("3_h7e8l")]
 transform = Transform3D(-3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, 2.2813, 0.505185, -6.44011)
+
+[node name="Lamp_post11" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.495, -0.192802)
+
+[node name="Lamp_post12" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.495, -0.192802)
+
+[node name="Lamp_post13" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -6.13915, 0.495, -14.9941)
+
+[node name="Lamp_post14" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -4.86215, 0.495, -14.9941)
+
+[node name="Lamp_post15" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0200322, 0, 0.0223318, 0, 0.03, 0, -0.0223318, 0, 0.0200322, -5.44328, 0.495, -16.6471)
+
+[node name="Lamp_post16" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0200322, 0, 0.0223318, 0, 0.03, 0, -0.0223318, 0, 0.0200322, -4.49269, 0.495, -15.7944)
+
+[node name="Lamp_post17" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0278815, 0, 0.0110734, 0, 0.03, 0, -0.0110734, 0, 0.0278815, -4.13399, 0.495, -17.094)
+
+[node name="Lamp_post18" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0278815, 0, 0.0110734, 0, 0.03, 0, -0.0110734, 0, 0.0278815, -3.66263, 0.495, -15.9072)
+
+[node name="Lamp_post19" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0192242, 0, 0.0230311, 0, 0.03, 0, -0.0230311, 0, 0.0192242, -3.23575, 0.495, -17.4333)
+
+[node name="Lamp_post20" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.0192242, 0, 0.0230311, 0, 0.03, 0, -0.0230311, 0, 0.0192242, -2.25539, 0.495, -16.6149)
+
+[node name="Lamp_post21" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.00626449, 0, 0.0293386, 0, 0.03, 0, -0.0293386, 0, 0.00626449, -3.06171, 0.495, -18.3434)
+
+[node name="Lamp_post22" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.00626449, 0, 0.0293386, 0, 0.03, 0, -0.0293386, 0, 0.00626449, -1.81286, 0.495, -18.0767)
+
+[node name="Lamp_post23" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.000801531, 0, 0.0299893, 0, 0.03, 0, -0.0299893, 0, 0.000801531, -0.136005, 0.495, -20.5752)
+
+[node name="Lamp_post24" parent="." instance=ExtResource("3_h7e8l")]
+transform = Transform3D(0.000801531, 0, 0.0299893, 0, 0.03, 0, -0.0299893, 0, 0.000801531, 1.14054, 0.495, -20.5411)

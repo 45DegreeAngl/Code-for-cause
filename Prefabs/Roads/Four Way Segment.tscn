@@ -39,24 +39,13 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Los Lampos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0333881, 9.53674e-07, -0.0164037)
 
 [node name="Lamp_post" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.495, -0.118167)
 
 [node name="Lamp_post2" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.495, -0.118167)
-
-[node name="Lamp_post3" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.495, -0.734207)
-
-[node name="Lamp_post4" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.495, -0.734207)
-
-[node name="Lamp_post15" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -1.651, 0.495, -6.14502)
-
-[node name="Lamp_post16" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -1.604, 0.495, -4.86888)
 
 [node name="Lamp_post105" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -0.783313, 0.495, -3.13779)
@@ -70,29 +59,14 @@ transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.
 [node name="Lamp_post108" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -1.43094, 0.495, -1.86165)
 
-[node name="Lamp_post89" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 3.54728, 0.495, -2.10715)
-
 [node name="Lamp_post90" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 3.59428, 0.495, -0.83101)
-
-[node name="Lamp_post91" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 4.11572, 0.495, -2.10715)
-
-[node name="Lamp_post92" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 4.16272, 0.495, -0.83101)
 
 [node name="Lamp_post93" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 4.72045, 0.495, -2.10715)
 
 [node name="Lamp_post94" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 4.76745, 0.495, -0.83101)
-
-[node name="Lamp_post95" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 5.29238, 0.495, -2.10715)
-
-[node name="Lamp_post96" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 5.33938, 0.495, -0.83101)
 
 [node name="Lamp_post97" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 5.8542, 0.495, -2.10715)
@@ -105,9 +79,6 @@ transform = Transform3D(0.0257247, 0, -0.015435, 0, 0.03, 0, 0.015435, 0, 0.0257
 
 [node name="Lamp_post100" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0257247, 0, -0.015435, 0, 0.03, 0, 0.015435, 0, 0.0257247, 2.43922, 0.495, -0.996317)
-
-[node name="Lamp_post101" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0213498, 0, -0.0210758, 0, 0.03, 0, 0.0210758, 0, 0.0213498, 2.93064, 0.495, -2.52645)
 
 [node name="Lamp_post102" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0213498, 0, -0.0210758, 0, 0.03, 0, 0.0210758, 0, 0.0213498, 2.03352, 0.495, -1.61765)
@@ -124,23 +95,11 @@ transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.
 [node name="Lamp_post62" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 3.19959, 0.495, -4.86888)
 
-[node name="Lamp_post63" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 3.81731, 0.495, -6.14502)
-
-[node name="Lamp_post64" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 3.86431, 0.495, -4.86888)
-
 [node name="Lamp_post65" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 4.37688, 0.495, -6.14502)
 
 [node name="Lamp_post66" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 4.42388, 0.495, -4.86888)
-
-[node name="Lamp_post67" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 4.8656, 0.495, -6.14502)
-
-[node name="Lamp_post68" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 4.9126, 0.495, -4.86888)
 
 [node name="Lamp_post69" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, 5.54588, 0.495, -6.14502)
@@ -151,9 +110,6 @@ transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.
 [node name="Lamp_post71" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0296554, 0, -0.00453421, 0, 0.03, 0, 0.00453421, 0, 0.0296554, 6.41721, 0.495, -6.13812)
 
-[node name="Lamp_post72" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0296554, 0, -0.00453421, 0, 0.03, 0, 0.00453421, 0, 0.0296554, 6.22421, 0.495, -4.87578)
-
 [node name="Lamp_post73" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0249784, 0, -0.0166157, 0, 0.03, 0, 0.0166157, 0, 0.0249784, 7.30192, 0.495, -5.77692)
 
@@ -163,26 +119,11 @@ transform = Transform3D(0.0249784, 0, -0.0166157, 0, 0.03, 0, 0.0166157, 0, 0.02
 [node name="Lamp_post75" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0146847, 0, -0.0261603, 0, 0.03, 0, 0.0261603, 0, 0.0146847, 7.94806, 0.495, -4.99787)
 
-[node name="Lamp_post76" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0146847, 0, -0.0261603, 0, 0.03, 0, 0.0261603, 0, 0.0146847, 6.8345, 0.495, -4.37279)
-
-[node name="Lamp_post77" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-0.000606286, 0, -0.0299939, 0, 0.03, 0, 0.0299939, 0, -0.000606286, 8.1318, 0.495, -3.83241)
-
-[node name="Lamp_post78" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-0.000606286, 0, -0.0299939, 0, 0.03, 0, 0.0299939, 0, -0.000606286, 6.85506, 0.495, -3.85821)
-
 [node name="Lamp_post79" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-0.000606286, 0, -0.0299939, 0, 0.03, 0, 0.0299939, 0, -0.000606286, 8.1318, 0.495, -3.34404)
+transform = Transform3D(-0.000606286, 0, -0.0299939, 0, 0.03, 0, 0.0299939, 0, -0.000606286, 8.1318, 0.495, -3.49257)
 
 [node name="Lamp_post80" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-0.000606286, 0, -0.0299939, 0, 0.03, 0, 0.0299939, 0, -0.000606286, 6.85506, 0.495, -3.36984)
-
-[node name="Lamp_post81" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-0.000606286, 0, -0.0299939, 0, 0.03, 0, 0.0299939, 0, -0.000606286, 8.1318, 0.495, -2.84597)
-
-[node name="Lamp_post82" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-0.000606286, 0, -0.0299939, 0, 0.03, 0, 0.0299939, 0, -0.000606286, 6.85506, 0.495, -2.87177)
+transform = Transform3D(-0.000606286, 0, -0.0299939, 0, 0.03, 0, 0.0299939, 0, -0.000606286, 6.85506, 0.495, -3.51837)
 
 [node name="Lamp_post83" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(-0.0096769, 0, -0.0283965, 0, 0.03, 0, 0.0283965, 0, -0.0096769, 7.94425, 0.495, -2.05357)
@@ -196,23 +137,11 @@ transform = Transform3D(-0.0096769, 0, -0.0283965, 0, 0.03, 0, 0.0283965, 0, -0.
 [node name="Lamp_post86" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(-0.0096769, 0, -0.0283965, 0, 0.03, 0, 0.0283965, 0, -0.0096769, 6.7355, 0.495, -2.46548)
 
-[node name="Lamp_post87" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-0.0246467, 0, -0.0171038, 0, 0.03, 0, 0.0171038, 0, -0.0246467, 7.13789, 0.495, -1.13661)
-
-[node name="Lamp_post88" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(-0.0246467, 0, -0.0171038, 0, 0.03, 0, 0.0171038, 0, -0.0246467, 6.40984, 0.495, -2.18574)
-
 [node name="Lamp_post17" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -2.2269, 0.495, -6.14502)
 
 [node name="Lamp_post18" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -2.17991, 0.495, -4.86888)
-
-[node name="Lamp_post19" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -2.78685, 0.495, -6.14502)
-
-[node name="Lamp_post20" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -2.73986, 0.495, -4.86888)
 
 [node name="Lamp_post21" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -3.34153, 0.495, -6.14502)
@@ -220,23 +149,11 @@ transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.
 [node name="Lamp_post22" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -3.29454, 0.495, -4.86888)
 
-[node name="Lamp_post23" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -3.9615, 0.495, -6.14502)
-
-[node name="Lamp_post24" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -3.9145, 0.495, -4.86888)
-
 [node name="Lamp_post25" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -4.56137, 0.495, -6.14502)
 
 [node name="Lamp_post26" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -4.51438, 0.495, -4.86888)
-
-[node name="Lamp_post27" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -5.03985, 0.495, -6.14502)
-
-[node name="Lamp_post28" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -4.99286, 0.495, -4.86888)
 
 [node name="Lamp_post29" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -5.53979, 0.495, -6.14502)
@@ -244,23 +161,11 @@ transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.
 [node name="Lamp_post30" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -5.4928, 0.495, -4.86888)
 
-[node name="Lamp_post31" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -6.01803, 0.495, -6.14502)
-
-[node name="Lamp_post32" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -5.97104, 0.495, -4.86888)
-
 [node name="Lamp_post33" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -6.51774, 0.495, -6.14502)
 
 [node name="Lamp_post34" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -6.47075, 0.495, -4.86888)
-
-[node name="Lamp_post35" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -7.02403, 0.495, -6.14502)
-
-[node name="Lamp_post36" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -6.97704, 0.495, -4.86888)
 
 [node name="Lamp_post37" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -7.53125, 0.495, -6.14502)
@@ -268,26 +173,14 @@ transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.
 [node name="Lamp_post38" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -7.48426, 0.495, -4.86888)
 
-[node name="Lamp_post39" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -7.9677, 0.495, -6.14502)
-
-[node name="Lamp_post40" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -7.92071, 0.495, -4.86888)
-
 [node name="Lamp_post41" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -8.47144, 0.495, -6.14502)
 
 [node name="Lamp_post42" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -8.42445, 0.495, -4.86888)
 
-[node name="Lamp_post45" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -8.91564, 0.495, -4.86888)
-
 [node name="Lamp_post46" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -9.38586, 0.495, -4.86888)
-
-[node name="Lamp_post47" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -9.79506, 0.495, -4.86888)
 
 [node name="Lamp_post48" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -10.2661, 0.495, -4.86888)
@@ -298,23 +191,11 @@ transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.
 [node name="Lamp_post50" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -8.80976, 0.495, -6.50615)
 
-[node name="Lamp_post53" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -10.1167, 0.495, -7.11299)
-
-[node name="Lamp_post54" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -8.80976, 0.495, -7.11299)
-
 [node name="Lamp_post55" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -10.1167, 0.495, -7.65214)
 
 [node name="Lamp_post56" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -8.80976, 0.495, -7.65214)
-
-[node name="Lamp_post57" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -10.1167, 0.495, -8.12189)
-
-[node name="Lamp_post58" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -8.80976, 0.495, -8.12189)
 
 [node name="Lamp_post59" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0290264, 0, -0.00758083, 0, 0.03, 0, 0.00758083, 0, 0.0290264, -10.0339, 0.495, -8.95194)
@@ -324,9 +205,6 @@ transform = Transform3D(0.0290264, 0, -0.00758083, 0, 0.03, 0, 0.00758083, 0, 0.
 
 [node name="Lamp_post43" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -10.7699, 0.495, -6.14502)
-
-[node name="Lamp_post44" parent="Los Lampos" instance=ExtResource("3_utlxj")]
-transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -10.7229, 0.495, -4.86888)
 
 [node name="Lamp_post51" parent="Los Lampos" instance=ExtResource("3_utlxj")]
 transform = Transform3D(0.0299797, 0, 0.00110402, 0, 0.03, 0, -0.00110402, 0, 0.0299797, -11.3759, 0.495, -6.14502)
