@@ -18,6 +18,13 @@ class_name DebrisLocation
 @export var small_locations : Array[Marker3D]
 @export var large_locations : Array[Marker3D]
 
+func _ready():
+	if accepts_small && !accepts_large:
+		small_spawn_chance = 1
+	elif accepts_large && !accepts_small:
+		small_spawn_chance = 0
+
+
 func spawn_debris():
 	if randf() <= 1-spawn_chance:
 		return
