@@ -167,6 +167,9 @@ func _input(event: InputEvent) -> void:
 					Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 				Input.MOUSE_MODE_VISIBLE:
 					Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index==MOUSE_BUTTON_LEFT:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if not Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		return
 	if event is InputEventMouseMotion:
@@ -177,9 +180,7 @@ func _input(event: InputEvent) -> void:
 		handle_cam_rotation()
 	if Globals.game_over:
 		return
-	if event is InputEventMouseButton and event.is_pressed():
-		if event.button_index==MOUSE_BUTTON_LEFT:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
 
 func handle_cam_rotation():
 	$Cameras/Windshield.transform.basis = Basis() #reset rot

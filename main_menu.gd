@@ -42,7 +42,7 @@ func _on_win():
 func _process(_delta: float) -> void:
 	if Globals.game_over or $"Game Over".visible or $"YOU WIN".visible or $"Main Menu".visible:
 		return
-	if Input.is_action_just_pressed("Esc"):
+	if Input.is_action_just_pressed("Esc") or Input.is_action_just_pressed("P"):
 		if $Options.visible:
 			Globals.game_paused = false
 			$Options.visible = false
@@ -57,6 +57,7 @@ func _process(_delta: float) -> void:
 			MainShaderCanvas.filter_dict["drunk"][0].visible = false
 			#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 			$Options/Back.visible = false
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_start_pressed() -> void:
 	Globals.drunkenness = 20
