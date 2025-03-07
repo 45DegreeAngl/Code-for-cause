@@ -64,6 +64,7 @@ const starting_scale = 1.1
 					var red = 1+zahness/10.0
 					shader_mat.set_shader_parameter("red_shift",red)
 @onready var game_over : bool = true
+@onready var game_paused : bool = false
 ##change this boolean when tutorial ends
 @onready var tutorial:bool = false
 @onready var drunkenness : float = 20:

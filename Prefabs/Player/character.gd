@@ -54,7 +54,7 @@ func _ready():
 	
 
 func _input(_event):
-	if Globals.game_over:
+	if Globals.game_over or Globals.game_paused:
 		return
 	if Input.is_action_just_pressed("R"): ragdoll_mode = bool(1-int(ragdoll_mode)) # toggle ragdoll mode
 
@@ -94,6 +94,8 @@ func _physics_process(delta):
 	if not ragdoll_mode:# if not in ragdoll mode
 		if Globals.game_over:
 			ragdoll_mode = true
+			return
+		elif Globals.game_paused:
 			return
 		# walking control
 		walking = false

@@ -14,6 +14,13 @@ func _on_buy_area_body_entered(body: Node3D) -> void:
 		body.queue_free()
 		Globals.update_bottles.emit()
 
-
-func _on_buy_area_body_exited(_body: Node3D) -> void:
-	pass # Replace with function body.
+var exit_counter : int = 0
+func _on_voice_line_area_exited(area: Area3D) -> void:
+	print(area.get_parent())
+	print(area)
+	if area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
+		
+		if exit_counter>0:
+			return
+		$Interactibles/AudioStreamPlayer3D.play()
+		exit_counter +=1

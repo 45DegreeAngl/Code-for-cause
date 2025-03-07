@@ -11,6 +11,7 @@ extends VehicleBody3D
 ##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are
 @export var ENGINE_POWER : float = 200
 @export var SOUND_MAX_SPEED : float = 75
+var original_engine_power:float = 0
 
 @export_subgroup("Radio")
 @export var radio_on : bool = false
@@ -21,21 +22,23 @@ var occupied:bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	original_engine_power = ENGINE_POWER
 	Globals.player_vehicle = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_on_radio_finished()
+	Globals.car_contents = {"Beer":3,"Sake":2,"Jaeger":1}
 	Globals.update_bottles.emit()
 	Globals.timer = 0
 	if DEBUG_MODE:
 		return
 	MainShaderCanvas.toggle_filter("drunk")
-	MainShaderCanvas.toggle_filter("BeerMeter")
+	MainShaderCanvas.filter_dict["BeerMeter"][0].visible = true
 	Globals.drunkenness= Globals.drunkenness
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	Globals.timer+=delta
-	if !occupied or Globals.game_over:
+	if !occupied or Globals.game_over or Globals.game_paused:
 		if abs(linear_velocity):
 			engine_force = move_toward(linear_velocity.length(),-linear_velocity.length(),delta)
 		else:
@@ -79,10 +82,21 @@ func _process(delta: float) -> void:
 					radio_on = true
 					
 	elif Input.is_action_just_pressed("Q"):#change radio track if playing
-		if radio_on and cur_look_at == looking_at.Radio:
-			$Sounds/Radio.stop()
-			_on_radio_finished()
-			seek_random_position()
+		if cur_look_at == looking_at.Radio:
+			if radio_on:
+				$Sounds/Radio.stop()
+				_on_radio_finished()
+				seek_random_position()
+		else:
+			throw_debris()
+	
+	if $"Ground Ray".get_collider():
+		var collision_thing = $"Ground Ray".get_collider()
+		if collision_thing is GridMap and !collision_thing is RoadSegment:
+			ENGINE_POWER = original_engine_power/2
+		else:
+			ENGINE_POWER = original_engine_power
+	#print(ENGINE_POWER)
 	
 	change_engine_pitch()
 	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
@@ -143,7 +157,7 @@ func drink_random():
 var rot_x = 180
 var rot_y = 0
 func _input(event: InputEvent) -> void:
-	if !occupied:
+	if !occupied or Globals.game_paused:
 		return
 	
 	if event is InputEventKey and event.is_pressed():
@@ -233,6 +247,16 @@ func enter_car():
 	set_deferred("player_instance",null)
 	Globals.set_deferred("player_character",null)
 
+func throw_debris():
+	if $Debrie.get_child_count()>0:
+		var chosen:RigidBody3D = $Debrie.get_children().pick_random()
+		print(chosen)
+		chosen.global_position = $"Debrie Launch".global_position
+		print(chosen.global_position)
+		print($"Debrie Launch".global_position)
+		chosen.reparent(Globals.world_node.previous_road,true)
+		chosen.process_mode = Node.PROCESS_MODE_INHERIT
+
 enum looking_at{Door,Alchohol,Radio}
 var cur_look_at = null
 
@@ -317,7 +341,7 @@ var closest_cop : VehicleBody3D = null
 
 func update_cop_detector():
 	if cops_node.get_child_count()<1:
-		label_3d.text = "NO COPS NEARBY"
+		label_3d.text = "|-NONE-|"
 		closest_cop = null
 		return
 	var cur_distance = INF

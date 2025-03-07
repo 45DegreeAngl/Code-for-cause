@@ -140,9 +140,9 @@ func _process(delta: float) -> void:
 			$Timer.stop()
 			$Siren.playing = false
 		hunt = false
-	
-func _physics_process(_delta: float) -> void:
-	pass
+
+	if target.global_position.z+1000<self.global_position.z:
+		call_deferred("queue_free")
 	
 func change_engine_pitch():
 	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:

@@ -8,6 +8,7 @@ extends VehicleBody3D
 ##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are
 @export var ENGINE_POWER : float = 200
 @export var SOUND_MAX_SPEED : float = 75
+@onready var WHEEL_BASE = $Back_Left.position.distance_to($Front_Left.position)
 
 var steer_input : float :
 	set(val):
@@ -20,16 +21,26 @@ var current_path : Path3D = null
 
 var hunt : bool = false
 
-var saved_linear_velocity : Vector3 = Vector3.ZERO
+var reversing := false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	$StuckTimer.connect("timeout", on_stuck_timer_ended)
+	$ReverseTimer.connect("timeout", on_reverse_timer_ended)
 
 func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
+var saved_linear_velocity : Vector3 = Vector3.ZERO
 
 func control(_delta) -> void:
-	
+	saved_linear_velocity = linear_velocity
 	var lookahead_dist = 1.5
-	var throttle_lookahead_dist = 2 + 0.5* sqrt(linear_velocity.length())
-	if hunt:
+	var throttle_lookahead_dist = 3 + 1* sqrt(linear_velocity.length())
+	
+	if reversing:
+		engine_input = -1
+		steer_input = 0
+	elif hunt:
 		current_path = null
 		var target_point_global = Globals.player_vehicle.global_position
 		var target_lookahead_vector = (target_point_global - global_position).normalized()
@@ -39,7 +50,7 @@ func control(_delta) -> void:
 		var vector_to_target = target_point_global-global_position
 		var dot_product = (-basis.z).dot(vector_to_target.normalized())
 		
-		if dot_product>0 and linear_velocity.length() > ENGINE_POWER/15:
+		if dot_product>0 and linear_velocity.length() > 40:
 			engine_input = -1
 		else:
 			engine_input = 1
@@ -58,11 +69,14 @@ func control(_delta) -> void:
 		var slightly_ahead_point = current_path.curve.sample_baked(closest_point_offset + 0.1)
 		var global_slightly_ahead_point = curve_point_to_global(slightly_ahead_point, current_path)
 		var global_closest_point = curve_point_to_global(closest_point, current_path)
-		var closest_path_tangent = (global_slightly_ahead_point - global_closest_point).normalized()
-		var closest_path_normal = closest_path_tangent.rotated(Vector3.UP, PI/2)
-		var cross_track_error = (global_closest_point - global_position).dot(closest_path_normal)
+		var path_heading = (global_slightly_ahead_point - global_closest_point).normalized()
+		var path_normal = path_heading.rotated(Vector3.UP, PI/2)
+		var cross_track_error = (global_closest_point - global_position).dot(path_normal)
+		var current_heading = -global_basis.z
 		
-		steer_input = angle_to_lookahead/(PI/4)
+		var cross_track_error_gain = 2
+		var stanley_steer_angle = current_heading.signed_angle_to(path_heading, Vector3.UP) + atan2((cross_track_error_gain * cross_track_error),linear_velocity.length())
+		steer_input = angle_to_lookahead * 4
 	
 		var sample_pts = []
 		
@@ -74,7 +88,8 @@ func control(_delta) -> void:
 		
 		var A = area(sample_pts[0], sample_pts[1], sample_pts[2])
 		var curvature = 4*A/(distance_to(sample_pts[0], sample_pts[1]) * distance_to(sample_pts[1], sample_pts[2]) * distance_to(sample_pts[2], sample_pts[0]))
-		if abs(curvature) > 1e-5 and linear_velocity.length() > ENGINE_POWER/15:
+		var trajectory_curvature = stanley_steer_angle/WHEEL_BASE / linear_velocity.length()
+		if abs(curvature) > abs(trajectory_curvature) and abs(steer_input) >= 1 and linear_velocity.length() > 40:
 			engine_input = -1
 		else:
 			engine_input = 1
@@ -109,20 +124,19 @@ func find_nearest_path() -> Path3D:
 func _process(delta: float) -> void:
 	control(delta)
 	change_engine_pitch()
+	check_stuck()
 	steering = move_toward(steering,steer_input * get_max_steer(),delta*2.5)
 	engine_force = max(engine_input * ENGINE_POWER,-ENGINE_POWER/1.5)
 
 	#print(distance_to(self.global_position,target.global_position))
-
 	if distance_to(self.global_position,target.global_position)<hunt_distance:
 		hunt = true
 	else:
 		hunt = false
-	
-func _physics_process(_delta: float) -> void:
-	pass
-	#print("Steer " + str(steer_input))
-	#print("Engine " + str(engine_input))
+
+	if target.global_position.z+1000<self.global_position.z:
+		call_deferred("queue_free")
+
 	
 func change_engine_pitch():
 	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:
@@ -146,3 +160,17 @@ func _on_flicker_timer_timeout() -> void:
 			$Light/RED.light_color = colors[1]
 		Color.BLUE:
 			$Light/RED.light_color = colors[0]
+
+func check_stuck():
+	if linear_velocity.length() < 1:
+		if $StuckTimer.is_stopped():
+			$StuckTimer.start()
+	else:
+		$StuckTimer.stop()
+
+func on_stuck_timer_ended():
+	reversing = true
+	$ReverseTimer.start()
+
+func on_reverse_timer_ended():
+	reversing = false

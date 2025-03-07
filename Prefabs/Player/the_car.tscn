@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="2_am8ur"]
-[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_x726e"]
+[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_x726e"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="3_ye32b"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="4_qxn2i"]
 [ext_resource type="Texture2D" uid="uid://hnvpgshyy84f" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="5_e365b"]
@@ -1364,22 +1364,27 @@ transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 
 [node name="Sounds" type="Node3D" parent="."]
 
 [node name="Sobriety Alarm" type="AudioStreamPlayer" parent="Sounds"]
+bus = &"Voice"
 
 [node name="Voice Lines" type="AudioStreamPlayer" parent="Sounds"]
+bus = &"Voice"
 
 [node name="Crash" type="AudioStreamPlayer3D" parent="Sounds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32381, -3.78877)
 volume_db = -15.0
+bus = &"Sound Effect"
 
 [node name="Engine" type="AudioStreamPlayer3D" parent="Sounds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
 stream = ExtResource("8_etipi")
 volume_db = -20.0
 autoplay = true
+bus = &"Sound Effect"
 
 [node name="Radio" type="AudioStreamPlayer3D" parent="Sounds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68233, -1.74312)
 volume_db = -80.0
+bus = &"Radio"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1395,6 +1400,7 @@ offset_top = -88.0
 offset_right = 183.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Tooltips"]
 layout_mode = 1
@@ -1473,13 +1479,16 @@ omni_range = 0.2
 [node name="Label3D" type="Label3D" parent="Cop_Detector"]
 transform = Transform3D(0.00898814, 0, 0.999961, 0, 1, 0, -0.999961, 0, 0.00898814, 0.0642061, 0.331797, -0.0190637)
 modulate = Color(0.8909, 0.827478, 0.986341, 1)
-text = "12345667788"
+text = "-NONE-"
 font = ExtResource("17_axgcv")
 font_size = 67
 
 [node name="Cop Detector timer" type="Timer" parent="Cop_Detector"]
 wait_time = 0.5
 autostart = true
+
+[node name="Ground Ray" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.727834, -2.88534)
 
 [connection signal="body_entered" from="." to="." method="_on_collide"]
 [connection signal="area_entered" from="Interactibles/EnterExit" to="." method="_on_enter_exit_area_entered"]
