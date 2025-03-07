@@ -45,13 +45,15 @@ func _on_start_pressed() -> void:
 	$Animations.visible = true
 
 func _on_start_game() ->void:
+	#$MenuGeometry/SubViewportContainer/SubViewport/MenuCam.current = false
+	$MenuGeometry/SubViewportContainer.visible = false
+	$MenuGeometry.visible = false
 	var game_instance = game_packed.instantiate()
 	$"Game World".add_child(game_instance)
 	Globals.game_over = false
 	Globals.world_node = game_instance
 	$Animations.visible = false
 	MainShaderCanvas.visible = true
-	$MenuGeometry.queue_free()
 
 func _on_options_pressed() -> void:
 	$Options.visible = true
@@ -63,6 +65,8 @@ func _on_credits_pressed() -> void:
 	$"Main Menu".visible = false
 
 func on_back()->void:
+	$MenuGeometry.visible = true
+	$MenuGeometry/SubViewportContainer.visible = true
 	$Credits.visible = false
 	$Options.visible = false
 	$"Main Menu".visible = true
