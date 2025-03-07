@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var drinks:Dictionary = {"Jaeger":$Bottles/Jaeger,"Sake":$Bottles/Sake,"Beer":$Bottles/Beer}
-@onready var multimeshes:Dictionary = {"Beer":$Beer,"Sake":$Sake,"Jaeger":$Jaeger}
+
 #@onready var content:Dictionary = {"Beer":3,"Sake":2,"Jaeger":1}
 @onready var alchohol_count:int = 0
 var randomize_array:Array[String] = []
@@ -28,9 +28,6 @@ func update_bottles():
 		bottle_type = randomize_array.pick_random()
 		#print(str(randomize_array),bottle_type)
 		randomize_array.erase(bottle_type)
-		#print(bottle_type)
-		#var cur_multimesh_instance : MultiMeshInstance3D = multimeshes[bottle_type]
-		#print(multimeshes[bottle_type].name)
 		
 		var beg_marker_pos : Vector3 = $Beginning.position
 		var end_marker_pos : Vector3 = $End.position
@@ -71,7 +68,3 @@ func update_bottles():
 			#cur_multimesh.set_instance_transform(i,Transform3D(Basis(),Vector3(beg_transform.origin.x+x*bottle_step_count,bottle_y,beg_transform.origin.z+z*bottle_step_count)))
 			#x+=1
 		#cur_multimesh_instance.multimesh = cur_multimesh
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass

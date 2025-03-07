@@ -14,6 +14,7 @@ signal road_generated
 
 func _ready():
 	if not gabesmart_chance:
+		@warning_ignore("integer_division")
 		gabesmart_chance = 1/(2*max_gabesmart_pity)
 
 
@@ -28,9 +29,8 @@ func _ready():
 
 #spawn road at given location
 func spawn_road(segment:PackedScene = null)->Node3D:
+	var instanced_segment : Node3D
 	if not segment:
-		var instanced_segment : Node3D
-		
 		if gabesmart_pity >= max_gabesmart_pity:
 			instanced_segment = gabesmart_segments.pick_random().instantiate()
 			gabesmart_pity = 0
@@ -49,7 +49,7 @@ func spawn_road(segment:PackedScene = null)->Node3D:
 			
 		return instanced_segment
 	
-	var instanced_segment : Node3D = segment.instantiate()
+	instanced_segment = segment.instantiate()
 	$Roads.add_child(instanced_segment)
 	instanced_segment.global_position = previous_road.find_child("Exit").global_position
 	if instanced_segment.has_signal("increment_player_road_counter"):

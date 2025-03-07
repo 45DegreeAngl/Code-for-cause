@@ -237,6 +237,8 @@ func enter_car():
 				Globals.car_contents["Beer"] +=1
 			elif object.get_meta("Bottle")==("Jaeger"):
 				Globals.car_contents["Jaeger"] +=1
+			elif object.get_meta("Bottle")==("Crate"):
+				Globals.car_contents[object.get_meta("Bottle_Type")] += 6
 			object.call_deferred("queue_free")
 			Globals.update_bottles.emit()
 		elif object is Debris:

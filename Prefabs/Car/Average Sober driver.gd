@@ -97,7 +97,7 @@ func control(_delta) -> void:
 		if(closest_point_offset/current_path.curve.get_baked_length() > 0.95):
 			current_path = null
 
-func _on_collide(body):
+func _on_collide(_body):
 	if abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
 		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
 		$Sounds/Crash.play()

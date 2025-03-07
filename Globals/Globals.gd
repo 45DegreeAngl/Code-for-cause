@@ -1,6 +1,7 @@
 extends Node
 @warning_ignore("unused_signal")
 signal game_lost()
+@warning_ignore("unused_signal")
 signal game_won()
 
 @onready var player_packed : PackedScene = preload("res://Prefabs/Player/test character.tscn")

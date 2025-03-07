@@ -62,7 +62,6 @@ metadata/_editor_floor_ = Vector3(0, 3, 0)
 
 [node name="The_Car" parent="." node_paths=PackedStringArray("cops_node") instance=ExtResource("10_lxkwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 11, -5)
-DEBUG_MODE = true
 cops_node = NodePath("../Cops")
 
 [node name="Sober Driver" parent="." node_paths=PackedStringArray("target") instance=ExtResource("15_ydc27")]

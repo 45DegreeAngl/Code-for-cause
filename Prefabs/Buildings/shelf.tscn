@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://ebcvdgabjsw6"]
+[gd_scene load_steps=16 format=4 uid="uid://ebcvdgabjsw6"]
 
 [ext_resource type="Texture2D" uid="uid://bbcjk0bb3mygw" path="res://Assets/Models/Shelf_Cube Base Color.png" id="1_janui"]
 [ext_resource type="Script" path="res://Prefabs/Buildings/shelf.gd" id="1_tquuc"]
 [ext_resource type="PackedScene" uid="uid://bbeahk7jstgto" path="res://Prefabs/Buildings/jaeger_bottle.tscn" id="2_gbda5"]
 [ext_resource type="PackedScene" uid="uid://doqvv6pthu2dr" path="res://Prefabs/Buildings/beer_bottle.tscn" id="3_wvkri"]
 [ext_resource type="PackedScene" uid="uid://b1638nwtgmff3" path="res://Prefabs/Buildings/Sake_bottle.tscn" id="4_5f0nk"]
+[ext_resource type="PackedScene" uid="uid://baw10qlisjsy2" path="res://Prefabs/Buildings/alchohol_crate.tscn" id="5_54cy6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj7ha"]
 resource_name = "Material.001"
@@ -121,6 +122,7 @@ size = Vector3(4.51563, 2.90771, 0.262695)
 [node name="Shelf" type="Node3D"]
 script = ExtResource("1_tquuc")
 buyable = Array[PackedScene]([ExtResource("2_gbda5"), ExtResource("3_wvkri"), ExtResource("4_5f0nk")])
+beer_crate = ExtResource("5_54cy6")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.29202, 0, 0, 0, -0.141005, 0, 0, 0, 1, 0, 0.0201436, 0)

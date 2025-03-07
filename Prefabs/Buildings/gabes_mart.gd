@@ -11,6 +11,8 @@ func _on_buy_area_body_entered(body: Node3D) -> void:
 			Globals.car_contents["Beer"] +=1
 		elif body.get_meta("Bottle")==("Jaeger"):
 			Globals.car_contents["Jaeger"] +=1
+		elif body.get_meta("Bottle")==("Crate"):
+			Globals.car_contents[body.get_meta("Bottle_Type")] += 6
 		body.queue_free()
 		Globals.update_bottles.emit()
 

@@ -16,6 +16,3 @@ func _process(delta: float) -> void:
 	var center : Vector2 = get_viewport().size/2
 	var mouse_percent = (center - mouse_pos) / center
 	global_position = global_position.slerp(-basis.z * Vector3(mouse_percent.x, mouse_percent.y  * (center.y/center.x),0) * mouse_scale_factor + rest_pos, interp_rate * delta)
-
-func _input(event: InputEvent) -> void:
-	pass
