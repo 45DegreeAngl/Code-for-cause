@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="2_am8ur"]
-[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_x726e"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_x726e"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="3_ye32b"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="4_qxn2i"]
 [ext_resource type="Texture2D" uid="uid://hnvpgshyy84f" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="5_e365b"]
@@ -1063,7 +1063,7 @@ center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, -1.3)
 contact_monitor = true
 max_contacts_reported = 5
-linear_damp = 0.1
+linear_damp = 0.2
 script = ExtResource("1_evy4q")
 STEERING_CURVE = ExtResource("2_x726e")
 ENGINE_POWER = 300.0

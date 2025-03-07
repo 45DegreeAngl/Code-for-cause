@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cetv46bv2jvyl"]
+[gd_scene load_steps=10 format=3 uid="uid://cetv46bv2jvyl"]
 
 [ext_resource type="Script" path="res://Shaders/main_shader_canvas.gd" id="1_10y2y"]
 [ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="1_22wnm"]
 [ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="2_brygk"]
+[ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="4_8lw61"]
 [ext_resource type="Texture2D" uid="uid://b0qeh742ut3rp" path="res://Assets/Textures/Top_Layer_Meter.png" id="4_hysnl"]
 [ext_resource type="Texture2D" uid="uid://dre78bonfm6n7" path="res://Assets/Textures/Bottom_Layer_Meter.png" id="5_idmyt"]
 
@@ -22,6 +23,11 @@ shader_parameter/red_shift = 1.0
 shader_parameter/blue_shift = 2.0
 shader_parameter/green_shift = 3.0
 shader_parameter/red_mult = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7h81m"]
+shader = ExtResource("4_8lw61")
+shader_parameter/outerRadius = 1.0
+shader_parameter/MainAlpha = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_10y2y")
@@ -58,6 +64,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Drunk"]
+
+[node name="VingetteShader" type="ColorRect" parent="Drunk"]
+visible = false
+material = SubResource("ShaderMaterial_7h81m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Beer Meter" type="Control" parent="."]
 visible = false

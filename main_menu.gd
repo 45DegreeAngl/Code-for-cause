@@ -5,6 +5,7 @@ extends Node
 func _ready()->void:
 	Globals.game_lost.connect(_on_lose)
 	Globals.game_won.connect(_on_win)
+	$AnimationPlayer.play("Cop_Lights")
 
 func _on_lose(reason:String):
 	if Globals.game_over:
@@ -50,6 +51,7 @@ func _on_start_game() ->void:
 	Globals.world_node = game_instance
 	$Animations.visible = false
 	MainShaderCanvas.visible = true
+	$MenuGeometry.queue_free()
 
 func _on_options_pressed() -> void:
 	$Options.visible = true

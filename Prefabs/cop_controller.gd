@@ -22,20 +22,26 @@ var current_path : Path3D = null
 
 var hunt : bool = false
 
+var reversing := false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$StuckTimer.connect("timeout", on_stuck_timer_ended)
+	$ReverseTimer.connect("timeout", on_reverse_timer_ended)
 
 func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
 var saved_linear_velocity : Vector3 = Vector3.ZERO
+
 func control(_delta) -> void:
 	saved_linear_velocity = linear_velocity
 	var lookahead_dist = 1.5
 	var throttle_lookahead_dist = 3 + 1* sqrt(linear_velocity.length())
 	
-	#if hunt:
-	if hunt:
+	if reversing:
+		engine_input = -1
+		steer_input = 0
+	elif hunt:
 		current_path = null
 		var target_point_global = Globals.player_vehicle.global_position
 		var target_lookahead_vector = (target_point_global - global_position).normalized()
@@ -119,6 +125,7 @@ func find_nearest_path() -> Path3D:
 func _process(delta: float) -> void:
 	control(delta)
 	change_engine_pitch()
+	check_stuck()
 	steering = move_toward(steering,steer_input * get_max_steer(),delta*2.5)
 	engine_force = max(engine_input * ENGINE_POWER,-ENGINE_POWER/1.5)
 
@@ -169,3 +176,17 @@ func get_max_steer():
 	if linear_velocity.length() >= 60:
 		return deg_to_rad(MAX_STEER_DEG) * 0.1
 	return deg_to_rad(MAX_STEER_DEG) * STEERING_CURVE.sample(linear_velocity.length()/60)
+
+func check_stuck():
+	if linear_velocity.length() < 1:
+		if $StuckTimer.is_stopped():
+			$StuckTimer.start()
+	else:
+		$StuckTimer.stop()
+
+func on_stuck_timer_ended():
+	reversing = true
+	$ReverseTimer.start()
+
+func on_reverse_timer_ended():
+	reversing = false
