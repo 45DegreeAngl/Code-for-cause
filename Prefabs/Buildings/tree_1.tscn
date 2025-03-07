@@ -96,10 +96,12 @@ shape = SubResource("CylinderShape3D_f44wa")
 
 [node name="Cylinder" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.593129, 0, 0, 0, 1.3341, 0, 0, 0, 0.593129, 0, 0.743098, 0)
+lod_bias = 0.001
 mesh = SubResource("ArrayMesh_df2re")
 skeleton = NodePath("")
 
 [node name="Cone_002" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.73107, 0)
+lod_bias = 0.05
 mesh = SubResource("ArrayMesh_gj062")
 skeleton = NodePath("")
