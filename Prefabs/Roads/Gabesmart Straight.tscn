@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://6ohj54i0nwum"]
+[gd_scene load_steps=10 format=3 uid="uid://6ohj54i0nwum"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_j0qfm"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_i3xtw"]
@@ -15,6 +15,10 @@ point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8kkxy"]
 size = Vector3(33.7588, 5.26257, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_88qvo"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_kgkid"]
 
 [node name="Debug Straight" type="GridMap"]
 mesh_library = ExtResource("1_j0qfm")
@@ -89,5 +93,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.0189)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
 shape = SubResource("BoxShape3D_8kkxy")
+
+[node name="Left trees" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.4798, 0.973994, -7.4208)
+mesh = SubResource("QuadMesh_88qvo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.5049, 0.989509, -8.66668)
+mesh = SubResource("QuadMesh_kgkid")
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

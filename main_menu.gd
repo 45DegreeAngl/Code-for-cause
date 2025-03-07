@@ -22,6 +22,7 @@ func _on_lose(reason:String):
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]HIT BY A COP")
 	$"Game Over/Label".text = "YOU SURVIVED FOR: "+Globals.format_seconds_as_time(Globals.timer)
 	MainShaderCanvas.visible = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_win():
@@ -32,6 +33,7 @@ func _on_win():
 	$"YOU WIN/Label2".text = "YOUR TIME: "+Globals.format_seconds_as_time(Globals.timer)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	MainShaderCanvas.visible = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_start_pressed() -> void:
@@ -66,4 +68,5 @@ func on_back()->void:
 	$"YOU WIN".visible = false
 	for child in $"Game World".get_children():
 		child.queue_free()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	

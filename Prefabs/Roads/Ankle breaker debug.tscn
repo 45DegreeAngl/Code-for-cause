@@ -77,64 +77,64 @@ transform = Transform3D(0.0149178, 0, 0.026028, 0, 0.03, 0, -0.026028, 0, 0.0149
 [node name="Lamp_post10" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(0.0149178, 0, 0.026028, 0, 0.03, 0, -0.026028, 0, 0.0149178, 1.42633, 0.495, -2.75211)
 
-[node name="Lamp_post" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post13" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(0.0273842, 0, 0.0122518, 0, 0.03, 0, -0.0122518, 0, 0.0273842, 1.66549, 0.495, -4.10358)
 
-[node name="Lamp_post2" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post14" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(0.0273842, 0, 0.0122518, 0, 0.03, 0, -0.0122518, 0, 0.0273842, 2.18701, 0.495, -2.93793)
 
-[node name="Lamp_post3" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post15" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(0.0263533, 0, 0.0143355, 0, 0.03, 0, -0.0143355, 0, 0.0263533, 2.56225, 0.495, -4.30995)
 
-[node name="Lamp_post4" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post16" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(0.0263533, 0, 0.0143355, 0, 0.03, 0, -0.0143355, 0, 0.0263533, 3.17246, 0.495, -3.18818)
 
-[node name="Lamp_post5" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post17" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(0.0140166, 0, 0.0265242, 0, 0.03, 0, -0.0265242, 0, 0.0140166, 2.96288, 0.495, -4.88371)
 
-[node name="Lamp_post6" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post18" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(0.0140166, 0, 0.0265242, 0, 0.03, 0, -0.0265242, 0, 0.0140166, 4.09193, 0.495, -4.28707)
 
-[node name="Lamp_post7" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post19" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.00781615, 0, 0.0289639, 0, 0.03, 0, -0.0289639, 0, -0.00781615, 2.81449, 0.495, -5.51919)
 
-[node name="Lamp_post8" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post20" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.00781615, 0, 0.0289639, 0, 0.03, 0, -0.0289639, 0, -0.00781615, 4.04739, 0.495, -5.8519)
 
-[node name="Lamp_post9" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post21" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.0235102, 0, 0.0186353, 0, 0.03, 0, -0.0186353, 0, -0.0235102, 2.41555, 0.495, -5.84764)
 
-[node name="Lamp_post10" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post22" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.0235102, 0, 0.0186353, 0, 0.03, 0, -0.0186353, 0, -0.0235102, 3.2088, 0.495, -6.84839)
 
-[node name="Lamp_post11" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post23" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.0298617, 0, 0.00287745, 0, 0.03, 0, -0.00287745, 0, -0.0298617, 1.65589, 0.495, -5.91286)
 
-[node name="Lamp_post12" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post24" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.0298617, 0, 0.00287745, 0, 0.03, 0, -0.00287745, 0, -0.0298617, 2.0152, 0.495, -7.18398)
 
-[node name="Lamp_post13" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post25" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.0264036, 0, 0.0142425, 0, 0.03, 0, -0.0142425, 0, -0.0264036, 0.806337, 0.495, -6.18476)
 
-[node name="Lamp_post14" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post26" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.0264036, 0, 0.0142425, 0, 0.03, 0, -0.0142425, 0, -0.0264036, 1.41259, 0.495, -7.30868)
 
-[node name="Lamp_post15" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post27" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.132838, 0.495, -7.76863)
 
-[node name="Lamp_post16" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post28" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.14416, 0.495, -7.76863)
 
-[node name="Lamp_post17" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post29" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 0.771446, 0.495, -8.9943)
 
-[node name="Lamp_post18" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post30" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 2.04845, 0.495, -8.9943)
 
-[node name="Lamp_post19" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post31" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.0196276, 0, 0.0226883, 0, 0.03, 0, -0.0226883, 0, -0.0196276, 0.170048, 0.495, -9.23218)
 
-[node name="Lamp_post20" parent="." instance=ExtResource("3_8isnk")]
+[node name="Lamp_post32" parent="Lamps" instance=ExtResource("3_8isnk")]
 transform = Transform3D(-0.0196276, 0, 0.0226883, 0, 0.03, 0, -0.0226883, 0, -0.0196276, 1.13581, 0.495, -10.0677)
 
 [node name="Exit Area" type="Area3D" parent="."]

@@ -48,7 +48,7 @@ func spawn_road(segment:PackedScene = null)->Node3D:
 			instanced_segment.increment_player_road_counter.connect(increment_player_road)
 			
 		return instanced_segment
-		
+	
 	var instanced_segment : Node3D = segment.instantiate()
 	$Roads.add_child(instanced_segment)
 	instanced_segment.global_position = previous_road.find_child("Exit").global_position
@@ -65,15 +65,16 @@ var cur_player_road:int = 0:
 		elif value == 50:
 			if exes_house:
 				spawn_road(exes_house)
-		elif value%2==0:
+		else:
 			print("spawning new road")
 			spawn_road()
-			spawn_road()
+
 		cur_player_road=value
-		if $Roads.get_child_count()>5:
-			var temp_array:Array[Node3D] = [$Roads.get_child(0),$Roads.get_child(1)]
+		if $Roads.get_child_count()>8:
+			var temp_array:Array[Node3D] = [$Roads.get_child(0)]
 			for temp:Node3D in temp_array:
-				temp.call_deferred("queue_free")
+				
+				temp.queue_free()
 
 func increment_player_road():
 	cur_player_road+=1
