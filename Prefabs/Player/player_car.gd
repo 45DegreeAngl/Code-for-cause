@@ -28,7 +28,7 @@ func _ready() -> void:
 	Globals.timer = 0
 	if DEBUG_MODE:
 		return
-	#MainShaderCanvas.toggle_filter("drunk")
+	MainShaderCanvas.toggle_filter("drunk")
 	MainShaderCanvas.toggle_filter("BeerMeter")
 	Globals.drunkenness= Globals.drunkenness
 
@@ -46,6 +46,9 @@ func _process(delta: float) -> void:
 	#print(linear_velocity.length())
 	if Input.is_action_just_pressed("F"):#toggle Headlights
 		for child in $Light.get_children():
+			
+			
+			
 			if child is Light3D and child.name.findn("Head")!=-1 and child.has_method("get_param"):
 				#print(child)
 				var cur_energy = child.get_param(Light3D.PARAM_ENERGY)
@@ -143,9 +146,6 @@ func _input(event: InputEvent) -> void:
 	if !occupied:
 		return
 	
-	if event is InputEventMouseButton and event.is_pressed():
-		if event.button_index==MOUSE_BUTTON_LEFT:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_ESCAPE or event.keycode == KEY_ASCIITILDE:
 			match Input.mouse_mode:
@@ -161,6 +161,11 @@ func _input(event: InputEvent) -> void:
 		
 		rot_y = clampf(rot_y,deg_to_rad(-90),deg_to_rad(90))
 		handle_cam_rotation()
+	if Globals.game_over:
+		return
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index==MOUSE_BUTTON_LEFT:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func handle_cam_rotation():
 	$Cameras/Windshield.transform.basis = Basis() #reset rot

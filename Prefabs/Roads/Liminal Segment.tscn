@@ -226,7 +226,7 @@ transform = Transform3D(0.000801531, 0, 0.0299893, 0, 0.03, 0, -0.0299893, 0, 0.
 transform = Transform3D(0.000801531, 0, 0.0299893, 0, 0.03, 0, -0.0299893, 0, 0.000801531, 1.14054, 0.495, -20.5411)
 
 [node name="Exit Area" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20.4291)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.5293)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)

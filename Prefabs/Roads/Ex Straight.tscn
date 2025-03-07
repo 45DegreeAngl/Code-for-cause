@@ -560,8 +560,3 @@ transform = Transform3D(-0.970296, 0, 0.241922, 0, 1, 0, -0.241922, 0, -0.970296
 
 [node name="Direction_Sign" parent="Debree" instance=ExtResource("10_nuy8g")]
 transform = Transform3D(0.524996, 0, -0.851104, 0, 1, 0, 0.851104, 0, 0.524996, 0, 0.464796, -5.99898)
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61536, -7.51531)
-text = "DANNY I KNOW YOURE GOING TO BE READING THIS, 
-MAKE THE FINAL ROAD TO THE EXES HOUSE A FODDIAN DESIGN"
