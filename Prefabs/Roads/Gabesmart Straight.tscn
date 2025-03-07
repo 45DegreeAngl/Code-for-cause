@@ -86,7 +86,7 @@ transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-0
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.495, -5.45224)
 
 [node name="Lamp_post5" parent="Lamps" instance=ExtResource("5_eg3gs")]
-transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 0.295431, 1.11566, -8.28444)
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.11272, 0.481507, -7.49987)
 
 [node name="Lamp_post11" parent="Lamps" instance=ExtResource("5_eg3gs")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.495, -10.2892)
