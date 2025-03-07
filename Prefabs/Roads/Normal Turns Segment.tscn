@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://coa1buyxhvtlm"]
+[gd_scene load_steps=7 format=3 uid="uid://coa1buyxhvtlm"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_l6kl3"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_i48l3"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_kta5b"]
+[ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="4_l1gr1"]
 
 [sub_resource type="Curve3D" id="Curve3D_6ce3a"]
 _data = {
@@ -25,6 +26,15 @@ script = ExtResource("2_kta5b")
 [node name="Exit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -11)
 
+[node name="Exit3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.42185, 0, -7.96852)
+
+[node name="Exit4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.42185, 0, -6.33229)
+
+[node name="Exit2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -9.65156)
+
 [node name="Path3D" type="Path3D" parent="." groups=["road_path"]]
 curve = SubResource("Curve3D_6ce3a")
 
@@ -42,5 +52,86 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.4229)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
 shape = SubResource("BoxShape3D_fyx5k")
+
+[node name="Lampos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.923902)
+
+[node name="Lamp_post33" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.490817, -0.142532)
+
+[node name="Lamp_post34" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.490817, -0.142532)
+
+[node name="Lamp_post49" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.490817, -2.09236)
+
+[node name="Lamp_post50" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.490817, -2.09236)
+
+[node name="Lamp_post35" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -2.1719, 0.490817, -9.78214)
+
+[node name="Lamp_post36" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.894904, 0.490817, -9.78214)
+
+[node name="Lamp_post44" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -6.12606, 0.490817, -6.75065)
+
+[node name="Lamp_post46" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -5.58293, 0.490817, -8.63333)
+
+[node name="Lamp_post45" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -4.84906, 0.490817, -6.75065)
+
+[node name="Lamp_post47" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -6.12606, 0.490817, -5.11442)
+
+[node name="Lamp_post51" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -5.87325, 0.490817, -3.73394)
+
+[node name="Lamp_post52" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -3.9875, 0.490817, -2.91806)
+
+[node name="Lamp_post53" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -3.9875, 0.490817, -4.2857)
+
+[node name="Lamp_post54" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -2.77057, 0.490817, -2.91806)
+
+[node name="Lamp_post55" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -2.77057, 0.490817, -4.2857)
+
+[node name="Lamp_post56" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -1.31298, 0.490817, -2.91806)
+
+[node name="Lamp_post57" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -1.31298, 0.490817, -4.2857)
+
+[node name="Lamp_post58" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 0.628165, 0.490817, -3.66092)
+
+[node name="Lamp_post48" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -4.84906, 0.490817, -5.11442)
+
+[node name="Lamp_post37" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -2.1719, 0.490817, -8.4337)
+
+[node name="Lamp_post38" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.894904, 0.490817, -8.4337)
+
+[node name="Lamp_post39" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.894904, 0.490817, -7.20404)
+
+[node name="Lamp_post40" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -1.19289, 0.490817, -6.29667)
+
+[node name="Lamp_post41" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -2.53065, 0.490817, -6.07771)
+
+[node name="Lamp_post42" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -3.90948, 0.490817, -7.90817)
+
+[node name="Lamp_post43" parent="Lampos" instance=ExtResource("4_l1gr1")]
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -3.90948, 0.490817, -9.1763)
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]
