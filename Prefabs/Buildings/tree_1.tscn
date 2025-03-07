@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://jj4h3poeat31" path="res://Assets/Models/Debris/Tree_1_Cylinder Base Color.png" id="1_k5kgq"]
 [ext_resource type="Texture2D" uid="uid://c7sl5akbr3rnv" path="res://Assets/Models/Debris/Tree_1_Cone.png" id="2_pmjn2"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4byrk"]
-points = PackedVector3Array(-9.10163e-05, -0.579393, -0.464892, -0.464892, -0.579393, -9.10163e-05, -0.429579, 0.350391, -0.17793, 0.429488, 0.350391, -0.17793, 0.464892, -0.579393, -9.10163e-05, -9.10163e-05, -0.579393, 0.464892, -0.17793, 0.350391, 0.429488, 0.177839, 0.350391, 0.429488)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f44wa"]
+height = 2.51187
+radius = 0.280978
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qw04"]
 resource_name = "Material.002"
@@ -83,12 +84,13 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_w0yur")
 
 [node name="Tree_1" type="Node3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(0.593129, 0, 0, 0, 1.3341, 0, 0, 0, 0.593129, 0, 0.743098, 0)
-shape = SubResource("ConvexPolygonShape3D_4byrk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0147086, 1.26825, 0.00434861)
+shape = SubResource("CylinderShape3D_f44wa")
 
 [node name="Cylinder" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.593129, 0, 0, 0, 1.3341, 0, 0, 0, 0.593129, 0, 0.743098, 0)
