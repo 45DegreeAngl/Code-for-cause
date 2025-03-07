@@ -46,7 +46,7 @@ func update_bottles():
 				z=0
 			new_mesh.position = Vector3(beg_marker_pos.x+x*bottle_step_count,bottle_y_pos,beg_marker_pos.z+z*bottle_step_count)
 			x+=1
-			
+	$Label3D.text = str(alchohol_count)
 		#var cur_multimesh : MultiMesh = MultiMesh.new()
 		#cur_multimesh.mesh = drinks[bottle_type].mesh
 		#cur_multimesh.transform_format = MultiMesh.TRANSFORM_3D
