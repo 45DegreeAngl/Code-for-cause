@@ -6,5 +6,4 @@ class_name LampPost
 
 func _ready():
 	if rescale:
-		scale *= scalar
 		$OmniLight3D.omni_range *= scalar

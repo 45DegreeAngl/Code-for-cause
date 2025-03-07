@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4w5o83874l4n"
+uid="uid://hnvpgshyy84f"
 path.s3tc="res://.godot/imported/The_Car_Left_Mirror_Mat.png-24864b420a9f72eadb39cf9eb874c49d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "257670a012c0cfcdf0ccfed235f282f6"
 }
 
 [deps]

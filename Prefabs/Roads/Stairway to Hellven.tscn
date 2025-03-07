@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgk8q7mcfa465"]
+[gd_scene load_steps=4 format=3 uid="uid://cgk8q7mcfa465"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_0r240"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_h7btp"]
-[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="3_y1bxg"]
 
 [sub_resource type="Curve3D" id="Curve3D_4ckwr"]
 _data = {
@@ -10,23 +9,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5p0vb"]
-transparency = 1
-albedo_texture = ExtResource("3_y1bxg")
-uv1_scale = Vector3(3, 1, 1)
-uv1_triplanar_sharpness = 1.05615
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yadfg"]
-transparency = 1
-albedo_texture = ExtResource("3_y1bxg")
-uv1_triplanar_sharpness = 1.05615
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jnmx"]
-transparency = 1
-albedo_texture = ExtResource("3_y1bxg")
-uv1_scale = Vector3(3, 1, 1)
-uv1_triplanar_sharpness = 1.05615
 
 [node name="Stairway to Hellven" type="GridMap"]
 mesh_library = ExtResource("1_0r240")
@@ -49,68 +31,3 @@ data = {
 "cells": PackedInt32Array(-65536, 65533, 1048577, -131072, 65531, 1048580, -196608, 65529, 1048580, -262144, 65527, 1048580, -327680, 65524, 1048579, -327680, 65521, 1441799, -327680, 65523, 1441792, -327680, 65522, 1441792, -262144, 65517, 1441800, -196608, 65514, 1441800, -131072, 65511, 1441800, -65536, 65508, 1441797)
 }
 metadata/_editor_floor_ = Vector3(0, -1, 0)
-
-[node name="Left Tree Box" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, -0.434728, 0.900562, -1.90026e-08, -0.900562, -0.434728, -3.93648e-08, -7.73003, 0.586027, -7.16765)
-use_collision = true
-size = Vector3(15.9953, 5.65918, 0.0811768)
-material = SubResource("StandardMaterial3D_5p0vb")
-
-[node name="Right Tree Box" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, -0.434728, 0.900562, -1.90026e-08, -0.900562, -0.434728, -3.93648e-08, 7.69198, 0.586027, -7.16765)
-use_collision = true
-flip_faces = true
-size = Vector3(15.9953, 5.65918, 0.0811768)
-material = SubResource("StandardMaterial3D_5p0vb")
-
-[node name="Left Tree Box2" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0.303019, 0.952985, 1.32454e-08, -0.952985, 0.303019, -4.16563e-08, -7.73003, 0.914828, -22.3387)
-use_collision = true
-size = Vector3(16.5123, 5.65918, 0.0811768)
-material = SubResource("StandardMaterial3D_5p0vb")
-
-[node name="Right Tree Box2" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0.303019, 0.952985, 1.32454e-08, -0.952985, 0.303019, -4.16563e-08, 7.69198, 0.932897, -22.3956)
-use_collision = true
-flip_faces = true
-size = Vector3(16.6316, 5.65918, 0.0811768)
-material = SubResource("StandardMaterial3D_5p0vb")
-
-[node name="Left Tree Box3" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.00256, -1.17117, -13.6257)
-use_collision = true
-size = Vector3(7.99521, 6.88379, 0.0811768)
-material = SubResource("StandardMaterial3D_yadfg")
-
-[node name="Right Tree Box3" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.50626, -1.17113, -13.6342)
-use_collision = true
-flip_faces = true
-size = Vector3(7.99521, 6.88379, 0.0811768)
-material = SubResource("StandardMaterial3D_yadfg")
-
-[node name="Left Tree Box4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.61365, 3.30626, -30.8879)
-use_collision = true
-size = Vector3(13.7977, 5.65918, 0.0811768)
-material = SubResource("StandardMaterial3D_2jnmx")
-
-[node name="Right Tree Box4" type="CSGBox3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.45875, 3.30626, -30.9817)
-use_collision = true
-flip_faces = true
-size = Vector3(14.0145, 5.65918, 0.0811768)
-material = SubResource("StandardMaterial3D_2jnmx")
-
-[node name="Left Tree Box5" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.999937, 0, -0.0112049, 0, 1, 0, 0.0112049, 0, -0.999937, 8.55766, 3.30626, -0.275291)
-use_collision = true
-size = Vector3(13.7977, 5.65918, 0.0811768)
-material = SubResource("StandardMaterial3D_2jnmx")
-
-[node name="Right Tree Box5" type="CSGBox3D" parent="."]
-transform = Transform3D(0.999937, 0, 0.011205, 0, 1, 0, -0.011205, 0, 0.999937, -7.51268, 3.30626, -0.00142479)
-use_collision = true
-flip_faces = true
-size = Vector3(14.0145, 5.65918, 0.0811768)
-material = SubResource("StandardMaterial3D_2jnmx")

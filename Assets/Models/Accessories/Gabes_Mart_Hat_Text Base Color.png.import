@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnmpr81asmiqt"
+uid="uid://luw7y3x04cve"
 path.s3tc="res://.godot/imported/Gabes_Mart_Hat_Text Base Color.png-99efd48e7532fe09fd1e9c7056286007.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "2b7a70fa59f8173635bcbe956bad56c6"
 }
 
 [deps]
