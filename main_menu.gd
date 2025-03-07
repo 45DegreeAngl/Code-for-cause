@@ -1,6 +1,7 @@
 extends Node
 
 @export var game_packed : PackedScene
+@export var TitleMusicPlayer :AudioStreamPlayer2D
 
 func _ready()->void:
 	Globals.game_lost.connect(_on_lose)
@@ -67,6 +68,7 @@ func _on_start_pressed() -> void:
 	$Animations.visible = true
 
 func _on_start_game() ->void:
+	TitleMusicPlayer.playing = false
 	$MenuGeometry/SubViewportContainer.visible = false
 	$MenuGeometry.visible = false
 	var game_instance = game_packed.instantiate()
