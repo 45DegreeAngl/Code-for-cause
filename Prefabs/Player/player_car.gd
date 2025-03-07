@@ -67,7 +67,6 @@ func _process(delta: float) -> void:
 					$CanvasLayer/Tooltips/Label.text = "NEED MORE ALCOHOL"
 				#print("glug glug glug")
 			looking_at.Radio:#change radio 
-				print("BALLS")
 				#toggle on and off
 				if radio_on:
 					$Sounds/Radio.volume_db = -80
@@ -102,7 +101,12 @@ func _on_collide(body):
 	elif body is Debris:
 		#play debris hit effect
 		pass
-	
+
+func flip_car():
+	process_mode = PROCESS_MODE_DISABLED
+	rotation = Vector3.ZERO
+	global_position += Vector3(0,10,0)
+	process_mode = PROCESS_MODE_INHERIT
 
 func die_by_cop():
 	Globals.game_lost.emit("Cops")
@@ -162,7 +166,7 @@ func handle_cam_rotation():
 	$Cameras/Windshield.transform.basis = Basis() #reset rot
 	$Cameras/Windshield.rotate_object_local(Vector3(0,1,0),-rot_x)
 	$Cameras/Windshield.rotate_object_local(Vector3(1,0,0),-rot_y)
-	
+
 func change_engine_pitch():
 	if (not $Sounds/Engine.playing) and $Sounds/Engine.pitch_scale > 0.01:
 		$Sounds/Engine.play()
@@ -171,7 +175,6 @@ func change_engine_pitch():
 		$Sounds/Engine.stop()
 	if pitch>0.0:
 		$Sounds/Engine.pitch_scale = pitch
-
 
 func get_max_steer():
 	if linear_velocity.length() >= 60:
@@ -235,7 +238,7 @@ func _on_enter_exit_area_entered(area: Area3D) -> void:
 		#print("door")
 	elif area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
 		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door("Car")
-		$CanvasLayer/Tooltips/Label.text = "E to ENTER"
+		$CanvasLayer/Tooltips/Label.text += "E to ENTER\n"
 
 func _on_alcholol_area_entered(area: Area3D) -> void:
 	if area == driver_look_area:
@@ -251,6 +254,12 @@ func _on_radio_area_entered(area: Area3D) -> void:
 		cur_look_at = looking_at.Radio
 		$CanvasLayer/Tooltips/Label.text = "E to TOGGLE\nQ to SWITCH STATION"
 		#print("radio")
+
+func flip_car_option(state:bool):
+	if state:
+		$CanvasLayer/Tooltips/Label.text += "Q to FLIP\n"
+	else:
+		$CanvasLayer/Tooltips/Label.text = ""
 
 func _on_raycast_exit(area:Area3D)->void:
 	if area == driver_look_area:

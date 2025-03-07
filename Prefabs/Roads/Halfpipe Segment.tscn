@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://n0c15of7b78l"]
+[gd_scene load_steps=6 format=3 uid="uid://n0c15of7b78l"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_fisqc"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_016fh"]
@@ -10,6 +10,9 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 11
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ny7l2"]
+size = Vector3(33.7588, 5.26257, 1)
 
 [node name="Halfpipe" type="GridMap"]
 mesh_library = ExtResource("1_fisqc")
@@ -119,3 +122,10 @@ transform = Transform3D(-0.0299935, 0, -0.000626703, 0, 0.03, 0, 0.000626703, 0,
 
 [node name="Lamp_post20" parent="." instance=ExtResource("3_u4eco")]
 transform = Transform3D(-0.0299935, 0, -0.000626703, 0, 0.03, 0, 0.000626703, 0, -0.0299935, 6.23889, 0.495, -2.18228)
+
+[node name="Exit Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.4312)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
+shape = SubResource("BoxShape3D_ny7l2")

@@ -112,6 +112,8 @@ func _physics_process(delta):
 			walking = true
 		if Input.is_action_just_pressed("E") and car_door:
 			car.enter_car()
+		elif Input.is_action_just_pressed("Q") and flippable:
+			car.flip_car()
 		dir = dir.normalized()
 
 		physical_bone_body.linear_velocity += dir*SPEED*delta #move character
@@ -193,3 +195,15 @@ func _on_skeleton_3d_skeleton_updated() -> void:
 			
 			b.angular_velocity += torque * current_delta
 			
+
+var flippable: bool = false
+func _on_look_area_body_entered(body: Node3D) -> void:
+	if body == Globals.player_vehicle: 
+		flippable = true
+		car.flip_car_option(flippable)
+
+
+func _on_look_area_body_exited(body: Node3D) -> void:
+	if body == Globals.player_vehicle and flippable:
+		flippable = false
+		car.flip_car_option(flippable)
