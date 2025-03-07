@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://6ohj54i0nwum"]
+[gd_scene load_steps=19 format=3 uid="uid://6ohj54i0nwum"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_j0qfm"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_i3xtw"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="5_eg3gs"]
 [ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="6_agh5g"]
 [ext_resource type="PackedScene" uid="uid://cg6h1skr0ri2m" path="res://Prefabs/Buildings/tree_1.tscn" id="7_f43ej"]
+[ext_resource type="PackedScene" uid="uid://dlibula3h5obv" path="res://Prefabs/Debris/Layouts/default_debris_layout.tscn" id="8_i7qsk"]
 
 [sub_resource type="Curve3D" id="Curve3D_5u1vu"]
 _data = {
@@ -86,19 +87,13 @@ transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-0
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.495, -5.45224)
 
 [node name="Lamp_post5" parent="Lamps" instance=ExtResource("5_eg3gs")]
-transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 0.295431, 1.11566, -8.28444)
+transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.11272, 0.481507, -7.49987)
 
 [node name="Lamp_post11" parent="Lamps" instance=ExtResource("5_eg3gs")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.495, -10.2892)
 
 [node name="Lamp_post12" parent="Lamps" instance=ExtResource("5_eg3gs")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.495, -10.2892)
-
-[node name="Lamp_post15" parent="Lamps" instance=ExtResource("5_eg3gs")]
-transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.495, -12.9867)
-
-[node name="Lamp_post16" parent="Lamps" instance=ExtResource("5_eg3gs")]
-transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.495, -12.9867)
 
 [node name="Lamp_post19" parent="Lamps" instance=ExtResource("5_eg3gs")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.495, -15.0629)
@@ -111,12 +106,6 @@ transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-0
 
 [node name="Lamp_post24" parent="Lamps" instance=ExtResource("5_eg3gs")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.495, -1.44864)
-
-[node name="Lamp_post27" parent="Lamps" instance=ExtResource("5_eg3gs")]
-transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, -0.148109, 0.495, -3.55204)
-
-[node name="Lamp_post28" parent="Lamps" instance=ExtResource("5_eg3gs")]
-transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 1.12889, 0.495, -3.55204)
 
 [node name="Exit Area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.55012)
@@ -2555,5 +2544,10 @@ transform = Transform3D(0.0327498, 0, -0.0944852, 0, 0.1, 0, 0.0944852, 0, 0.032
 
 [node name="Tree_564" parent="Trees" instance=ExtResource("7_f43ej")]
 transform = Transform3D(0.0327498, 0, -0.0944852, 0, 0.1, 0, 0.0944852, 0, 0.0327498, 7.28733, 0.495, -12.6076)
+
+[node name="Debris" type="Node3D" parent="."]
+
+[node name="Debris 1" parent="Debris" instance=ExtResource("8_i7qsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -6.23)
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]
