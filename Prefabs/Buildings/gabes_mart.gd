@@ -22,5 +22,5 @@ func _on_voice_line_area_exited(area: Area3D) -> void:
 		
 		if exit_counter>0:
 			return
-		$Interactibles/AudioStreamPlayer3D.play()
+		$"Interactibles/Thank you".play()
 		exit_counter +=1
