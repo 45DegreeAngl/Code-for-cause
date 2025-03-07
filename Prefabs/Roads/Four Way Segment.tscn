@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://c7afy5ct7o7c1"]
+[gd_scene load_steps=19 format=3 uid="uid://c7afy5ct7o7c1"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_8lrak"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_1xwkk"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_ssymr"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="3_utlxj"]
 [ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="5_vpr34"]
+[ext_resource type="PackedScene" uid="uid://dlibula3h5obv" path="res://Prefabs/Debris/Layouts/default_debris_layout.tscn" id="6_b2ikq"]
 
 [sub_resource type="Curve3D" id="Curve3D_di578"]
 _data = {
@@ -61,13 +62,14 @@ uv1_scale = Vector3(1.27, 1, 1)
 material = SubResource("StandardMaterial3D_or0dh")
 size = Vector2(3.685, 1)
 
-[node name="Four Way Segment" type="GridMap"]
+[node name="Four Way Segment" type="GridMap" node_paths=PackedStringArray("debris_node")]
 mesh_library = ExtResource("1_8lrak")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(131057, 65526, 1441792, 131057, 65525, 1441792, 131057, 65524, 1441792, 131057, 65523, 1441792, 65526, 65526, 1441815, 65526, 65528, 1441792, 65521, 65530, 6, 65534, 65530, 655360, 65533, 65530, 655360, 65526, 65530, 1048580, 65528, 65530, 655360, 65529, 65530, 655360, 65530, 65530, 655360, 65531, 65530, 655360, 65532, 65530, 655360, 0, 65530, 655383, 4, 65530, 655360, 5, 65530, 655360, 7, 65532, 1441792, 7, 65530, 655383, 7, 65534, 1048599, 5, 65534, 655360, 4, 65534, 655360, 3, 65534, 655360, 2, 65534, 2, 2, 65533, 655362, 0, 65535, 1048576, 0, 65533, 1048579, 65531, 65533, 6, 65531, 65526, 655366, 3, 65530, 16, 131057, 65522, 1441792)
 }
 script = ExtResource("2_1xwkk")
+debris_node = NodePath("Debris")
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Exit" type="Marker3D" parent="."]
@@ -362,5 +364,13 @@ mesh = SubResource("QuadMesh_xqo6j")
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="Boundary"]
 transform = Transform3D(-4.24179e-08, 1.05934e-08, -1, -0.239466, 0.970905, 2.04428e-08, 0.970905, 0.239466, -3.8647e-08, 8.46428, 1.45974, -12.4628)
 mesh = SubResource("QuadMesh_xqo6j")
+
+[node name="Debris" type="Node3D" parent="."]
+
+[node name="Debris 1" parent="Debris" instance=ExtResource("6_b2ikq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0.5, -1.5)
+
+[node name="Debris 2" parent="Debris" instance=ExtResource("6_b2ikq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.6, 0.5, -5.5)
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

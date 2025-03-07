@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://badwkkjq47c72"]
+
+[ext_resource type="Script" path="res://Prefabs/Debris/Groups/debris_group.gd" id="1_sd24v"]
+[ext_resource type="PackedScene" uid="uid://gq811rsmjlhl" path="res://Prefabs/Debris/Individual/tire_debris.tscn" id="2_l6rdh"]
+
+[node name="Tire Debris Large" type="Node3D"]
+script = ExtResource("1_sd24v")
+
+[node name="Tire Debris" parent="." instance=ExtResource("2_l6rdh")]
+sleeping = true
+
+[node name="Tire Debris2" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0260512, 0)
+sleeping = true
+
+[node name="Tire Debris3" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.052, 0)
+sleeping = true
+
+[node name="Tire Debris7" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0, 0)
+sleeping = true
+
+[node name="Tire Debris8" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0.0260512, 0)
+sleeping = true
+
+[node name="Tire Debris9" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0.052, 0)
+sleeping = true
+
+[node name="Tire Debris4" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11, 0, 0)
+sleeping = true
+
+[node name="Tire Debris5" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11, 0.0260512, 0)
+sleeping = true
+
+[node name="Tire Debris6" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11, 0.052, 0)
+sleeping = true
+
+[node name="Tire Debris10" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.078, 0)
+sleeping = true
+
+[node name="Tire Debris11" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0.078, 0)
+sleeping = true
+
+[node name="Tire Debris12" parent="." instance=ExtResource("2_l6rdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11, 0.078, 0)
+sleeping = true

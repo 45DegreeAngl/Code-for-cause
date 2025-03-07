@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://7yiw8v4t5rt7"]
+[gd_scene load_steps=13 format=3 uid="uid://7yiw8v4t5rt7"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_kygmy"]
 [ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_k8yhq"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_pil5o"]
+[ext_resource type="PackedScene" uid="uid://dlibula3h5obv" path="res://Prefabs/Debris/Layouts/default_debris_layout.tscn" id="4_aowm1"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="4_vjay3"]
 [ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="5_8x3m8"]
 
@@ -34,13 +35,14 @@ uv1_scale = Vector3(1.52, 1, 1)
 material = SubResource("StandardMaterial3D_yrflm")
 size = Vector2(2.785, 1)
 
-[node name="Debug Death" type="GridMap"]
+[node name="Debug Death" type="GridMap" node_paths=PackedStringArray("debris_node")]
 mesh_library = ExtResource("1_kygmy")
 cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, -65536, 65529, 1048593)
 }
 script = ExtResource("2_k8yhq")
+debris_node = NodePath("Debris")
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="Exit" type="Marker3D" parent="."]
@@ -56,6 +58,11 @@ data = {
 "cells": PackedInt32Array(1, 65532, 1441792, 1, 65533, 1441792, 1, 65534, 1441792, 1, 65535, 1441792, -65535, 65529, 1048577)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Debris" type="Node3D" parent="."]
+
+[node name="Debris 1" parent="Debris" instance=ExtResource("4_aowm1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -2)
 
 [node name="Lamps" type="Node3D" parent="."]
 
