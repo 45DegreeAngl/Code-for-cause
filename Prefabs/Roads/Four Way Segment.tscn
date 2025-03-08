@@ -3886,6 +3886,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.373816, 1.02759, -2.69741)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.49903, 0.992947, -5.58341)
 
 [node name="Marker3D3" type="Marker3D" parent="Car Spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47955, 1.83703, -5.83794)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47955, 0.558956, -5.83794)
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

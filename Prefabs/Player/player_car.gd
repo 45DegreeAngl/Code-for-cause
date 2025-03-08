@@ -256,6 +256,7 @@ func throw_debris():
 		print(chosen.global_position)
 		print($"Debrie Launch".global_position)
 		chosen.reparent(Globals.world_node.previous_road,true)
+		chosen.mass = 100
 		chosen.process_mode = Node.PROCESS_MODE_INHERIT
 
 enum looking_at{Door,Alchohol,Radio}
