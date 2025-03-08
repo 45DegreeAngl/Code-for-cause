@@ -10,7 +10,6 @@ var passed : bool = false
 func _ready():
 	if debris_node:
 		spawn_debris()
-	spawn_driver()
 
 func spawn_debris():
 	for child in debris_node.get_children():
@@ -34,21 +33,20 @@ func disable_tutorial(body:Node3D):
 
 @export var driver_spawns : Node3D = null
 #$Pedestrians $Cops
-func spawn_driver():
-	if !driver_spawns or randi_range(0,2)==0:
+func spawn_drivers():
+	if !driver_spawns or randi_range(0,9)==0:
 		print("not spawning driver")
 		return
-	var driver_instance : Node3D
-	#print(Globals.world_node)
-	#print(Globals.world_node.get_node("Cops"))
-	#print(Globals.world_node.get_node("Pedestrians"))
-	if randi_range(0,1) == 0:#Cop Spawn
-		driver_instance = Globals.cop_packed.instantiate()
-		Globals.world_node.get_node("Cops").add_child(driver_instance)
-	else:#Pedestrian Spawn
-		driver_instance = Globals.pedestrian_packed.instantiate()
-		Globals.world_node.get_node("Pedestrians").add_child(driver_instance)
-	
-	print(driver_instance.get_path())
+	if randi_range(0,3) == 0:#Cop Spawn
+		spawn_individual_driver(Globals.cop_packed,Globals.world_node.get_node("Cops"))
+	if randi_range(0,3)!=0:#Pedestrian Spawn
+		spawn_individual_driver(Globals.pedestrian_packed,Globals.world_node.get_node("Pedestrians"))
+
+func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D):
+	var chosen_marker = driver_spawns.get_children().pick_random()
+	var driver_instance : Node3D = packed.instantiate()
+	driver_type_node.add_child(driver_instance)
 	driver_instance.target = Globals.player_vehicle
-	driver_instance.global_transform = driver_spawns.get_children().pick_random().global_transform
+	driver_instance.process_mode = Node.PROCESS_MODE_DISABLED
+	driver_instance.global_position = chosen_marker.global_position
+	driver_instance.process_mode = Node.PROCESS_MODE_INHERIT

@@ -32,22 +32,14 @@ func spawn_road(segment:PackedScene = null)->Node3D:
 	var instanced_segment : Node3D
 	if not segment:
 		if gabesmart_pity >= max_gabesmart_pity:
-			instanced_segment = gabesmart_segments.pick_random().instantiate()
+			segment = gabesmart_segments.pick_random()
 			gabesmart_pity = 0
 		elif randf() <= gabesmart_chance:
-			instanced_segment = gabesmart_segments.pick_random().instantiate()
+			segment = gabesmart_segments.pick_random()
 			gabesmart_pity = 0
 		else:
-			instanced_segment = road_segments.pick_random().instantiate()
+			segment = road_segments.pick_random()
 			gabesmart_pity += 1
-		
-		$Roads.add_child(instanced_segment)
-		instanced_segment.global_position = previous_road.find_child("Exit").global_position
-		previous_road = instanced_segment
-		if instanced_segment.has_signal("increment_player_road_counter"):
-			instanced_segment.increment_player_road_counter.connect(increment_player_road)
-			
-		return instanced_segment
 	
 	instanced_segment = segment.instantiate()
 	$Roads.add_child(instanced_segment)
@@ -55,6 +47,7 @@ func spawn_road(segment:PackedScene = null)->Node3D:
 	if instanced_segment.has_signal("increment_player_road_counter"):
 		instanced_segment.increment_player_road_counter.connect(increment_player_road)
 	previous_road = instanced_segment
+	instanced_segment.spawn_drivers()
 	return instanced_segment
 
 var cur_player_road:int = 0:

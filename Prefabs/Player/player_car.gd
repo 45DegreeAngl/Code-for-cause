@@ -123,7 +123,8 @@ func flip_car():
 	process_mode = PROCESS_MODE_INHERIT
 
 func die_by_cop():
-	Globals.game_lost.emit("Cops")
+	if !DEBUG_MODE:
+		Globals.game_lost.emit("Cops")
 
 func drink_random():
 	var temp_array :Array = []
