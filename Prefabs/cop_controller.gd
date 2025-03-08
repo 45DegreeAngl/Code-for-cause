@@ -153,13 +153,22 @@ func change_engine_pitch():
 	if pitch>0.0:
 		$Engine.pitch_scale = pitch
 
-const colors : Array[Color] = [Color.RED,Color.BLUE]
-var cur = 1
+var red_light = false
 
 func toggle_colors():
-	$Light/RED.light_color = colors[cur]
-	cur+=1
-	cur = cur%colors.size()
+	var red_mat : StandardMaterial3D = $Mesh/Chassis.get_active_material(4)
+	var blue_mat : StandardMaterial3D = $Mesh/Chassis.get_active_material(6)
+	
+	if red_light:
+		red_mat.emission_enabled = true
+		red_mat.emission = Color.RED
+		$Mesh/Chassis.set_surface_override_material(4, red_mat)
+	else:
+		blue_mat.emission_enabled = true
+		blue_mat.emission = Color.BLUE
+		$Mesh/Chassis.set_surface_override_material(6, red_mat)
+	
+	red_light = !red_light
 
 func talk():
 	if randi_range(0,5)!=0:

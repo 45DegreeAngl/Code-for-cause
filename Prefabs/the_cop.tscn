@@ -1,7 +1,7 @@
 [gd_scene load_steps=66 format=4 uid="uid://cxp2kocirrm37"]
 
 [ext_resource type="Script" path="res://Prefabs/cop_controller.gd" id="1_5c3t6"]
-[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_tcl5t"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_tcl5t"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="3_uw1wd"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="5_gc1n0"]
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="6_85u88"]
@@ -186,6 +186,8 @@ resource_name = "Material.016"
 cull_mode = 2
 albedo_color = Color(1, 0, 0.208813, 1)
 roughness = 0.5
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0emaw"]
 resource_name = "Material.017"
@@ -1025,41 +1027,7 @@ mesh = SubResource("ArrayMesh_78fyt")
 transform = Transform3D(0.595, 0, 0, 0, 0.117549, 0.122658, 0, -0.0241293, 0.597541, 0, 1.56726, -3.25283)
 mesh = SubResource("ArrayMesh_qt40v")
 
-[node name="Light" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
-
-[node name="HeadRight" type="SpotLight3D" parent="Light"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.967911, 0.688462, -4.49881)
-light_energy = 5.0
-spot_range = 20.0
-
-[node name="HeadLeft" type="SpotLight3D" parent="Light"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.918241, 0.702295, -4.48549)
-light_energy = 5.0
-spot_range = 20.0
-
-[node name="HindLeft" type="SpotLight3D" parent="Light"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.768202, 0.641177, 1.82246)
-light_color = Color(1, 0, 0, 1)
-light_energy = 2.0
-spot_range = 2.0
-
-[node name="HindRight" type="SpotLight3D" parent="Light"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.766225, 0.689082, 1.81121)
-light_color = Color(1, 0, 0, 1)
-light_energy = 2.0
-spot_range = 2.0
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Light"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88379, -0.468765)
-
-[node name="RED" type="OmniLight3D" parent="Light"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18914, -0.994218)
-light_color = Color(1, 0, 0, 1)
-light_energy = 1.5
-omni_range = 10.6497
-
-[node name="Flicker Timer" type="Timer" parent="Light"]
+[node name="Flicker Timer" type="Timer" parent="."]
 autostart = true
 
 [node name="Sounds" type="Node3D" parent="."]
@@ -1078,4 +1046,4 @@ one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_collide"]
 [connection signal="timeout" from="Timer" to="." method="talk"]
-[connection signal="timeout" from="Light/Flicker Timer" to="." method="toggle_colors"]
+[connection signal="timeout" from="Flicker Timer" to="." method="toggle_colors"]
