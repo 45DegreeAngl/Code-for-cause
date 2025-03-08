@@ -102,7 +102,7 @@ func _process(delta: float) -> void:
 	var forward_axis = Input.get_axis("S","W")
 	engine_force = max(forward_axis * ENGINE_POWER,-ENGINE_POWER/1.5)
 	##Fix rotate code when smarter
-	$Spedometer/Tick.rotate_object_local(-Vector3(deg_to_rad(0),deg_to_rad(-90),deg_to_rad(30)).normalized(),move_toward((engine_force/ENGINE_POWER),(engine_force/ENGINE_POWER),delta))
+	$Spedometer/Node3D/Axis.rotate_object_local(Vector3(0,0,1).normalized(),move_toward((engine_force/ENGINE_POWER),(engine_force/ENGINE_POWER),delta))
 	saved_linear_velocity = linear_velocity
 
 var saved_linear_velocity : Vector3

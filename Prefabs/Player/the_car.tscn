@@ -1339,7 +1339,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28392, 2.65554)
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -0.601772, 1.7438, -1.77272)
 
 [node name="Wheel2" type="MeshInstance3D" parent="Wheel"]
-transform = Transform3D(-0.15, -1.31134e-08, -5.73206e-16, 0, -6.55671e-09, 0.15, -1.31134e-08, 0.15, 6.55671e-09, 0, 0, 0)
+transform = Transform3D(-0.15, -2.26494e-08, -9.90036e-16, 0, -6.55671e-09, 0.15, -2.26494e-08, 0.15, 6.55671e-09, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pdkh6")
 skeleton = NodePath("../..")
 
@@ -1354,9 +1354,16 @@ mesh = SubResource("ArrayMesh_h2lvo")
 transform = Transform3D(-0.0020126, 0.131617, 0.00111613, -0.860807, -0.000319981, 0.073623, 0.0736255, -0.000143289, 0.860809, -0.0772328, 0, 0)
 mesh = SubResource("ArrayMesh_roqvb")
 
-[node name="Tick" type="MeshInstance3D" parent="Spedometer"]
-transform = Transform3D(0.0189082, 0.015821, 0.00599962, 0.00292377, 0.0255068, -0.0375941, -0.00123497, 0.302618, 0.00285504, 0.0189537, -0.0291031, -0.00465584)
+[node name="Node3D" type="Node3D" parent="Spedometer"]
+transform = Transform3D(0.814351, -0.515303, 0.267013, 0.563925, 0.81131, -0.15416, -0.137191, 0.276115, 0.951283, 0.0890369, -0.0514088, 0)
+
+[node name="Axis" type="Node3D" parent="Spedometer/Node3D"]
+transform = Transform3D(0.146063, 0.0550992, 0.98774, -0.955577, 0.266236, 0.126456, -0.256004, -0.962332, 0.0915387, 0, 0, 0)
+
+[node name="Tick" type="MeshInstance3D" parent="Spedometer/Node3D/Axis"]
+transform = Transform3D(0.0143786, -0.131706, -0.0190884, -0.00830363, 0.075982, -0.033062, 0.00958637, 0.263361, -7.32881e-06, 0, 0, 0)
 mesh = SubResource("ArrayMesh_qhugh")
+skeleton = NodePath("../../..")
 
 [node name="radio" parent="." instance=ExtResource("14_ge4il")]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 1.69655, -1.9228)
