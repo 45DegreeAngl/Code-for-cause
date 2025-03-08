@@ -1,7 +1,7 @@
 [gd_scene load_steps=70 format=4 uid="uid://decdg2b8cnq74"]
 
 [ext_resource type="Script" path="res://Prefabs/Car/Average Sober driver.gd" id="1_vl3j8"]
-[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_xhm5i"]
+[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_xhm5i"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="3_pqhiw"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="4_faqvl"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="4_ln55n"]

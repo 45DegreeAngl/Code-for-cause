@@ -9,6 +9,7 @@ extends VehicleBody3D
 @export var ENGINE_POWER : float = 200
 @export var SOUND_MAX_SPEED : float = 75
 @onready var WHEEL_BASE = $Back_Left.position.distance_to($Front_Left.position)
+@onready var killable : bool = false
 
 var steer_input : float :
 	set(val):
@@ -135,7 +136,8 @@ func _process(delta: float) -> void:
 		hunt = false
 
 	if target.global_position.z+1000<self.global_position.z:
-		call_deferred("queue_free")
+		if killable:
+			call_deferred("queue_free")
 	
 	if target.global_position.z-300>self.global_position.z:
 		if !hunt:

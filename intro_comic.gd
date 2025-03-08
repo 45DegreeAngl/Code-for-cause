@@ -6,11 +6,13 @@ var timer : Timer
 func _ready():
 	timer = $"Next animation timer"
 	animp = $AnimationPlayer
+	reset_anims()
+
+func reset_anims():
 	$"1".visible = false
 	$"2".visible = false
 	$"3".visible = false
 	$"4".visible = false
-	play_intro()
 
 func play_intro():
 	animp.play("scene1")

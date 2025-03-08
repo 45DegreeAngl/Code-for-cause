@@ -26,6 +26,7 @@ func _on_lose(reason:String):
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]HIT BY A COP")
 	$"Game Over/Label".text = "YOU SURVIVED FOR: "+Globals.format_seconds_as_time(Globals.timer)
 	MainShaderCanvas.visible = false
+	Globals.tutorial = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -37,6 +38,7 @@ func _on_win():
 	$"YOU WIN/Label2".text = "YOUR TIME: "+Globals.format_seconds_as_time(Globals.timer)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	MainShaderCanvas.visible = false
+	Globals.tutorial = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -68,6 +70,7 @@ func _on_start_pressed() -> void:
 	main_menu()
 	$"Main Menu".visible = false
 	$Animations.visible = true
+	$Animations.get_child(0).play_intro()
 
 func _on_start_game() ->void:
 	TitleMusicPlayer.playing = false
@@ -79,6 +82,10 @@ func _on_start_game() ->void:
 	Globals.world_node = game_instance
 	$Animations.visible = false
 	MainShaderCanvas.visible = true
+	$Animations.get_child(0).queue_free()
+	var temp :Control= load("res://intro_comic.tscn").instantiate()
+	$Animations.add_child(temp)
+	temp.find_child("GoToGame").pressed.connect(_on_start_game)
 
 func _on_options_pressed() -> void:
 	$Options.visible = true
@@ -98,8 +105,7 @@ func main_menu():
 	$"Main Menu".visible = true
 	$"Game Over".visible = false
 	$"YOU WIN".visible = false
-	$"Animations/HBoxContainer/Intro Story".current_tab = 0
-	$"Animations/HBoxContainer/Left Story".disabled = true
+
 
 func on_back()->void:
 	main_menu()
@@ -108,20 +114,7 @@ func on_back()->void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if !TitleMusicPlayer.playing:
 		TitleMusicPlayer.playing = true
-
-
-func _on_left_story_pressed() -> void:
-	$"Animations/HBoxContainer/Intro Story".current_tab-=1
-	$"Animations/HBoxContainer/Right Story".disabled = false
-	if $"Animations/HBoxContainer/Intro Story".current_tab==0:
-		$"Animations/HBoxContainer/Left Story".disabled = true
-
-
-func _on_right_story_pressed() -> void:
-	$"Animations/HBoxContainer/Intro Story".current_tab+=1
-	$"Animations/HBoxContainer/Left Story".disabled = false
-	if $"Animations/HBoxContainer/Intro Story".current_tab==$"Animations/HBoxContainer/Intro Story".get_child_count():
-		$"Animations/HBoxContainer/Right Story".disabled = true
+	
 
 
 ###OPTIONS
