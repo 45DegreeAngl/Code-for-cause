@@ -30,6 +30,8 @@ var parked : bool = false
 func _ready() -> void:
 	$StuckTimer.connect("timeout", on_stuck_timer_ended)
 	$ReverseTimer.connect("timeout", on_reverse_timer_ended)
+	for driver in human_drivers:
+		randomize_driver_color(driver)
 
 func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
