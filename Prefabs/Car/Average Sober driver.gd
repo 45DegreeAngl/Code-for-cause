@@ -194,3 +194,15 @@ func randomize_chasis_color():
 	chasis_material.albedo_color = chosen_color
 	chasis_mesh.surface_set_material(0,chasis_material)
 	$Mesh/Chassis.mesh = chasis_mesh
+
+@export var human_drivers: Array[MeshInstance3D]
+
+func randomize_driver_color(mesh:MeshInstance3D):
+	if Globals.car_colors.size()==0:
+		return
+	var chosen_color = Globals.car_colors[Globals.car_colors.keys().pick_random()]
+	var human_mesh:Mesh = mesh.mesh.duplicate()
+	var human_material:StandardMaterial3D = human_mesh.surface_get_material(0).duplicate()
+	human_material.albedo_color = chosen_color
+	human_mesh.surface_set_material(0,human_material)
+	mesh.mesh = human_mesh
