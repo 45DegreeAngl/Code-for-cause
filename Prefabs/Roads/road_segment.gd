@@ -42,14 +42,16 @@ func spawn_driver():
 	print(Globals.world_node)
 	print(Globals.world_node.get_node("Cops"))
 	print(Globals.world_node.get_node("Pedestrians"))
-	if randi_range(0,3) == 0:#Cop Spawn
+	if randi_range(0,1) == 0:#Cop Spawn
 		driver_instance = Globals.cop_packed.instantiate()
+		driver_instance.process_mode = Node.PROCESS_MODE_DISABLED
 		Globals.world_node.get_node("Cops").add_child(driver_instance)
 	else:#Pedestrian Spawn
 		driver_instance = Globals.pedestrian_packed.instantiate()
+		driver_instance.process_mode = Node.PROCESS_MODE_DISABLED
 		Globals.world_node.get_node("Pedestrians").add_child(driver_instance)
 	
+	print(driver_instance.get_path())
 	driver_instance.target = Globals.player_vehicle
-	driver_instance.process_mode = Node.PROCESS_MODE_DISABLED
 	driver_instance.global_position = driver_spawns.get_children().pick_random().global_position
 	driver_instance.process_mode = Node.PROCESS_MODE_INHERIT
