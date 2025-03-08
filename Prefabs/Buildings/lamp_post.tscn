@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://cmk8hsh2rcdkm"]
+[gd_scene load_steps=7 format=4 uid="uid://cmk8hsh2rcdkm"]
+
+[ext_resource type="Script" path="res://Prefabs/Buildings/lamp_post.gd" id="1_xsxko"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y86a6"]
 resource_name = "Material"
@@ -75,8 +77,10 @@ shadow_mesh = SubResource("ArrayMesh_mfkag")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ilj2y"]
 size = Vector3(1.93079, 6.32709, 2.03333)
 
-[node name="Lamp_post" type="Node3D"]
+[node name="Lamp_post" type="Node3D" node_paths=PackedStringArray("lights")]
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+script = ExtResource("1_xsxko")
+lights = [NodePath("OmniLight3D")]
 
 [node name="Lamp Post Base" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.383899, 0, 0, 0, -2.2798, 0, 0, 0, 0.383899, -0.00280718, 8.96707, 0)
@@ -88,3 +92,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Lamp Post Base/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0215454, 0.843231, -0.0111695)
 shape = SubResource("BoxShape3D_ilj2y")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0, 1)

@@ -1044,6 +1044,34 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="Light" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
+
+[node name="HeadRight" type="SpotLight3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.967911, 0.688462, -4.49881)
+light_energy = 5.0
+spot_range = 20.0
+
+[node name="HeadLeft" type="SpotLight3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.918241, 0.702295, -4.48549)
+light_energy = 5.0
+spot_range = 20.0
+
+[node name="HindLeft" type="SpotLight3D" parent="Light"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.768202, 0.641177, 1.82246)
+light_color = Color(1, 0, 0, 1)
+light_energy = 2.0
+spot_range = 2.0
+
+[node name="HindRight" type="SpotLight3D" parent="Light"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.766225, 0.689082, 1.81121)
+light_color = Color(1, 0, 0, 1)
+light_energy = 2.0
+spot_range = 2.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88379, -0.468765)
+
 [connection signal="body_entered" from="." to="." method="_on_collide"]
 [connection signal="timeout" from="Timer" to="." method="talk"]
 [connection signal="timeout" from="Flicker Timer" to="." method="toggle_colors"]

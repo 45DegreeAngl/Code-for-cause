@@ -43,7 +43,7 @@ signal game_won()
 var timer:float = 0
 
 signal update_bottles
-var car_contents:Dictionary = {"Beer":3,"Sake":2,"Jaeger":1}:
+var car_contents:Dictionary = {"Beer":1,"Sake":0,"Jaeger":0}:
 	set(value):
 		car_contents = value
 		update_bottles.emit()
@@ -53,32 +53,46 @@ const starting_frequency = 0.02
 const starting_scale = 1.1
 #const max_freq_amp = 0.2
 ##this is a float of 6% to 100%
-@onready var zahness : float = 0:
-	set(value):
-		zahness = value
-		var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")
-		for shader_mat in shader_mats:
-			for shader_params:Dictionary in shader_mat.shader.get_shader_uniform_list():
-				if shader_params["name"]=="red_mult":
-					#3 red
-					var green = 3 + 3*zahness/10.0
-					shader_mat.set_shader_parameter("green_shift",green)
-					#2 red
-					var blue = 2 + 2*zahness/10.0
-					shader_mat.set_shader_parameter("blue_shift",blue)
-					#1 red
-					var red = 1+zahness/10.0
-					shader_mat.set_shader_parameter("red_shift",red)
 @onready var game_over : bool = true
 @onready var game_paused : bool = false
 ##change this boolean when tutorial ends
 @onready var tutorial:bool = true
+@onready var motion_sickness:bool = false
 @onready var drunkenness : float = 20:
 	set(value):
-		if tutorial and value<20:
-			value = 20
+		if tutorial and value<drunkenness:
+			value = drunkenness
 		MainShaderCanvas._update_bar(value)
 		drunkenness = value
+		
+		if motion_sickness:
+			var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")
+			for shader_mat in shader_mats:
+				for shader_params:Dictionary in shader_mat.shader.get_shader_uniform_list():
+					if shader_params["name"]=="red_mult":
+						#3 red
+						var green = 3 + 3*drunkenness/10.0
+						shader_mat.set_shader_parameter("green_shift",green)
+						#2 red
+						var blue = 2 + 2*drunkenness/10.0
+						shader_mat.set_shader_parameter("blue_shift",blue)
+						#1 red
+						var red = 1+drunkenness/10.0
+						shader_mat.set_shader_parameter("red_shift",red)
+		else:
+			var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")
+			for shader_mat in shader_mats:
+				for shader_params:Dictionary in shader_mat.shader.get_shader_uniform_list():
+					if shader_params["name"]=="red_mult":
+						#3 red
+						var green = 3
+						shader_mat.set_shader_parameter("green_shift",green)
+						#2 red
+						var blue = 2
+						shader_mat.set_shader_parameter("blue_shift",blue)
+						#1 red
+						var red = 1
+						shader_mat.set_shader_parameter("red_shift",red)
 
 @onready var world_node : Node
 		

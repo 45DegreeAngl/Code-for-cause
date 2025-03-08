@@ -147,7 +147,8 @@ func _on_world_sounds_value_changed(value: float) -> void:
 
 func _on_motion_sickness_check_toggled(toggled_on: bool) -> void:
 	MainShaderCanvas.filter_dict["drunk"][1].visible = !toggled_on
-	MainShaderCanvas.filter_dict["drunk"][3].visible = toggled_on
+	Globals.motion_sickness = toggled_on
+	#MainShaderCanvas.filter_dict["drunk"][3].visible = toggled_on
 
 func _on_resolution_options_item_selected(index: int) -> void:
 	match index:

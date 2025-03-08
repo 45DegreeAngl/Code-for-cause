@@ -26,7 +26,7 @@ func _ready() -> void:
 	Globals.player_vehicle = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_on_radio_finished()
-	Globals.car_contents = {"Beer":3,"Sake":2,"Jaeger":1}
+	Globals.car_contents = {"Beer":1,"Sake":0,"Jaeger":0}
 	Globals.update_bottles.emit()
 	Globals.timer = 0
 	if DEBUG_MODE:
@@ -49,9 +49,6 @@ func _process(delta: float) -> void:
 	#print(linear_velocity.length())
 	if Input.is_action_just_pressed("F"):#toggle Headlights
 		for child in $Light.get_children():
-			
-			
-			
 			if child is Light3D and child.name.findn("Head")!=-1 and child.has_method("get_param"):
 				#print(child)
 				var cur_energy = child.get_param(Light3D.PARAM_ENERGY)

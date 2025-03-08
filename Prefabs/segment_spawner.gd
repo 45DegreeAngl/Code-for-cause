@@ -72,8 +72,16 @@ var cur_player_road:int = 0:
 		cur_player_road=value
 		if $Roads.get_child_count()>8:
 			var temp_array:Array[Node3D] = [$Roads.get_child(0)]
+			
 			for temp:Node3D in temp_array:
-				
+				for cop : Node3D in Globals.world_node.find_child("Cops").get_children():
+					if cop.global_position.z > temp.global_position.z:
+						print("Deleting this cop: ",cop)
+						cop.call_deferred("queue_free")
+				for pedestrian : Node3D in Globals.world_node.find_child("Pedestrians").get_children():
+					if pedestrian.global_position.z > temp.global_position.z:
+						print("Deleting this pedestrian: ",pedestrian)
+						pedestrian.call_deferred("queue_free")
 				temp.queue_free()
 
 func increment_player_road():

@@ -11,8 +11,6 @@ extends VehicleBody3D
 
 @onready var WHEEL_BASE = $Back_Left.position.distance_to($Front_Left.position)
 
-@onready var killable : bool = false
-
 var steer_input : float :
 	set(val):
 		steer_input = clampf(val, -1, 1)
@@ -144,12 +142,6 @@ func _process(delta: float) -> void:
 			$Timer.stop()
 			$Siren.playing = false
 		hunt = false
-
-	if target.global_position.z+1000<self.global_position.z:
-		if killable:
-			call_deferred("queue_free")
-	
-	
 	#print(" D",target.global_position.z+500)
 	#print(self.global_position.z)
 	
