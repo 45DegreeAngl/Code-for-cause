@@ -6,12 +6,18 @@
 resource_name = "Material.002"
 cull_mode = 2
 roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_li3fa"]
 resource_name = "Material.005"
 cull_mode = 2
 albedo_color = Color(0.84666, 0.100488, 0.23057, 1)
 roughness = 0.5
+emission_enabled = true
+emission = Color(0.647059, 0.109804, 0.203922, 1)
+emission_energy_multiplier = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fret"]
 resource_name = "Material.003"
@@ -97,17 +103,17 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8m5ra")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cwbo0"]
-points = PackedVector3Array(1.51497, -0.130588, 0.525977, 0.418593, -0.000226021, 6.57302, 1.51497, -0.4706, 0.525977, 1.5122, -0.130588, -0.776755, -0.536962, -0.000226021, 6.57302, 0.418593, -1.11749, 6.57302, 1.17231, -0.0979974, -0.232804, 1.17077, -0.0979974, -0.259443, 1.16677, -0.0979974, -0.284363, 1.15937, -0.0979974, -0.309283, 1.1492, -0.0979974, -0.331626, 1.13595, -0.0979974, -0.35225, 1.11962, -0.0979974, -0.371155, 1.10021, -0.0979974, -0.387482, 1.07771, -0.0979974, -0.40209, 1.05214, -0.0979974, -0.413261, 1.02317, -0.0979974, -0.421855, 0.990817, -0.0979974, -0.427011, 0.95538, -0.0979974, -0.428729, 0.260207, -0.0979974, -0.437322, 1.5122, -0.4706, -0.776755, 0.589305, -0.130588, -1.69623, -1.63087, -0.130588, 0.531992, -0.536962, -1.11749, 6.57302, -0.96559, -0.0979974, -0.437322, -0.996096, -0.0979974, -0.436463, -1.02445, -0.0979974, -0.432167, -1.05064, -0.0979974, -0.425292, -1.07498, -0.0979974, -0.41498, -1.09655, -0.0979974, -0.40295, -1.11596, -0.0979974, -0.388341, -1.13291, -0.0979974, -0.371155, -1.14678, -0.0979974, -0.35225, -1.15787, -0.0979974, -0.330767, -1.16588, -0.0979974, -0.307565, -1.17112, -0.0979974, -0.282645, -1.63303, -0.130588, -0.770739, 0.0408086, -0.675877, -2.20581, 0.589305, -0.4706, -1.69623, 0.0408086, -0.441947, -2.20581, -0.159177, -0.441947, -2.20581, -0.713528, -0.130588, -1.69365, -1.63087, -0.4706, 0.531992, -1.63303, -0.4706, -0.770739, -0.159177, -0.675877, -2.20581, -0.713528, -0.4706, -1.69365)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hb50t"]
+size = Vector3(0.266846, 0.355225, 8.53125)
 
 [node name="Stop_Sign" type="RigidBody3D"]
 script = ExtResource("1_1uuqo")
 
-[node name="Sign" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.1, -1.50996e-08, 6.60024e-16, 0, -4.37114e-09, -0.1, 1.50996e-08, -0.1, 4.37114e-09, -0.0282593, 0.671757, -0.119272)
+[node name="Sign" type="MeshInstance3D" parent="." groups=["Please Move"]]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 0, 0.131351, 0.0110433)
 mesh = SubResource("ArrayMesh_g6w0v")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." groups=["Please Move"]]
-transform = Transform3D(-0.1, -1.50996e-08, 6.60024e-16, 0, -4.37114e-09, -0.1, 1.50996e-08, -0.1, 4.37114e-09, -0.0282593, 0.671757, -0.119272)
-shape = SubResource("ConvexPolygonShape3D_cwbo0")
+transform = Transform3D(-0.02, -3.01992e-09, 1.32005e-16, 0, -8.74228e-10, -0.02, 3.01992e-09, -0.02, 8.74228e-10, -0.000666504, 0.0846875, 0.000227047)
+shape = SubResource("BoxShape3D_hb50t")
