@@ -148,7 +148,7 @@ const starting_scale = 1.1
 						shader_mat.set_shader_parameter("red_shift",red)
 
 @onready var world_node : Node
-		
+
 @onready var filter_canvas : CanvasLayer
 @onready var player_vehicle : VehicleBody3D
 @onready var player_character : Node3D
@@ -171,6 +171,8 @@ func _process(_delta: float) -> void:
 			if shader_params["name"]=="red_mult":
 				var anger = 1+drunkenness/100.0
 				shader_mat.set_shader_parameter("red_mult",anger)
+
+
 
 func format_seconds_as_time(seconds:float)->String:
 	var hours = int(seconds / 3600)

@@ -1101,4 +1101,8 @@ spot_range = 2.0
 [node name="OmniLight3D" type="OmniLight3D" parent="Light2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88379, -0.468765)
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5287, 1.71002)
+target_position = Vector3(0, 0, 5)
+
 [connection signal="body_entered" from="." to="." method="_on_collide"]
