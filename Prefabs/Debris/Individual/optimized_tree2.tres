@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=6 format=4 uid="uid://ci8jdrt6ptm3t"]
+[gd_resource type="ArrayMesh" load_steps=6 format=4 uid="uid://c5tvfihe4mtg6"]
 
 [ext_resource type="Texture2D" uid="uid://cly5vyrxya5ie" path="res://Assets/Models/Debris/super_optimized_tree_Cylinder Base Color.png" id="1_c0rv5"]
 [ext_resource type="Texture2D" uid="uid://dpy0u4mmk4ry4" path="res://Assets/Models/Debris/super_optimized_tree_Cone.png" id="2_met3f"]

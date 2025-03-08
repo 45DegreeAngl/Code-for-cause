@@ -8,7 +8,7 @@ extends Node3D
 
 @onready var spring_arm = $SpringArm3D
 
-var mouse_lock = false # is mouse locked
+var mouse_lock = true # is mouse locked
 
 func _physics_process(_delta):
 	for child in physical_skel.get_children():

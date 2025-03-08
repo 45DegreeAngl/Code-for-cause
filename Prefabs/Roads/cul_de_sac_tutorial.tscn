@@ -209,8 +209,8 @@ mesh = SubResource("QuadMesh_756db")
 
 [node name="Label3D" type="Label3D" parent="Tutorial Sign2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
-text = "You need to drink to keep 
-your sobriety at Zero
+text = "You need to drink to 
+stay drunk
 If you're too sober
 driving to your exes place
  might not seem like
