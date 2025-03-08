@@ -29,6 +29,7 @@ var parked : bool = false
 func _ready() -> void:
 	$StuckTimer.connect("timeout", on_stuck_timer_ended)
 	$ReverseTimer.connect("timeout", on_reverse_timer_ended)
+	randomize_chasis_color()
 
 func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
@@ -183,3 +184,25 @@ func on_stuck_timer_ended():
 
 func on_reverse_timer_ended():
 	reversing = false
+
+func randomize_chasis_color():
+	if Globals.car_colors.size()==0:
+		return
+	var chosen_color = Globals.car_colors[Globals.car_colors.keys().pick_random()]
+	var chasis_mesh:Mesh = $Mesh/Chassis.mesh.duplicate()
+	var chasis_material:StandardMaterial3D = chasis_mesh.surface_get_material(0).duplicate()
+	chasis_material.albedo_color = chosen_color
+	chasis_mesh.surface_set_material(0,chasis_material)
+	$Mesh/Chassis.mesh = chasis_mesh
+
+@export var human_drivers: Array[MeshInstance3D]
+
+func randomize_driver_color(mesh:MeshInstance3D):
+	if Globals.car_colors.size()==0:
+		return
+	var chosen_color = Globals.car_colors[Globals.car_colors.keys().pick_random()]
+	var human_mesh:Mesh = mesh.mesh.duplicate()
+	var human_material:StandardMaterial3D = human_mesh.surface_get_material(0).duplicate()
+	human_material.albedo_color = chosen_color
+	human_mesh.surface_set_material(0,human_material)
+	mesh.mesh = human_mesh

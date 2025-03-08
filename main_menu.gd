@@ -27,6 +27,8 @@ func _on_lose(reason:String):
 	$"Game Over/Label".text = "YOU SURVIVED FOR: "+Globals.format_seconds_as_time(Globals.timer)
 	MainShaderCanvas.visible = false
 	Globals.tutorial = true
+	Globals.game_paused = false
+	$Options.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -59,7 +61,7 @@ func _process(_delta: float) -> void:
 			MainShaderCanvas.filter_dict["BeerMeter"][0].visible = false
 			MainShaderCanvas.filter_dict["drunk"][0].visible = false
 			#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
-			$Options/Back.visible = false
+			$"Options/true options/VBoxContainer/Back".visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_start_pressed() -> void:
@@ -86,11 +88,13 @@ func _on_start_game() ->void:
 	var temp :Control= load("res://intro_comic.tscn").instantiate()
 	$Animations.add_child(temp)
 	temp.find_child("GoToGame").pressed.connect(_on_start_game)
+	$"Options/true options/VBoxContainer/Become Sober".visible = true
 
 func _on_options_pressed() -> void:
 	$Options.visible = true
 	$"Main Menu".visible = false
-	$Options/Back.visible = true
+	$"Options/true options/VBoxContainer/Back".visible = true
+	$"Options/true options/VBoxContainer/Become Sober".visible = false
 
 
 func _on_credits_pressed() -> void:
@@ -114,8 +118,6 @@ func on_back()->void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if !TitleMusicPlayer.playing:
 		TitleMusicPlayer.playing = true
-	
-
 
 ###OPTIONS
 @onready var master: HSlider = $Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Master
@@ -168,10 +170,6 @@ func on_quality_changed(index:int):
 			get_viewport().set_scaling_3d_scale(0.5)
 		3:
 			get_viewport().set_scaling_3d_scale(0.25)
-	
-		
-		
-		
-		
-		
-		
+
+func _on_become_sober_pressed() -> void:
+	Globals.game_lost.emit("Sober")
