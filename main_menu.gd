@@ -164,3 +164,20 @@ func _on_resolution_options_item_selected(index: int) -> void:
 			DisplayServer.window_set_size(Vector2i(576,324))
 		2:#1920x1080
 			DisplayServer.window_set_size(Vector2i(1920,1080))
+func on_quality_changed(index:int):
+	match index:
+		0:
+			get_viewport().set_scaling_3d_scale(1)
+		1:
+			get_viewport().set_scaling_3d_scale(0.75)
+		2:
+			get_viewport().set_scaling_3d_scale(0.5)
+		3:
+			get_viewport().set_scaling_3d_scale(0.25)
+	
+		
+		
+		
+		
+		
+		
