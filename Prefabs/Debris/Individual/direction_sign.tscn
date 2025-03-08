@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dptwj8d7qoypj"]
+[gd_scene load_steps=11 format=4 uid="uid://dptwj8d7qoypj"]
 
 [ext_resource type="Script" path="res://Prefabs/Debris/Individual/debris.gd" id="1_sd42f"]
 [ext_resource type="Texture2D" uid="uid://b510po5td1va6" path="res://Assets/Models/Debris/Direction_Sign_Cube Base Color.png" id="2_himss"]
@@ -41,23 +41,22 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_umxk2")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jdwwx"]
-points = PackedVector3Array(-0.53668, -1.11749, 6.57302, 0.418633, -1.11749, 6.57302, -0.53668, -0.000226021, 6.57302, -0.159081, -0.675877, -2.20581, 0.41854, -0.000226021, 6.57302, 0.0409403, -0.675877, -2.20581, 0.0409403, -0.441947, -2.20581, -0.159081, -0.441947, -2.20581)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5sgaa"]
-points = PackedVector3Array(0.909749, 1, 0.909749, 0.909749, 0.973571, 0.973571, 0.961825, 0.961825, 0.961825, 0.973571, 0.973571, 0.909749, 0.909749, 1, -0.909945, -0.909945, 1, 0.909749, 0.909749, 0.909749, 1, -0.909945, 0.973571, 0.973571, 0.973571, 0.909749, 0.973571, 1, 0.909749, 0.909749, 0.973571, 0.973571, -0.909945, 0.961825, 0.961825, -0.96202, 0.909749, 0.973571, -0.973767, -0.909945, 1, -0.909945, -0.973767, 0.973571, 0.909749, -0.96202, 0.961825, 0.961825, 0.909749, -0.909945, 1, -0.909945, 0.909749, 1, 0.973571, -0.909945, 0.973571, 1, 0.909749, -0.909945, 1, -0.909945, 0.909749, 0.973571, 0.909749, -0.973767, 0.909749, 0.909749, -1, -0.909945, 0.973571, -0.973767, -0.96202, 0.961825, -0.96202, -0.973767, 0.973571, -0.909945, -1, 0.909749, 0.909749, -0.973767, 0.909749, 0.973571, 0.909749, -0.973767, 0.973571, 0.961825, -0.96202, 0.961825, -0.909945, -0.909945, 1, 1, -0.909945, -0.909945, 0.973571, -0.973767, 0.909749, 0.973571, -0.909945, -0.973767, 0.909749, -0.909945, -1, -0.909945, 0.909749, -1, -0.973767, 0.909749, -0.973767, -1, 0.909749, -0.909945, -1, -0.909945, 0.909749, -0.973767, -0.909945, 0.973571, 0.909749, -1, 0.909749, -0.909945, -0.973767, 0.973571, -0.96202, -0.96202, 0.961825, 0.973571, -0.973767, -0.909945, 0.961825, -0.96202, -0.96202, 0.909749, -0.973767, -0.973767, -0.909945, -0.909945, -1, -0.973767, -0.909945, -0.973767, -1, -0.909945, -0.909945, -0.973767, -0.973767, 0.909749, 0.909749, -1, -0.909945, -0.909945, -1, 0.909749, -0.909945, -0.973767, -0.973767, -0.96202, -0.96202, -0.96202, -0.973767, -0.973767, -0.909945, -0.909945, -1, -0.909945)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aww38"]
 resource_name = "Material.001"
 cull_mode = 2
 albedo_texture = ExtResource("2_himss")
 roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 0.258824, 1)
+emission_energy_multiplier = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsus3"]
 resource_name = "Material.004"
 cull_mode = 2
 albedo_color = Color(0, 0, 0, 1)
 roughness = 0.5
+emission_enabled = true
+emission_energy_multiplier = 0.1
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vkapd"]
 _surfaces = [{
@@ -115,23 +114,22 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vkapd")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vow3w"]
+size = Vector3(0.0244141, 0.881767, 0.0322266)
+
 [node name="Direction_Sign" type="RigidBody3D"]
 script = ExtResource("1_sd42f")
 
-[node name="Sign" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.1, -1.50996e-08, 6.60024e-16, 0, -4.37114e-09, -0.1, 1.50996e-08, -0.1, 4.37114e-09, -0.0282593, 0.657814, -0.0384187)
+[node name="Sign" type="MeshInstance3D" parent="." groups=["Please Move"]]
+transform = Transform3D(-0.02, -3.01992e-09, 1.32005e-16, 0, -8.74228e-10, -0.02, 3.01992e-09, -0.02, 8.74228e-10, -0.000889316, 0.132, -0.0115611)
 mesh = SubResource("ArrayMesh_lldlr")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." groups=["Please Move"]]
-transform = Transform3D(-0.1, -1.50996e-08, 6.60024e-16, 0, -4.37114e-09, -0.1, 1.50996e-08, -0.1, 4.37114e-09, -0.0282593, 0.657814, -0.0384187)
-shape = SubResource("ConvexPolygonShape3D_jdwwx")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Please Move"]]
-transform = Transform3D(0.1, 0, 0, 0, 0.139, 0, 0, 0, 0.013, 0.00413799, 0.883746, -0.00740507)
-shape = SubResource("ConvexPolygonShape3D_5sgaa")
-
-[node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.139, 0, 0, 0, 0.013, 0.00413799, 0.883746, -0.00740507)
+[node name="Cube" type="MeshInstance3D" parent="." groups=["Please Move"]]
+transform = Transform3D(0.02, 0, 0, 0, 0.028, 0, 0, 0, 0.003, 0, 0.149145, -0.0033636)
 mesh = SubResource("ArrayMesh_l2e5e")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Please Move"]]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.0896805, 0)
+shape = SubResource("BoxShape3D_vow3w")
