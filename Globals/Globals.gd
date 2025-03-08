@@ -21,7 +21,8 @@ signal game_won()
 	"Crash 1":preload("res://Assets/Sounds/Crashes/CarCrash.mp3"),
 	"Crash 2":preload("res://Assets/Sounds/Crashes/Crash2.mp3"),
 	"Crash 3":preload("res://Assets/Sounds/Crashes/Crash3.mp3"),
-	"Crash 4":preload("res://Assets/Sounds/Crashes/Crash4.mp3"),
+	"Crash 4":preload("res://Assets/Sounds/Crashes/NewCrash1.mp3"),
+	"Crash 5":preload("res://Assets/Sounds/Crashes/NewCrash2.mp3")
 }
 
 @onready var radio : Dictionary = {
