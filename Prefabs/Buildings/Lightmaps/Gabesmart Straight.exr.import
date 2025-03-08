@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://bsd614c0rscp0"
+path="res://.godot/imported/Gabesmart Straight.exr-6bbeec855a0f293b336b84f71a6143c9.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Prefabs/Buildings/Lightmaps/Gabesmart Straight.exr"
+dest_files=["res://.godot/imported/Gabesmart Straight.exr-6bbeec855a0f293b336b84f71a6143c9.ctexarray"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=1
