@@ -37,6 +37,59 @@ signal game_won()
 	"GabesProstateObliteration":preload("res://Assets/Sounds/Music/My Lovely Obliteration.mp3")
 }
 
+@onready var car_colors:Dictionary = {
+	Color(1,1,1,1):"Pure White",
+	Color.ALICE_BLUE: "Alice Blue",
+	Color.ANTIQUE_WHITE: "Antique White",
+	Color.AQUA: "Aqua",
+	Color.AQUAMARINE: "Aquamarine",
+	Color.AZURE: "Azure",
+	Color.BEIGE: "Beige",
+	Color.BISQUE: "Bisque",
+	Color.BLACK: "Black",
+	Color.BLANCHED_ALMOND: "Blanched Almond",
+	Color.BLUE: "Blue",
+	Color.BLUE_VIOLET: "Blue Violet",
+	Color.BROWN: "Brown",
+	Color.BURLYWOOD: "Burlywood",
+	Color.CADET_BLUE: "Cadet Blue",
+	Color.CHARTREUSE: "Chartreuse",
+	Color.CHOCOLATE: "Chocolate",
+	Color.CORAL: "Coral",
+	Color.CORNFLOWER_BLUE: "Cornflower Blue",
+	Color.CORNSILK: "Cornsilk",
+	Color.CRIMSON: "Crimson",
+	Color.DARK_BLUE: "Dark Blue",
+	Color.DARK_CYAN: "Dark Cyan",
+	Color.DARK_GOLDENROD: "Dark Goldenrod",
+	Color.DARK_GRAY: "Dark Gray",
+	Color.DARK_GREEN: "Dark Green",
+	Color.DARK_KHAKI: "Dark Khaki",
+	Color.DARK_MAGENTA: "Dark Magenta",
+	Color.DARK_OLIVE_GREEN: "Dark Olive Green",
+	Color.DARK_ORANGE: "Dark Orange",
+	Color.DARK_ORCHID: "Dark Orchid",
+	Color.DARK_RED: "Dark Red",
+	Color.DARK_SALMON: "Dark Salmon",
+	Color.DARK_SEA_GREEN: "Dark Sea Green",
+	Color.DARK_SLATE_BLUE: "Dark Slate Blue",
+	Color.DARK_SLATE_GRAY: "Dark Slate Gray",
+	Color.DARK_TURQUOISE: "Dark Turquoise",
+	Color.DARK_VIOLET: "Dark Violet",
+	Color.DEEP_PINK: "Deep Pink",
+	Color.DEEP_SKY_BLUE: "Deep Sky Blue",
+	Color.DIM_GRAY: "Dim Gray",
+	Color.DODGER_BLUE: "Dodger Blue",
+	Color.FIREBRICK: "Firebrick",
+	Color.FLORAL_WHITE: "Floral White",
+	Color.FOREST_GREEN: "Forest Green",
+	Color.FUCHSIA: "Fuchsia",
+	Color.GAINSBORO: "Gainsboro",
+	Color.GHOST_WHITE: "Ghost White",
+	Color.GOLD: "Gold"
+}
+
+
 @onready var pedestrian_packed:PackedScene = preload("res://Prefabs/Car/Average Sober Driver.tscn")
 @onready var cop_packed:PackedScene = preload("res://Prefabs/the_cop.tscn")
 
