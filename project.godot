@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Code-for-cause"
+config/name="Love Drunk"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://icon Image.png"
 
 [autoload]
 
