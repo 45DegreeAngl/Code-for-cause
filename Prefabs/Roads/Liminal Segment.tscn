@@ -5994,13 +5994,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07933, 0.696947, -1.80018)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.50137, 0.696947, -1.80018)
 
 [node name="Marker3D3" type="Marker3D" parent="Road Spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.33098, 0.696947, -4.88047)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500056, 0.696947, -1.65295)
 
 [node name="Marker3D4" type="Marker3D" parent="Road Spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3933, 0.696947, -4.88047)
 
 [node name="Marker3D5" type="Marker3D" parent="Road Spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78399, 0.696947, -4.88047)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49692, 0.696947, -4.88047)
 
 [node name="Marker3D6" type="Marker3D" parent="Road Spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23917, 0.696947, -4.88047)
