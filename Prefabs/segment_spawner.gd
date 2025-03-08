@@ -13,12 +13,12 @@ var gabesmart_pity = 0
 signal road_generated
 
 func _ready():
+	Globals.world_node = self
 	if not gabesmart_chance:
 		@warning_ignore("integer_division")
 		gabesmart_chance = 1/(2*max_gabesmart_pity)
 
-
-	#spawn_road(road_segments[2])#PENISPENISPENISPENISCOCKOCKCOCKOCKCOCKOCKCOKCOKC
+	spawn_road(road_segments[2])#PENISPENISPENISPENISCOCKOCKCOCKOCKCOCKOCKCOKCOKC
 	for num_roads in range(2):
 		spawn_road()
 	#if exes_house:

@@ -35,6 +35,10 @@ signal game_won()
 	"Underwater":preload("res://Assets/Sounds/Music/Underwater.mp3"),
 	"GabesProstateObliteration":preload("res://Assets/Sounds/Music/My Lovely Obliteration.mp3")
 }
+
+@onready var pedestrian_packed:PackedScene = preload("res://Prefabs/Car/Average Sober Driver.tscn")
+@onready var cop_packed:PackedScene = preload("res://Prefabs/the_cop.tscn")
+
 var timer:float = 0
 
 signal update_bottles
@@ -76,6 +80,7 @@ const starting_scale = 1.1
 		drunkenness = value
 
 @onready var world_node : Node
+		
 @onready var filter_canvas : CanvasLayer
 @onready var player_vehicle : VehicleBody3D
 @onready var player_character : Node3D

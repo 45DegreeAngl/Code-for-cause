@@ -1,7 +1,7 @@
 extends Node
 
 @export var game_packed : PackedScene
-@export var TitleMusicPlayer :AudioStreamPlayer2D
+@export var TitleMusicPlayer :AudioStreamPlayer
 
 func _ready()->void:
 	Globals.game_lost.connect(_on_lose)
@@ -62,8 +62,10 @@ func _process(_delta: float) -> void:
 
 func _on_start_pressed() -> void:
 	Globals.drunkenness = 20
+	for child in $"Game World".get_children():
+		child.queue_free()
 	#$"Game World".process_mode = Node.PROCESS_MODE_INHERIT
-	on_back()
+	main_menu()
 	$"Main Menu".visible = false
 	$Animations.visible = true
 
@@ -88,7 +90,7 @@ func _on_credits_pressed() -> void:
 	$Credits.visible = true
 	$"Main Menu".visible = false
 
-func on_back()->void:
+func main_menu():
 	$MenuGeometry.visible = true
 	$MenuGeometry/SubViewportContainer.visible = true
 	$Credits.visible = false
@@ -96,11 +98,16 @@ func on_back()->void:
 	$"Main Menu".visible = true
 	$"Game Over".visible = false
 	$"YOU WIN".visible = false
+	$"Animations/HBoxContainer/Intro Story".current_tab = 0
+	$"Animations/HBoxContainer/Left Story".disabled = true
+
+func on_back()->void:
+	main_menu()
 	for child in $"Game World".get_children():
 		child.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	$"Animations/HBoxContainer/Intro Story".current_tab = 0
-	$"Animations/HBoxContainer/Left Story".disabled = true
+	if !TitleMusicPlayer.playing:
+		TitleMusicPlayer.playing = true
 
 
 func _on_left_story_pressed() -> void:
