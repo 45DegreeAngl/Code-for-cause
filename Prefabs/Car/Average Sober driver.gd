@@ -130,11 +130,7 @@ func _process(delta: float) -> void:
 	control(delta)
 	change_engine_pitch()
 	check_stuck()
-	var collider = $RayCast3D.get_collider()
-	if collider==Globals.player_vehicle:
-		reversing = true
-		$ReverseTimer.start()
-		 
+	
 	#print(distance_to(self.global_position,target.global_position))
 	if distance_to(self.global_position,target.global_position)<hunt_distance:
 		hunt = true
