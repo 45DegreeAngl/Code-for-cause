@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dpy0u4mmk4ry4"
+path.s3tc="res://.godot/imported/super_optimized_tree_Cone.png-e7b04faf3c8e8ca87d11fb3cdff55ba7.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "9edf3fe3b3caa9bb9cce4f3c1d63aaf4"
+}
+
+[deps]
+
+source_file="res://Assets/Models/Debris/super_optimized_tree_Cone.png"
+dest_files=["res://.godot/imported/super_optimized_tree_Cone.png-e7b04faf3c8e8ca87d11fb3cdff55ba7.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2c8t7bwibhjv"]
+
+[ext_resource type="ArrayMesh" uid="uid://ci8jdrt6ptm3t" path="res://Prefabs/Debris/Individual/optimized_tree2.tres" id="1_ejug3"]
+[ext_resource type="Script" path="res://Prefabs/Roads/tree_multimesh.gd" id="2_q4thy"]
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D"]
+script = ExtResource("2_q4thy")
+tree_mesh = ExtResource("1_ejug3")
