@@ -155,3 +155,12 @@ func _on_world_sounds_value_changed(value: float) -> void:
 func _on_motion_sickness_check_toggled(toggled_on: bool) -> void:
 	MainShaderCanvas.filter_dict["drunk"][1].visible = !toggled_on
 	MainShaderCanvas.filter_dict["drunk"][3].visible = toggled_on
+
+func _on_resolution_options_item_selected(index: int) -> void:
+	match index:
+		0:#1152x648
+			DisplayServer.window_set_size(Vector2i(1152,648))
+		1:#576x324
+			DisplayServer.window_set_size(Vector2i(576,324))
+		2:#1920x1080
+			DisplayServer.window_set_size(Vector2i(1920,1080))
