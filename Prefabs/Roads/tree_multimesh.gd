@@ -26,5 +26,6 @@ func replace_meshes():
 	multimesh.mesh = tree_mesh
 	global_transform = tree_parent.global_transform
 	for i in range(tree_parent.get_child_count()):
-		multimesh.set_instance_transform(i, tree_parent.get_child(i).global_transform)
+		var child = tree_parent.get_child(i)
+		multimesh.set_instance_transform(i, child.global_transform)
 	
