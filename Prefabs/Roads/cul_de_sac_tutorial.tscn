@@ -1,0 +1,276 @@
+[gd_scene load_steps=29 format=3 uid="uid://fuvj7j3go7xh"]
+
+[ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_6evje"]
+[ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_vcq83"]
+[ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="3_a82uc"]
+[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="4_iudb2"]
+[ext_resource type="PackedScene" uid="uid://draf67p2ehgfx" path="res://Prefabs/Buildings/house_1.tscn" id="5_ueshl"]
+[ext_resource type="PackedScene" uid="uid://b4jd38ifumhg7" path="res://Prefabs/Buildings/gabes_mart.tscn" id="6_i5ttn"]
+[ext_resource type="Script" path="res://Prefabs/Debris/Groups/debris_group.gd" id="7_0xqex"]
+[ext_resource type="PackedScene" uid="uid://cyf4gwwy1p5ut" path="res://Prefabs/Debris/Individual/cone_debris.tscn" id="8_24eo5"]
+[ext_resource type="PackedScene" uid="uid://gq811rsmjlhl" path="res://Prefabs/Debris/Individual/tire_debris.tscn" id="9_615do"]
+
+[sub_resource type="Curve3D" id="Curve3D_5u1vu"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.539585, 0.551673, -0.0355971, 0, 0, 0, 0, 0, 0, 0.514456, 0.551673, -15.9936),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hs440"]
+size = Vector3(33.7588, 5.26257, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldlsn"]
+transparency = 1
+albedo_texture = ExtResource("4_iudb2")
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_sasok"]
+material = SubResource("StandardMaterial3D_ldlsn")
+size = Vector2(18, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yesdx"]
+size = Vector3(1, 4.8252, 18)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgs63"]
+transparency = 1
+albedo_texture = ExtResource("4_iudb2")
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xbhla"]
+material = SubResource("StandardMaterial3D_pgs63")
+size = Vector2(18, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3lkfw"]
+load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmyff"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_3lkfw")
+uv1_scale = Vector3(9.34, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_whbdn"]
+material = SubResource("StandardMaterial3D_hmyff")
+size = Vector2(32, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dpxbs"]
+size = Vector3(1, 4.8252, 30.9814)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01nt0"]
+load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enla3"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_01nt0")
+uv1_scale = Vector3(9, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_t7c1h"]
+material = SubResource("StandardMaterial3D_enla3")
+size = Vector2(32, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tf65"]
+transparency = 1
+albedo_texture = ExtResource("4_iudb2")
+uv1_scale = Vector3(6, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_aorjo"]
+material = SubResource("StandardMaterial3D_7tf65")
+size = Vector2(18, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qhubf"]
+size = Vector3(17.8518, 6.13373, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_756db"]
+size = Vector2(2.325, 1.71)
+
+[sub_resource type="QuadMesh" id="QuadMesh_y4bgl"]
+size = Vector2(2.665, 1.71)
+
+[node name="Cul de Sac Tutorial" type="GridMap"]
+mesh_library = ExtResource("1_6evje")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65531, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65526, 1441792, 0, 65532, 1441792, 0, 65530, 1441792, 0, 65528, 1048579, 2, 65528, 0, 3, 65528, 0, 65534, 65528, 0, 65533, 65528, 0, 65532, 65528, 0, 65531, 65528, 0, 65530, 65528, 0, 5, 65528, 655364, 5, 65526, 1048576, 5, 65525, 1048576, 5, 65524, 1048576, 5, 65523, 1048576, 5, 65530, 1048576, 5, 65531, 1048576, 5, 65532, 1048576, 5, 65522, 1441794, 10, 65522, 655362, 9, 65522, 0, 8, 65522, 0, 7, 65522, 0, 6, 65522, 0, 10, 65534, 1048578, 9, 65534, 0, 8, 65534, 0, 6, 65534, 0, 7, 65534, 0, 5, 65534, 2, 5, 65533, 1441792, 10, 65530, 1441792, 10, 65526, 1441792, 12, 65524, 655360, 13, 65524, 655360, 14, 65524, 655360, 12, 65528, 655360, 13, 65528, 655360, 14, 65528, 655360, 12, 65532, 655360, 13, 65532, 655360, 14, 65532, 655360, 10, 65532, 655363, 10, 65528, 655363, 10, 65524, 655363, 8, 65524, 655360, 7, 65524, 655360, 8, 65528, 655360, 7, 65528, 655360, 8, 65532, 655360, 7, 65532, 655360)
+}
+script = ExtResource("2_vcq83")
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Exit" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="Path3D" type="Path3D" parent="." groups=["road_path"]]
+curve = SubResource("Curve3D_5u1vu")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("3_a82uc")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 0, 65530, 1441792, 0, 65529, 1441792, 0, 65528, 1441792, 0, 65527, 1441792, 0, 65526, 1441792, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Lamps" type="Node3D" parent="."]
+
+[node name="Exit Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.1022)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
+shape = SubResource("BoxShape3D_hs440")
+
+[node name="Boundary" type="Node3D" parent="."]
+
+[node name="Left trees" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.4798, 0.973994, -7.94238)
+mesh = SubResource("QuadMesh_sasok")
+skeleton = NodePath("../..")
+
+[node name="Boundary box" type="StaticBody3D" parent="Boundary/Left trees"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0688138, -0.973994, -1.06203)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Left trees/Boundary box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603683, 2.57542, 0)
+shape = SubResource("BoxShape3D_yesdx")
+
+[node name="Left trees secondary" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.6161, 0.973994, -8.28344)
+mesh = SubResource("QuadMesh_xbhla")
+skeleton = NodePath("../..")
+
+[node name="Left trees2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-0.999832, 0, -0.0183075, 0, 1, 0, 0.0183075, 0, -0.999832, 0.53828, 0.973994, -0.761391)
+mesh = SubResource("QuadMesh_whbdn")
+skeleton = NodePath("../..")
+
+[node name="Boundary box" type="StaticBody3D" parent="Boundary/Left trees2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0688138, -0.973994, -1.06203)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Left trees2/Boundary box"]
+transform = Transform3D(1.00001, 0, 6.14673e-08, 0, 1, 0, -6.14673e-08, 0, 1.00001, 0.603683, 2.57542, -5.96046e-08)
+shape = SubResource("BoxShape3D_dpxbs")
+
+[node name="Left trees secondary2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-0.999832, 0, -0.0183075, 0, 1, 0, 0.0183075, 0, -0.999832, 0.199773, 0.973994, -0.61887)
+mesh = SubResource("QuadMesh_t7c1h")
+skeleton = NodePath("../..")
+
+[node name="Right trees" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4423, 0.989509, -8.66668)
+mesh = SubResource("QuadMesh_aorjo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boundary/Right trees"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Right trees/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.56686, -0.484188)
+shape = SubResource("BoxShape3D_qhubf")
+
+[node name="Right trees2" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.6521, 0.989509, -9.06709)
+mesh = SubResource("QuadMesh_aorjo")
+skeleton = NodePath("../..")
+
+[node name="Tutorial end" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02465, -15.3788)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tutorial end"]
+shape = SubResource("BoxShape3D_hs440")
+
+[node name="House_1" parent="." instance=ExtResource("5_ueshl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 12.9182, 0.495, -5.43906)
+
+[node name="House_2" parent="." instance=ExtResource("5_ueshl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 13.0917, 0.494999, -9.47716)
+
+[node name="House_3" parent="." instance=ExtResource("5_ueshl")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 8.35205, 0.495, -9.3468)
+
+[node name="House_4" parent="." instance=ExtResource("5_ueshl")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 8.25544, 0.495, -5.57052)
+
+[node name="Gabes_Mart" parent="." instance=ExtResource("6_i5ttn")]
+transform = Transform3D(-0.999995, 0, 0.00326375, 0, 1, 0, -0.00326375, 0, -0.999995, -6.95411, 0.496432, -7.50258)
+
+[node name="Tutorial Sign" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.85469, 1.00973, -3.52579)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Tutorial Sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0.183417, 0.0127182)
+text = "Use WASD to Drive
+Look around your car
+You'll see that many things 
+are interactible (3)
+"
+
+[node name="Tutorial Sign2" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.9832, 1.35784, -5.6888)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Tutorial Sign2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
+text = "You need to drink to keep 
+your sobriety at Zero
+If you're too sober
+driving to your exes place
+ might not seem like
+ such a good idea"
+
+[node name="Tutorial Sign3" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.10927, 1.15587, -5.70732)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Tutorial Sign3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
+text = "Press E while looking at
+ your door to exit your car.
+Pick up your beverages 
+at gabe's Mart
+He'll put it on your tab"
+
+[node name="Tutorial Sign5" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44999, 1.15587, -13.3972)
+mesh = SubResource("QuadMesh_y4bgl")
+
+[node name="Label3D" type="Label3D" parent="Tutorial Sign5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
+text = "Follow the moon and avoid cops
+they dont like drunk drivers"
+
+[node name="Tutorial Sign4" type="CSGMesh3D" parent="."]
+transform = Transform3D(-0.25, 0, 2.18557e-08, 0, 0.25, 0, -2.18557e-08, 0, -0.25, -7.04266, 0.893001, -7.2905)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Tutorial Sign4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
+text = "Throw your beverages 
+in this box
+Or return to your car while 
+holding them"
+
+[node name="Tutorial Sign6" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -6.94675, 0.708942, -6.94643)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Tutorial Sign6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.020359)
+text = "To hold objects while outside 
+of your car you can
+ use left and right mouse.
+You can bring garbage 
+into your car. 
+Maybe it's useful to 
+throw out of your car? (Q)"
+font_size = 25
+
+[node name="Debris" type="Node3D" parent="."]
+script = ExtResource("7_0xqex")
+
+[node name="Cone Debris" parent="Debris" instance=ExtResource("8_24eo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.62591, 0.542955, -6.88273)
+
+[node name="Tire Debris" parent="Debris" instance=ExtResource("9_615do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.62591, 0.542955, -7.00971)
+
+[connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]
+[connection signal="body_entered" from="Tutorial end" to="." method="disable_tutorial"]

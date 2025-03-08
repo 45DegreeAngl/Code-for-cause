@@ -67,7 +67,7 @@ const starting_scale = 1.1
 @onready var game_over : bool = true
 @onready var game_paused : bool = false
 ##change this boolean when tutorial ends
-@onready var tutorial:bool = false
+@onready var tutorial:bool = true
 @onready var drunkenness : float = 20:
 	set(value):
 		if tutorial and value<20:

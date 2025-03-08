@@ -25,7 +25,7 @@ func _ready():
 		#spawn_road(exes_house)
 		
 	road_generated.emit()
-@onready var previous_road : Node3D = $"Roads/Debug Straight"
+@onready var previous_road : Node3D = $"Roads/Cul de Sac Tutorial"
 
 #spawn road at given location
 func spawn_road(segment:PackedScene = null)->Node3D:

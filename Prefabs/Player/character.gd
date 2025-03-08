@@ -114,7 +114,7 @@ func _physics_process(delta):
 			walking = true
 		if Input.is_action_just_pressed("E") and car_door:
 			car.enter_car()
-		elif Input.is_action_just_pressed("Q") and flippable:
+		elif Input.is_action_just_pressed("Q") and flippable and !(left_hand == Globals.player_vehicle or right_hand == Globals.player_vehicle):
 			car.flip_car()
 		dir = dir.normalized()
 

@@ -20,8 +20,13 @@ func spawn_debris():
 func _on_exit_area_body_entered(body: Node3D) -> void:
 	if passed:
 		return
-	
 	if body == Globals.player_vehicle:
 		passed = true
 		increment_player_road_counter.emit()
 		
+
+func disable_tutorial(body:Node3D):
+	if body == Globals.player_vehicle:
+		if Globals.tutorial:
+			print("TUTORIAL END")
+			Globals.tutorial = false
