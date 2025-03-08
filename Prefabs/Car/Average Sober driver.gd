@@ -23,6 +23,8 @@ var hunt : bool = false
 
 var reversing := false
 
+var parked : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$StuckTimer.connect("timeout", on_stuck_timer_ended)
@@ -125,9 +127,7 @@ func _process(delta: float) -> void:
 	control(delta)
 	change_engine_pitch()
 	check_stuck()
-	steering = move_toward(steering,steer_input * get_max_steer(),delta*2.5)
-	engine_force = max(engine_input * ENGINE_POWER,-ENGINE_POWER/1.5)
-
+	
 	#print(distance_to(self.global_position,target.global_position))
 	if distance_to(self.global_position,target.global_position)<hunt_distance:
 		hunt = true
@@ -136,8 +136,20 @@ func _process(delta: float) -> void:
 
 	if target.global_position.z+1000<self.global_position.z:
 		call_deferred("queue_free")
-
 	
+	if target.global_position.z-300>self.global_position.z:
+		if !hunt:
+			parked = true
+	else:
+		parked = false
+	
+	if parked:
+		return
+	steering = move_toward(steering,steer_input * get_max_steer(),delta*2.5)
+	engine_force = max(engine_input * ENGINE_POWER,-ENGINE_POWER/1.5)
+
+
+
 func change_engine_pitch():
 	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:
 		$Engine.play()

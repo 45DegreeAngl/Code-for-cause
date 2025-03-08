@@ -35,7 +35,7 @@ func disable_tutorial(body:Node3D):
 @export var driver_spawns : Node3D = null
 #$Pedestrians $Cops
 func spawn_driver():
-	if !driver_spawns or randi_range(0,2)!=0:
+	if !driver_spawns or randi_range(0,2)==0:
 		print("not spawning driver")
 		return
 	var driver_instance : Node3D
