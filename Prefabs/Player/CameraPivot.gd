@@ -20,7 +20,7 @@ func _physics_process(_delta):
 		global_position = lerp(global_position,target_node.global_position,0.5)
 
 func _input(event):
-	if Globals.game_paused:
+	if Globals.game_paused or Globals.game_over:
 		return
 	# mouse lock
 	if Input.is_action_just_pressed("Esc"):
