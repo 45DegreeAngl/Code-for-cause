@@ -53,9 +53,10 @@ func spawn_road(segment:PackedScene = null)->Node3D:
 var cur_player_road:int = 0:
 	set(value):
 		print(value)
-		if value > 50:
+		if value > Globals.roads_to_win and Globals.roads_to_win!=int(INF):
+			print("no road for you")
 			pass
-		elif value == 50:
+		elif value == int(Globals.roads_to_win) and Globals.roads_to_win!=int(INF):
 			if exes_house:
 				spawn_road(exes_house)
 		else:

@@ -172,6 +172,10 @@ func _process(_delta: float) -> void:
 				var anger = 1+drunkenness/100.0
 				shader_mat.set_shader_parameter("red_mult",anger)
 
+const roads_to_win_options : Array[int]=[10,25,50,100,INF]
+
+@onready var roads_to_win : int = 50
+
 func format_seconds_as_time(seconds:float)->String:
 	var hours = int(seconds / 3600)
 	

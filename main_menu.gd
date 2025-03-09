@@ -21,10 +21,13 @@ func _on_lose(reason:String):
 	match reason:
 		"Sober":
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]SOBER")
-			
 		"Cops":
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]HIT BY A COP")
 	$"Game Over/Label".text = "YOU SURVIVED FOR: "+Globals.format_seconds_as_time(Globals.timer)
+	print(Globals.roads_to_win)
+	print(int(INF))
+	if Globals.roads_to_win == int(INF):
+		$"Game Over/Label".text += str("\nYOU PASSED: ",Globals.world_node.cur_player_road," ROADS")
 	MainShaderCanvas.visible = false
 	Globals.tutorial = true
 	Globals.game_paused = false
@@ -173,3 +176,8 @@ func on_quality_changed(index:int):
 
 func _on_become_sober_pressed() -> void:
 	Globals.game_lost.emit("Sober")
+
+##Practice,Easy,Medium,Hard,Endless
+#[10,25,50,100,INF]
+func _on_difficulty_options_item_selected(index: int) -> void:
+	Globals.roads_to_win = Globals.roads_to_win_options[index]
