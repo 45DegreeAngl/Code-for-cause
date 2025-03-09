@@ -23,7 +23,6 @@ func _on_exit_area_body_entered(body: Node3D) -> void:
 	if body == Globals.player_vehicle:
 		passed = true
 		increment_player_road_counter.emit()
-		
 
 func disable_tutorial(body:Node3D):
 	if body == Globals.player_vehicle:
