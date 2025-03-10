@@ -117,12 +117,15 @@ func _on_collide(body):
 	elif body is Debris:
 		#play debris hit effect
 		pass
+	if body is VehicleBody3D and !body.has_meta("Cop"):
+		Globals.sober_drivers_hit+=1
 
 func flip_car():
 	process_mode = PROCESS_MODE_DISABLED
 	rotation = Vector3.ZERO
 	global_position += Vector3(0,10,0)
 	process_mode = PROCESS_MODE_INHERIT
+	Globals.car_flip_count+=1
 
 func die_by_cop():
 	if !DEBUG_MODE:
@@ -236,8 +239,10 @@ func enter_car():
 			elif object.get_meta("Bottle")==("Jaeger"):
 				Globals.car_contents["Jaeger"] +=1
 			elif object.get_meta("Bottle")==("Crate"):
+				GlobalSteam.setAchievement("BULK BUYER")
 				Globals.car_contents[object.get_meta("Bottle_Type")] += 6
 			object.call_deferred("queue_free")
+			Globals.total_alcohol_bought+=1
 			Globals.update_bottles.emit()
 		elif object is Debris:
 			object.process_mode = Node.PROCESS_MODE_DISABLED
@@ -257,6 +262,7 @@ func throw_debris():
 		print($"Debrie Launch".global_position)
 		chosen.reparent(Globals.world_node.previous_road,true)
 		chosen.process_mode = Node.PROCESS_MODE_INHERIT
+		Globals.litter_count+=1
 
 enum looking_at{Door,Alchohol,Radio}
 var cur_look_at = null

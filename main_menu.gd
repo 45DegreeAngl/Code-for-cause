@@ -20,20 +20,59 @@ func _on_lose(reason:String):
 	$"Game Over".visible = true
 	match reason:
 		"Sober":
+			GlobalSteam.setAchievement("BECOME SOBER")
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]SOBER")
 		"Cops":
+			GlobalSteam.setAchievement("GET ARRESTED")
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]ARRESTED")
 	$"Game Over/Label".text = "YOU SURVIVED FOR: "+Globals.format_seconds_as_time(Globals.timer)
 	print(Globals.roads_to_win)
 	print(int(INF))
 	if Globals.roads_to_win == int(INF):
 		$"Game Over/Label".text += str("\nYOU PASSED: ",Globals.world_node.cur_player_road," ROADS")
+		upload_win()
 	MainShaderCanvas.visible = false
 	Globals.tutorial = true
 	Globals.game_paused = false
 	$Options.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
+
+#func _on_difficulty_options_item_selected(index: int) -> void:
+	#Globals.roads_to_win = Globals.roads_to_win_options[index]
+
+func upload_win():
+	match Globals.roads_to_win:
+		int(INF):
+			if Globals.world_node.cur_player_road>=200:
+				GlobalSteam.setAchievement("BEAT ENDLESS")
+			upload_records()
+		10:
+			GlobalSteam.setAchievement("BEAT PRACTICE")
+			upload_records()
+		25:
+			GlobalSteam.setAchievement("BEAT EASY")
+			upload_records()
+		50:
+			GlobalSteam.setAchievement("BEAT HARD")
+			upload_records()
+		100:
+			GlobalSteam.setAchievement("BEAT PRACTICE")
+			upload_records()
+
+func upload_records():
+	match Globals.roads_to_win:
+		int(INF):
+			GlobalSteam.submit_leaderboard_score("RECORD TIME ENDLESS",Globals.world_node.cur_player_road)
+		10:
+			GlobalSteam.submit_leaderboard_score("RECORD TIME PRACTICE",Globals.timer)
+		25:
+			GlobalSteam.submit_leaderboard_score("RECORD TIME EASY",Globals.timer)
+		50:
+			GlobalSteam.submit_leaderboard_score("RECORD TIME NORMAL",Globals.timer)
+		100:
+			GlobalSteam.submit_leaderboard_score("RECORD TIME HARD",Globals.timer)
+	
 
 func _on_win():
 	if Globals.game_over:
@@ -45,6 +84,8 @@ func _on_win():
 	MainShaderCanvas.visible = false
 	Globals.tutorial = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	upload_win()
+	upload_records()
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(_delta: float) -> void:
@@ -78,6 +119,7 @@ func _on_start_pressed() -> void:
 	$Animations.get_child(0).play_intro()
 
 func _on_start_game() ->void:
+	Globals.reset_stats()
 	TitleMusicPlayer.playing = false
 	$MenuGeometry/SubViewportContainer.visible = false
 	$MenuGeometry.visible = false

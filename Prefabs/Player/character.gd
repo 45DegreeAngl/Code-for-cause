@@ -120,8 +120,7 @@ func _physics_process(delta):
 
 		physical_bone_body.linear_velocity += dir*SPEED*delta #move character
 		physical_bone_body.linear_velocity *= Vector3(DAMPING,1,DAMPING)# add damping to make it less slippery
-		
-		
+
 		#check if is on floor
 		is_on_floor = false
 		if on_floor_left.is_colliding():
@@ -153,7 +152,6 @@ func _physics_process(delta):
 func hookes_law(displacement: Vector3, current_velocity: Vector3, stiffness: float, damping: float) -> Vector3:
 	return (stiffness * displacement) - (damping * current_velocity)
 
-
 func _on_r_grab_area_body_entered(body:Node3D):
 	# check if the arm is touching something for grabbing
 	if body is PhysicsBody3D and body.get_parent() != physical_skel:
@@ -164,7 +162,6 @@ func _on_r_grab_area_body_entered(body:Node3D):
 			grab_joint_right.node_b = body.get_path()
 			if body is RigidBody3D:
 				right_hand = body
-
 
 func _on_l_grab_area_body_entered(body:Node3D):
 	# check if the arm is touching something for grabbing
@@ -182,7 +179,6 @@ func _on_jump_timer_timeout():
 	# jump timer to avoid spamming jump and then fly away
 	can_jump = true
 
-
 func _on_skeleton_3d_skeleton_updated() -> void:
 	if not ragdoll_mode:# if not in ragdoll mode
 		# rotate the physical bones toward the animated bones rotations using hookes law
@@ -196,14 +192,12 @@ func _on_skeleton_3d_skeleton_updated() -> void:
 			torque = torque.limit_length(max_angular_force)
 			
 			b.angular_velocity += torque * current_delta
-			
 
 var flippable: bool = false
 func _on_look_area_body_entered(body: Node3D) -> void:
 	if body == Globals.player_vehicle: 
 		flippable = true
 		car.flip_car_option(flippable)
-
 
 func _on_look_area_body_exited(body: Node3D) -> void:
 	if body == Globals.player_vehicle and flippable:

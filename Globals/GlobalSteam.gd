@@ -69,7 +69,6 @@ func _initialize_steam() -> void:
 ##LEADERBOARDS
 var boardhandles:Dictionary = {}
 func set_up_leaderboards():
-	
 	Steam.findLeaderboard("RECORD TIME EASY")
 	await leaderboard_update
 	Steam.findLeaderboard("RECORD TIME PRACTICE")
@@ -82,16 +81,34 @@ func set_up_leaderboards():
 	await leaderboard_update
 	Steam.findLeaderboard("RECORD SOBER HATER")
 	await leaderboard_update
-	
 
 signal leaderboard_update
 func leaderboard_result(handle,found):
 	if found:
-		boardhandles[handle] = [Steam.getLeaderboardName(handle)] 
-		print("LEADERBOARD ",boardhandles[handle][0]," FOUND")
+		var leaderboard_name = Steam.getLeaderboardName(handle)
+		boardhandles[leaderboard_name] = [handle]
+		
+		print("LEADERBOARD ",leaderboard_name," FOUND")
 	else:
 		print("LEADERBOARD NOT FOUND")
 	leaderboard_update.emit()
 
+func download_leaderboard_entries(start:int=1,end:int=10):
+	Steam.downloadLeaderboardEntries(start,end)
+
+func submit_leaderboard_score(leaderboard_name:String,value):
+	Steam.uploadLeaderboardScore(value,true,PackedInt32Array(),boardhandles[leaderboard_name][0])
+
 func leaderboard_scores(message,handle,result):
 	for r in result:
+		var score_holder = Steam.getFriendPersonaName(r["steam_id"])
+		var score = r["score"]
+		print(score_holder," ",score)
+
+func setAchievement(ach:String):
+	var status = Steam.getAchievement(ach)
+	if status["achieved"]:
+		print("Already Unlocked")
+		return
+	Steam.setAchievement(ach)
+	print("Unlocked achievement: ",ach)
