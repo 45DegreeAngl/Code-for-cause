@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cix00ipoquo5m"
+uid="uid://cody8ewjarqwo"
 path.s3tc="res://.godot/imported/Gabes_Mart_Asphalt.png-59c7025f6b17352e5fdf4fafa3949d46.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "436f8c54c6cec3c7b0f90dcdbef8c44d"
 }
 
 [deps]

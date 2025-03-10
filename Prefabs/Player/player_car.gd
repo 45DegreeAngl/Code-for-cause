@@ -29,6 +29,8 @@ func _ready() -> void:
 	Globals.car_contents = {"Beer":1,"Sake":0,"Jaeger":0}
 	Globals.update_bottles.emit()
 	Globals.timer = 0
+	if radio_on:
+		$Sounds/Radio.volume_db = -25
 	if DEBUG_MODE:
 		return
 	MainShaderCanvas.toggle_filter("drunk")
@@ -149,7 +151,6 @@ func drink_random():
 	
 	Globals.car_contents[picked_bottle] -= 1
 	Globals.update_bottles.emit()
-	
 
 @export var camera_sense : float = 0.001
 var rot_x = 180
@@ -178,7 +179,6 @@ func _input(event: InputEvent) -> void:
 		handle_cam_rotation()
 	if Globals.game_over:
 		return
-	
 
 func handle_cam_rotation():
 	$Cameras/Windshield.transform.basis = Basis() #reset rot

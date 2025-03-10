@@ -1067,6 +1067,7 @@ linear_damp = 0.2
 script = ExtResource("1_evy4q")
 STEERING_CURVE = ExtResource("2_x726e")
 ENGINE_POWER = 400.0
+radio_on = true
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30538, 0.702559, -4.30117)

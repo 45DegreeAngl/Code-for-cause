@@ -48,19 +48,13 @@ signal game_won()
 	Color.BISQUE: "Bisque",
 	Color.BLACK: "Black",
 	Color.BLANCHED_ALMOND: "Blanched Almond",
-	Color.BLUE: "Blue",
-	Color.BLUE_VIOLET: "Blue Violet",
 	Color.BROWN: "Brown",
 	Color.BURLYWOOD: "Burlywood",
-	Color.CADET_BLUE: "Cadet Blue",
 	Color.CHARTREUSE: "Chartreuse",
 	Color.CHOCOLATE: "Chocolate",
 	Color.CORAL: "Coral",
-	Color.CORNFLOWER_BLUE: "Cornflower Blue",
 	Color.CORNSILK: "Cornsilk",
 	Color.CRIMSON: "Crimson",
-	Color.DARK_BLUE: "Dark Blue",
-	Color.DARK_CYAN: "Dark Cyan",
 	Color.DARK_GOLDENROD: "Dark Goldenrod",
 	Color.DARK_GRAY: "Dark Gray",
 	Color.DARK_GREEN: "Dark Green",
@@ -72,14 +66,10 @@ signal game_won()
 	Color.DARK_RED: "Dark Red",
 	Color.DARK_SALMON: "Dark Salmon",
 	Color.DARK_SEA_GREEN: "Dark Sea Green",
-	Color.DARK_SLATE_BLUE: "Dark Slate Blue",
 	Color.DARK_SLATE_GRAY: "Dark Slate Gray",
-	Color.DARK_TURQUOISE: "Dark Turquoise",
 	Color.DARK_VIOLET: "Dark Violet",
 	Color.DEEP_PINK: "Deep Pink",
-	Color.DEEP_SKY_BLUE: "Deep Sky Blue",
 	Color.DIM_GRAY: "Dim Gray",
-	Color.DODGER_BLUE: "Dodger Blue",
 	Color.FIREBRICK: "Firebrick",
 	Color.FLORAL_WHITE: "Floral White",
 	Color.FOREST_GREEN: "Forest Green",
@@ -148,7 +138,7 @@ const starting_scale = 1.1
 						shader_mat.set_shader_parameter("red_shift",red)
 
 @onready var world_node : Node
-		
+
 @onready var filter_canvas : CanvasLayer
 @onready var player_vehicle : VehicleBody3D
 @onready var player_character : Node3D

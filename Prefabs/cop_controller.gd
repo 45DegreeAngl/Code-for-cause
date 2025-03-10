@@ -176,14 +176,20 @@ func toggle_colors():
 	var blue_mat : StandardMaterial3D = $Mesh/Chassis.get_active_material(6)
 	
 	if red_light:
+		blue_mat.emission_enabled = false
+		$Light/BLUE.visible = false
 		red_mat.emission_enabled = true
 		red_mat.emission = Color.RED
+		$Light/RED.visible = true
 		$Mesh/Chassis.set_surface_override_material(4, red_mat)
 	else:
+		$Light/BLUE.visible = false
+		$Light/RED.light_energy = false
+		red_mat.emission_enabled = false
+		$Light/RED.visible = true
 		blue_mat.emission_enabled = true
 		blue_mat.emission = Color.BLUE
 		$Mesh/Chassis.set_surface_override_material(6, red_mat)
-	
 	red_light = !red_light
 
 func talk():

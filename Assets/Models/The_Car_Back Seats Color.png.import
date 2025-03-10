@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://puumuynsf38b"
+uid="uid://dm0dco1ypjt0j"
 path.s3tc="res://.godot/imported/The_Car_Back Seats Color.png-9f819caf9029c29651f057d52deec10e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "88e36d5fe9302a64cc74767b67d15404"
 }
 
 [deps]

@@ -22,7 +22,7 @@ func _on_lose(reason:String):
 		"Sober":
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]SOBER")
 		"Cops":
-			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]HIT BY A COP")
+			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]ARRESTED")
 	$"Game Over/Label".text = "YOU SURVIVED FOR: "+Globals.format_seconds_as_time(Globals.timer)
 	print(Globals.roads_to_win)
 	print(int(INF))
@@ -140,7 +140,7 @@ func _on_master_value_changed(value: float) -> void:
 
 func _on_voice_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Voice"),linear_to_db(value))
-	
+
 
 func _on_radio_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Radio"),linear_to_db(value))
@@ -163,6 +163,7 @@ func _on_resolution_options_item_selected(index: int) -> void:
 			DisplayServer.window_set_size(Vector2i(576,324))
 		2:#1920x1080
 			DisplayServer.window_set_size(Vector2i(1920,1080))
+
 func on_quality_changed(index:int):
 	match index:
 		0:

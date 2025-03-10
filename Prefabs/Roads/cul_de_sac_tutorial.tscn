@@ -197,11 +197,11 @@ mesh = SubResource("QuadMesh_756db")
 
 [node name="Label3D" type="Label3D" parent="Tutorial Sign"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0.183417, 0.0127182)
-text = "Use WASD to Drive
-Look around your car
+text = "Look around your car
 You'll see that many things 
-are interactible (3)
-"
+are interactible 
+(3 things are interactible)
+Use WASD to Drive"
 
 [node name="Tutorial Sign2" type="CSGMesh3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.9832, 1.35784, -5.6888)
@@ -225,7 +225,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
 text = "Press E while looking at
  your door to exit your car.
 Pick up your beverages 
-at gabe's Mart
+at Gabe's Mart
 He'll put it on your tab"
 
 [node name="Tutorial Sign5" type="CSGMesh3D" parent="."]
@@ -244,7 +244,7 @@ mesh = SubResource("QuadMesh_756db")
 [node name="Label3D" type="Label3D" parent="Tutorial Sign4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
 text = "Throw your beverages 
-in this box
+at this man (Gabe)
 Or return to your car while 
 holding them"
 
@@ -260,7 +260,9 @@ of your car you can
 You can bring garbage 
 into your car. 
 Maybe it's useful to 
-throw out of your car? (Q)"
+throw out of your car?
+[Press q to throw 
+garbage out of your car]"
 font_size = 25
 
 [node name="Debris" type="Node3D" parent="."]

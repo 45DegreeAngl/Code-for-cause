@@ -21,6 +21,7 @@ config/icon="res://icon Image.png"
 Actions="*res://Globals/Actions.gd"
 Globals="*res://Globals/Globals.gd"
 MainShaderCanvas="*res://Shaders/Main Shader Canvas.tscn"
+GlobalSteam="*res://Globals/GlobalSteam.gd"
 
 [display]
 
