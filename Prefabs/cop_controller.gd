@@ -138,6 +138,7 @@ func _process(delta: float) -> void:
 		if $Timer.is_stopped():
 			$Timer.start()
 			$Siren.playing = true
+		Globals.detected = true
 		hunt = true
 	else:
 		if !$Timer.is_stopped():

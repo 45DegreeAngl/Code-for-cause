@@ -14,7 +14,9 @@ func _on_buy_area_body_entered(body: Node3D) -> void:
 		elif body.get_meta("Bottle")==("Crate"):
 			GlobalSteam.setAchievement("BULK BUYER")
 			Globals.car_contents[body.get_meta("Bottle_Type")] += 6
+			Globals.total_alcohol_bought+=5
 		body.queue_free()
+		Globals.total_alcohol_bought+=1
 		Globals.update_bottles.emit()
 
 var exit_counter : int = 0

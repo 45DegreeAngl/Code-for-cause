@@ -146,6 +146,7 @@ func reset_stats():
 @onready var total_alcohol_bought : int = 0
 @onready var litter_count : int = 0
 @onready var car_flip_count : int = 0
+@onready var detected:bool = false
 
 @onready var world_node : Node
 

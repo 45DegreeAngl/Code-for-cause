@@ -6,6 +6,7 @@ extends Node
 func _ready()->void:
 	Globals.game_lost.connect(_on_lose)
 	Globals.game_won.connect(_on_win)
+	GlobalSteam.leaderboard_download.connect(choose_leaderboard_entries)
 	$AnimationPlayer.play("Cop_Lights")
 	set_sliders()
 
@@ -26,11 +27,11 @@ func _on_lose(reason:String):
 			GlobalSteam.setAchievement("GET ARRESTED")
 			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]ARRESTED")
 	$"Game Over/Label".text = "YOU SURVIVED FOR: "+Globals.format_seconds_as_time(Globals.timer)
-	print(Globals.roads_to_win)
-	print(int(INF))
+	#print(Globals.roads_to_win)
 	if Globals.roads_to_win == int(INF):
 		$"Game Over/Label".text += str("\nYOU PASSED: ",Globals.world_node.cur_player_road," ROADS")
 		upload_win()
+	update_stats()
 	MainShaderCanvas.visible = false
 	Globals.tutorial = true
 	Globals.game_paused = false
@@ -72,11 +73,28 @@ func upload_records():
 			GlobalSteam.submit_leaderboard_score("RECORD TIME NORMAL",Globals.timer)
 		100:
 			GlobalSteam.submit_leaderboard_score("RECORD TIME HARD",Globals.timer)
-	
+
+func update_stats():
+	GlobalSteam.statistics["DRUNK MENACE"]+=Globals.sober_drivers_hit
+	GlobalSteam.statistics["LITTER COUNT"]+=Globals.litter_count
+	GlobalSteam.statistics["FLIP COUNT"]+=Globals.car_flip_count
+	GlobalSteam.statistics["GABE'S FAVOR"]+=Globals.total_alcohol_bought
+	for statistic in GlobalSteam.statistics:
+		GlobalSteam.set_statistic(statistic,GlobalSteam.statistics[statistic])
+	if GlobalSteam.statistics["DRUNK MENACE"]>=50:
+		GlobalSteam.setAchievement("SOBER DRIVER ENEMYT NO 1")
+	if GlobalSteam.statistics["LITTER COUNT"]>=100:
+		GlobalSteam.setAchievement("PROFESSIONAL LITTERER")
+	if GlobalSteam.statistics["FLIP COUNT"]>=100:
+		GlobalSteam.setAchievement("CAR FLIPPER")
+	if GlobalSteam.statistics["GABE'S FAVOR"]>=500:
+		GlobalSteam.setAchievement("GABES FAVORITE")
 
 func _on_win():
 	if Globals.game_over:
 		return
+	if !Globals.detected:
+		GlobalSteam.setAchievement("SILENT DRIVER")
 	$"YOU WIN".visible = true
 	Globals.game_over = true
 	$"YOU WIN/Label2".text = "YOUR TIME: "+Globals.format_seconds_as_time(Globals.timer)
@@ -86,6 +104,7 @@ func _on_win():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	upload_win()
 	upload_records()
+	update_stats()
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(_delta: float) -> void:
@@ -134,6 +153,7 @@ func _on_start_game() ->void:
 	$Animations.add_child(temp)
 	temp.find_child("GoToGame").pressed.connect(_on_start_game)
 	$"Options/true options/VBoxContainer/Become Sober".visible = true
+	Globals.detected = false
 
 func _on_options_pressed() -> void:
 	$Options.visible = true
@@ -154,6 +174,7 @@ func main_menu():
 	$"Main Menu".visible = true
 	$"Game Over".visible = false
 	$"YOU WIN".visible = false
+	$Leaderboard.visible = false
 
 
 func on_back()->void:
@@ -224,3 +245,82 @@ func _on_become_sober_pressed() -> void:
 #[10,25,50,100,INF]
 func _on_difficulty_options_item_selected(index: int) -> void:
 	Globals.roads_to_win = Globals.roads_to_win_options[index]
+
+func _on_leaderboards_pressed() -> void:
+	$"Main Menu".visible = false
+	$Leaderboard.visible = true
+
+var leaderboard_entries : Array
+var prev_tab : int = 1
+var cur_range_min:int = 1
+var cur_range_max:int = 50
+
+func _on_leaderboard_container_tab_selected(tab: int) -> void:
+	match tab:
+		0:#Practice
+			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME PRACTICE"][0],cur_range_min,cur_range_max)
+		1:#Easy
+			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME EASY"][0],cur_range_min,cur_range_max)
+		2:#Normal
+			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME NORMAL"][0],cur_range_min,cur_range_max)
+		3:#Hard
+			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME HARD"][0],cur_range_min,cur_range_max)
+		4:#Endless
+			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME ENDLESS"][0],cur_range_min,cur_range_max)
+		5:#Sober Hater
+			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD SOBER HATER"][0],cur_range_min,cur_range_max)
+	await GlobalSteam.leaderboard_download
+	
+	for child in $"Leaderboard/Leaderboard/Leaderboard Container".get_child(prev_tab).get_child(0).get_children():
+		child.queue_free()
+	prev_tab = tab
+	
+	var container:VBoxContainer = $"Leaderboard/Leaderboard/Leaderboard Container".get_child(tab).get_child(0)
+	for r in leaderboard_entries[2]:
+		var entry : Control = create_leaderboard_entry(r["global_rank"],r["steam_id"],r["score"])
+		container.add_child(entry)
+
+func create_leaderboard_entry(rank:int,steam_id:int,score)->Control:
+	var container : HBoxContainer = HBoxContainer.new()
+	container.alignment = BoxContainer.ALIGNMENT_CENTER
+	container.size_flags_horizontal = true
+	var rank_label : Label = Label.new()
+	rank_label.text = str("Rank: ",rank)
+	container.add_child(rank_label)
+	var username_label : Label = Label.new()
+	username_label.text = Steam.getFriendPersonaName(steam_id)
+	username_label.size_flags_horizontal = true
+	container.add_child(username_label)
+	var score_label : Label = Label.new()
+	score_label.text = str("\t",score,"\t")
+	container.add_child(score_label)
+	var button : Button = Button.new()
+	button.text = "Profile"
+	button.pressed.connect(GlobalSteam.visit_profile.bind(steam_id))
+	container.add_child(button)
+	return container
+
+func choose_leaderboard_entries(arr:Array)->void:
+	leaderboard_entries = arr
+	return
+
+func _on_left_pressed() -> void:
+	cur_range_min-=50
+	if cur_range_min<1:
+		cur_range_min = 1
+	cur_range_max-=50
+	if cur_range_max<50:
+		cur_range_max = 50
+	$Leaderboard/Leaderboard/HBoxContainer/PanelContainer/Numbers.text = str(cur_range_min,"-",cur_range_max)
+	_on_leaderboard_container_tab_selected(prev_tab)
+
+
+func _on_right_pressed() -> void:
+	cur_range_min+=50
+	cur_range_max+=50
+	$Leaderboard/Leaderboard/HBoxContainer/PanelContainer/Numbers.text = str(cur_range_min,"-",cur_range_max)
+	_on_leaderboard_container_tab_selected(prev_tab)
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
