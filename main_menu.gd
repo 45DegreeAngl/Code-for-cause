@@ -251,7 +251,7 @@ func _on_leaderboards_pressed() -> void:
 	$Leaderboard.visible = true
 
 var leaderboard_entries : Array
-var prev_tab : int = 1
+var prev_tab : int = 0
 var cur_range_min:int = 1
 var cur_range_max:int = 50
 
@@ -271,12 +271,14 @@ func _on_leaderboard_container_tab_selected(tab: int) -> void:
 			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD SOBER HATER"][0],cur_range_min,cur_range_max)
 	await GlobalSteam.leaderboard_download
 	
-	for child in $"Leaderboard/Leaderboard/Leaderboard Container".get_child(prev_tab).get_child(0).get_children():
+	for child in $"Leaderboard/Leaderboard/Leaderboard Container".get_child(prev_tab).get_children():
+		print(child)
 		child.queue_free()
 	prev_tab = tab
 	
-	var container:VBoxContainer = $"Leaderboard/Leaderboard/Leaderboard Container".get_child(tab).get_child(0)
+	var container:VBoxContainer = $"Leaderboard/Leaderboard/Leaderboard Container".get_child(tab)
 	for r in leaderboard_entries[2]:
+		print("create entry")
 		var entry : Control = create_leaderboard_entry(r["global_rank"],r["steam_id"],r["score"])
 		container.add_child(entry)
 
@@ -292,7 +294,10 @@ func create_leaderboard_entry(rank:int,steam_id:int,score)->Control:
 	username_label.size_flags_horizontal = true
 	container.add_child(username_label)
 	var score_label : Label = Label.new()
-	score_label.text = str("\t",score,"\t")
+	var temp_string : String = Globals.format_seconds_as_time(score)
+	if prev_tab == 4||prev_tab==5:
+		temp_string = str(score)
+	score_label.text = str("\t",temp_string,"\t")
 	container.add_child(score_label)
 	var button : Button = Button.new()
 	button.text = "Profile"
