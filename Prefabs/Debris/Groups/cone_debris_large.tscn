@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://fnfpbgvblxdg"]
 
-[ext_resource type="Script" path="res://Prefabs/Debris/Groups/debris_group.gd" id="1_2b3k7"]
+[ext_resource type="Script" uid="uid://dtk5ji61ml077" path="res://Prefabs/Debris/Groups/debris_group.gd" id="1_2b3k7"]
 [ext_resource type="PackedScene" uid="uid://cyf4gwwy1p5ut" path="res://Prefabs/Debris/Individual/cone_debris.tscn" id="2_d5xri"]
 
 [node name="Cone Debris Large" type="Node3D"]

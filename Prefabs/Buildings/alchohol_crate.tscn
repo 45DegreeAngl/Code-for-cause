@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=4 uid="uid://baw10qlisjsy2"]
 
-[ext_resource type="Script" path="res://Prefabs/six pack.gd" id="1_2ejsj"]
+[ext_resource type="Script" uid="uid://dq6unrp4e4wur" path="res://Prefabs/six pack.gd" id="1_2ejsj"]
 [ext_resource type="Texture2D" uid="uid://c3x201xerafi4" path="res://Assets/Models/Car/Milk_Crate_Material Base Color.png" id="3_85p47"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuyxe"]

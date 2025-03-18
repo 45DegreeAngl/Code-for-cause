@@ -1,10 +1,10 @@
 [gd_scene load_steps=22 format=3 uid="uid://bfe2n5yc1ofd5"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_tdahm"]
-[ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_0313u"]
+[ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Prefabs/Roads/road_segment.gd" id="2_0313u"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_mgofo"]
 [ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="5_ibnvc"]
-[ext_resource type="Script" path="res://Prefabs/Debris/debris_location.gd" id="6_ccqnw"]
+[ext_resource type="Script" uid="uid://d0m4lv6vobt1c" path="res://Prefabs/Debris/debris_location.gd" id="6_ccqnw"]
 [ext_resource type="PackedScene" uid="uid://ep41w0sah178" path="res://Prefabs/Debris/Groups/tire_debris_small.tscn" id="8_3py7e"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="8_n4k46"]
 [ext_resource type="PackedScene" uid="uid://d0qjwmfxfhhbl" path="res://Prefabs/Debris/Groups/cone_debris_small.tscn" id="8_vlws5"]

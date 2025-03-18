@@ -1,7 +1,7 @@
-[gd_scene load_steps=70 format=4 uid="uid://decdg2b8cnq74"]
+[gd_scene load_steps=68 format=4 uid="uid://decdg2b8cnq74"]
 
-[ext_resource type="Script" path="res://Prefabs/Car/Average Sober driver.gd" id="1_vl3j8"]
-[ext_resource type="Curve" path="res://Resources/Steering Curve.tres" id="2_xhm5i"]
+[ext_resource type="Script" uid="uid://dc3njjeb7s7o4" path="res://Prefabs/Car/Average Sober driver.gd" id="1_vl3j8"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_xhm5i"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="3_pqhiw"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="4_faqvl"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="4_ln55n"]
@@ -313,14 +313,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_eccq3")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_jbagv"]
-viewport_path = NodePath("Cameras/LeftViewPort")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxpoq"]
-resource_local_to_scene = true
-albedo_color = Color(0.683077, 0.683077, 0.683077, 1)
-emission_texture = SubResource("ViewportTexture_jbagv")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs6ok"]
 resource_name = "Material.002"
@@ -998,19 +990,16 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58522, 1.83675, -2.18483)
 mesh = SubResource("ArrayMesh_co2kh")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_dxpoq")
 
 [node name="Right_Mirror" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58522, 1.83675, -2.18483)
 mesh = SubResource("ArrayMesh_ugnnj")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_dxpoq")
 
 [node name="Top_Mirror" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47319, -1.41985)
 mesh = SubResource("ArrayMesh_5gxrp")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_dxpoq")
 
 [node name="Light" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.968106, 1.37059, -4.37591)

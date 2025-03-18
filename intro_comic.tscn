@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://b3xh1mtqrr6qb"]
 
-[ext_resource type="Script" path="res://intro_comic.gd" id="1_surcs"]
+[ext_resource type="Script" uid="uid://brx260wu1yqx4" path="res://intro_comic.gd" id="1_surcs"]
 [ext_resource type="Texture2D" uid="uid://cw68gwi43wtoq" path="res://Assets/Textures/Panels/Animatic_1_BG.png" id="1_xhpdu"]
 [ext_resource type="AudioStream" uid="uid://u3idbweclq8i" path="res://Assets/Sounds/Intro/drunk_laughmp3.mp3" id="2_6e5k1"]
 [ext_resource type="Texture2D" uid="uid://cn5rdohwny1kt" path="res://Assets/Textures/Panels/Animatic1_Man.png" id="2_al2lm"]
@@ -1245,15 +1245,15 @@ tracks/13/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8a054"]
 _data = {
-"RESET": SubResource("Animation_httom"),
-"move_scene1": SubResource("Animation_8dbv5"),
-"move_scene2": SubResource("Animation_namsa"),
-"move_scene3": SubResource("Animation_l7vfb"),
-"move_scene4": SubResource("Animation_qviwe"),
-"scene1": SubResource("Animation_e4pio"),
-"scene2": SubResource("Animation_ebxtg"),
-"scene3": SubResource("Animation_tf5bj"),
-"scene4": SubResource("Animation_itqkp")
+&"RESET": SubResource("Animation_httom"),
+&"move_scene1": SubResource("Animation_8dbv5"),
+&"move_scene2": SubResource("Animation_namsa"),
+&"move_scene3": SubResource("Animation_l7vfb"),
+&"move_scene4": SubResource("Animation_qviwe"),
+&"scene1": SubResource("Animation_e4pio"),
+&"scene2": SubResource("Animation_ebxtg"),
+&"scene3": SubResource("Animation_tf5bj"),
+&"scene4": SubResource("Animation_itqkp")
 }
 
 [node name="Intro Comic" type="Control"]

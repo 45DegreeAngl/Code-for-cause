@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://c0isynyusocwo"]
 
-[ext_resource type="Script" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
+[ext_resource type="Script" uid="uid://bknkigk4grssx" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
 [ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
 [ext_resource type="PackedScene" uid="uid://7yiw8v4t5rt7" path="res://Prefabs/Roads/Death.tscn" id="3_tg4gt"]
 [ext_resource type="PackedScene" uid="uid://bfe2n5yc1ofd5" path="res://Prefabs/Roads/debug_straight.tscn" id="4_l3tqm"]

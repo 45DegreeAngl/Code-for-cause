@@ -1,14 +1,14 @@
 [gd_scene load_steps=23 format=4 uid="uid://bsawvuh1yr6x3"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_oppoi"]
-[ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_d4v6j"]
+[ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Prefabs/Roads/road_segment.gd" id="2_d4v6j"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_pwcqa"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="3_h7e8l"]
 [ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="5_x711k"]
 [ext_resource type="Texture2D" uid="uid://jj4h3poeat31" path="res://Assets/Models/Debris/Tree_1_Cylinder Base Color.png" id="7_0l6xj"]
 [ext_resource type="Texture2D" uid="uid://c7sl5akbr3rnv" path="res://Assets/Models/Debris/Tree_1_Cone.png" id="8_855v1"]
 [ext_resource type="PackedScene" uid="uid://cg6h1skr0ri2m" path="res://Prefabs/Buildings/tree_1.tscn" id="9_37rol"]
-[ext_resource type="PackedScene" path="res://Prefabs/TreeMultiMesh.tscn" id="9_y4fq7"]
+[ext_resource type="PackedScene" uid="uid://b2c8t7bwibhjv" path="res://Prefabs/TreeMultiMesh.tscn" id="9_y4fq7"]
 [ext_resource type="ArrayMesh" uid="uid://c5tvfihe4mtg6" path="res://Prefabs/Debris/Individual/optimized_tree2.tres" id="10_241aj"]
 
 [sub_resource type="Curve3D" id="Curve3D_lr348"]

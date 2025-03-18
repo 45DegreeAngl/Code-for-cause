@@ -1,6 +1,6 @@
 [gd_scene load_steps=92 format=4 uid="uid://brg1w0alicchh"]
 
-[ext_resource type="Script" path="res://Prefabs/Buildings/ex_house.gd" id="1_qx76o"]
+[ext_resource type="Script" uid="uid://jyiluolku0k5" path="res://Prefabs/Buildings/ex_house.gd" id="1_qx76o"]
 [ext_resource type="Texture2D" uid="uid://calxasyjehumx" path="res://Assets/Models/Buildings/Ex_House_Concreate.png" id="1_vu4qo"]
 [ext_resource type="Texture2D" uid="uid://x1raydyp12fw" path="res://Assets/Models/Buildings/Ex_House_Concreate_n.jpg" id="2_k0x62"]
 [ext_resource type="Texture2D" uid="uid://digiawk6nftwe" path="res://Assets/Models/Buildings/Ex_House_Asphalt.png" id="3_vg37n"]

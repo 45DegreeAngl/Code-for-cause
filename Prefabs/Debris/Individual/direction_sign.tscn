@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://dptwj8d7qoypj"]
 
-[ext_resource type="Script" path="res://Prefabs/Debris/Individual/debris.gd" id="1_sd42f"]
+[ext_resource type="Script" uid="uid://chkowncssv3ap" path="res://Prefabs/Debris/Individual/debris.gd" id="1_sd42f"]
 [ext_resource type="Texture2D" uid="uid://b510po5td1va6" path="res://Assets/Models/Debris/Direction_Sign_Cube Base Color.png" id="2_himss"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpc7o"]

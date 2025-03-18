@@ -1,18 +1,20 @@
 [gd_scene load_steps=9 format=3 uid="uid://rvdfkmlx6dio"]
 
-[ext_resource type="Script" path="res://Prefabs/debug_camera.gd" id="1_sbw8l"]
+[ext_resource type="Script" uid="uid://dde5c602mabo0" path="res://Prefabs/debug_camera.gd" id="1_sbw8l"]
 [ext_resource type="PackedScene" uid="uid://cfvnef13jksl5" path="res://Prefabs/Player/test character.tscn" id="3_co8uv"]
-[ext_resource type="Script" path="res://Deprecated/Clock Rotation.gd" id="3_rl5pk"]
-[ext_resource type="Shader" path="res://Shaders/wobble.gdshader" id="4_jc7w4"]
-[ext_resource type="Shader" path="res://Shaders/chromatic_abberation.gdshader" id="5_l7bya"]
+[ext_resource type="Script" uid="uid://1wlbcmofisv3" path="res://Deprecated/Clock Rotation.gd" id="3_rl5pk"]
+[ext_resource type="Shader" uid="uid://d4igo1f446myk" path="res://Shaders/wobble.gdshader" id="4_jc7w4"]
+[ext_resource type="Shader" uid="uid://cjmf5hgg18at0" path="res://Shaders/chromatic_abberation.gdshader" id="5_l7bya"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yldlh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cey7s"]
 shader = ExtResource("4_jc7w4")
-shader_parameter/amplitude = 0.04
-shader_parameter/frequency = 0.2
-shader_parameter/height_mult = 4.0
+shader_parameter/waveX = 1.0
+shader_parameter/waveY = 1.0
+shader_parameter/uvScaleX = 1.0
+shader_parameter/uvScaleY = 1.0
+shader_parameter/drunkScale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bhukl"]
 shader = ExtResource("5_l7bya")

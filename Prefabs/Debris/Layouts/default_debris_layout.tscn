@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dlibula3h5obv"]
 
-[ext_resource type="Script" path="res://Prefabs/Debris/debris_location.gd" id="1_aqfn0"]
+[ext_resource type="Script" uid="uid://d0m4lv6vobt1c" path="res://Prefabs/Debris/debris_location.gd" id="1_aqfn0"]
 [ext_resource type="PackedScene" uid="uid://ep41w0sah178" path="res://Prefabs/Debris/Groups/tire_debris_small.tscn" id="2_77lvh"]
 [ext_resource type="PackedScene" uid="uid://d0qjwmfxfhhbl" path="res://Prefabs/Debris/Groups/cone_debris_small.tscn" id="3_5hdm8"]
 [ext_resource type="PackedScene" uid="uid://fnfpbgvblxdg" path="res://Prefabs/Debris/Groups/cone_debris_large.tscn" id="4_aj4eo"]

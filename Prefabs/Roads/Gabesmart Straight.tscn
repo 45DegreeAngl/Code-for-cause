@@ -2,7 +2,7 @@
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_j0qfm"]
 [ext_resource type="Texture2D" uid="uid://ddsshb2vy4m2h" path="res://Assets/Models/Streets_Concreate.jpg" id="2_13xpm"]
-[ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_i3xtw"]
+[ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Prefabs/Roads/road_segment.gd" id="2_i3xtw"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="2_it1m8"]
 [ext_resource type="PackedScene" uid="uid://b4jd38ifumhg7" path="res://Prefabs/Buildings/gabes_mart.tscn" id="3_s8ovy"]
 [ext_resource type="Texture2D" uid="uid://rnobu0rxwwx3" path="res://Assets/Models/Streets_Concreate_n.jpg" id="3_si022"]

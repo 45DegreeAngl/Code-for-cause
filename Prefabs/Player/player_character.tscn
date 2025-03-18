@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dth5afm4vc52h"]
 
 [ext_resource type="PackedScene" uid="uid://dud13lghkiq2d" path="res://Assets/Models/Character/PlayerCharacter.glb" id="1_au3d2"]
-[ext_resource type="Script" path="res://Prefabs/Player/character.gd" id="2_qyhgs"]
+[ext_resource type="Script" uid="uid://jw6111iad6u8" path="res://Prefabs/Player/character.gd" id="2_qyhgs"]
 [ext_resource type="ArrayMesh" uid="uid://c6qfp4n51nth5" path="res://Assets/Models/NewPlayerMesh.tres" id="3_sj2w3"]
 
 [node name="PlayerCharacter" instance=ExtResource("1_au3d2")]

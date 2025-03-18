@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=4 uid="uid://ebcvdgabjsw6"]
 
 [ext_resource type="Texture2D" uid="uid://bbcjk0bb3mygw" path="res://Assets/Models/Shelf_Cube Base Color.png" id="1_janui"]
-[ext_resource type="Script" path="res://Prefabs/Buildings/shelf.gd" id="1_tquuc"]
+[ext_resource type="Script" uid="uid://bo71iunirxvke" path="res://Prefabs/Buildings/shelf.gd" id="1_tquuc"]
 [ext_resource type="PackedScene" uid="uid://bbeahk7jstgto" path="res://Prefabs/Buildings/jaeger_bottle.tscn" id="2_gbda5"]
 [ext_resource type="PackedScene" uid="uid://doqvv6pthu2dr" path="res://Prefabs/Buildings/beer_bottle.tscn" id="3_wvkri"]
 [ext_resource type="PackedScene" uid="uid://b1638nwtgmff3" path="res://Prefabs/Buildings/Sake_bottle.tscn" id="4_5f0nk"]

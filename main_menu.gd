@@ -128,7 +128,9 @@ func _process(_delta: float) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_start_pressed() -> void:
+	Globals.tutorial = false
 	Globals.drunkenness = 20
+	Globals.tutorial = true
 	for child in $"Game World".get_children():
 		child.queue_free()
 	#$"Game World".process_mode = Node.PROCESS_MODE_INHERIT

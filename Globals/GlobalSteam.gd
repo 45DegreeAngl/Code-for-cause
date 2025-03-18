@@ -85,7 +85,8 @@ func _on_steam_stats_ready(this_game: int, this_result: int, this_user: int) -> 
 	if this_result != Steam.RESULT_OK:
 		print("Failed to get stats and achievements from Steam: %s" % this_result)
 		return
-	Steam.requestCurrentStats()
+	Steam.requestUserStats(steam_id)
+	#Steam.requestCurrentStats()
 	load_steam_stats()
 
 func load_steam_stats() -> void:

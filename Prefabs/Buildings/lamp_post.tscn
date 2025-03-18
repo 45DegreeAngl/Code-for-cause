@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://cmk8hsh2rcdkm"]
 
-[ext_resource type="Script" path="res://Prefabs/Buildings/lamp_post.gd" id="1_xsxko"]
+[ext_resource type="Script" uid="uid://ckmi2pxtadmdb" path="res://Prefabs/Buildings/lamp_post.gd" id="1_xsxko"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y86a6"]
 resource_name = "Material"

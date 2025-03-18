@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dpb2mlpqcy1pl"]
 
-[ext_resource type="Script" path="res://Prefabs/Buildings/lamp_post.gd" id="1_ngdh5"]
+[ext_resource type="Script" uid="uid://ckmi2pxtadmdb" path="res://Prefabs/Buildings/lamp_post.gd" id="1_ngdh5"]
 
 [node name="Light 1" type="Node3D" node_paths=PackedStringArray("lights")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0207103, 0, -0.559294)

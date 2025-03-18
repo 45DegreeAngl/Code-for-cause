@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://gq811rsmjlhl"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://cxs5xd0j6m6q1" path="res://Prefabs/Debris/Individual/debris_material.tres" id="1_mjq6j"]
-[ext_resource type="Script" path="res://Prefabs/Debris/Individual/debris.gd" id="2_rokwn"]
+[ext_resource type="Script" uid="uid://chkowncssv3ap" path="res://Prefabs/Debris/Individual/debris.gd" id="2_rokwn"]
 [ext_resource type="Texture2D" uid="uid://bqjrbla4bw6lp" path="res://Assets/Models/Debris/Debris_2_WheelTexture.png" id="3_4xtwh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cidbw"]

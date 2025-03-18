@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d14r56j2s6lbi"]
 
-[ext_resource type="Script" path="res://Prefabs/debug_camera.gd" id="1_xakh5"]
+[ext_resource type="Script" uid="uid://dde5c602mabo0" path="res://Prefabs/debug_camera.gd" id="1_xakh5"]
 
 [node name="Debug Camera" type="Control"]
 layout_mode = 3

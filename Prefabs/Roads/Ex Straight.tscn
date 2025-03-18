@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://cr75h2k10e6eh"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_5oarg"]
-[ext_resource type="Script" path="res://Prefabs/Roads/road_segment.gd" id="2_wo87c"]
+[ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Prefabs/Roads/road_segment.gd" id="2_wo87c"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="3_0icgw"]
 [ext_resource type="PackedScene" uid="uid://brg1w0alicchh" path="res://Prefabs/Buildings/ex_house.tscn" id="4_ua8vv"]
-[ext_resource type="Script" path="res://Prefabs/Debris/Groups/debris_group.gd" id="5_jkjef"]
+[ext_resource type="Script" uid="uid://dtk5ji61ml077" path="res://Prefabs/Debris/Groups/debris_group.gd" id="5_jkjef"]
 [ext_resource type="PackedScene" uid="uid://b4jd38ifumhg7" path="res://Prefabs/Buildings/gabes_mart.tscn" id="7_bia0c"]
 [ext_resource type="PackedScene" uid="uid://b8u6v41tnr240" path="res://Prefabs/Debris/Individual/stop_sign.tscn" id="9_j2i50"]
 [ext_resource type="PackedScene" uid="uid://dptwj8d7qoypj" path="res://Prefabs/Debris/Individual/direction_sign.tscn" id="10_nuy8g"]

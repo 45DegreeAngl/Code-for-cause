@@ -26,7 +26,7 @@ func _input(event):
 	if Input.is_action_just_pressed("Esc"):
 		mouse_lock = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+	if event is InputEventMouseButton and event.is_pressed():
 		mouse_lock = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	

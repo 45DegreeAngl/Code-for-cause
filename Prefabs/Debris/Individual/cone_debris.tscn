@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://cyf4gwwy1p5ut"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://cxs5xd0j6m6q1" path="res://Prefabs/Debris/Individual/debris_material.tres" id="1_mtjtx"]
-[ext_resource type="Script" path="res://Prefabs/Debris/Individual/debris.gd" id="2_ucgq2"]
+[ext_resource type="Script" uid="uid://chkowncssv3ap" path="res://Prefabs/Debris/Individual/debris.gd" id="2_ucgq2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwvkw"]
 resource_name = "Material.005"

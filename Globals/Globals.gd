@@ -38,7 +38,7 @@ signal game_won()
 }
 
 @onready var car_colors:Dictionary = {
-	Color(1,1,1,1):"Pure White",
+	#Color(1,1,1,1):"Pure White",
 	Color.ALICE_BLUE: "Alice Blue",
 	Color.ANTIQUE_WHITE: "Antique White",
 	Color.AQUA: "Aqua",

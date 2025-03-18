@@ -1,8 +1,8 @@
 [gd_scene load_steps=25 format=4 uid="uid://cd70x3de3pbl4"]
 
-[ext_resource type="Script" path="res://Prefabs/Player/character.gd" id="1_lo1uq"]
+[ext_resource type="Script" uid="uid://jw6111iad6u8" path="res://Prefabs/Player/character.gd" id="1_lo1uq"]
 [ext_resource type="PackedScene" uid="uid://byhwdai31bud7" path="res://Assets/Models/Character/Character.glb" id="1_nfcse"]
-[ext_resource type="Script" path="res://Prefabs/Player/CameraPivot.gd" id="3_6xe8b"]
+[ext_resource type="Script" uid="uid://ccfa30ciry44n" path="res://Prefabs/Player/CameraPivot.gd" id="3_6xe8b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2e36d"]
 resource_name = "Character"

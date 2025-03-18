@@ -1,6 +1,6 @@
 [gd_scene load_steps=101 format=4 uid="uid://diakwvg84vkiw"]
 
-[ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
+[ext_resource type="Script" uid="uid://bgnr8nj6c2j1i" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="2_am8ur"]
 [ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_x726e"]

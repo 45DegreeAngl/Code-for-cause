@@ -33,7 +33,7 @@ func _ready() -> void:
 		$Sounds/Radio.volume_db = -25
 	if DEBUG_MODE:
 		return
-	MainShaderCanvas.toggle_filter("drunk")
+	MainShaderCanvas.filter_dict["drunk"][0].visible = !Globals.motion_sickness
 	MainShaderCanvas.filter_dict["BeerMeter"][0].visible = true
 	Globals.drunkenness= Globals.drunkenness
 
@@ -156,7 +156,7 @@ func drink_random():
 	Globals.update_bottles.emit()
 
 @export var camera_sense : float = 0.001
-var rot_x = 180
+var rot_x = 0
 var rot_y = 0
 func _input(event: InputEvent) -> void:
 	if !occupied or Globals.game_paused:
@@ -170,7 +170,7 @@ func _input(event: InputEvent) -> void:
 				Input.MOUSE_MODE_VISIBLE:
 					Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event is InputEventMouseButton and event.is_pressed():
-		if event.button_index==MOUSE_BUTTON_LEFT:
+		if event.button_index==MOUSE_BUTTON_LEFT and !Globals.game_over:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if not Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		return
@@ -225,6 +225,7 @@ func spawn_player_character()->Node3D:
 	return player_instance
 
 func enter_car():
+	cur_look_at = null
 	occupied = true
 	$Cameras/Windshield.current = true
 	var possible_objects : Array = [spawned_player.left_hand,spawned_player.right_hand]
@@ -253,6 +254,8 @@ func enter_car():
 	spawned_player.call_deferred("queue_free")
 	set_deferred("player_instance",null)
 	Globals.set_deferred("player_character",null)
+	await spawned_player.tree_exiting
+	
 
 func throw_debris():
 	if $Debrie.get_child_count()>0:
@@ -335,10 +338,12 @@ func _on_radio_finished() -> void:
 
 # Function to seek to a random position in the audio stream
 func seek_random_position():
+	$Sounds/Radio.stop()
 	var stream_length = $Sounds/Radio.get_stream().get_length()
 	if stream_length > 0:
-		var random_position = roundi(randf()) % roundi(stream_length)
-		$Sounds/Radio.seek(random_position)
+		
+		var random_position = (randf_range(0,stream_length))
+		$Sounds/Radio.play(random_position)
 		print("Seeking to position:", random_position)
 	else:
 		print("Stream length is zero or undefined.")

@@ -1,10 +1,10 @@
 [gd_scene load_steps=25 format=4 uid="uid://bup5hafnqfbh2"]
 
-[ext_resource type="Script" path="res://Prefabs/Player/player_car.gd" id="1_dt86f"]
+[ext_resource type="Script" uid="uid://bgnr8nj6c2j1i" path="res://Prefabs/Player/player_car.gd" id="1_dt86f"]
 [ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="2_sfu7x"]
 
 [sub_resource type="Curve" id="Curve_1dypo"]
-min_value = 0.1
+_limits = [0.1, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3, 0.426374), -1.06365, -1.06365, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
 point_count = 3
 
