@@ -73,6 +73,7 @@ func upload_records():
 			GlobalSteam.submit_leaderboard_score("RECORD TIME NORMAL",Globals.timer)
 		100:
 			GlobalSteam.submit_leaderboard_score("RECORD TIME HARD",Globals.timer)
+	
 
 func update_stats():
 	GlobalSteam.statistics["DRUNK MENACE"]+=Globals.sober_drivers_hit
@@ -89,6 +90,7 @@ func update_stats():
 		GlobalSteam.setAchievement("CAR FLIPPER")
 	if GlobalSteam.statistics["GABE'S FAVOR"]>=500:
 		GlobalSteam.setAchievement("GABES FAVORITE")
+	GlobalSteam.submit_leaderboard_score("RECORD SOBER HATER",GlobalSteam.statistics["DRUNK MENACE"])
 
 func _on_win():
 	if Globals.game_over:

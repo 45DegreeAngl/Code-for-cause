@@ -125,6 +125,7 @@ func flip_car():
 	rotation = Vector3.ZERO
 	global_position += Vector3(0,10,0)
 	process_mode = PROCESS_MODE_INHERIT
+	#print(Globals.car_flip_count)
 	Globals.car_flip_count+=1
 
 func die_by_cop():

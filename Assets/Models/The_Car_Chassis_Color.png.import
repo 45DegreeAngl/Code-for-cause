@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bircjl8tk26od"
+uid="uid://ggiqcamle2fa"
 path.s3tc="res://.godot/imported/The_Car_Chassis_Color.png-bae397946fd5bff0410580c12f809a35.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "976ec420773113417212f0086a090ef6"
 }
 
 [deps]

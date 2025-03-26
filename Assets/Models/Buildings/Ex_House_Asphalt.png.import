@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://digiawk6nftwe"
+uid="uid://ccg7v3cesnnr8"
 path.s3tc="res://.godot/imported/Ex_House_Asphalt.png-e1f5d9e803e8a7bccb8a6e776b5be5ff.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "436f8c54c6cec3c7b0f90dcdbef8c44d"
 }
 
 [deps]
