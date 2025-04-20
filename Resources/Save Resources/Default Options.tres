@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Save_Options" load_steps=2 format=3 uid="uid://dno308filsqak"]
+
+[ext_resource type="Script" uid="uid://qdfeqnmtso1d" path="res://Resources/Save Resources/Save Resource.gd" id="1_bydaf"]
+
+[resource]
+script = ExtResource("1_bydaf")
+motion_sickness = false
+aracnophobia = false
+aracnophilia = false
+res_options = 0
+quality_options = 0
+window_options = 0
+master_vol = 1.0
+voice_vol = 1.0
+music_vol = 1.0
+world_vol = 1.0
+metadata/_custom_type_script = "uid://qdfeqnmtso1d"

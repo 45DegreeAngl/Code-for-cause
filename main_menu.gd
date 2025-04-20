@@ -9,6 +9,8 @@ func _ready()->void:
 	GlobalSteam.leaderboard_download.connect(choose_leaderboard_entries)
 	$AnimationPlayer.play("Cop_Lights")
 	set_sliders()
+	$"Main Menu/PanelContainer/VBoxContainer/Start".grab_focus()
+	load_options()
 
 func _on_lose(reason:String):
 	if Globals.game_over:
@@ -37,6 +39,7 @@ func _on_lose(reason:String):
 	Globals.game_paused = false
 	$Options.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	$"Game Over/Main Menu".grab_focus()
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 #func _on_difficulty_options_item_selected(index: int) -> void:
@@ -107,6 +110,7 @@ func _on_win():
 	upload_win()
 	upload_records()
 	update_stats()
+	$"YOU WIN/Main Menu".grab_focus()
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(_delta: float) -> void:
@@ -128,6 +132,7 @@ func _process(_delta: float) -> void:
 			#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 			$"Options/true options/VBoxContainer/Back".visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			$"Options/true options/VBoxContainer/Become Sober".grab_focus()
 
 func _on_start_pressed() -> void:
 	Globals.tutorial = false
@@ -140,6 +145,7 @@ func _on_start_pressed() -> void:
 	$"Main Menu".visible = false
 	$Animations.visible = true
 	$Animations.get_child(0).play_intro()
+	$Animations.get_child(0).get_child(6).grab_focus()
 
 func _on_start_game() ->void:
 	Globals.reset_stats()
@@ -164,11 +170,18 @@ func _on_options_pressed() -> void:
 	$"Main Menu".visible = false
 	$"Options/true options/VBoxContainer/Back".visible = true
 	$"Options/true options/VBoxContainer/Become Sober".visible = false
+	$"Options/true options/VBoxContainer/Back".grab_focus()
+
+func _on_radio_workshop_pressed() ->void:
+	$"Radio Workshop".visible = true
+	$"Main Menu".visible = false
+	pass
 
 
 func _on_credits_pressed() -> void:
 	$Credits.visible = true
 	$"Main Menu".visible = false
+	$Credits/Close.grab_focus()
 
 func main_menu():
 	$MenuGeometry.visible = true
@@ -179,6 +192,8 @@ func main_menu():
 	$"Game Over".visible = false
 	$"YOU WIN".visible = false
 	$Leaderboard.visible = false
+	$"Radio Workshop".visible = false
+	$"Main Menu/PanelContainer/VBoxContainer/Start".grab_focus()
 
 
 func on_back()->void:
@@ -194,6 +209,53 @@ func on_back()->void:
 @onready var voice: HSlider = $Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Voice
 @onready var radio: HSlider = $Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Radio
 @onready var world_sounds: HSlider = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/World Sounds"
+
+@onready var default_options :Save_Options = preload("res://Resources/Save Resources/Default Options.tres")
+
+func save_options():
+	var temp_options : Save_Options = Save_Options.new()
+	#booleans
+	temp_options.motion_sickness = $"Options/PanelContainer/VBoxContainer/Motion Sickness Check".button_pressed
+	temp_options.aracnophobia = $"Options/PanelContainer/VBoxContainer/Aracnophobia mode".button_pressed
+	temp_options.aracnophilia = $"Options/PanelContainer/VBoxContainer/Aracnophilia mode".button_pressed
+	#window
+	temp_options.res_options = $"Options/Resolution holder/VBoxContainer/Resolution options".selected
+	temp_options.quality_options = $"Options/Resolution holder/VBoxContainer/Quality Options".selected
+	temp_options.window_options = $"Options/Resolution holder/VBoxContainer/Window Options".selected
+	#volume
+	temp_options.master_vol = master.value
+	temp_options.voice_vol = voice.value
+	temp_options.music_vol = radio.value
+	temp_options.world_vol = world_sounds.value
+	ResourceSaver.save(temp_options,GlobalWorkshop.user_paths["save"]+"SAVE.tres")
+
+func load_options():
+	var temp_options :Save_Options
+	#if we have no options saved
+	if GlobalWorkshop.get_files_in_directory_unbounded_iterative(GlobalWorkshop.user_paths["save"]).is_empty():
+		temp_options = default_options
+	else:
+		temp_options = ResourceLoader.load(GlobalWorkshop.get_files_in_directory_unbounded_iterative(GlobalWorkshop.user_paths["save"])[0])
+	
+	$"Options/PanelContainer/VBoxContainer/Motion Sickness Check".toggled.emit(temp_options.motion_sickness)
+	$"Options/PanelContainer/VBoxContainer/Motion Sickness Check".button_pressed = temp_options.motion_sickness
+	$"Options/PanelContainer/VBoxContainer/Aracnophobia mode".toggled.emit(temp_options.aracnophobia)
+	$"Options/PanelContainer/VBoxContainer/Aracnophobia mode".button_pressed = temp_options.aracnophobia
+	$"Options/PanelContainer/VBoxContainer/Aracnophilia mode".toggled.emit(temp_options.aracnophilia)
+	$"Options/PanelContainer/VBoxContainer/Aracnophilia mode".button_pressed = temp_options.aracnophilia
+	
+	$"Options/Resolution holder/VBoxContainer/Resolution options".selected = temp_options.res_options
+	$"Options/Resolution holder/VBoxContainer/Resolution options".item_selected.emit(temp_options.res_options)
+	$"Options/Resolution holder/VBoxContainer/Quality Options".selected = temp_options.quality_options
+	$"Options/Resolution holder/VBoxContainer/Quality Options".item_selected.emit(temp_options.quality_options)
+	$"Options/Resolution holder/VBoxContainer/Window Options".selected = temp_options.window_options
+	$"Options/Resolution holder/VBoxContainer/Window Options".item_selected.emit(temp_options.window_options)
+	
+	$Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Master.value = temp_options.master_vol
+	$Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Voice.value = temp_options.voice_vol
+	$Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Radio.value = temp_options.music_vol
+	$"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/World Sounds".value = temp_options.world_vol
+	
 
 func set_sliders():
 	master.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
@@ -242,6 +304,15 @@ func on_quality_changed(index:int):
 		3:
 			get_viewport().set_scaling_3d_scale(0.25)
 
+func _on_window_options_item_selected(index: int) -> void:
+	match index:
+		0:#Windowed
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		1:#Fullscreen
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		2:#Exclusive Fullscreen
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+
 func _on_become_sober_pressed() -> void:
 	Globals.game_lost.emit("Sober")
 
@@ -253,6 +324,7 @@ func _on_difficulty_options_item_selected(index: int) -> void:
 func _on_leaderboards_pressed() -> void:
 	$"Main Menu".visible = false
 	$Leaderboard.visible = true
+	$Leaderboard/Back.grab_focus()
 
 var leaderboard_entries : Array
 var prev_tab : int = 0

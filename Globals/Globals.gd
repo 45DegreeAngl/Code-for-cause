@@ -25,16 +25,86 @@ signal game_won()
 	"Crash 5":preload("res://Assets/Sounds/Crashes/NewCrash2.mp3")
 }
 
+func _ready()->void:
+	load_songs_from_folder()
+
+@onready var debug_console_file : FileAccess
+const MAX_SONGS_LOADED:int = 5
+var load_fails : int = 0
+func load_songs_from_folder():
+	debug_console_file = FileAccess.open(GlobalWorkshop.user_paths["base"]+"CONSOLE.txt",FileAccess.WRITE)
+	debug_console_file.store_string(str(Time.get_datetime_string_from_system(),"\n"))
+	radio = {}
+	radio_to_load = {}
+	var file_array : Array = get_exported_files("res://Assets/Sounds/Music")#GlobalWorkshop.get_files_in_directory_unbounded_iterative("res://Assets/Sounds/Music")
+	file_array.append_array(GlobalWorkshop.get_files_in_directory_unbounded_iterative(GlobalWorkshop.user_paths["workshop_music"]))
+	#now file_array is a list of file paths, 
+	#check each and every single one of them to then fill radio to load
+	for file:String in file_array:
+		if file.contains(".import"):
+			#print("skipping import")
+			continue
+		
+		var audio_stream = proper_audio_load(file)
+		if audio_stream and audio_stream is AudioStream:
+			debug_console_file.store_string(str("Successfully loaded: ",file,"\n"))
+			print("Successfully loaded: ",file)
+			var nickname:String = file.substr(file.rfind("/")+1)
+			nickname = nickname.substr(0,nickname.find("."))
+			radio_to_load[nickname] = file
+		else:
+			print("Failed to load, not adding : ",file," to radio_to_load")
+			debug_console_file.store_string(str("Failed to load, not adding : ",file," to radio_to_load","\n"))
+	
+	while radio.size()<MAX_SONGS_LOADED && radio.size()<radio_to_load.size() && load_fails<MAX_SONGS_LOADED:
+		load_random_song()
+	
+	debug_console_file.close()
+
+##remove songs that appear in radio, but not in radio_to_load
+func clear_impossible_queues():
+	for nickname in radio.keys():
+		print(nickname)
+		if !radio_to_load.has(nickname):
+			print("Balls Removing: ",nickname)
+			radio.erase(nickname)
+
+func proper_audio_load(file_path:String)->AudioStream:
+	var stream : AudioStream
+	#if file_path.contains(".remap"):
+		#pass
+	if file_path.contains("res://"):
+		stream = ResourceLoader.load(file_path)
+	elif file_path.contains("user://"):
+		if file_path.contains(".mp3"):
+			stream = AudioStreamMP3.load_from_file(file_path)
+		elif file_path.contains(".ogg"):
+			stream = AudioStreamOggVorbis.load_from_file(file_path)
+		elif file_path.contains(".wav"):
+			stream = AudioStreamWAV.load_from_file(file_path)
+		else:
+			stream = null
+
+	return stream
+
+func load_random_song():
+	if radio_to_load.is_empty():
+		load_songs_from_folder()
+	var chosen_key:String = radio_to_load.keys().pick_random()
+	var audio_stream = proper_audio_load(radio_to_load[chosen_key])
+	if audio_stream and audio_stream is AudioStream:
+		print("Successfully loaded song nicknamed: ",chosen_key)
+		radio[chosen_key] = audio_stream
+	elif(load_fails<MAX_SONGS_LOADED):
+		load_fails+=1
+		#print("Failed to load: ",chosen_key)
+		#attempt to load again
+		load_random_song()
+
+@onready var radio_to_load:Dictionary={
+}
+
 @onready var radio : Dictionary = {
-	"8Rounds":preload("res://Assets/Sounds/Music/8RoundsFixed.mp3"),
-	"Firearm":preload("res://Assets/Sounds/Music/FirearmFixed.mp3"),
-	"Fish2":preload("res://Assets/Sounds/Music/Fish2Fixed.mp3"),
-	"FishForgotten":preload("res://Assets/Sounds/Music/ForgetfulFixed.mp3"),
-	"MoleInHole":preload("res://Assets/Sounds/Music/MoleFixed.mp3"),
-	"NightcoreAHA":preload("res://Assets/Sounds/Music/NightcoreAhaFixed.mp3"),
-	"Cat Ranch":preload("res://Assets/Sounds/Music/Cat Ranch Song.mp3"),
-	"Underwater":preload("res://Assets/Sounds/Music/Underwater.mp3"),
-	"GabesProstateObliteration":preload("res://Assets/Sounds/Music/My Lovely Obliteration.mp3")
 }
 
 @onready var car_colors:Dictionary = {
@@ -187,3 +257,11 @@ func format_seconds_as_time(seconds:float)->String:
 	
 	var deciseconds = int((seconds-int(seconds))*10)
 	return "%02d:%02d:%02d.%01d"%[hours, minutes, secs, deciseconds]
+
+func get_exported_files(directory:String)->Array:
+	var files = []
+	var resources = ResourceLoader.list_directory(directory)
+	for res in resources:
+		if !res.ends_with("/"):
+			files.append(directory+"/"+res)
+	return files

@@ -881,6 +881,9 @@ tree_parent = NodePath("../Trees")
 [node name="Spawns" type="Node3D" parent="."]
 
 [node name="Marker3D" type="Marker3D" parent="Spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.510828, 0.936915, -1.87901)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.510828, 0.936915, -0.821867)
+
+[node name="Marker3D2" type="Marker3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.510828, 0.936915, -3.59039)
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

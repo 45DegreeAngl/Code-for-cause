@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InfoResource" load_steps=2 format=3 uid="uid://7psoyropah6d"]
+
+[ext_resource type="Script" uid="uid://cs76qfi4tydb5" path="res://Globals/WorkshopItemInfoResource.gd" id="1_gkmkf"]
+
+[resource]
+script = ExtResource("1_gkmkf")
+item_type = "Music"
+item_id = -1
+description = ""
+metadata = ""
+preview_path = ""
+tags = Array[String]([])
+title = "8 Rounds"
+uploader = ""
+file_name = "8RoundsFixed.mp3"
+folder_path = "res://Assets/Sounds/Music/"
+metadata/_custom_type_script = "uid://cs76qfi4tydb5"

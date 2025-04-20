@@ -4538,7 +4538,13 @@ transform = Transform3D(0.0301669, -0.00346512, -0.0952782, -0.0282629, 0.095117
 [node name="Spawns" type="Node3D" parent="."]
 
 [node name="Marker3D" type="Marker3D" parent="Spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.824493, -4.00239, -12.771)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494165, -4.00239, -12.4116)
+
+[node name="Marker3D3" type="Marker3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.201285, -4.00239, -11.5378)
+
+[node name="Marker3D2" type="Marker3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.824493, -4.00239, -14.2425)
 
 [node name="MultiMeshInstance3D" parent="." node_paths=PackedStringArray("tree_parent") instance=ExtResource("8_6a62n")]
 multimesh = SubResource("MultiMesh_cewkx")

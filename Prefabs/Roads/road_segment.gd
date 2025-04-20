@@ -42,10 +42,12 @@ func spawn_drivers():
 		spawn_individual_driver(Globals.pedestrian_packed,Globals.world_node.get_node("Pedestrians"))
 
 func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D):
-	var chosen_marker = driver_spawns.get_children().pick_random()
+	var chosen_marker:Marker3D = driver_spawns.get_children().pick_random()
 	var driver_instance : Node3D = packed.instantiate()
 	driver_type_node.add_child(driver_instance)
 	driver_instance.target = Globals.player_vehicle
 	driver_instance.process_mode = Node.PROCESS_MODE_DISABLED
 	driver_instance.global_position = chosen_marker.global_position
 	driver_instance.process_mode = Node.PROCESS_MODE_INHERIT
+	chosen_marker.reparent(self)
+	chosen_marker.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=4 uid="uid://b4jd38ifumhg7"]
+[gd_scene load_steps=98 format=4 uid="uid://b4jd38ifumhg7"]
 
 [ext_resource type="Script" uid="uid://bmvkxhgvaoir2" path="res://Prefabs/Buildings/gabes_mart.gd" id="1_h44nx"]
 [ext_resource type="Texture2D" uid="uid://bdr2idrc3tfjk" path="res://Assets/Textures/buy area texture.png" id="2_aidqn"]
@@ -26,7 +26,10 @@ albedo_texture_msdf = true
 emission_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yfi1j"]
-size = Vector3(0.85939, 0.775025, 0.910807)
+size = Vector3(0.828133, 0.775025, 0.910807)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ukep3"]
+size = Vector3(0.502441, 1, 0.53331)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbn5q"]
 resource_name = "Character.002"
@@ -1449,8 +1452,22 @@ material = SubResource("StandardMaterial3D_2kr1t")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.214716, 0.178848, 0.437718)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/VoiceLine"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.511101, 0.166321, -0.210153)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52673, 0.166321, -0.210153)
 shape = SubResource("BoxShape3D_yfi1j")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Interactibles/VoiceLine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.248779, 0, -0.396767)
+shape = SubResource("BoxShape3D_ukep3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/VoiceLine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52673, 0.166321, -0.210153)
+visible = false
+size = Vector3(0.828133, 0.775025, 0.910807)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Interactibles/VoiceLine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.248779, 0, -0.396767)
+visible = false
+size = Vector3(0.502441, 1, 0.53331)
 
 [node name="Thank you" type="AudioStreamPlayer3D" parent="Interactibles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238998, -0.0912405)
@@ -1630,4 +1647,5 @@ environment_mode = 0
 light_data = ExtResource("14_sccwj")
 
 [connection signal="body_entered" from="Interactibles/Buy Area" to="." method="_on_buy_area_body_entered"]
+[connection signal="area_entered" from="Interactibles/VoiceLine" to="." method="_on_voice_line_area_entered"]
 [connection signal="area_exited" from="Interactibles/VoiceLine" to="." method="_on_voice_line_area_exited"]

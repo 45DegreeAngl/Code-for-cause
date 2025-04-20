@@ -256,7 +256,7 @@ func enter_car():
 	set_deferred("player_instance",null)
 	Globals.set_deferred("player_character",null)
 	await spawned_player.tree_exiting
-	
+
 
 func throw_debris():
 	if $Debrie.get_child_count()>0:
@@ -326,9 +326,15 @@ func _on_sobriety_timer_timeout() -> void:
 
 var step : int = 1
 var cur_index : int = 0
+var cur_song : String = ""
 
 #go to next track
 func _on_radio_finished() -> void:
+	if !Globals.radio.keys().is_empty():
+		Globals.radio.erase(Globals.radio.keys()[cur_index])
+		Globals.load_random_song()
+	if Globals.radio.keys().is_empty():
+		return
 	print("RADIO CHANGED")
 	step = randi_range(1,Globals.radio.size())
 	cur_index += step
@@ -348,6 +354,7 @@ func seek_random_position():
 		print("Seeking to position:", random_position)
 	else:
 		print("Stream length is zero or undefined.")
+
 @export_subgroup("COPS NODE")
 var closest_cop : VehicleBody3D = null
 @onready var label_3d: Label3D = $Cop_Detector/Label3D
