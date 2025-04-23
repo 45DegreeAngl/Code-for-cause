@@ -191,7 +191,7 @@ transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 
 [node name="Gabes_Mart" parent="." instance=ExtResource("6_i5ttn")]
 transform = Transform3D(-0.999995, 0, 0.00326375, 0, 1, 0, -0.00326375, 0, -0.999995, -6.95411, 0.496432, -7.50258)
 
-[node name="Billboards" type="Node" parent="."]
+[node name="Billboards" type="Node3D" parent="."]
 
 [node name="Tutorial Sign" type="CSGMesh3D" parent="Billboards"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.85469, 1.00973, -3.52579)
