@@ -100,6 +100,12 @@ func _process(delta: float) -> void:
 			ENGINE_POWER = original_engine_power
 	#print(ENGINE_POWER)
 	
+	if joy_pad_RStick:
+		rot_x += joy_pad_RStick.x * 0.1 * delta *25
+		rot_y += joy_pad_RStick.y * 0.1 * delta *25
+		rot_y = clampf(rot_y,-1.5,0.75)
+		handle_cam_rotation()
+	
 	change_engine_pitch()
 	steering = move_toward(steering,Input.get_axis("KEYWORD_RIGHT","KEYWORD_LEFT") * get_max_steer(),delta*2.5)
 	##Fix rotate code when smarter
@@ -162,6 +168,7 @@ func drink_random():
 @export var camera_sense : float = 0.001
 var rot_x = 0
 var rot_y = 0
+var joy_pad_RStick : Vector2 = Vector2.ZERO
 func _input(event: InputEvent) -> void:
 	if !occupied or Globals.game_paused:
 		return
@@ -183,13 +190,12 @@ func _input(event: InputEvent) -> void:
 		
 		rot_y = clampf(rot_y,deg_to_rad(-90),deg_to_rad(90))
 		handle_cam_rotation()
-	#elif event is InputEventJoypadMotion:
-		#match event.axis:
-			#2:
-				#rot_x += event.axis_value 
-			#3:
-				#rot_y += event.axis_value 
-				#rot_y = clampf(rot_y,deg_to_rad(-90),deg_to_rad(90))
+	elif event is InputEventJoypadMotion:
+		match event.axis:
+			2:
+				joy_pad_RStick.x = event.axis_value 
+			3:
+				joy_pad_RStick.y = event.axis_value 
 		
 	if Globals.game_over:
 		return
