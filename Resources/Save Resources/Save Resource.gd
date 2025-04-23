@@ -13,3 +13,6 @@ class_name Save_Options
 @export var voice_vol:float = 1.0
 @export var music_vol:float = 1.0
 @export var world_vol:float = 1.0
+
+# New variable to store controls.
+@export var controls : Dictionary = {}  # Stores input mappings as key-value pairs.

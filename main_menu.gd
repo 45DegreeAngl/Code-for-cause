@@ -10,6 +10,7 @@ func _ready()->void:
 	$AnimationPlayer.play("Cop_Lights")
 	set_sliders()
 	$"Main Menu/PanelContainer/VBoxContainer/Start".grab_focus()
+	#save_options()
 	load_options()
 
 func _on_lose(reason:String):
@@ -24,14 +25,14 @@ func _on_lose(reason:String):
 	match reason:
 		"Sober":
 			GlobalSteam.setAchievement("BECOME SOBER")
-			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]SOBER")
+			$"Game Over/RichTextLabel".append_text(tr("SOBER_END_RICH"))
 		"Cops":
 			GlobalSteam.setAchievement("GET ARRESTED")
-			$"Game Over/RichTextLabel".append_text("GAME OVER YOU'RE [color=red]ARRESTED")
-	$"Game Over/Label".text = "YOU SURVIVED FOR: "+Globals.format_seconds_as_time(Globals.timer)
+			$"Game Over/RichTextLabel".append_text(tr("ARRESTED_END_RICH"))
+	$"Game Over/Label".text = tr("TIME_SURVIVED_LABEL").format([Globals.format_seconds_as_time(Globals.timer)])
 	#print(Globals.roads_to_win)
 	if Globals.roads_to_win == int(INF):
-		$"Game Over/Label".text += str("\nYOU PASSED: ",Globals.world_node.cur_player_road," ROADS")
+		$"Game Over/Label".text += str(tr("ROADS_PASSED_LABEL").format([Globals.world_node.cur_player_road]))
 		upload_win()
 	update_stats()
 	MainShaderCanvas.visible = false
@@ -102,7 +103,7 @@ func _on_win():
 		GlobalSteam.setAchievement("SILENT DRIVER")
 	$"YOU WIN".visible = true
 	Globals.game_over = true
-	$"YOU WIN/Label2".text = "YOUR TIME: "+Globals.format_seconds_as_time(Globals.timer)
+	$"YOU WIN/Label2".text = tr("YOUR_TIME_LABEL").format([Globals.format_seconds_as_time(Globals.timer)])
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	MainShaderCanvas.visible = false
 	Globals.tutorial = true
@@ -116,7 +117,7 @@ func _on_win():
 func _process(_delta: float) -> void:
 	if Globals.game_over or $"Game Over".visible or $"YOU WIN".visible or $"Main Menu".visible:
 		return
-	if Input.is_action_just_pressed("Esc") or Input.is_action_just_pressed("P"):
+	if Input.is_action_just_pressed("KEYWORD_PAUSE"):
 		if $Options.visible:
 			Globals.game_paused = false
 			$Options.visible = false
@@ -133,6 +134,7 @@ func _process(_delta: float) -> void:
 			$"Options/true options/VBoxContainer/Back".visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			$"Options/true options/VBoxContainer/Become Sober".grab_focus()
+
 
 func _on_start_pressed() -> void:
 	Globals.tutorial = false
@@ -173,9 +175,10 @@ func _on_options_pressed() -> void:
 	$"Options/true options/VBoxContainer/Back".grab_focus()
 
 func _on_radio_workshop_pressed() ->void:
+	$"Radio Workshop".load_radio_entries()
 	$"Radio Workshop".visible = true
 	$"Main Menu".visible = false
-	pass
+	$"Radio Workshop/Back".grab_focus()
 
 
 func _on_credits_pressed() -> void:
@@ -209,53 +212,136 @@ func on_back()->void:
 @onready var voice: HSlider = $Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Voice
 @onready var radio: HSlider = $Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Radio
 @onready var world_sounds: HSlider = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/World Sounds"
+@onready var controller_settings: Control = $"Controller Settings"
+
 
 @onready var default_options :Save_Options = preload("res://Resources/Save Resources/Default Options.tres")
 
+func _on_controls_pressed() -> void:
+	$"Controller Settings".visible = true
+	$"Controller Settings".back_button.grab_focus()
+	
+
+func _on_controller_settings_back_pressed() -> void:
+	$"Controller Settings".visible = false
+	$Options/PanelContainer/VBoxContainer/HBoxContainer/Controls.grab_focus()
+
+func _on_reset_pressed() -> void:
+	var save_result = ResourceSaver.save(default_options, GlobalWorkshop.user_paths["save"] + "SAVE.tres")  # Save the resource to file.
+	
+	if save_result == OK:
+		load_options()
+	else:
+		print("ERROR WITH RESET, RESULT : %s",save_result)
+var game_actions : Array = ["KEYWORD_FORWARD","KEYWORD_BACKWARD","KEYWORD_LEFT",
+"KEYWORD_RIGHT","KEYWORD_JUMP","KEYWORD_MISC_INTERACT","KEYWORD_INTERACT",
+"KEYWORD_ALT_INTERACT","KEYWORD_PAUSE","KEYWORD_LEFT_HAND","KEYWORD_RIGHT_HAND"]
+
+# Save options, including controls.
 func save_options():
 	var temp_options : Save_Options = Save_Options.new()
-	#booleans
+
+	# Save boolean settings.
 	temp_options.motion_sickness = $"Options/PanelContainer/VBoxContainer/Motion Sickness Check".button_pressed
 	temp_options.aracnophobia = $"Options/PanelContainer/VBoxContainer/Aracnophobia mode".button_pressed
 	temp_options.aracnophilia = $"Options/PanelContainer/VBoxContainer/Aracnophilia mode".button_pressed
-	#window
+
+	# Save window options.
 	temp_options.res_options = $"Options/Resolution holder/VBoxContainer/Resolution options".selected
 	temp_options.quality_options = $"Options/Resolution holder/VBoxContainer/Quality Options".selected
 	temp_options.window_options = $"Options/Resolution holder/VBoxContainer/Window Options".selected
-	#volume
-	temp_options.master_vol = master.value
-	temp_options.voice_vol = voice.value
-	temp_options.music_vol = radio.value
-	temp_options.world_vol = world_sounds.value
-	ResourceSaver.save(temp_options,GlobalWorkshop.user_paths["save"]+"SAVE.tres")
 
+	# Save volume settings.
+	temp_options.master_vol = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Master".value
+	temp_options.voice_vol = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Voice".value
+	temp_options.music_vol = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Radio".value
+	temp_options.world_vol = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/World Sounds".value
+	
+	var control_mapping = {}
+	for action in InputMap.get_actions():
+		if !game_actions.has(action):
+			continue
+		var action_events = InputMap.action_get_events(action)
+		var event_list = []
+		for event in action_events:
+			if event is InputEventKey:
+				event_list.append({"type": "key", "scancode": event.physical_keycode, "shift": event.shift_pressed, "alt": event.alt_pressed, "ctrl": event.ctrl_pressed})
+			elif event is InputEventMouseButton:
+				event_list.append({"type": "mouse_button", "button_index": event.button_index})
+			elif event is InputEventJoypadButton:
+				event_list.append({"type": "joypad_button", "button_index": event.button_index})
+			elif event is InputEventJoypadMotion:
+				event_list.append({"type": "joypad_motion", "axis": event.axis, "value": event.axis_value})
+			# Add more event types as needed.
+		control_mapping[action] = event_list
+	temp_options.controls = control_mapping
+	
+	
+	ResourceSaver.save(temp_options, GlobalWorkshop.user_paths["save"] + "SAVE.tres")  # Save the resource to file.
+
+# Load options, including controls.
 func load_options():
-	var temp_options :Save_Options
-	#if we have no options saved
+	var temp_options : Save_Options
+
+	# Check if saved options exist.
 	if GlobalWorkshop.get_files_in_directory_unbounded_iterative(GlobalWorkshop.user_paths["save"]).is_empty():
-		temp_options = default_options
+		temp_options = default_options  # Use default options if no saved file exists.
 	else:
 		temp_options = ResourceLoader.load(GlobalWorkshop.get_files_in_directory_unbounded_iterative(GlobalWorkshop.user_paths["save"])[0])
 	
+	# Load boolean settings.
 	$"Options/PanelContainer/VBoxContainer/Motion Sickness Check".toggled.emit(temp_options.motion_sickness)
 	$"Options/PanelContainer/VBoxContainer/Motion Sickness Check".button_pressed = temp_options.motion_sickness
 	$"Options/PanelContainer/VBoxContainer/Aracnophobia mode".toggled.emit(temp_options.aracnophobia)
 	$"Options/PanelContainer/VBoxContainer/Aracnophobia mode".button_pressed = temp_options.aracnophobia
 	$"Options/PanelContainer/VBoxContainer/Aracnophilia mode".toggled.emit(temp_options.aracnophilia)
 	$"Options/PanelContainer/VBoxContainer/Aracnophilia mode".button_pressed = temp_options.aracnophilia
-	
+
+	# Load window options.
 	$"Options/Resolution holder/VBoxContainer/Resolution options".selected = temp_options.res_options
 	$"Options/Resolution holder/VBoxContainer/Resolution options".item_selected.emit(temp_options.res_options)
 	$"Options/Resolution holder/VBoxContainer/Quality Options".selected = temp_options.quality_options
 	$"Options/Resolution holder/VBoxContainer/Quality Options".item_selected.emit(temp_options.quality_options)
 	$"Options/Resolution holder/VBoxContainer/Window Options".selected = temp_options.window_options
 	$"Options/Resolution holder/VBoxContainer/Window Options".item_selected.emit(temp_options.window_options)
-	
-	$Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Master.value = temp_options.master_vol
-	$Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Voice.value = temp_options.voice_vol
-	$Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Radio.value = temp_options.music_vol
+
+	# Load volume settings.
+	$"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Master".value = temp_options.master_vol
+	$"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Voice".value = temp_options.voice_vol
+	$"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Radio".value = temp_options.music_vol
 	$"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/World Sounds".value = temp_options.world_vol
+	#load control data
+	if !temp_options.controls:
+		save_options()
+	for action in temp_options.controls.keys():
+		InputMap.action_erase_events(action) # Clear existing mappings
+		for event_data in temp_options.controls[action]:
+			var new_event : InputEvent = null
+			match event_data["type"]:
+				"key":
+					new_event = InputEventKey.new()
+					new_event.physical_keycode = event_data["scancode"]
+					new_event.shift_pressed = event_data["shift"]
+					new_event.alt_pressed = event_data["alt"]
+					new_event.ctrl_pressed = event_data["ctrl"]
+				"mouse_button":
+					new_event = InputEventMouseButton.new()
+					new_event.button_index = event_data["button_index"]
+				"joypad_button":
+					new_event = InputEventJoypadButton.new()
+					new_event.button_index = event_data["button_index"]
+				"joypad_motion":
+					new_event = InputEventJoypadMotion.new()
+					new_event.axis = event_data["axis"]
+					new_event.axis_value = event_data["value"]
+				# Add more cases for different types
+			if new_event:
+				InputMap.action_add_event(action, new_event)
 	
+	controller_settings.load_all_actions()
+
+
+
 
 func set_sliders():
 	master.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
@@ -376,7 +462,7 @@ func create_leaderboard_entry(rank:int,steam_id:int,score)->Control:
 	score_label.text = str("\t",temp_string,"\t")
 	container.add_child(score_label)
 	var button : Button = Button.new()
-	button.text = "Profile"
+	button.text = tr("PROFILE_BUTTON")
 	button.pressed.connect(GlobalSteam.visit_profile.bind(steam_id))
 	container.add_child(button)
 	return container

@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 	
 	#The line thats commented out below should remain here but commented as a reminder to check the cars max speed every time it's tweaked
 	#print(linear_velocity.length())
-	if Input.is_action_just_pressed("F"):#toggle Headlights
+	if Input.is_action_just_pressed("KEYWORD_MISC_INTERACT"):#toggle Headlights
 		for child in $Light.get_children():
 			if child is Light3D and child.name.findn("Head")!=-1 and child.has_method("get_param"):
 				#print(child)
@@ -58,18 +58,21 @@ func _process(delta: float) -> void:
 					child.set_param(Light3D.PARAM_ENERGY,0)
 				else:
 					child.set_param(Light3D.PARAM_ENERGY,1)
-	elif Input.is_action_just_pressed("E"):
+	elif Input.is_action_just_pressed("KEYWORD_INTERACT"):
 		match cur_look_at:
 			looking_at.Door:#spawn human player, switch camera
-				spawned_player = spawn_player_character()
-				Globals.player_character = spawned_player
-				$CanvasLayer/Tooltips/Label.text = ""
-				
+				if !door_blocked:
+					spawned_player = spawn_player_character()
+					Globals.player_character = spawned_player
+					cur_look_at = null
+					update_tooltip_text()
+				else:
+					print($"Interactibles/Door box".get_overlapping_bodies())
+				 
 			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
 				#print(Globals.player_voice_lines.size())
 				drink_random()
-				if $Milk_Crate.alchohol_count>0:
-					$CanvasLayer/Tooltips/Label.text = "NEED MORE ALCOHOL"
+				update_tooltip_text()
 				#print("glug glug glug")
 			looking_at.Radio:#change radio 
 				#toggle on and off
@@ -80,7 +83,7 @@ func _process(delta: float) -> void:
 					$Sounds/Radio.volume_db = -25
 					radio_on = true
 					
-	elif Input.is_action_just_pressed("Q"):#change radio track if playing
+	elif Input.is_action_just_pressed("KEYWORD_ALT_INTERACT"):#change radio track if playing
 		if cur_look_at == looking_at.Radio:
 			if radio_on:
 				$Sounds/Radio.stop()
@@ -98,10 +101,10 @@ func _process(delta: float) -> void:
 	#print(ENGINE_POWER)
 	
 	change_engine_pitch()
-	steering = move_toward(steering,Input.get_axis("D","A") * get_max_steer(),delta*2.5)
+	steering = move_toward(steering,Input.get_axis("KEYWORD_RIGHT","KEYWORD_LEFT") * get_max_steer(),delta*2.5)
 	##Fix rotate code when smarter
 	$Wheel.rotation.z = steering*2*PI
-	var forward_axis = Input.get_axis("S","W")
+	var forward_axis = Input.get_axis("KEYWORD_BACKWARD","KEYWORD_FORWARD")
 	engine_force = max(forward_axis * ENGINE_POWER,-ENGINE_POWER/1.5)
 	##Fix rotate code when smarter
 	$Spedometer/Tick.rotate_object_local(-Vector3(deg_to_rad(0),deg_to_rad(-90),deg_to_rad(30)).normalized(),move_toward((engine_force/ENGINE_POWER),(engine_force/ENGINE_POWER),delta))
@@ -163,13 +166,12 @@ func _input(event: InputEvent) -> void:
 	if !occupied or Globals.game_paused:
 		return
 	
-	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_ESCAPE or event.keycode == KEY_ASCIITILDE:
-			match Input.mouse_mode:
-				Input.MOUSE_MODE_CAPTURED:
-					Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-				Input.MOUSE_MODE_VISIBLE:
-					Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if Input.is_action_just_pressed("KEYWORD_PAUSE"):
+		match Input.mouse_mode:
+			Input.MOUSE_MODE_CAPTURED:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			Input.MOUSE_MODE_VISIBLE:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index==MOUSE_BUTTON_LEFT and !Globals.game_over:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -181,6 +183,14 @@ func _input(event: InputEvent) -> void:
 		
 		rot_y = clampf(rot_y,deg_to_rad(-90),deg_to_rad(90))
 		handle_cam_rotation()
+	#elif event is InputEventJoypadMotion:
+		#match event.axis:
+			#2:
+				#rot_x += event.axis_value 
+			#3:
+				#rot_y += event.axis_value 
+				#rot_y = clampf(rot_y,deg_to_rad(-90),deg_to_rad(90))
+		
 	if Globals.game_over:
 		return
 
@@ -204,6 +214,7 @@ func get_max_steer():
 	return deg_to_rad(MAX_STEER_DEG) * STEERING_CURVE.sample(linear_velocity.length()/60)
 
 var spawned_player : Node3D = null
+var door_blocked : bool = false
 
 func spawn_player_character()->Node3D:
 	if spawned_player:
@@ -256,6 +267,7 @@ func enter_car():
 	set_deferred("player_instance",null)
 	Globals.set_deferred("player_character",null)
 	await spawned_player.tree_exiting
+	
 
 
 func throw_debris():
@@ -269,46 +281,76 @@ func throw_debris():
 		chosen.process_mode = Node.PROCESS_MODE_INHERIT
 		Globals.litter_count+=1
 
-enum looking_at{Door,Alchohol,Radio}
+enum looking_at{Door,Alchohol,Radio,Outside}
 var cur_look_at = null
+
+func update_tooltip_text():
+	match cur_look_at:
+		looking_at.Door:
+			if door_blocked:
+				$CanvasLayer/Tooltips/Label.text = tr("DOOR_BLOCKED_TOOLTIP")
+			else:
+				$CanvasLayer/Tooltips/Label.text = tr("EXIT_TOOLTIP")
+		looking_at.Alchohol:
+			if $Milk_Crate.alchohol_count>0:
+				$CanvasLayer/Tooltips/Label.text = tr("DRINK_TOOLTIP")
+			else:
+				$CanvasLayer/Tooltips/Label.text = tr("NEED_ALCHOHOL_TOOLTIP")
+		looking_at.Radio:
+			$CanvasLayer/Tooltips/Label.text = tr("RADIO_TOOLTIP")
+		looking_at.Outside:
+			if !$CanvasLayer/Tooltips/Label.text.find(tr("ENTER_TOOLTIP"))!=-1:
+				$CanvasLayer/Tooltips/Label.text += tr("ENTER_TOOLTIP")
+		null,"_":
+			$CanvasLayer/Tooltips/Label.text = ""
+
+func _on_door_box_body_entered(_body: Node3D) -> void:
+	door_blocked = !$"Interactibles/Door box".get_overlapping_bodies().is_empty()
+	update_tooltip_text()
+
+func _on_door_box_body_exited(_body: Node3D=null) -> void:
+	door_blocked = !$"Interactibles/Door box".get_overlapping_bodies().is_empty()
+	update_tooltip_text()
 
 func _on_enter_exit_area_entered(area: Area3D) -> void:
 	if area == driver_look_area:
 		cur_look_at = looking_at.Door
-		$CanvasLayer/Tooltips/Label.text = "E to EXIT"
+		door_blocked = !$"Interactibles/Door box".get_overlapping_bodies().is_empty()
+		update_tooltip_text()
 		#print("door")
-	elif area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
-		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door("Car")
-		$CanvasLayer/Tooltips/Label.text += "E to ENTER\n"
+	elif spawned_player == area.get_parent().get_parent().get_parent().get_parent().get_parent():
+		spawned_player.set_car_door("Car")
+		cur_look_at = looking_at.Outside
+		update_tooltip_text()
+		
 
 func _on_alcholol_area_entered(area: Area3D) -> void:
 	if area == driver_look_area:
 		cur_look_at = looking_at.Alchohol
-		if $Milk_Crate.alchohol_count>0:
-			$CanvasLayer/Tooltips/Label.text = "E to DRINK"
-		else:
-			$CanvasLayer/Tooltips/Label.text = "NEED MORE ALCOHOL"
+		update_tooltip_text()
 		#print("alchohol")
 
 func _on_radio_area_entered(area: Area3D) -> void:
 	if area == driver_look_area:
 		cur_look_at = looking_at.Radio
-		$CanvasLayer/Tooltips/Label.text = "E to TOGGLE\nQ to SWITCH STATION"
+		update_tooltip_text()
 		#print("radio")
 
 func flip_car_option(state:bool):
 	if state:
-		$CanvasLayer/Tooltips/Label.text += "Q to FLIP\n"
+		$CanvasLayer/Tooltips/Label.text += tr("FLIP_TOOLTIP")
 	else:
 		$CanvasLayer/Tooltips/Label.text = ""
 
 func _on_raycast_exit(area:Area3D)->void:
 	if area == driver_look_area:
 		cur_look_at = null
+		update_tooltip_text()
 		#print("null")
-	if area.get_parent().get_parent().get_parent().get_parent().get_parent().has_method("set_car_door"):
-		area.get_parent().get_parent().get_parent().get_parent().get_parent().set_car_door(null)
-	$CanvasLayer/Tooltips/Label.text = ""
+	if spawned_player == area.get_parent().get_parent().get_parent().get_parent().get_parent():
+		spawned_player.set_car_door(null)
+		cur_look_at = null
+		update_tooltip_text()
 
 
 func _on_sobriety_timer_timeout() -> void:
@@ -319,7 +361,7 @@ func _on_sobriety_timer_timeout() -> void:
 		Globals.game_lost.emit("Sober")
 		MainShaderCanvas.toggle_filter("BeerMeter")
 	elif Globals.drunkenness==16:
-		$"Sounds/Sobriety Alarm".stream = Globals.player_voice_lines[randi_range(0,1)]
+		$"Sounds/Sobriety Alarm".stream = Globals.player_voice_lines[randi_range(0,1)]#magic number for the player voice lines
 		$"Sounds/Sobriety Alarm".play()
 	else:
 		$"Sounds/Sobriety Alarm".stop()
@@ -362,7 +404,7 @@ var closest_cop : VehicleBody3D = null
 
 func update_cop_detector():
 	if cops_node.get_child_count()<1:
-		label_3d.text = "|-NONE-|"
+		label_3d.text = tr("NONE_DETECTED_TEXT")
 		closest_cop = null
 		return
 	var cur_distance = INF

@@ -28,6 +28,26 @@ signal game_won()
 func _ready()->void:
 	load_songs_from_folder()
 
+signal controls_key_changed
+@onready var current_controls_key:String = "KEYBOARD":
+	set(value):
+		current_controls_key = value
+		controls_key_changed.emit()
+
+@onready var controls_dictionary:Dictionary = {
+"KEYBOARD":{"MOVE":"WASD","INTERACT":"E","ALTERNATIVE_INTERACT":"Q","GRAB":tr("KEYBOARD_MOUSE"),"JUMP":tr("KEYBOARD_SPACE")},
+"CONTROLLER":{"MOVE":tr("JOYPAD_LEFT_STICK"),"INTERACT":tr("JOYPAD_LEFT_BUTTON"),"ALTERNATIVE_INTERACT":tr("JOYPAD_TOP_BUTTON"),"GRAB":tr("JOYPAD_TRIGGERS"),"JUMP":tr("JOYPAD_BOTTOM_BUTTON")}
+}
+
+func update_controls_text(event:InputEvent):
+	if current_controls_key!="KEYBOARD" and (event is InputEventMouse or event is InputEventKey):
+		current_controls_key = "KEYBOARD"
+	elif current_controls_key!="CONTROLLER" and (event is InputEventJoypadMotion or event is InputEventJoypadButton):
+		current_controls_key = "CONTROLLER"
+
+func _input(event: InputEvent) -> void:
+	update_controls_text(event)
+
 @onready var debug_console_file : FileAccess
 const MAX_SONGS_LOADED:int = 5
 var load_fails : int = 0

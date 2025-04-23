@@ -23,7 +23,7 @@ func _input(event):
 	if Globals.game_paused or Globals.game_over:
 		return
 	# mouse lock
-	if Input.is_action_just_pressed("Esc"):
+	if Input.is_action_just_pressed("KEYWORD_PAUSE"):
 		mouse_lock = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if event is InputEventMouseButton and event.is_pressed():

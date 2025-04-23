@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="Save_Options" load_steps=2 format=3 uid="uid://dno308filsqak"]
+[gd_resource type="Resource" script_class="Save_Options" load_steps=2 format=3 uid="uid://cq6jrji81cavf"]
 
-[ext_resource type="Script" uid="uid://qdfeqnmtso1d" path="res://Resources/Save Resources/Save Resource.gd" id="1_bydaf"]
+[ext_resource type="Script" uid="uid://qdfeqnmtso1d" path="res://Resources/Save Resources/Save Resource.gd" id="1_j0xam"]
 
 [resource]
-script = ExtResource("1_bydaf")
+script = ExtResource("1_j0xam")
 motion_sickness = false
 aracnophobia = false
-aracnophilia = false
+aracnophilia = true
 res_options = 0
 quality_options = 0
 window_options = 0
@@ -14,4 +14,116 @@ master_vol = 1.0
 voice_vol = 1.0
 music_vol = 1.0
 world_vol = 1.0
+controls = {
+&"KEYWORD_ALT_INTERACT": [{
+"alt": false,
+"ctrl": false,
+"scancode": 81,
+"shift": false,
+"type": "key"
+}, {
+"button_index": 3,
+"type": "joypad_button"
+}],
+&"KEYWORD_BACKWARD": [{
+"alt": false,
+"ctrl": false,
+"scancode": 83,
+"shift": false,
+"type": "key"
+}, {
+"axis": 1,
+"type": "joypad_motion",
+"value": 1.0
+}],
+&"KEYWORD_FORWARD": [{
+"alt": false,
+"ctrl": false,
+"scancode": 87,
+"shift": false,
+"type": "key"
+}, {
+"axis": 1,
+"type": "joypad_motion",
+"value": -1.0
+}],
+&"KEYWORD_INTERACT": [{
+"alt": false,
+"ctrl": false,
+"scancode": 69,
+"shift": false,
+"type": "key"
+}, {
+"button_index": 2,
+"type": "joypad_button"
+}],
+&"KEYWORD_JUMP": [{
+"alt": false,
+"ctrl": false,
+"scancode": 32,
+"shift": false,
+"type": "key"
+}, {
+"button_index": 0,
+"type": "joypad_button"
+}],
+&"KEYWORD_LEFT": [{
+"alt": false,
+"ctrl": false,
+"scancode": 65,
+"shift": false,
+"type": "key"
+}, {
+"axis": 0,
+"type": "joypad_motion",
+"value": -1.0
+}],
+&"KEYWORD_LEFT_HAND": [{
+"button_index": 1,
+"type": "mouse_button"
+}, {
+"axis": 4,
+"type": "joypad_motion",
+"value": 1.0
+}],
+&"KEYWORD_MISC_INTERACT": [{
+"alt": false,
+"ctrl": false,
+"scancode": 70,
+"shift": false,
+"type": "key"
+}, {
+"button_index": 1,
+"type": "joypad_button"
+}],
+&"KEYWORD_PAUSE": [{
+"alt": false,
+"ctrl": false,
+"scancode": 4194305,
+"shift": false,
+"type": "key"
+}, {
+"button_index": 6,
+"type": "joypad_button"
+}],
+&"KEYWORD_RIGHT": [{
+"alt": false,
+"ctrl": false,
+"scancode": 68,
+"shift": false,
+"type": "key"
+}, {
+"axis": 0,
+"type": "joypad_motion",
+"value": 1.0
+}],
+&"KEYWORD_RIGHT_HAND": [{
+"button_index": 2,
+"type": "mouse_button"
+}, {
+"axis": 5,
+"type": "joypad_motion",
+"value": 1.0
+}]
+}
 metadata/_custom_type_script = "uid://qdfeqnmtso1d"

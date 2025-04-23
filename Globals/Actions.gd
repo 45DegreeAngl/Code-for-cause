@@ -60,14 +60,14 @@ extends Node
 ##todo, finish joypad, mouse inputs
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for key in input_dict_keyboard.keys():
-		add_input_action_key(key,input_dict_keyboard[key])
-	for key in input_dict_mouse.keys():
-		add_input_action_mouse(key,input_dict_mouse[key])
-	for key in input_dict_joypad_buttons.keys():
-		add_input_action_controller_button(key,-1,input_dict_joypad_buttons[key])
-	for key in input_dict_joypad_axis.keys():
-		add_input_action_controller_axis(key,-1,input_dict_joypad_axis[key])
+	#for key in input_dict_keyboard.keys():
+		#add_input_action_key(key,input_dict_keyboard[key])
+	#for key in input_dict_mouse.keys():
+		#add_input_action_mouse(key,input_dict_mouse[key])
+	#for key in input_dict_joypad_buttons.keys():
+		#add_input_action_controller_button(key,-1,input_dict_joypad_buttons[key])
+	#for key in input_dict_joypad_axis.keys():
+		#add_input_action_controller_axis(key,-1,input_dict_joypad_axis[key])
 	#after adding the actions, remove this node from the premises
 	queue_free()
 

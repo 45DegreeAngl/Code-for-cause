@@ -8,6 +8,20 @@ func load_radio_entries():
 	for nickname:String in Globals.radio_to_load:
 		holder.add_child(create_music_entry(nickname,Globals.radio_to_load[nickname]))
 	
+	if holder.get_child_count()>1:
+		$PanelContainer/Installed/HBoxContainer/custom_button.focus_neighbor_bottom = holder.get_child(1).get_child(2).get_path()
+		$PanelContainer/Installed/HBoxContainer/Reload.focus_neighbor_bottom = holder.get_child(1).get_child(2).get_path()
+		$"PanelContainer/Installed/HBoxContainer/Reset Radio_to_load".focus_neighbor_bottom = holder.get_child(1).get_child(2).get_path()
+		
+		$Back.focus_neighbor_top = holder.get_child(holder.get_child_count()-1).get_child(2).get_path()
+		holder.get_child(holder.get_child_count()-1).get_child(2).focus_neighbor_bottom = $Back.get_path()
+	else:
+		$PanelContainer/Installed/HBoxContainer/custom_button.focus_neighbor_bottom = $Back.get_path()
+		$PanelContainer/Installed/HBoxContainer/Reload.focus_neighbor_bottom = $Back.get_path()
+		$"PanelContainer/Installed/HBoxContainer/Reset Radio_to_load".focus_neighbor_bottom = $Back.get_path()
+		
+		$Back.focus_neighbor_top = $"PanelContainer/Installed/HBoxContainer/Reset Radio_to_load".get_path()
+
 
 func clear_installed_entries():
 	for child in holder.get_children():

@@ -21,8 +21,6 @@ func _on_buy_area_body_entered(body: Node3D) -> void:
 
 var can_exit : bool = false
 
-
-
 var exit_counter : int = 0
 func _on_voice_line_area_exited(area: Area3D) -> void:
 	print(area.get_parent())

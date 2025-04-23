@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=4 uid="uid://diakwvg84vkiw"]
+[gd_scene load_steps=102 format=4 uid="uid://diakwvg84vkiw"]
 
 [ext_resource type="Script" uid="uid://bgnr8nj6c2j1i" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
@@ -443,7 +443,7 @@ size = Vector3(0.234375, 1.4801, 2.21973)
 albedo_texture = ExtResource("11_rn8n4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_67v7v"]
-size = Vector3(0.65, 0.875, 0.6)
+size = Vector3(0.65, 0.875, 0.511426)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfpqe"]
 albedo_texture = ExtResource("12_whm7s")
@@ -453,6 +453,10 @@ size = Vector3(0.435791, 0.823789, 0.45)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlc4a"]
 albedo_texture = ExtResource("13_ibe3o")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_87j7j"]
+radius = 0.710003
+height = 2.1542
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u68fw"]
 radius = 0.0250014
@@ -1177,6 +1181,7 @@ material = SubResource("StandardMaterial3D_055nn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539667, 1.33833, -1.25203)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Alcholol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0442871)
 shape = SubResource("BoxShape3D_67v7v")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/Alcholol"]
@@ -1199,6 +1204,12 @@ material = SubResource("StandardMaterial3D_nlc4a")
 
 [node name="Player Location" type="Marker3D" parent="Interactibles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71618, 1.79814, -1.19713)
+
+[node name="Door box" type="Area3D" parent="Interactibles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71618, 1.79814, -1.19713)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Door box"]
+shape = SubResource("CapsuleShape3D_87j7j")
 
 [node name="Cameras" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
@@ -1498,6 +1509,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.727834, -2.88534)
 [connection signal="area_exited" from="Interactibles/Alcholol" to="." method="_on_raycast_exit"]
 [connection signal="area_entered" from="Interactibles/Radio" to="." method="_on_radio_area_entered"]
 [connection signal="area_exited" from="Interactibles/Radio" to="." method="_on_raycast_exit"]
+[connection signal="body_entered" from="Interactibles/Door box" to="." method="_on_door_box_body_entered"]
+[connection signal="body_exited" from="Interactibles/Door box" to="." method="_on_door_box_body_exited"]
 [connection signal="timeout" from="Sobriety Timer" to="." method="_on_sobriety_timer_timeout"]
 [connection signal="finished" from="Sounds/Radio" to="." method="_on_radio_finished"]
 [connection signal="timeout" from="Cop_Detector/Cop Detector timer" to="." method="update_cop_detector"]

@@ -10,6 +10,7 @@ var passed : bool = false
 func _ready():
 	if debris_node:
 		spawn_debris()
+	
 
 func spawn_debris():
 	for child in debris_node.get_children():

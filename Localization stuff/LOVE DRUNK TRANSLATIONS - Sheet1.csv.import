@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ffdj8q8b00gn"
+
+[deps]
+
+files=["res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.en.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.ita.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.chi.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.rus.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.jpn.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.kor.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.vie.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.por.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.spa.translation"]
+
+source_file="res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.csv"
+dest_files=["res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.en.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.ita.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.chi.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.rus.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.jpn.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.kor.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.vie.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.por.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.spa.translation"]
+
+[params]
+
+compress=true
+delimiter=0

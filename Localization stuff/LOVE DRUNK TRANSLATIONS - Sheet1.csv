@@ -1,0 +1,160 @@
+key,en,ita,chi,rus,jpn,kor,vie,por,spa
+GAME_TITLE_LABEL,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK
+START_GAME_BUTTON,START,Inizio,开始,,,,,,Inicio
+DIFFICULTY_LABEL,DIFFICULTY,Difficoltà,困难,,,,,,Dificulta
+DIFF_OPTION_1,PRACTICE,Pratica,练习,,,,,,Practica
+DIFF_OPTION_2,EASY,Facile,简单的,,,,,,Fácil
+DIFF_OPTION_3,NORMAL,Normale,,,,,,,Normal
+DIFF_OPTION_4,HARD,Duro,,,,,,,Difícil
+DIFF_OPTION_5,ENDLESS,Infinita,,,,,,,Interminable
+LEADERBOARD_BUTTON,LEADERBOARDS,Tabellone,,,,,,,Tabla de clasificación
+RADIO_BUTTON,RADIO,Radio,,,,,,,Radio
+OPTIONS_BUTTON,OPTIONS,Opzioni,,,,,,,Optiones
+CREDITS_BUTTON,CREDITS,Complimenti,,,,,,,Creditos
+QUIT_BUTTON,QUIT,Esci,,,,,,,Dejar
+,,,,,,,,,
+OPTIONS_LABEL,OPTIONS,Opzioni,,,,,,,Optiones
+MOTION_SICK_MODE_CHECK,MOTION SICK MODE,Anti-Nausea,,,,,,,Anti-Mareo
+ARACHNOPHOBIA_MODE_CHECK,ARACHNOPHOBIA MODE,Anti-Aracnofobia,,,,,,,Anti- Arachnophobia
+ARACHNOPHILIA_MODE_CHECK,ARACHNOPHILIA MODE,Aracnofilia,,,,,,,Arachnophilia
+AUDIO_LABEL,AUDIO,Audio,,,,,,,Audio
+MASTER_SLIDER_LABEL,MASTER,Master,,,,,,,Maestro de Audio
+VOICE_LINE_SLIDER_LABEL,VOICE LINES,Vocali,,,,,,,Lineas de Voz
+MUSIC_SLIDER_LABEL,MUSIC,Musica,,,,,,,Música
+SOUND_EFFECTS_SLIDER_LABEL,SOUND EFFECTS,Effetti,,,,,,,Efectos de Sonidos
+RESOLUTION_LABEL,RESOLUTION,Risoluzione,,,,,,,Resolución
+RESOLUTION_OPTION_1,1152X648,1152X648,,,,,,,1152X648
+RESOLUTION_OPTION_2,576X324,576X324,,,,,,,576X324
+RESOLUTION_OPTION_3,1920X1080,1920X1080,,,,,,,1920X1080
+QUALITY_LABEL,QUALITY,Qualità,,,,,,,Calidad
+QUALITY_OPTION_1,1,1,,,,,,,1
+QUALITY_OPTION_2,0.75,0.75,,,,,,,0.75
+QUALITY_OPTION_3,0.5,0.5,,,,,,,0.5
+QUALITY_OPTION_4,0.25,0.25,,,,,,,0.25
+WINDOW_MODE_LABEL,WINDOW MODE,Impostazioni della Finestra,,,,,,,Modo de Ventana
+WINDOW_OPTION_1,WINDOWED,Finestrato,,,,,,,Pantalla
+WINDOW_OPTION_2,FULL SCREEN,Intero,,,,,,,Pantalla Completa 
+WINDOW_OPTION_3,FULL SCREEN BORDERLESS,Intero Senza Bordo,,,,,,,Pantalla Completa sin Bordes
+SAVE_OPTIONS_BUTTON,SAVE CHANGES,Salva Modifiche,,,,,,,Guardar Cambios
+COLD_TURKEY_BUTTON,COLD TURKEY,Senza Ritorno,,,,,,,Pavo frío
+BACK_BUTTON,BACK,Indietro,,,,,,,De Vuelta
+,,,,,,,,,
+CREDITS_RICH,"Lead programmer: 
+General Goods and Services
+Programmer: drww
+Artists: TooMuchBird, ShiningMudkip, Drww
+Voice Actor:
+TooMuchBird
+Shader and AI Programmer: Gabethedinosaur
+Title Screen Music:
+KingCorvidae
+Kaph Font from GGBotNet","Programmatore Principale: 
+General Goods and Services
+Programmatore: drww
+Artisti: TooMuchBird, ShiningMudkip, Drww
+Doppiatore:
+TooMuchBird
+Programmatore Shader e AI: Gabethedinosaur
+Musica della Schermata del Titolo:
+KingCorvidae
+Font Kaph da GGBotNet",,,,,,,Programador Principal
+,,,,,,,,,
+PROFILE_BUTTON,PROFILE,Profilo,,,,,,,Perfil
+LEADERBOARD_EXTRA_1,SOBER HATE LIST,List Odiata Sobria,,,,,,,Lista de Odio Sobrio
+,,,,,,,,,
+TITLE_LABEL,TITLE,Titolo,,,,,,,Título
+ACTIVE_LABEL,ACTIVE,Attivo,,,,,,,Activo
+I_LOVE_BEING_CUSTOM_BUTTON,CUSTOM,Personalizzato,,,,,,,Personalización
+RELOAD_BUTTON,RELOAD,Ricarica,,,,,,,Recargar
+RESET_RADIO_BUTTON,RESET RADIO,Reimposta Radio,,,,,,,Reiniciar Radio
+,,,,,,,,,
+CONTINUE_BUTTON,CONTINUE,CONTINUARE,,,,,,,Continuar
+,,,,,,,,,
+YOU_LIVED_LABEL,YOU LIVED,Hai Vissuto,,,,,,,Viviste
+MAIN_MENU_BUTTON,MAIN MENU,Menu Principale,,,,,,,Menú Principal
+SOBER_END_RICH,GAME OVER YOU'RE [color=red]SOBER,Fine del Gioco Sei [color=red]Sobrio,,,,,,,"Perdidste, estas sobrio"
+ARRESTED_END_RICH,GAME OVER YOU'RE [color=red]ARRESTED,Fine del Gioco Sei [color=red]Arrestato,,,,,,,"Perdiste, estas detenido"
+TIME_SURVIVED_LABEL,YOU SURVIVED FOR: {0},Sei Sopravvissuto per: {0},,,,,,,Sobreviviste Por: {0}
+ROADS_PASSED_LABEL,\nYOU PASSED: {0} ROADS,\nHai Superato: {0} Strade,,,,,,,Pasaste: {0} Calles
+,,,,,,,,,
+YOU_WIN_LABEL,YOU WIN!!!,Hai Vinto!!!,,,,,,,¡¡¡Ganaste!!!
+YOUR_TIME_LABEL,YOUR TIME: {0},Tuo Tempo: {0},,,,,,,Tu Tiempo: {0}
+,,,,,,,,,
+DOOR_BLOCKED_TOOLTIP,DOOR BLOCKED,Porta Bloccata,,,,,,,Puerta Bloqueada
+NEED_ALCHOHOL_TOOLTIP,NEED MORE ALCOHOL,Serve Più Alco,,,,,,,Necesito Más Alcohol
+NONE_DETECTED_TEXT,|-NONE-|,|-NESSUNO-|,,,,,,,|-NADA-|
+,,,,,,,,,
+TUTORIAL_BILLBOARD_2,"You need to drink to 
+stay drunk
+Make sure you don't get too sober.","Devi bere per rimanere ubriaco.
+ Assicurati di non 
+diventare troppo sobrio.",,,,,,,
+TUTORIAL_BILLBOARD_3,"Pick up your beverages 
+at Gabe's Mart
+He'll put it on your tab","Raccogli le tue bevande al Gabe's Mart. 
+Le metterà sul tuo conto.",,,,,,,
+TUTORIAL_BILLBOARD_4,"Throw your beverages 
+at this man (Gabe)
+Or return to your car while 
+holding them","Lancia le tue bevande a 
+quest’uomo (Gabe) 
+o torna alla tua macchina 
+mentre le tieni in mano.",,,,,,,
+TUTORIAL_BILLBOARD_5,"Follow the moon and avoid cops
+they dont like drunk drivers","Segui la luna e evita i poliziotti. 
+Non amano i guidatori ubriachi.",,,,,,,
+TUTORIAL_BILLBOARD_7,"To your right, the basket is where your alchohol is.
+In the middle you have your radio.
+To your left you have your door.","Alla tua destra, il cestino è dove c'è il tuo alcol. 
+In mezzo c’è la tua radio. 
+Alla tua sinistra c’è la tua porta.",,,,,,,
+TUTORIAL_BILLBOARD_8,"After exiting your car, 
+your left door is where you enter again.","Dopo essere uscito dalla macchina, 
+la porta a sinistra è dove entri di nuovo.",,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+RADIO_TOOLTIP,{0} to TOGGLE\n{1} to SWITCH STATION,{0} per Cambiare\n{1} per Cambiare Stazione,,,,,,,
+ENTER_TOOLTIP,{0} to ENTER\n,{0} per Entrare\n,,,,,,,
+FLIP_TOOLTIP,{0} to FLIP\n,{0} per Ribaltare\n,,,,,,,
+EXIT_TOOLTIP,{0} to EXIT,{0} per Uscire,,,,,,,
+DRINK_TOOLTIP,{0} to DRINK,{0} per Bere,,,,,,,
+,,,,,,,,,
+TUTORIAL_BILLBOARD_1,"Look around your car
+You'll see that many things 
+are interactible 
+Use {0} to Drive","Guarda intorno alla tua macchina. 
+Vedrai che molte cose sono interattive. 
+Usa {0} per guidare.",,,,,,,
+TUTORIAL_BILLBOARD_6,"Use your {0} to grab 
+objects outside of your car.
+You can bring objects into your car. 
+While in the car, press {0}
+to throw garbage out of the car.","Usa il tuo {0} per afferrare oggetti 
+fuori dalla tua macchina. 
+Puoi portare gli oggetti dentro 
+la macchina. Mentre sei in 
+macchina, premi {0} per gettare 
+la spazzatura fuori dalla macchina.",,,,,,,
+,,,,,,,,,
+KEYWORD_FORWARD,FORWARD,,,,,,,,
+KEYWORD_BACKWARD,BACKWARD,,,,,,,,
+KEYWORD_LEFT,LEFT,,,,,,,,
+KEYWORD_RIGHT,RIGHT,,,,,,,,
+KEYWORD_JUMP,JUMP,,,,,,,,
+,,,,,,,,,
+KEYWORD_MISC_INTERACT,MISC,,,,,,,,
+KEYWORD_INTERACT,INTERACT,,,,,,,,
+KEYWORD_ALT_INTERACT,ALT INTERACT,,,,,,,,
+KEYWORD_PAUSE,PAUSE,,,,,,,,
+KEYWORD_LEFT_HAND,LEFT HAND,,,,,,,,
+KEYWORD_RIGHT_HAND,RIGHT HAND,,,,,,,,
+KEYWORD_CHANGE,CHANGE,,,,,,,,
+BIND_INPUT_LABEL,AWAITING FOR : ,,,,,,,,
+OPEN_CONTROLS_BUTTON,CHANGE CONTROLS,,,,,,,,
+RESET_CONTROLS_BUTTON,RESET CONTROLS,,,,,,,,

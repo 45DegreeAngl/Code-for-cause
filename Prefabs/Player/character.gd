@@ -56,10 +56,10 @@ func _ready():
 func _input(_event):
 	if Globals.game_over or Globals.game_paused:
 		return
-	if Input.is_action_just_pressed("R"): ragdoll_mode = bool(1-int(ragdoll_mode)) # toggle ragdoll mode
+	if Input.is_action_just_pressed("KEYWORD_MISC_INTERACT"): ragdoll_mode = bool(1-int(ragdoll_mode)) # toggle ragdoll mode
 
-	active_arm_left = Input.is_action_pressed("Left Button")# activate left arm with mouse left click
-	active_arm_right = Input.is_action_pressed("Right Button")# activate right arm with mouse right click
+	active_arm_left = Input.is_action_pressed("KEYWORD_LEFT_HAND")# activate left arm with mouse left click
+	active_arm_right = Input.is_action_pressed("KEYWORD_RIGHT_HAND")# activate right arm with mouse right click
 	
 	if (not active_arm_left and grabbing_arm_left) or ragdoll_mode:
 		#release whatever the arm is holding when ragdoll mode or the arm is deactivate
@@ -100,21 +100,21 @@ func _physics_process(delta):
 		# walking control
 		walking = false
 		var dir = Vector3.ZERO
-		if Input.is_action_pressed("W"):
+		if Input.is_action_pressed("KEYWORD_FORWARD"):
 			dir += animated_skel.global_transform.basis.z
 			walking = true
-		if Input.is_action_pressed("A"):
+		if Input.is_action_pressed("KEYWORD_LEFT"):
 			dir += animated_skel.global_transform.basis.x
 			walking = true
-		if Input.is_action_pressed("D"):
+		if Input.is_action_pressed("KEYWORD_RIGHT"):
 			dir -= animated_skel.global_transform.basis.x
 			walking = true
-		if Input.is_action_pressed("S"):
+		if Input.is_action_pressed("KEYWORD_BACKWARD"):
 			dir -= animated_skel.global_transform.basis.z
 			walking = true
-		if Input.is_action_just_pressed("E") and car_door:
+		if Input.is_action_just_pressed("KEYWORD_INTERACT") and car_door:
 			car.enter_car()
-		elif Input.is_action_just_pressed("Q") and flippable and !(left_hand == Globals.player_vehicle or right_hand == Globals.player_vehicle):
+		elif Input.is_action_just_pressed("KEYWORD_ALT_INTERACT") and flippable and !(left_hand == Globals.player_vehicle or right_hand == Globals.player_vehicle):
 			car.flip_car()
 		dir = dir.normalized()
 
@@ -136,7 +136,7 @@ func _physics_process(delta):
 						break
 		
 		#jump
-		if Input.is_action_pressed("Space"):
+		if Input.is_action_pressed("KEYWORD_JUMP"):
 			if is_on_floor and can_jump:
 				physical_bone_body.linear_velocity.y += JUMP_STRENGTH
 				jump_timer.start()
