@@ -296,17 +296,18 @@ func update_tooltip_text():
 			if door_blocked:
 				$CanvasLayer/Tooltips/Label.text = tr("DOOR_BLOCKED_TOOLTIP")
 			else:
-				$CanvasLayer/Tooltips/Label.text = tr("EXIT_TOOLTIP")
+				$CanvasLayer/Tooltips/Label.text = tr("EXIT_TOOLTIP").format([InputMap.action_get_events("KEYWORD_INTERACT")[0].as_text()])
+				
 		looking_at.Alchohol:
 			if $Milk_Crate.alchohol_count>0:
-				$CanvasLayer/Tooltips/Label.text = tr("DRINK_TOOLTIP")
+				$CanvasLayer/Tooltips/Label.text = tr("DRINK_TOOLTIP").format([InputMap.action_get_events("KEYWORD_INTERACT")[0].as_text()])
 			else:
 				$CanvasLayer/Tooltips/Label.text = tr("NEED_ALCHOHOL_TOOLTIP")
 		looking_at.Radio:
-			$CanvasLayer/Tooltips/Label.text = tr("RADIO_TOOLTIP")
+			$CanvasLayer/Tooltips/Label.text = tr("RADIO_TOOLTIP").format([InputMap.action_get_events("KEYWORD_INTERACT")[0].as_text(),InputMap.action_get_events("KEYWORD_ALT_INTERACT")[0].as_text()])
 		looking_at.Outside:
-			if !$CanvasLayer/Tooltips/Label.text.find(tr("ENTER_TOOLTIP"))!=-1:
-				$CanvasLayer/Tooltips/Label.text += tr("ENTER_TOOLTIP")
+			if !$CanvasLayer/Tooltips/Label.text.find(tr("ENTER_TOOLTIP").format([InputMap.action_get_events("KEYWORD_INTERACT")[0].as_text()]))!=-1:
+				$CanvasLayer/Tooltips/Label.text += tr("ENTER_TOOLTIP").format([InputMap.action_get_events("KEYWORD_INTERACT")[0].as_text()])
 		null,"_":
 			$CanvasLayer/Tooltips/Label.text = ""
 
@@ -344,7 +345,7 @@ func _on_radio_area_entered(area: Area3D) -> void:
 
 func flip_car_option(state:bool):
 	if state:
-		$CanvasLayer/Tooltips/Label.text += tr("FLIP_TOOLTIP")
+		$CanvasLayer/Tooltips/Label.text += tr("FLIP_TOOLTIP").format([InputMap.action_get_events("KEYWORD_ALT_INTERACT")[0].as_text()])
 	else:
 		$CanvasLayer/Tooltips/Label.text = ""
 

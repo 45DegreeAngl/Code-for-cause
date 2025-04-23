@@ -131,10 +131,10 @@ are interactible
 Use {0} to Drive","Guarda intorno alla tua macchina. 
 Vedrai che molte cose sono interattive. 
 Usa {0} per guidare.",,,,,,,
-TUTORIAL_BILLBOARD_6,"Use your {0} to grab 
+TUTORIAL_BILLBOARD_6,"Use your hands to grab 
 objects outside of your car.
 You can bring objects into your car. 
-While in the car, press {0}
+While in the car, press alt interact
 to throw garbage out of the car.","Usa il tuo {0} per afferrare oggetti 
 fuori dalla tua macchina. 
 Puoi portare gli oggetti dentro 
@@ -158,3 +158,7 @@ KEYWORD_CHANGE,CHANGE,,,,,,,,
 BIND_INPUT_LABEL,AWAITING FOR : ,,,,,,,,
 OPEN_CONTROLS_BUTTON,CHANGE CONTROLS,,,,,,,,
 RESET_CONTROLS_BUTTON,RESET CONTROLS,,,,,,,,
+CONT_SETTING_ACTION_LABEL,ACTION,,,,,,,,
+CONT_SETTING_BIND_LABEL,CURRENT BIND,,,,,,,,
+CONT_SETTING_MOVEMENT_LABEL,MOVEMENT,,,,,,,,
+CONT_SETTING_GAMEPLAY_LABEL,GAMEPLAY,,,,,,,,

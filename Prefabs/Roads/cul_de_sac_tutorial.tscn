@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://fuvj7j3go7xh"]
+[gd_scene load_steps=30 format=3 uid="uid://fuvj7j3go7xh"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_6evje"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Prefabs/Roads/road_segment.gd" id="2_vcq83"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://draf67p2ehgfx" path="res://Prefabs/Buildings/house_1.tscn" id="5_ueshl"]
 [ext_resource type="PackedScene" uid="uid://b4jd38ifumhg7" path="res://Prefabs/Buildings/gabes_mart.tscn" id="6_i5ttn"]
 [ext_resource type="Script" uid="uid://dtk5ji61ml077" path="res://Prefabs/Debris/Groups/debris_group.gd" id="7_0xqex"]
+[ext_resource type="Script" uid="uid://dg3rvytiyjdtj" path="res://billboards.gd" id="7_d8cqh"]
 [ext_resource type="PackedScene" uid="uid://cyf4gwwy1p5ut" path="res://Prefabs/Debris/Individual/cone_debris.tscn" id="8_24eo5"]
 [ext_resource type="PackedScene" uid="uid://gq811rsmjlhl" path="res://Prefabs/Debris/Individual/tire_debris.tscn" id="9_615do"]
 
@@ -192,6 +193,7 @@ transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 
 transform = Transform3D(-0.999995, 0, 0.00326375, 0, 1, 0, -0.00326375, 0, -0.999995, -6.95411, 0.496432, -7.50258)
 
 [node name="Billboards" type="Node3D" parent="."]
+script = ExtResource("7_d8cqh")
 
 [node name="Tutorial Sign" type="CSGMesh3D" parent="Billboards"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.85469, 1.00973, -3.52579)
