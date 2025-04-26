@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj4w8upb3fxue"
 path.s3tc="res://.godot/imported/Gabes_Mart_Man (1)_Cylinder Base Color.png-db724f82887c08880739b79c035faced.s3tc.ctex"
+path.etc2="res://.godot/imported/Gabes_Mart_Man (1)_Cylinder Base Color.png-db724f82887c08880739b79c035faced.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Character/Gabes_Mart_Man (1)_Cylinder Base Color.png"
-dest_files=["res://.godot/imported/Gabes_Mart_Man (1)_Cylinder Base Color.png-db724f82887c08880739b79c035faced.s3tc.ctex"]
+dest_files=["res://.godot/imported/Gabes_Mart_Man (1)_Cylinder Base Color.png-db724f82887c08880739b79c035faced.s3tc.ctex", "res://.godot/imported/Gabes_Mart_Man (1)_Cylinder Base Color.png-db724f82887c08880739b79c035faced.etc2.ctex"]
 
 [params]
 

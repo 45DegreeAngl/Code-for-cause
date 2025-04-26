@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdd05e53w745d"
 path.s3tc="res://.godot/imported/Tree_1_Optimized_Cylinder Base Color.png-ae784147744027cf6b91c093c4c2fab4.s3tc.ctex"
+path.etc2="res://.godot/imported/Tree_1_Optimized_Cylinder Base Color.png-ae784147744027cf6b91c093c4c2fab4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Debris/Tree_1_Optimized_Cylinder Base Color.png"
-dest_files=["res://.godot/imported/Tree_1_Optimized_Cylinder Base Color.png-ae784147744027cf6b91c093c4c2fab4.s3tc.ctex"]
+dest_files=["res://.godot/imported/Tree_1_Optimized_Cylinder Base Color.png-ae784147744027cf6b91c093c4c2fab4.s3tc.ctex", "res://.godot/imported/Tree_1_Optimized_Cylinder Base Color.png-ae784147744027cf6b91c093c4c2fab4.etc2.ctex"]
 
 [params]
 

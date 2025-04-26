@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://qxennhhcq7oy"
 path.s3tc="res://.godot/imported/GasStationPlaceholder_Ass Station Base.png-2e2f55f053a1923781fa07068dd4f04e.s3tc.ctex"
+path.etc2="res://.godot/imported/GasStationPlaceholder_Ass Station Base.png-2e2f55f053a1923781fa07068dd4f04e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/GasStationPlaceholder_Ass Station Base.png"
-dest_files=["res://.godot/imported/GasStationPlaceholder_Ass Station Base.png-2e2f55f053a1923781fa07068dd4f04e.s3tc.ctex"]
+dest_files=["res://.godot/imported/GasStationPlaceholder_Ass Station Base.png-2e2f55f053a1923781fa07068dd4f04e.s3tc.ctex", "res://.godot/imported/GasStationPlaceholder_Ass Station Base.png-2e2f55f053a1923781fa07068dd4f04e.etc2.ctex"]
 
 [params]
 

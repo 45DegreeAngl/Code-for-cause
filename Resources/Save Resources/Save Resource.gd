@@ -8,6 +8,10 @@ class_name Save_Options
 @export var res_options:int = 0
 @export var quality_options:int = 0
 @export var window_options:int = 0
+@export var language_options:int = 0
+
+@export var mouse_sense_mult : float = 1
+@export var contr_sense_mult : float = 1
 
 @export var master_vol:float = 1.0
 @export var voice_vol:float = 1.0

@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://cw8ifdi80fcme" path="res://Assets/Models/Car/The_Car_Right_Mirror_Mat.png" id="6_pfeyb"]
 [ext_resource type="Texture2D" uid="uid://bm1ompqyy2io7" path="res://Assets/Models/Car/The_Car_Top_Mirror_Mat.png" id="7_qgxyv"]
 [ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="8_etipi"]
-[ext_resource type="Texture2D" uid="uid://6ok3wwem53q" path="res://Assets/Models/godot-prototype-texture/PNG/checker_blue_512x512.png" id="11_rn8n4"]
-[ext_resource type="Texture2D" uid="uid://crhdx7ojehre8" path="res://Assets/Models/godot-prototype-texture/PNG/checker_lime_512x512.png" id="12_whm7s"]
-[ext_resource type="Texture2D" uid="uid://dc5kiekdkk2lc" path="res://Assets/Models/godot-prototype-texture/PNG/checker_red_512x512.png" id="13_ibe3o"]
+[ext_resource type="Texture2D" uid="uid://6ok3wwem53q" path="res://Deprecated/godot-prototype-texture/PNG/checker_blue_512x512.png" id="11_rn8n4"]
+[ext_resource type="Texture2D" uid="uid://crhdx7ojehre8" path="res://Deprecated/godot-prototype-texture/PNG/checker_lime_512x512.png" id="12_whm7s"]
+[ext_resource type="Texture2D" uid="uid://dc5kiekdkk2lc" path="res://Deprecated/godot-prototype-texture/PNG/checker_red_512x512.png" id="13_ibe3o"]
 [ext_resource type="PackedScene" uid="uid://lvgwnfheptfj" path="res://Prefabs/Alcohol Crate.tscn" id="14_8yrfn"]
 [ext_resource type="PackedScene" uid="uid://ft4n32wk55a8" path="res://Assets/Models/Car/radio.tscn" id="14_ge4il"]
 [ext_resource type="Theme" uid="uid://ccmgdq4tewmwx" path="res://Assets/Themes/Kaph.tres" id="16_d020y"]
@@ -455,8 +455,8 @@ size = Vector3(0.435791, 0.823789, 0.45)
 albedo_texture = ExtResource("13_ibe3o")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_87j7j"]
-radius = 0.710003
-height = 2.1542
+radius = 0.683175
+height = 1.36635
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u68fw"]
 radius = 0.0250014
@@ -1209,6 +1209,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71618, 1.79814, -1.19713)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71618, 1.79814, -1.19713)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Door box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00596571, 0)
 shape = SubResource("CapsuleShape3D_87j7j")
 
 [node name="Cameras" type="Node3D" parent="."]

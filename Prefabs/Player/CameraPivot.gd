@@ -9,7 +9,7 @@ extends Node3D
 
 @onready var spring_arm = $SpringArm3D
 
-var mouse_lock = true # is mouse locked
+
 
 func _physics_process(delta):
 	for child in physical_skel.get_children():
@@ -17,8 +17,8 @@ func _physics_process(delta):
 		if child is PhysicalBone3D:spring_arm.add_excluded_object(child.get_rid())
 	
 	if joy_pad_RStick:
-		rotation_degrees.y -= controller_sensitivity*joy_pad_RStick.x*delta*25
-		rotation_degrees.x -= controller_sensitivity*joy_pad_RStick.y*delta*25
+		rotation_degrees.y -= Globals.per_cont_sens*joy_pad_RStick.x*delta*25
+		rotation_degrees.x -= Globals.per_cont_sens*joy_pad_RStick.y*delta*25
 		rotation_degrees.x = clamp(rotation_degrees.x,-45,45)
 	
 	if target_node != null:
@@ -32,16 +32,16 @@ func _input(event):
 		return
 	# mouse lock
 	if Input.is_action_just_pressed("KEYWORD_PAUSE"):
-		mouse_lock = false
+		
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if event is InputEventMouseButton and event.is_pressed():
-		mouse_lock = true
+		
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	#rotate camera
-	if event is InputEventMouseMotion and mouse_lock:
-		rotation_degrees.y -= mouse_sensitivity*event.relative.x
-		rotation_degrees.x -= mouse_sensitivity*event.relative.y
+	if event is InputEventMouseMotion and !Globals.game_paused:
+		rotation_degrees.y -= Globals.per_mous_sens*event.relative.x
+		rotation_degrees.x -= Globals.per_mous_sens*event.relative.y
 		rotation_degrees.x = clamp(rotation_degrees.x,-45,45)
 	elif event is InputEventJoypadMotion:
 		match event.axis:

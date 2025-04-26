@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b77626kh0b61k"
 path.s3tc="res://.godot/imported/Car_2_Chassis_Color.png-0e219a7e3ae394b8ae4fd21f4c8d06de.s3tc.ctex"
+path.etc2="res://.godot/imported/Car_2_Chassis_Color.png-0e219a7e3ae394b8ae4fd21f4c8d06de.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Car/Car_2_Chassis_Color.png"
-dest_files=["res://.godot/imported/Car_2_Chassis_Color.png-0e219a7e3ae394b8ae4fd21f4c8d06de.s3tc.ctex"]
+dest_files=["res://.godot/imported/Car_2_Chassis_Color.png-0e219a7e3ae394b8ae4fd21f4c8d06de.s3tc.ctex", "res://.godot/imported/Car_2_Chassis_Color.png-0e219a7e3ae394b8ae4fd21f4c8d06de.etc2.ctex"]
 
 [params]
 

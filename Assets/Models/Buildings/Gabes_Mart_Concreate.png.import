@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsumvt3pmkl2e"
 path.s3tc="res://.godot/imported/Gabes_Mart_Concreate.png-142ea7fee8277785f2c4e48be07a63ea.s3tc.ctex"
+path.etc2="res://.godot/imported/Gabes_Mart_Concreate.png-142ea7fee8277785f2c4e48be07a63ea.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Buildings/Gabes_Mart_Concreate.png"
-dest_files=["res://.godot/imported/Gabes_Mart_Concreate.png-142ea7fee8277785f2c4e48be07a63ea.s3tc.ctex"]
+dest_files=["res://.godot/imported/Gabes_Mart_Concreate.png-142ea7fee8277785f2c4e48be07a63ea.s3tc.ctex", "res://.godot/imported/Gabes_Mart_Concreate.png-142ea7fee8277785f2c4e48be07a63ea.etc2.ctex"]
 
 [params]
 

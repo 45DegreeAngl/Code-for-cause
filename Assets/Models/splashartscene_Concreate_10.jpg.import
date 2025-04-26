@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://chn0p20xv0jj"
 path.s3tc="res://.godot/imported/splashartscene_Concreate_10.jpg-45e66ed5f48b6a9137182cb6233b4484.s3tc.ctex"
+path.etc2="res://.godot/imported/splashartscene_Concreate_10.jpg-45e66ed5f48b6a9137182cb6233b4484.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/splashartscene_Concreate_10.jpg"
-dest_files=["res://.godot/imported/splashartscene_Concreate_10.jpg-45e66ed5f48b6a9137182cb6233b4484.s3tc.ctex"]
+dest_files=["res://.godot/imported/splashartscene_Concreate_10.jpg-45e66ed5f48b6a9137182cb6233b4484.s3tc.ctex", "res://.godot/imported/splashartscene_Concreate_10.jpg-45e66ed5f48b6a9137182cb6233b4484.etc2.ctex"]
 
 [params]
 

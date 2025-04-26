@@ -1,43 +1,43 @@
 key,en,ita,chi,rus,jpn,kor,vie,por,spa
 GAME_TITLE_LABEL,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK,LOVE DRUNK
-START_GAME_BUTTON,START,Inizio,开始,,,,,,Inicio
-DIFFICULTY_LABEL,DIFFICULTY,Difficoltà,困难,,,,,,Dificulta
-DIFF_OPTION_1,PRACTICE,Pratica,练习,,,,,,Practica
-DIFF_OPTION_2,EASY,Facile,简单的,,,,,,Fácil
-DIFF_OPTION_3,NORMAL,Normale,,,,,,,Normal
-DIFF_OPTION_4,HARD,Duro,,,,,,,Difícil
-DIFF_OPTION_5,ENDLESS,Infinita,,,,,,,Interminable
-LEADERBOARD_BUTTON,LEADERBOARDS,Tabellone,,,,,,,Tabla de clasificación
-RADIO_BUTTON,RADIO,Radio,,,,,,,Radio
-OPTIONS_BUTTON,OPTIONS,Opzioni,,,,,,,Optiones
-CREDITS_BUTTON,CREDITS,Complimenti,,,,,,,Creditos
-QUIT_BUTTON,QUIT,Esci,,,,,,,Dejar
+START_GAME_BUTTON,START,Inizio,开始,НАЧИНАТЬ,始める,시작,bắt đầu,INICIAR,Inicio
+DIFFICULTY_LABEL,DIFFICULTY,Difficoltà,困难,СЛОЖНОСТЬ,困難,어려움,khó khăn,DIFICULDADE,Dificulta
+DIFF_OPTION_1,PRACTICE,Pratica,练习,УПРАЖНЯТЬСЯ,練習する,관행,luyện tập,PRÁTICA,Practica
+DIFF_OPTION_2,EASY,Facile,简单的,ЛЕГКИЙ,単純,단순한,Đơn giản,FÁCIL,Fácil
+DIFF_OPTION_3,NORMAL,Normale,通常,НОРМАЛЬНЫЙ,一般的に,일반적으로,nói chung là,NORMAL,Normal
+DIFF_OPTION_4,HARD,Duro,难以,ЖЕСТКИЙ,難しい,어려운,khó,DURA,Difícil
+DIFF_OPTION_5,ENDLESS,Infinita,广大无边,БЕСКОНЕЧНЫЙ,ランキング一覧,광대하고 무한하다,Rộng lớn và vô biên,SEM FIM,Interminable
+LEADERBOARD_BUTTON,LEADERBOARDS,Tabellone,排行榜,Диаграммы,ランキング一覧,랭킹,Xếp hạng,Pontuação,Tabla de clasificación
+RADIO_BUTTON,RADIO,Radio,收音机,РАДИО,無線,라디오,radio,RÁDIO,Radio
+OPTIONS_BUTTON,OPTIONS,Opzioni,选项,ПАРАМЕТРЫ,オプション,옵션,Tùy chọn,OPÇÕES,Optiones
+CREDITS_BUTTON,CREDITS,Complimenti,学分,КРЕДИТЫ,クレジット,신용 거래,tín dụng,CRÉDITOS,Creditos
+QUIT_BUTTON,QUIT,Esci,退出,Выход,やめる,그만두다,từ bỏ,escapar,Dejar
 ,,,,,,,,,
-OPTIONS_LABEL,OPTIONS,Opzioni,,,,,,,Optiones
-MOTION_SICK_MODE_CHECK,MOTION SICK MODE,Anti-Nausea,,,,,,,Anti-Mareo
-ARACHNOPHOBIA_MODE_CHECK,ARACHNOPHOBIA MODE,Anti-Aracnofobia,,,,,,,Anti- Arachnophobia
-ARACHNOPHILIA_MODE_CHECK,ARACHNOPHILIA MODE,Aracnofilia,,,,,,,Arachnophilia
-AUDIO_LABEL,AUDIO,Audio,,,,,,,Audio
-MASTER_SLIDER_LABEL,MASTER,Master,,,,,,,Maestro de Audio
-VOICE_LINE_SLIDER_LABEL,VOICE LINES,Vocali,,,,,,,Lineas de Voz
-MUSIC_SLIDER_LABEL,MUSIC,Musica,,,,,,,Música
-SOUND_EFFECTS_SLIDER_LABEL,SOUND EFFECTS,Effetti,,,,,,,Efectos de Sonidos
-RESOLUTION_LABEL,RESOLUTION,Risoluzione,,,,,,,Resolución
-RESOLUTION_OPTION_1,1152X648,1152X648,,,,,,,1152X648
-RESOLUTION_OPTION_2,576X324,576X324,,,,,,,576X324
-RESOLUTION_OPTION_3,1920X1080,1920X1080,,,,,,,1920X1080
-QUALITY_LABEL,QUALITY,Qualità,,,,,,,Calidad
-QUALITY_OPTION_1,1,1,,,,,,,1
-QUALITY_OPTION_2,0.75,0.75,,,,,,,0.75
-QUALITY_OPTION_3,0.5,0.5,,,,,,,0.5
-QUALITY_OPTION_4,0.25,0.25,,,,,,,0.25
-WINDOW_MODE_LABEL,WINDOW MODE,Impostazioni della Finestra,,,,,,,Modo de Ventana
-WINDOW_OPTION_1,WINDOWED,Finestrato,,,,,,,Pantalla
-WINDOW_OPTION_2,FULL SCREEN,Intero,,,,,,,Pantalla Completa 
-WINDOW_OPTION_3,FULL SCREEN BORDERLESS,Intero Senza Bordo,,,,,,,Pantalla Completa sin Bordes
-SAVE_OPTIONS_BUTTON,SAVE CHANGES,Salva Modifiche,,,,,,,Guardar Cambios
-COLD_TURKEY_BUTTON,COLD TURKEY,Senza Ritorno,,,,,,,Pavo frío
-BACK_BUTTON,BACK,Indietro,,,,,,,De Vuelta
+OPTIONS_LABEL,OPTIONS,Opzioni,选项,ПАРАМЕТРЫ,オプション,옵션,Tùy chọn,OPÇÕES,Optiones
+MOTION_SICK_MODE_CHECK,MOTION SICK MODE,Anti-Nausea,晕车,УКАЧИВАНИЕ,乗り物酔い,멀미,say tàu xe,ENJOO DE MOVIMENTO,Anti-Mareo
+ARACHNOPHOBIA_MODE_CHECK,ARACHNOPHOBIA MODE,Aracnofobia,蜘蛛恐惧症,АРАХНОФОБИЯ,クモ恐怖症,거미공포증,Sợ nhện,ARACNOFOBIA,Arachnophobia
+ARACHNOPHILIA_MODE_CHECK,ARACHNOPHILIA MODE,Aracnofilia,蜘蛛癖,АРАХНОФИЛИЯ,クモ恐怖症,거미류,Chủ nghĩa hình nhện,ARACNOFILIA,Arachnophilia
+AUDIO_LABEL,AUDIO,Audio,声音的,АУДИО,ボーカル,소리,Âm thanh,ÁUDIO,Audio
+MASTER_SLIDER_LABEL,MASTER,Master,主要的,ВЛАДЕЛЕЦ,主要,기본,Chủ yếu,MESTRA,Maestro de Audio
+VOICE_LINE_SLIDER_LABEL,VOICE LINES,Vocali,语音线,ГОЛОСОВЫЕ ЛИНИИ,音声回線,음성 라인,Dòng thoại,LINHAS DE VOZ,Lineas de Voz
+MUSIC_SLIDER_LABEL,MUSIC,Musica,音乐,МУЗЫКА,音楽,음악,âm nhạc,MÚSICA,Música
+SOUND_EFFECTS_SLIDER_LABEL,SOUND EFFECTS,Effetti,音效,ЗВУКОВЫЕ ЭФФЕКТЫ,効果音,소리,Âm thanh,EFEITOS SONOROS,Efectos de Sonidos
+RESOLUTION_LABEL,RESOLUTION,Risoluzione,分解,РАЗРЕШЕНИЕ,壊す,분해하다,phá vỡ,RESOLUÇÃO,Resolución
+RESOLUTION_OPTION_1,1152X648,1152X648,1152X648,1152X648,1152X648,1152X648,1152X648,1152X648,1152X648
+RESOLUTION_OPTION_2,576X324,576X324,576X324,576X324,576X324,576X324,576X324,576X324,576X324
+RESOLUTION_OPTION_3,1920X1080,1920X1080,1920X1080,1920X1080,1920X1080,1920X1080,1920X1080,1920X1080,1920X1080
+QUALITY_LABEL,QUALITY,Qualità,质量,КАЧЕСТВО,品質,품질,chất lượng,QUALIDADE,Calidad
+QUALITY_OPTION_1,1,1,1,1,1,1,1,1,1
+QUALITY_OPTION_2,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75
+QUALITY_OPTION_3,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5
+QUALITY_OPTION_4,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25
+WINDOW_MODE_LABEL,WINDOW MODE,Impostazioni della Finestra,窗口模式,РЕЖИМ ОКОН,ウィンドウモード,창 모드,Chế độ cửa sổ,MODO JANELA,Modo de Ventana
+WINDOW_OPTION_1,WINDOWED,Finestrato,开窗的,С ОКНОМ,窓付き,창문,Cửa sổ,COM JANELA,Pantalla
+WINDOW_OPTION_2,FULL SCREEN,Intero,全屏,ПОЛНОЭКРАННЫЙ,全画面表示,전체 화면,toàn màn hình,TELA CHEIA,Pantalla Completa 
+WINDOW_OPTION_3,FULL SCREEN BORDERLESS,Intero Senza Bordo,全屏无边界,ПОЛНЫЙ ЭКРАН БЕЗ ГРАНИЦ,枠線なしのフルスクリーン,테두리 없는 전체 화면,Toàn màn hình không có viền,TELA CHEIA SEM BORDAS,Pantalla Completa sin Bordes
+SAVE_OPTIONS_BUTTON,SAVE CHANGES,Salva Modifiche,保存更改,СОХРАНИТЬ ИЗМЕНЕНИЯ,変更を保存する,변경 사항 저장,Lưu thay đổi,GUARDAR ALTERAÇÕES,Guardar Cambios
+COLD_TURKEY_BUTTON,COLD TURKEY,Senza Ritorno,冷火鸡,ХОЛОДНАЯ ИНДЕЙКА,冷たい七面鳥,콜드 터키,Gà tây lạnh,PERU FRIO,Pavo frío
+BACK_BUTTON,BACK,Indietro,后退,НАЗАД,戻る,뒤쪽에,Mặt sau,COSTAS,De Vuelta
 ,,,,,,,,,
 CREDITS_RICH,"Lead programmer: 
 General Goods and Services
@@ -57,108 +57,248 @@ TooMuchBird
 Programmatore Shader e AI: Gabethedinosaur
 Musica della Schermata del Titolo:
 KingCorvidae
-Font Kaph da GGBotNet",,,,,,,Programador Principal
+Font Kaph da GGBotNet",首席程序员,"Ведущий программист:
+Общие товары и услуги
+Программист: drww
+Художники: TooMuchBird, ShiningMudkip, Drww
+Актер озвучивания:
+TooMuchBird
+Программист шейдеров и ИИ: Gabethedinosaur
+Музыка титульного экрана:
+KingCorvidae
+Шрифт Kaph от GGBotNet",チーフプログラマー,수석 프로그래머,Trưởng nhóm lập trình,"Programador líder:
+General Goods and Services
+Programador: drww
+Artistas: TooMuchBird, ShiningMudkip, Drww
+Dublador:
+TooMuchBird
+Programador de shaders e IA: Gabethedinosaur
+Música do ecrã de abertura:
+KingCorvidae
+Fonte Kaph da GGBotNet",Programador Principal
 ,,,,,,,,,
-PROFILE_BUTTON,PROFILE,Profilo,,,,,,,Perfil
-LEADERBOARD_EXTRA_1,SOBER HATE LIST,List Odiata Sobria,,,,,,,Lista de Odio Sobrio
+PROFILE_BUTTON,PROFILE,Profilo,技能,ПРОФИЛЬ,スキル,기능,Kỹ năng,PERFIL,Perfil
+LEADERBOARD_EXTRA_1,SOBER HATE LIST,List Odiata Sobria,清醒仇恨名单,СПИСОК ТРЕЗВОЙ НЕНАВИСТИ,目覚めたヘイトリスト,술 취하지 않은 사람 증오 목록,Danh sách ghét tỉnh táo,LISTA DE ÓDIO SÓBRIO,Lista de Odio Sobrio
 ,,,,,,,,,
-TITLE_LABEL,TITLE,Titolo,,,,,,,Título
-ACTIVE_LABEL,ACTIVE,Attivo,,,,,,,Activo
-I_LOVE_BEING_CUSTOM_BUTTON,CUSTOM,Personalizzato,,,,,,,Personalización
-RELOAD_BUTTON,RELOAD,Ricarica,,,,,,,Recargar
-RESET_RADIO_BUTTON,RESET RADIO,Reimposta Radio,,,,,,,Reiniciar Radio
+TITLE_LABEL,TITLE,Titolo,标题,ЗАГОЛОВОК,タイトル,제목,tiêu đề,TÍTULO,Título
+ACTIVE_LABEL,ACTIVE,Attivo,活性,АКТИВНЫЙ,アクティブ,활동적인,tích cực,ATIVA,Activo
+I_LOVE_BEING_CUSTOM_BUTTON,CUSTOM,Personalizzato,个人的,ОБЫЧАЙ,個人的,개인의,Riêng tư,PERSONALIZADA,Personalización
+RELOAD_BUTTON,RELOAD,Ricarica,重新加载,ПЕРЕЗАГРУЗКА,リロード,재장전,Tải lại,RECARREGAR,Recargar
+RESET_RADIO_BUTTON,RESET RADIO,Reimposta Radio,重置收音机,СБРОС РАДИО,ラジオをリセットする,라디오 재설정,Đặt lại Radio,REINICIAR RÁDIO,Reiniciar Radio
 ,,,,,,,,,
-CONTINUE_BUTTON,CONTINUE,CONTINUARE,,,,,,,Continuar
+CONTINUE_BUTTON,CONTINUE,CONTINUARE,继续,ПРОДОЛЖАТЬ,続く,계속하다,Tiếp tục,CONTINUAR,Continuar
 ,,,,,,,,,
-YOU_LIVED_LABEL,YOU LIVED,Hai Vissuto,,,,,,,Viviste
-MAIN_MENU_BUTTON,MAIN MENU,Menu Principale,,,,,,,Menú Principal
-SOBER_END_RICH,GAME OVER YOU'RE [color=red]SOBER,Fine del Gioco Sei [color=red]Sobrio,,,,,,,"Perdidste, estas sobrio"
-ARRESTED_END_RICH,GAME OVER YOU'RE [color=red]ARRESTED,Fine del Gioco Sei [color=red]Arrestato,,,,,,,"Perdiste, estas detenido"
-TIME_SURVIVED_LABEL,YOU SURVIVED FOR: {0},Sei Sopravvissuto per: {0},,,,,,,Sobreviviste Por: {0}
-ROADS_PASSED_LABEL,\nYOU PASSED: {0} ROADS,\nHai Superato: {0} Strade,,,,,,,Pasaste: {0} Calles
+YOU_LIVED_LABEL,YOU LIVED,Hai Vissuto,幸存下来,ТЫ ЖИЛ,生き残った,살아남았다,Sống sót,VOCÊ VIVEU,Viviste
+MAIN_MENU_BUTTON,MAIN MENU,Menu Principale,主屏幕,ГЛАВНОЕ МЕНЮ,ホーム画面,홈 화면,Màn hình chính,MENU PRINCIPAL,Menú Principal
+SOBER_END_RICH,GAME OVER YOU'RE [color=red]SOBER,Fine del Gioco Sei [color=red]Sobrio,游戏结束 [color=red]清醒的,ИГРА ОКОНЧЕНА ТЫ [color=red]ТРЕЗВЫЙ,ゲームオーバー [color=red] しらふ,게임 오버 [color=red] 술 취함,Game Over [color=red] Tỉnh táo,FIM DE JOGO ESTÁS A [color=red]SÓBRIO,"Perdidste, estas sobrio"
+ARRESTED_END_RICH,GAME OVER YOU'RE [color=red]ARRESTED,Fine del Gioco Sei [color=red]Arrestato,游戏结束 [color=red]被捕,"ИГРА ОКОНЧЕНА, ТЫ [color=red]АРЕСТОВАН",ゲームオーバー [color=red] 逮捕,게임 오버 [color=red] 체포됨,Game Over [color=red] Bị bắt,FIM DE JOGO ESTÁS [color=red]PRESO,"Perdiste, estas detenido"
+TIME_SURVIVED_LABEL,YOU SURVIVED FOR: {0},Sei Sopravvissuto per: {0},你幸存了: {0},ВЫ ВЫЖИЛИ: {0},生き残りました: {0},당신은 살아남았습니다: {0},Bạn đã sống sót: {0},SOBREVIVEU POR: {0},Sobreviviste Por: {0}
+ROADS_PASSED_LABEL,\nYOU PASSED: {0} ROADS,\nHai Superato: {0} Strade,\n你通过了: {0} 道路,\nВЫ ПРОШЛИ: {0} ДОРОГ,\n通過した道路: {0},\n다음 도로를 통과했습니다: {0},\n你通过了: {0} 道路,\nVOCÊ PASSOU: {0} ESTRADAS,Pasaste: {0} Calles
 ,,,,,,,,,
-YOU_WIN_LABEL,YOU WIN!!!,Hai Vinto!!!,,,,,,,¡¡¡Ganaste!!!
-YOUR_TIME_LABEL,YOUR TIME: {0},Tuo Tempo: {0},,,,,,,Tu Tiempo: {0}
+YOU_WIN_LABEL,YOU WIN!!!,Hai Vinto!!!,你赢了,ТЫ ПОБЕДИЛ!!!,あなたが勝ちます,당신은 승리합니다,Bạn thắng rồi,GANHOU!!!,¡¡¡Ganaste!!!
+YOUR_TIME_LABEL,YOUR TIME: {0},Tuo Tempo: {0},你的时间: {0},ВАШЕ ВРЕМЯ: {0},あなたの時間: {0},귀하의 시간: {0},Thời gian của bạn: {0},O SEU TEMPO: {0},Tu Tiempo: {0}
 ,,,,,,,,,
-DOOR_BLOCKED_TOOLTIP,DOOR BLOCKED,Porta Bloccata,,,,,,,Puerta Bloqueada
-NEED_ALCHOHOL_TOOLTIP,NEED MORE ALCOHOL,Serve Più Alco,,,,,,,Necesito Más Alcohol
-NONE_DETECTED_TEXT,|-NONE-|,|-NESSUNO-|,,,,,,,|-NADA-|
+DOOR_BLOCKED_TOOLTIP,DOOR BLOCKED,Porta Bloccata,门被堵住了,ДВЕРЬ ЗАБЛОКИРОВАНА,ドアが塞がれている,문이 막혔어요,Cửa đã bị chặn,PORTA BLOQUEADA,Puerta Bloqueada
+NEED_ALCHOHOL_TOOLTIP,NEED MORE ALCOHOL,Serve Più Alco,需要更多的酒精,НУЖНО БОЛЬШЕ АЛКОГОЛЯ,もっとアルコールが必要です,술이 더 필요해,Cần thêm rượu,PRECISA DE MAIS ÁLCOOL,Necesito Más Alcohol
+NONE_DETECTED_TEXT,|-NONE-|,|-NESSUNO-|,|-没有任何-|,|-НЕТ-|,|-何も-|,|-아무것도-|,|-Không có gì-|,|-NENHUM-|,|-NADA-|
 ,,,,,,,,,
 TUTORIAL_BILLBOARD_2,"You need to drink to 
 stay drunk
 Make sure you don't get too sober.","Devi bere per rimanere ubriaco.
  Assicurati di non 
-diventare troppo sobrio.",,,,,,,
+diventare troppo sobrio.","你必须喝酒才能振作精神。
+别失去你的精神。","Тебе нужно пить, чтобы 
+оставаться пьяным.
+Убедись, что ты не 
+слишком протрезвел.","気分を上げるにはお酒を飲まなきゃ。
+気分を落とさないようにね。","기분을 좋게 하려면 
+술을 마셔야 해요.
+기운을 잃지 마세요.","Bạn phải uống để lấy lại 
+tinh thần. Đừng đánh mất 
+tinh thần.","Precisa de beber para
+continuar embriagado.
+Não fique demasiado sóbrio.","Necesitas beber para
+mantenerte borracho.
+No te pongas demasiado sobrio."
 TUTORIAL_BILLBOARD_3,"Pick up your beverages 
 at Gabe's Mart
 He'll put it on your tab","Raccogli le tue bevande al Gabe's Mart. 
-Le metterà sul tuo conto.",,,,,,,
+Le metterà sul tuo conto.","抵达盖布的城堡。
+购买饮料。
+你欠他人情。","Заберите свои напитки
+в Gabe's Mart
+Он запишет их на ваш счет","ゲブの城に到着。
+飲み物を購入。
+あなたは彼に恩義がある。 」","게브의 성에 도착하세요.
+술 한 잔 사세요.
+그에게 빚진 게 있어요.","Đến lâu đài của Geb.
+Mua một ly đồ uống.
+Bạn nợ anh ta một ân huệ.","Levante as suas bebidas no Gabe's Mart.
+Eles irão adicioná-las à sua conta.","Recoge tus bebidas en Gabe's Mart.
+Te las añadirá a tu cuenta."
 TUTORIAL_BILLBOARD_4,"Throw your beverages 
 at this man (Gabe)
 Or return to your car while 
 holding them","Lancia le tue bevande a 
 quest’uomo (Gabe) 
 o torna alla tua macchina 
-mentre le tieni in mano.",,,,,,,
+mentre le tieni in mano.","把瓶子交给 Gabe，
+或者带进你的车里。","Бросайте свои напитки
+в этого человека (Гейба)
+Или возвращайтесь к своей 
+машине, держа их","「ボトルをゲイブに渡して、
+または車に持ち込んでください。 」","병을 게이브에게 주거나
+차에 실어 가세요.","Đưa chai cho Gabe,
+hoặc mang nó vào 
+xe của bạn.","Atira as tuas bebidas para cima 
+deste homem (Gabe) 
+ou volta para o teu carro 
+com elas na mão.","Lánzale tus bebidas
+a este hombre (Gabe)
+o regresa a tu auto con ellas en la mano."
 TUTORIAL_BILLBOARD_5,"Follow the moon and avoid cops
 they dont like drunk drivers","Segui la luna e evita i poliziotti. 
-Non amano i guidatori ubriachi.",,,,,,,
+Non amano i guidatori ubriachi.","追随月亮，避开当局，他们不喜欢
+冲动的司机。","Следуй за луной и избегай полицейских
+они не любят пьяных водителей","「月を追いかけ、権力者を避けろ、彼らは
+衝動的な運転手。 」","달을 따라가고 당국의 눈을 
+피하세요. 당국은 충동적인 
+운전자를 좋아하지 않습니다.","Hãy tuân theo mệnh lệnh 
+và tránh xa chính quyền, 
+họ không thích những người 
+lái xe bốc đồng.","Siga a lua e evite a polícia.
+Não gostam de condutores bêbados.","Sigue la luna y evita a la policía. 
+No les gustan los conductores ebrios."
 TUTORIAL_BILLBOARD_7,"To your right, the basket is where your alchohol is.
 In the middle you have your radio.
 To your left you have your door.","Alla tua destra, il cestino è dove c'è il tuo alcol. 
 In mezzo c’è la tua radio. 
-Alla tua sinistra c’è la tua porta.",,,,,,,
+Alla tua sinistra c’è la tua porta.","你的右边是你的酒瓶。
+中间是你的收音机。
+你的左边是你的门。","Справа от вас корзина, 
+где находится ваш алкоголь.
+Посередине у вас радио.
+Слева у вас дверь.","「あなたの右側にボトルがあります。
+真ん中にあるのはラジオです。
+左側にドアがあります。 」","오른쪽에 병이 있습니다.
+가운데에 라디오가 있습니다.
+왼쪽에 문이 있습니다.","Bên phải bạn là chai rượu.
+Ở giữa là radio của bạn.
+Bên trái bạn là cửa nhà bạn.","À sua direita, no cesto, está o álcool.
+Ao centro, está o rádio.
+À sua esquerda, está a porta.","A tu derecha en la cesta está el alcol.
+En el centro tienes la radio.
+A tu izquierda, la puerta."
 TUTORIAL_BILLBOARD_8,"After exiting your car, 
 your left door is where you enter again.","Dopo essere uscito dalla macchina, 
-la porta a sinistra è dove entri di nuovo.",,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-RADIO_TOOLTIP,{0} to TOGGLE\n{1} to SWITCH STATION,{0} per Cambiare\n{1} per Cambiare Stazione,,,,,,,
-ENTER_TOOLTIP,{0} to ENTER\n,{0} per Entrare\n,,,,,,,
-FLIP_TOOLTIP,{0} to FLIP\n,{0} per Ribaltare\n,,,,,,,
-EXIT_TOOLTIP,{0} to EXIT,{0} per Uscire,,,,,,,
-DRINK_TOOLTIP,{0} to DRINK,{0} per Bere,,,,,,,
+la porta a sinistra è dove entri di nuovo.","下车后，请从左侧车
+门再次上车。","Выйдя из машины, вы снова входите 
+в нее через левую дверь.","バスを降りたら車両の左側へお進みください
+再び車のドア。 」","버스에서 내린 후 왼쪽 문으
+로 다시 탑승해 주세요.","Sau khi xuống xe buýt, 
+vui lòng lên lại từ cửa bên trái.","Depois de sair do carro, a porta da 
+esquerda é por onde entra novamente.","Después de salir del coche, la puerta 
+izquierda es por donde vuelves a entrar."
 ,,,,,,,,,
 TUTORIAL_BILLBOARD_1,"Look around your car
 You'll see that many things 
 are interactible 
 Use {0} to Drive","Guarda intorno alla tua macchina. 
 Vedrai che molte cose sono interattive. 
-Usa {0} per guidare.",,,,,,,
+Usa {0} per guidare.","观察你的车内，
+有很多可互动的地方。
+使用{0}驾驶。","Осмотрите свою машину
+Вы увидите, что многие вещи
+интерактивны
+Используйте {0} для вождения","「車の中を見てください。
+交流できる場所はたくさんあります。
+運転には{0}を使用してください。 」","차량 내부를 살펴보세요.
+여러 상호작용 공간이 있습니다.
+{0}과 함께 운전하세요.","Nhìn vào bên trong xe của bạn,
+có rất nhiều khu vực tương tác.
+Lái xe với {0}.","Olhe em redor do seu carro.
+Verá que muitas coisas são interativas.
+Utilize {0} para conduzir.","Mira alrededor de tu coche.
+Verás que muchas cosas son interactivas.
+Usa {0} para conducir."
 TUTORIAL_BILLBOARD_6,"Use your hands to grab 
 objects outside of your car.
 You can bring objects into your car. 
 While in the car, press alt interact
-to throw garbage out of the car.","Usa il tuo {0} per afferrare oggetti 
-fuori dalla tua macchina. 
-Puoi portare gli oggetti dentro 
-la macchina. Mentre sei in 
-macchina, premi {0} per gettare 
-la spazzatura fuori dalla macchina.",,,,,,,
+to throw garbage out of the car.","Le tue mani possono afferrare
+oggetti all'esterno della tua auto.
+Porta gli oggetti nella tua auto.
+In macchina, premere altri usio per 
+gettare la spazzatura fuori dall'auto.","用手抓取物品。
+你可以把它们带进车内。
+在车内时，按下 Alt 交互键
+即可将垃圾扔出车外。","Используйте руки, чтобы
+хватать предметы снаружи 
+автомобиля. Вы можете 
+приносить предметы в 
+автомобиль.Находясь в 
+автомобиле, нажмите alt, 
+чтобы выбросить мусор 
+из автомобиля.","「手で物を掴んでください。
+車に乗せて持っていくこともできます。
+車に乗っているときに、
+AltキーとInteractキーを押します
+ゴミは車から捨てて構いません。 」","손으로 물건을 잡으세요.
+차 안으로 가져올 수 있습니다.
+차 안에서 Alt + 상호작용 키를 누르면
+쓰레기를 차 밖으로 버릴 수 있습니다.","Dùng tay cầm đồ vật.
+Bạn có thể mang chúng 
+vào trong xe. Khi ở trong 
+xe, hãy nhấn phím tương 
+tác Alt để vứt rác ra khỏi xe.","Use as mãos para apanhar 
+os objetos fora do carro.
+Pode levantar objetos para 
+dentro do carro.
+No carro, pressione o uso 
+alternativo para deitar o lixo fora.","Usa las manos para agarrar 
+objetos fuera del coche.
+Puedes subir objetos al coche.
+En el coche, pulsa uso 
+alternativo para tirar basura."
 ,,,,,,,,,
-KEYWORD_FORWARD,FORWARD,,,,,,,,
-KEYWORD_BACKWARD,BACKWARD,,,,,,,,
-KEYWORD_LEFT,LEFT,,,,,,,,
-KEYWORD_RIGHT,RIGHT,,,,,,,,
-KEYWORD_JUMP,JUMP,,,,,,,,
+RADIO_TOOLTIP,{0} to TOGGLE\n{1} to SWITCH STATION,{0} per Cambiare\n{1} per Cambiare Stazione,{0} 切换 \n{1} 切换站,{0} для ПЕРЕКЛЮЧЕНИЯ\n{1} для ПЕРЕКЛЮЧЕНИЯ СТАНЦИИ,{0} スイッチ \n{1} スイッチステーション,{0} 스위치 \n{1} 스위치 스테이션,{0} Chuyển \n{1} Trạm chuyển,{0} para ALTERNAR\n{1} para MUDAR DE ESTAÇÃO,{0} para CAMBIAR\n{1} para CAMBIAR ESTACIÓN
+ENTER_TOOLTIP,{0} to ENTER\n,{0} per Entrare\n,{0} 进入\n,{0} для ВВОДА\n,{0} 入力してください\n,{0} 입력\n,{0} Nhập\n,{0} para ENTRAR\n,{0} para ENTRAR\n
+FLIP_TOOLTIP,{0} to FLIP\n,{0} per Ribaltare\n,{0} 至翻转\n,{0} ПЕРЕВЕРНУТЬ\n,{0}を反転する\n,{0}을(를) 뒤집어서\n,{0} để lật\n,{0} para VIRADA\n,{0} para VOLTEAR\n
+EXIT_TOOLTIP,{0} to EXIT,{0} per Uscire,{0} 退出,{0} для ВЫХОДА,{0} 出口,{0} 종료,{0} Thoát,{0} para SAIR,{0} para SALIR
+DRINK_TOOLTIP,{0} to DRINK,{0} per Bere,{0} 喝,{0} ПИТЬ,{0} ドリンク,{0} 음료,{0} Uống,{0} para BEBER,{0} para BEBER
 ,,,,,,,,,
-KEYWORD_MISC_INTERACT,MISC,,,,,,,,
-KEYWORD_INTERACT,INTERACT,,,,,,,,
-KEYWORD_ALT_INTERACT,ALT INTERACT,,,,,,,,
-KEYWORD_PAUSE,PAUSE,,,,,,,,
-KEYWORD_LEFT_HAND,LEFT HAND,,,,,,,,
-KEYWORD_RIGHT_HAND,RIGHT HAND,,,,,,,,
-KEYWORD_CHANGE,CHANGE,,,,,,,,
-BIND_INPUT_LABEL,AWAITING FOR : ,,,,,,,,
-OPEN_CONTROLS_BUTTON,CHANGE CONTROLS,,,,,,,,
-RESET_CONTROLS_BUTTON,RESET CONTROLS,,,,,,,,
-CONT_SETTING_ACTION_LABEL,ACTION,,,,,,,,
-CONT_SETTING_BIND_LABEL,CURRENT BIND,,,,,,,,
-CONT_SETTING_MOVEMENT_LABEL,MOVEMENT,,,,,,,,
-CONT_SETTING_GAMEPLAY_LABEL,GAMEPLAY,,,,,,,,
+KEYWORD_FORWARD,FORWARD,avanti,向前,ВПЕРЕД,フォワード,앞으로,phía trước,,ADELANTE
+KEYWORD_BACKWARD,BACKWARD,indietro,落后,НАЗАД,後ろに,뒤에,phía sau,AVANÇAR,HACIA ATRÁS
+KEYWORD_LEFT,LEFT,sinistra,左边,ЛЕВЫЙ,左,왼쪽,bên trái,PARA TRÁS,IZQUIERDA
+KEYWORD_RIGHT,RIGHT,destra,正确的,ВЕРНО,正しい,옳은,Chính xác,ESQUERDA,DERECHA
+KEYWORD_JUMP,JUMP,salto,跳,ПРЫЖОК,ジャンプ,도약,Nhảy,PULAR,saltar
+,,,,,,,,,
+KEYWORD_MISC_INTERACT,MISC,varie,差异,разносторонний,違い,차이점,sự khác biệt,diversos,varios
+KEYWORD_INTERACT,INTERACT,usi,用,использовать,使用,사용,sử dụng,vestir,usar
+KEYWORD_ALT_INTERACT,ALT INTERACT,Altri usi,不同用途,нажмите alt,さまざまな用途,다양한 용도,"Các cách sử dụng 
+khác nhau",uso alternativo,uso alternativo
+KEYWORD_PAUSE,PAUSE,pausa,暂停,ПАУЗА,一時停止,정지시키다,tạm dừng,pausa,pausa
+KEYWORD_LEFT_HAND,LEFT HAND,mano sinistra,左手,ЛЕВАЯ РУКА,左手,왼손,tay trái,MÃO ESQUERDA,MANO IZQUIERDA
+KEYWORD_RIGHT_HAND,RIGHT HAND,mano destra,右手,ПРАВАЯ РУКА,右手,왼손,tay phải,MÃO DIREITA,MANO DERECHA
+KEYWORD_CHANGE,CHANGE,cambiare,改变,ИЗМЕНЯТЬ,変化,변화,Thay đổi,MUDAR,CAMBIAR
+BIND_INPUT_LABEL,AWAITING FOR : ,In attesa di:,等待：,ОЖИДАЕТСЯ:,待って：,기다리다:,Chờ đợi:,ESPERANDO:,ESPERANDO:
+OPEN_CONTROLS_BUTTON,CHANGE CONTROLS,Controlli di modifica,变更控制,ИЗМЕНЕНИЕ КОНТРОЛЯ,変更制御,변경 제어,kiểm soát thay đổi,CONTROLES DE CÂMBIO,CONTROLES DE CAMBIOS
+RESET_CONTROLS_BUTTON,RESET CONTROLS,Controlli di ripristino,恢复控制,СБРОС КОНТРОЛЯ,制御を復元する,제어 회복,khôi phục quyền kiểm soát,REINICIAR CONTROLES,REINICIAR CONTROLES
+CONT_SETTING_ACTION_LABEL,ACTION,esecuzione,行动,ДЕЙСТВИЕ,アクション,행동,hoạt động,AÇÃO,ACCIÓN
+CONT_SETTING_BIND_LABEL,CURRENT BIND,prestazioni attuali,当前设置,ТЕКУЩАЯ ПРИВЯЗКА,現在の設定,현재 설정,Cài đặt hiện tại,LINK ATUAL,ENLACE ACTUAL
+CONT_SETTING_MOVEMENT_LABEL,MOVEMENT,Movimento,移动,ДВИЖЕНИЕ,動く,이동하다,di chuyển,MOVIMENTO,MOVIMIENTO
+CONT_SETTING_GAMEPLAY_LABEL,GAMEPLAY,giocabilità,游戏玩法,ГЕЙМПЛЕЙ,ゲームプレイ,게임플레이,Chơi trò chơi,JOGABILIDADE,JUGABILIDAD
+,,,,,,,,,
+KEYWORD_SENSITIVITY,Sensitivity,sensibilità,敏感度,Чувствительность,感度,감광도,sự nhạy cảm,Sensibilidade,Sensibilidad
+CONT_SENSITIVITY_LABEL,Controller Sensitivity,sensibilità del controller,控制器灵敏度,Чувствительность контроллера,コントローラーの感度,컨트롤러 감도,Độ nhạy của bộ điều khiển,Sensibilidade do controlador,Sensibilidad del controlador
+MOUSE_SENSITIVITY_LABEL,Mouse Sensitivity,Sensibilità del mouse,鼠标灵敏度,Чувствительность мыши,マウスの感度,마우스 감도,Độ nhạy của chuột,Sensibilidade do rato,Sensibilidad del ratón
+LANGUAGE_OPTION_LABEL,Language Option,Opzione lingua,语言选项,Выбор языка,言語オプション,언어 옵션,Tùy chọn ngôn ngữ,Opção de idioma,Opción de idioma
+ENGLISH_OPTION,English,Inglese,英文,Английский,英語,영어,Tiếng Anh,Inglês,Inglés
+ITALIAN_OPTION,Italian,Italiana,意大利语,итальянский,イタリア語,이탈리아 사람,người Ý,italiano,Italiano
+CHINESE_OPTION,Chinese,cinese,中国人,китайский,中国語,중국인,Tiếng Trung,China,China
+RUSSIAN_OPTION,Russian,Russa,俄语,Русский,ロシア,러시아인,tiếng Nga,russo,Rusa
+JAPANESE_OPTION,Japanese,giapponese,日本人,японский,日本語,일본어,tiếng Nhật,japonês,Japonesa
+KOREAN_OPTION,Korean,Coreana,韩国人,корейский,韓国人,한국인,Tiếng Hàn,coreano,Coreana
+VIETNAMESE_OPTION,Vietnamese,vietnamita,越南语,вьетнамский,ベトナム語,베트남 사람,Tiếng Việt,vietnamita,vietnamita
+PORTUGUES_OPTION,Portuguese,portoghese,葡萄牙语,португальский,ポルトガル語,포르투갈 인,tiếng Bồ Đào Nha,Português,Portuguesa
+SPANISH_OPTION,Spanish,Spagnola,西班牙语,испанский,スペイン語,스페인 사람,người Tây Ban Nha,Espanhol,Español

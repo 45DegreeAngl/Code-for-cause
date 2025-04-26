@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b8hk2rtxdr3cn"]
 
-[ext_resource type="Texture2D" uid="uid://bdr2idrc3tfjk" path="res://Assets/Textures/buy area texture.png" id="1_7sle0"]
+[ext_resource type="Texture2D" uid="uid://bdr2idrc3tfjk" path="res://Deprecated/buy area texture.png" id="1_7sle0"]
 
 [resource]
 transparency = 1

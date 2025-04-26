@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://clpsl2od8y70b"
 path.s3tc="res://.godot/imported/The_Car_Back Seats Color.png-4dde987e915a12088e90d376ac0349d0.s3tc.ctex"
+path.etc2="res://.godot/imported/The_Car_Back Seats Color.png-4dde987e915a12088e90d376ac0349d0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Car/The_Car_Back Seats Color.png"
-dest_files=["res://.godot/imported/The_Car_Back Seats Color.png-4dde987e915a12088e90d376ac0349d0.s3tc.ctex"]
+dest_files=["res://.godot/imported/The_Car_Back Seats Color.png-4dde987e915a12088e90d376ac0349d0.s3tc.ctex", "res://.godot/imported/The_Car_Back Seats Color.png-4dde987e915a12088e90d376ac0349d0.etc2.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=98 format=4 uid="uid://b4jd38ifumhg7"]
 
 [ext_resource type="Script" uid="uid://bmvkxhgvaoir2" path="res://Prefabs/Buildings/gabes_mart.gd" id="1_h44nx"]
-[ext_resource type="Texture2D" uid="uid://bdr2idrc3tfjk" path="res://Assets/Textures/buy area texture.png" id="2_aidqn"]
+[ext_resource type="Texture2D" uid="uid://bdr2idrc3tfjk" path="res://Deprecated/buy area texture.png" id="2_aidqn"]
 [ext_resource type="AudioStream" uid="uid://l8iyubif54al" path="res://Assets/Sounds/Voice Lines/Ty_Come_Again.mp3" id="3_5xhl1"]
 [ext_resource type="PackedScene" uid="uid://dpb2mlpqcy1pl" path="res://Prefabs/Buildings/Orb Light.tscn" id="5_q7c77"]
 [ext_resource type="Texture2D" uid="uid://dy6bkqly7tuje" path="res://Assets/Models/Buildings/Gabes_Mart_Complete_Checkered Pattern.jpg" id="5_xwufg"]

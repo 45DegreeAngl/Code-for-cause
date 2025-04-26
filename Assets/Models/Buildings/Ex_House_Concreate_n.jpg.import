@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://x1raydyp12fw"
 path.s3tc="res://.godot/imported/Ex_House_Concreate_n.jpg-cb6aaf4608d6b122d6d570cd55228b9c.s3tc.ctex"
+path.etc2="res://.godot/imported/Ex_House_Concreate_n.jpg-cb6aaf4608d6b122d6d570cd55228b9c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Buildings/Ex_House_Concreate_n.jpg"
-dest_files=["res://.godot/imported/Ex_House_Concreate_n.jpg-cb6aaf4608d6b122d6d570cd55228b9c.s3tc.ctex"]
+dest_files=["res://.godot/imported/Ex_House_Concreate_n.jpg-cb6aaf4608d6b122d6d570cd55228b9c.s3tc.ctex", "res://.godot/imported/Ex_House_Concreate_n.jpg-cb6aaf4608d6b122d6d570cd55228b9c.etc2.ctex"]
 
 [params]
 

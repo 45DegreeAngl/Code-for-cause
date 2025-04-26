@@ -101,8 +101,8 @@ func _process(delta: float) -> void:
 	#print(ENGINE_POWER)
 	
 	if joy_pad_RStick:
-		rot_x += joy_pad_RStick.x * 0.1 * delta *25
-		rot_y += joy_pad_RStick.y * 0.1 * delta *25
+		rot_x += joy_pad_RStick.x * Globals.car_cont_sens * delta *25
+		rot_y += joy_pad_RStick.y * Globals.car_cont_sens * delta *25
 		rot_y = clampf(rot_y,-1.5,0.75)
 		handle_cam_rotation()
 	
@@ -165,7 +165,6 @@ func drink_random():
 	Globals.car_contents[picked_bottle] -= 1
 	Globals.update_bottles.emit()
 
-@export var camera_sense : float = 0.001
 var rot_x = 0
 var rot_y = 0
 var joy_pad_RStick : Vector2 = Vector2.ZERO
@@ -185,8 +184,8 @@ func _input(event: InputEvent) -> void:
 	if not Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		return
 	if event is InputEventMouseMotion:
-		rot_x += event.relative.x * camera_sense
-		rot_y += event.relative.y * camera_sense
+		rot_x += event.relative.x * Globals.car_mous_sens
+		rot_y += event.relative.y * Globals.car_mous_sens
 		
 		rot_y = clampf(rot_y,deg_to_rad(-90),deg_to_rad(90))
 		handle_cam_rotation()

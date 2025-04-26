@@ -75,6 +75,7 @@ func load_songs_from_folder():
 		else:
 			print("Failed to load, not adding : ",file," to radio_to_load")
 			debug_console_file.store_string(str("Failed to load, not adding : ",file," to radio_to_load","\n"))
+	load_fails = 0
 	
 	while radio.size()<MAX_SONGS_LOADED && radio.size()<radio_to_load.size() && load_fails<MAX_SONGS_LOADED:
 		load_random_song()
@@ -174,6 +175,7 @@ func load_random_song():
 @onready var cop_packed:PackedScene = preload("res://Prefabs/the_cop.tscn")
 
 var timer:float = 0
+var is_cheater : bool = false
 
 signal update_bottles
 var car_contents:Dictionary = {"Beer":1,"Sake":0,"Jaeger":0}:
@@ -264,6 +266,16 @@ func _process(_delta: float) -> void:
 				shader_mat.set_shader_parameter("red_mult",anger)
 
 const roads_to_win_options : Array[int]=[10,25,50,100,int(INF)]
+
+const CAR_CONT_SENS : float = 0.1
+const PER_CONT_SENS : float = 4.0
+const CAR_MOUS_SENS : float = 0.001
+const PER_MOUS_SENS : float = 0.1
+
+var car_cont_sens : float = 0.1
+var per_cont_sens : float = 4
+var car_mous_sens : float = 0.001
+var per_mous_sens : float = 0.1
 
 @onready var roads_to_win : int = 50
 

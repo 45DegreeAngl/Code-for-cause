@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3goa17lhvg02"
 path.s3tc="res://.godot/imported/House_1_Material Base Color.png-191ac7ef07a2115e130667521603e3d9.s3tc.ctex"
+path.etc2="res://.godot/imported/House_1_Material Base Color.png-191ac7ef07a2115e130667521603e3d9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Buildings/House_1_Material Base Color.png"
-dest_files=["res://.godot/imported/House_1_Material Base Color.png-191ac7ef07a2115e130667521603e3d9.s3tc.ctex"]
+dest_files=["res://.godot/imported/House_1_Material Base Color.png-191ac7ef07a2115e130667521603e3d9.s3tc.ctex", "res://.godot/imported/House_1_Material Base Color.png-191ac7ef07a2115e130667521603e3d9.etc2.ctex"]
 
 [params]
 

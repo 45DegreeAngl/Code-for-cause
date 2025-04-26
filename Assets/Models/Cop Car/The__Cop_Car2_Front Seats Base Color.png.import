@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://6pnhfahrd6oa"
 path.s3tc="res://.godot/imported/The__Cop_Car2_Front Seats Base Color.png-4eeb229ec5c76223875ed16a2a4b0705.s3tc.ctex"
+path.etc2="res://.godot/imported/The__Cop_Car2_Front Seats Base Color.png-4eeb229ec5c76223875ed16a2a4b0705.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Cop Car/The__Cop_Car2_Front Seats Base Color.png"
-dest_files=["res://.godot/imported/The__Cop_Car2_Front Seats Base Color.png-4eeb229ec5c76223875ed16a2a4b0705.s3tc.ctex"]
+dest_files=["res://.godot/imported/The__Cop_Car2_Front Seats Base Color.png-4eeb229ec5c76223875ed16a2a4b0705.s3tc.ctex", "res://.godot/imported/The__Cop_Car2_Front Seats Base Color.png-4eeb229ec5c76223875ed16a2a4b0705.etc2.ctex"]
 
 [params]
 

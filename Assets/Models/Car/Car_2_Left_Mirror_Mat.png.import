@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnn0ir6lmmonl"
 path.s3tc="res://.godot/imported/Car_2_Left_Mirror_Mat.png-b132f260dae0b05af090c01b9cf2a90f.s3tc.ctex"
+path.etc2="res://.godot/imported/Car_2_Left_Mirror_Mat.png-b132f260dae0b05af090c01b9cf2a90f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/Car/Car_2_Left_Mirror_Mat.png"
-dest_files=["res://.godot/imported/Car_2_Left_Mirror_Mat.png-b132f260dae0b05af090c01b9cf2a90f.s3tc.ctex"]
+dest_files=["res://.godot/imported/Car_2_Left_Mirror_Mat.png-b132f260dae0b05af090c01b9cf2a90f.s3tc.ctex", "res://.godot/imported/Car_2_Left_Mirror_Mat.png-b132f260dae0b05af090c01b9cf2a90f.etc2.ctex"]
 
 [params]
 

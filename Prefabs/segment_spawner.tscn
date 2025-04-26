@@ -1,17 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=9 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" uid="uid://bknkigk4grssx" path="res://Prefabs/segment_spawner.gd" id="1_rkbci"]
-[ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Prefabs/Roads/Ankle breaker debug.tscn" id="2_fmjpd"]
-[ext_resource type="PackedScene" uid="uid://7yiw8v4t5rt7" path="res://Prefabs/Roads/Death.tscn" id="3_tg4gt"]
-[ext_resource type="PackedScene" uid="uid://bfe2n5yc1ofd5" path="res://Prefabs/Roads/debug_straight.tscn" id="4_l3tqm"]
-[ext_resource type="PackedScene" uid="uid://c7afy5ct7o7c1" path="res://Prefabs/Roads/Four Way Segment.tscn" id="5_aaknf"]
-[ext_resource type="PackedScene" uid="uid://cgk8q7mcfa465" path="res://Prefabs/Roads/Stairway to Hellven.tscn" id="7_e26yy"]
-[ext_resource type="PackedScene" uid="uid://bsawvuh1yr6x3" path="res://Prefabs/Roads/Liminal Segment.tscn" id="8_mfdpi"]
-[ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Prefabs/Roads/Normal Turns Segment.tscn" id="9_f8h36"]
-[ext_resource type="PackedScene" uid="uid://n0c15of7b78l" path="res://Prefabs/Roads/Halfpipe Segment.tscn" id="9_kn753"]
-[ext_resource type="PackedScene" uid="uid://6ohj54i0nwum" path="res://Prefabs/Roads/Gabesmart Straight.tscn" id="10_kruma"]
 [ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Prefabs/Player/the_car.tscn" id="10_lxkwt"]
-[ext_resource type="PackedScene" uid="uid://cr75h2k10e6eh" path="res://Prefabs/Roads/Ex Straight.tscn" id="11_3gyvj"]
+[ext_resource type="PackedScene" uid="uid://cr75h2k10e6eh" path="res://Prefabs/Roads/Exes Houses/Ex Straight.tscn" id="11_3gyvj"]
 [ext_resource type="Texture2D" uid="uid://bvk6p748nx6p5" path="res://Assets/Models/Skybox/AllSky_Night_MoonBurst Equirect.png" id="11_ftxy5"]
 [ext_resource type="PackedScene" uid="uid://fuvj7j3go7xh" path="res://Prefabs/Roads/cul_de_sac_tutorial.tscn" id="13_r5rt5"]
 
@@ -41,8 +32,6 @@ adjustment_saturation = 0.8
 
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
-road_segments = Array[PackedScene]([ExtResource("2_fmjpd"), ExtResource("3_tg4gt"), ExtResource("4_l3tqm"), ExtResource("5_aaknf"), ExtResource("8_mfdpi"), ExtResource("9_f8h36"), ExtResource("7_e26yy"), ExtResource("9_kn753")])
-gabesmart_segments = Array[PackedScene]([ExtResource("10_kruma")])
 exes_house = ExtResource("11_3gyvj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

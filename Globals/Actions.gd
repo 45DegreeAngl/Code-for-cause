@@ -7,7 +7,7 @@ extends Node
 "Ctrl": KEY_CTRL,"Alt": KEY_ALT,
 "Pause": KEY_PAUSE,"Capslock": KEY_CAPSLOCK,
 "Insert": KEY_INSERT,"Delete": KEY_DELETE,
-"Home": KEY_HOME,"End": KEY_END,
+"Home": KEY_HOME,"End": KEY_END,"Tilde":KEY_ASCIITILDE,
 "Page Up": KEY_PAGEUP,"Page Down": KEY_PAGEDOWN,
 "Left": KEY_LEFT,"Up": KEY_UP,
 "Right": KEY_RIGHT,"Down": KEY_DOWN,
@@ -31,7 +31,7 @@ extends Node
 "Numpad 8": KEY_KP_8,"Numpad 9": KEY_KP_9,
 "Numpad .": KEY_KP_PERIOD,"Numpad /": KEY_KP_DIVIDE,
 "Numpad *": KEY_KP_MULTIPLY,"Numpad -": KEY_KP_SUBTRACT,
-"Numpad +": KEY_KP_ADD,"Numpad Enter": KEY_KP_ENTER,
+"Numpad +": KEY_KP_ADD,"Numpad Enter": KEY_KP_ENTER
 }
 
 @export var input_dict_joypad_buttons : Dictionary = { 

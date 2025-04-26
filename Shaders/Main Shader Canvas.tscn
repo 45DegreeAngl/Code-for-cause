@@ -4,8 +4,8 @@
 [ext_resource type="Shader" uid="uid://d4igo1f446myk" path="res://Shaders/wobble.gdshader" id="1_22wnm"]
 [ext_resource type="Shader" uid="uid://cjmf5hgg18at0" path="res://Shaders/chromatic_abberation.gdshader" id="2_brygk"]
 [ext_resource type="Shader" uid="uid://rjdrenih1so7" path="res://Shaders/vignette.gdshader" id="4_8lw61"]
-[ext_resource type="Texture2D" uid="uid://b0qeh742ut3rp" path="res://Assets/Textures/Top_Layer_Meter.png" id="4_hysnl"]
-[ext_resource type="Texture2D" uid="uid://dre78bonfm6n7" path="res://Assets/Textures/Bottom_Layer_Meter.png" id="5_idmyt"]
+[ext_resource type="Texture2D" uid="uid://b0qeh742ut3rp" path="res://Assets/Textures/UI/Top_Layer_Meter.png" id="4_hysnl"]
+[ext_resource type="Texture2D" uid="uid://dre78bonfm6n7" path="res://Assets/Textures/UI/Bottom_Layer_Meter.png" id="5_idmyt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iqh6k"]
 shader = ExtResource("1_22wnm")

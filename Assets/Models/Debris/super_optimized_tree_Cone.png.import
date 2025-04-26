@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpy0u4mmk4ry4"
 path.s3tc="res://.godot/imported/super_optimized_tree_Cone.png-e7b04faf3c8e8ca87d11fb3cdff55ba7.s3tc.ctex"
+path.etc2="res://.godot/imported/super_optimized_tree_Cone.png-e7b04faf3c8e8ca87d11fb3cdff55ba7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Debris/super_optimized_tree_Cone.png"
-dest_files=["res://.godot/imported/super_optimized_tree_Cone.png-e7b04faf3c8e8ca87d11fb3cdff55ba7.s3tc.ctex"]
+dest_files=["res://.godot/imported/super_optimized_tree_Cone.png-e7b04faf3c8e8ca87d11fb3cdff55ba7.s3tc.ctex", "res://.godot/imported/super_optimized_tree_Cone.png-e7b04faf3c8e8ca87d11fb3cdff55ba7.etc2.ctex"]
 
 [params]
 

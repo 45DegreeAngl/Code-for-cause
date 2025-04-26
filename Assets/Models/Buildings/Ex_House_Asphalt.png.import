@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccg7v3cesnnr8"
 path.s3tc="res://.godot/imported/Ex_House_Asphalt.png-e1f5d9e803e8a7bccb8a6e776b5be5ff.s3tc.ctex"
+path.etc2="res://.godot/imported/Ex_House_Asphalt.png-e1f5d9e803e8a7bccb8a6e776b5be5ff.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/Buildings/Ex_House_Asphalt.png"
-dest_files=["res://.godot/imported/Ex_House_Asphalt.png-e1f5d9e803e8a7bccb8a6e776b5be5ff.s3tc.ctex"]
+dest_files=["res://.godot/imported/Ex_House_Asphalt.png-e1f5d9e803e8a7bccb8a6e776b5be5ff.s3tc.ctex", "res://.godot/imported/Ex_House_Asphalt.png-e1f5d9e803e8a7bccb8a6e776b5be5ff.etc2.ctex"]
 
 [params]
 

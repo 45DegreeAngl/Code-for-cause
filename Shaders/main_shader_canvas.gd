@@ -10,6 +10,9 @@ func toggle_filter(key:String):
 	var control:Control = filter_dict[key][0]
 	control.visible = !control.visible
 
+func set_beer_visibility(visibility:bool):
+	var control : Control = filter_dict["BeerMeter"][0]
+	control.visible = visibility
 
 func get_shaders(key:String)->Array[ShaderMaterial]:
 	var temp : Array[ShaderMaterial]

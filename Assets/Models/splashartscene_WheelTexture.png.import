@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://h4lypd3foqmf"
 path.s3tc="res://.godot/imported/splashartscene_WheelTexture.png-77a1ab357c85af88de1696343409d333.s3tc.ctex"
+path.etc2="res://.godot/imported/splashartscene_WheelTexture.png-77a1ab357c85af88de1696343409d333.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/splashartscene_WheelTexture.png"
-dest_files=["res://.godot/imported/splashartscene_WheelTexture.png-77a1ab357c85af88de1696343409d333.s3tc.ctex"]
+dest_files=["res://.godot/imported/splashartscene_WheelTexture.png-77a1ab357c85af88de1696343409d333.s3tc.ctex", "res://.godot/imported/splashartscene_WheelTexture.png-77a1ab357c85af88de1696343409d333.etc2.ctex"]
 
 [params]
 

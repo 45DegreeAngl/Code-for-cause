@@ -4,6 +4,9 @@ extends Node
 @export var TitleMusicPlayer :AudioStreamPlayer
 
 func _ready()->void:
+	Steam.getCurrentGameLanguage()
+	print(OS.get_locale_language())
+	TranslationServer.set_locale(OS.get_locale_language())
 	Globals.game_lost.connect(_on_lose)
 	Globals.game_won.connect(_on_win)
 	GlobalSteam.leaderboard_download.connect(choose_leaderboard_entries)
@@ -41,12 +44,15 @@ func _on_lose(reason:String):
 	$Options.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$"Game Over/Main Menu".grab_focus()
+	print("DID WE CHEAT?: ", Globals.is_cheater)
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 #func _on_difficulty_options_item_selected(index: int) -> void:
 	#Globals.roads_to_win = Globals.roads_to_win_options[index]
 
 func upload_win():
+	if Globals.is_cheater:
+		return
 	match Globals.roads_to_win:
 		int(INF):
 			if Globals.world_node.cur_player_road>=200:
@@ -59,13 +65,15 @@ func upload_win():
 			GlobalSteam.setAchievement("BEAT EASY")
 			upload_records()
 		50:
-			GlobalSteam.setAchievement("BEAT HARD")
+			GlobalSteam.setAchievement("BEAT NORMAL")
 			upload_records()
 		100:
-			GlobalSteam.setAchievement("BEAT PRACTICE")
+			GlobalSteam.setAchievement("BEAT HARD")
 			upload_records()
 
 func upload_records():
+	if Globals.is_cheater:
+		return
 	match Globals.roads_to_win:
 		int(INF):
 			GlobalSteam.submit_leaderboard_score("RECORD TIME ENDLESS",Globals.world_node.cur_player_road)
@@ -80,6 +88,8 @@ func upload_records():
 	
 
 func update_stats():
+	if Globals.is_cheater:
+		return
 	GlobalSteam.statistics["DRUNK MENACE"]+=Globals.sober_drivers_hit
 	GlobalSteam.statistics["LITTER COUNT"]+=Globals.litter_count
 	GlobalSteam.statistics["FLIP COUNT"]+=Globals.car_flip_count
@@ -87,7 +97,7 @@ func update_stats():
 	for statistic in GlobalSteam.statistics:
 		GlobalSteam.set_statistic(statistic,GlobalSteam.statistics[statistic])
 	if GlobalSteam.statistics["DRUNK MENACE"]>=50:
-		GlobalSteam.setAchievement("SOBER DRIVER ENEMYT NO 1")
+		GlobalSteam.setAchievement("SOBER DRIVER ENEMY NO 1")
 	if GlobalSteam.statistics["LITTER COUNT"]>=100:
 		GlobalSteam.setAchievement("PROFESSIONAL LITTERER")
 	if GlobalSteam.statistics["FLIP COUNT"]>=100:
@@ -150,6 +160,8 @@ func _on_start_pressed() -> void:
 	$Animations.get_child(0).get_child(6).grab_focus()
 
 func _on_start_game() ->void:
+	Globals.is_cheater = false
+	Debug.console_active = false
 	Globals.reset_stats()
 	TitleMusicPlayer.playing = false
 	$MenuGeometry/SubViewportContainer.visible = false
@@ -208,22 +220,33 @@ func on_back()->void:
 		TitleMusicPlayer.playing = true
 
 ###OPTIONS
-@onready var master: HSlider = $Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Master
-@onready var voice: HSlider = $Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Voice
-@onready var radio: HSlider = $Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Radio
-@onready var world_sounds: HSlider = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/World Sounds"
-@onready var controller_settings: Control = $"Controller Settings"
+@export_subgroup("BOOLEAN_SETTINGS")
+@export var motion_check : CheckBox
+@export var spider_fear_check : CheckBox
+@export var spider_love_check : CheckBox
+
+@export_subgroup("SENSITIVITY_OPTIONS")
+@export var controller : HSlider
+@export var mouse : HSlider
+
+@export_subgroup("AUDIO_OPTIONS")
+@export var master: HSlider
+@export var voice: HSlider 
+@export var radio: HSlider 
+@export var world_sounds: HSlider 
+@export var controller_settings: Control 
 
 
 @onready var default_options :Save_Options = preload("res://Resources/Save Resources/Default Options.tres")
 
 func _on_controls_pressed() -> void:
-	$"Controller Settings".visible = true
-	$"Controller Settings".back_button.grab_focus()
+	controller_settings.load_all_actions()
+	controller_settings.visible = true
+	controller_settings.back_button.grab_focus()
 	
 
 func _on_controller_settings_back_pressed() -> void:
-	$"Controller Settings".visible = false
+	controller_settings.visible = false
 	$Options/PanelContainer/VBoxContainer/HBoxContainer/Controls.grab_focus()
 
 func _on_reset_pressed() -> void:
@@ -242,20 +265,25 @@ func save_options():
 	var temp_options : Save_Options = Save_Options.new()
 
 	# Save boolean settings.
-	temp_options.motion_sickness = $"Options/PanelContainer/VBoxContainer/Motion Sickness Check".button_pressed
-	temp_options.aracnophobia = $"Options/PanelContainer/VBoxContainer/Aracnophobia mode".button_pressed
-	temp_options.aracnophilia = $"Options/PanelContainer/VBoxContainer/Aracnophilia mode".button_pressed
+	temp_options.motion_sickness = motion_check.button_pressed
+	temp_options.aracnophobia = spider_fear_check.button_pressed
+	temp_options.aracnophilia = spider_love_check.button_pressed
 
 	# Save window options.
 	temp_options.res_options = $"Options/Resolution holder/VBoxContainer/Resolution options".selected
 	temp_options.quality_options = $"Options/Resolution holder/VBoxContainer/Quality Options".selected
 	temp_options.window_options = $"Options/Resolution holder/VBoxContainer/Window Options".selected
+	temp_options.language_options = $"Options/Resolution holder/VBoxContainer/Language Options".selected
+
+	#save sensitivity
+	temp_options.mouse_sense_mult = controller.value
+	temp_options.contr_sense_mult = mouse.value
 
 	# Save volume settings.
-	temp_options.master_vol = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Master".value
-	temp_options.voice_vol = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Voice".value
-	temp_options.music_vol = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Radio".value
-	temp_options.world_vol = $"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/World Sounds".value
+	temp_options.master_vol = master.value
+	temp_options.voice_vol = voice.value
+	temp_options.music_vol = radio.value
+	temp_options.world_vol = world_sounds.value
 	
 	var control_mapping = {}
 	for action in InputMap.get_actions():
@@ -290,12 +318,12 @@ func load_options():
 		temp_options = ResourceLoader.load(GlobalWorkshop.get_files_in_directory_unbounded_iterative(GlobalWorkshop.user_paths["save"])[0])
 	
 	# Load boolean settings.
-	$"Options/PanelContainer/VBoxContainer/Motion Sickness Check".toggled.emit(temp_options.motion_sickness)
-	$"Options/PanelContainer/VBoxContainer/Motion Sickness Check".button_pressed = temp_options.motion_sickness
-	$"Options/PanelContainer/VBoxContainer/Aracnophobia mode".toggled.emit(temp_options.aracnophobia)
-	$"Options/PanelContainer/VBoxContainer/Aracnophobia mode".button_pressed = temp_options.aracnophobia
-	$"Options/PanelContainer/VBoxContainer/Aracnophilia mode".toggled.emit(temp_options.aracnophilia)
-	$"Options/PanelContainer/VBoxContainer/Aracnophilia mode".button_pressed = temp_options.aracnophilia
+	motion_check.toggled.emit(temp_options.motion_sickness)
+	motion_check.button_pressed = temp_options.motion_sickness
+	spider_fear_check.toggled.emit(temp_options.aracnophobia)
+	spider_fear_check.button_pressed = temp_options.aracnophobia
+	spider_love_check.toggled.emit(temp_options.aracnophilia)
+	spider_love_check.button_pressed = temp_options.aracnophilia
 
 	# Load window options.
 	$"Options/Resolution holder/VBoxContainer/Resolution options".selected = temp_options.res_options
@@ -305,11 +333,18 @@ func load_options():
 	$"Options/Resolution holder/VBoxContainer/Window Options".selected = temp_options.window_options
 	$"Options/Resolution holder/VBoxContainer/Window Options".item_selected.emit(temp_options.window_options)
 
+	$"Options/Resolution holder/VBoxContainer/Language Options".selected = temp_options.language_options
+	$"Options/Resolution holder/VBoxContainer/Language Options".item_selected.emit(temp_options.language_options)
+
+	#load sensitivity
+	controller.value = temp_options.contr_sense_mult
+	mouse.value = temp_options.mouse_sense_mult
+
 	# Load volume settings.
-	$"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Master".value = temp_options.master_vol
-	$"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Voice".value = temp_options.voice_vol
-	$"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/Radio".value = temp_options.music_vol
-	$"Options/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/World Sounds".value = temp_options.world_vol
+	master.value = temp_options.master_vol
+	voice.value = temp_options.voice_vol
+	radio.value = temp_options.music_vol
+	world_sounds.value = temp_options.world_vol
 	#load control data
 	if !temp_options.controls:
 		save_options()
@@ -341,13 +376,19 @@ func load_options():
 	controller_settings.load_all_actions()
 
 
-
-
 func set_sliders():
 	master.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	voice.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voice")))
 	radio.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Radio")))
 	world_sounds.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Sound Effect")))
+
+func _on_controller_value_changed(value: float) -> void:
+	Globals.car_cont_sens = Globals.CAR_CONT_SENS * value
+	Globals.per_cont_sens = Globals.PER_CONT_SENS * value
+
+func _on_mouse_value_changed(value: float) -> void:
+	Globals.car_mous_sens = Globals.CAR_MOUS_SENS * value
+	Globals.per_mous_sens = Globals.PER_MOUS_SENS * value
 
 func _on_master_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"),linear_to_db(value))
@@ -399,6 +440,29 @@ func _on_window_options_item_selected(index: int) -> void:
 		2:#Exclusive Fullscreen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
+
+func _on_language_options_item_selected(index: int) -> void:
+	match index:
+		0:
+			TranslationServer.set_locale("en")
+		1:
+			TranslationServer.set_locale("ita")
+		2:
+			TranslationServer.set_locale("chi")
+		3:
+			TranslationServer.set_locale("rus")
+		4:
+			TranslationServer.set_locale("jpn")
+		5:
+			TranslationServer.set_locale("kor")
+		6:
+			TranslationServer.set_locale("vie")
+		7:
+			TranslationServer.set_locale("por")
+		8:
+			TranslationServer.set_locale("spa")
+
+
 func _on_become_sober_pressed() -> void:
 	Globals.game_lost.emit("Sober")
 
@@ -411,6 +475,7 @@ func _on_leaderboards_pressed() -> void:
 	$"Main Menu".visible = false
 	$Leaderboard.visible = true
 	$Leaderboard/Back.grab_focus()
+	_on_leaderboard_container_tab_selected($"Leaderboard/Leaderboard/Leaderboard Container".current_tab)
 
 var leaderboard_entries : Array
 var prev_tab : int = 0

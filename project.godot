@@ -23,6 +23,7 @@ Globals="*res://Globals/Globals.gd"
 MainShaderCanvas="*res://Shaders/Main Shader Canvas.tscn"
 GlobalSteam="*res://Globals/GlobalSteam.gd"
 GlobalWorkshop="*res://Globals/GlobalWorkshop.gd"
+Debug="*res://Globals/Debug.gd"
 
 [display]
 
@@ -140,11 +141,21 @@ KEYWORD_JUMP={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+Tilde={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":96,"key_label":0,"unicode":96,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.en.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.ita.translation")
+locale/translations=PackedStringArray("res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.en.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.ita.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.chi.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.jpn.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.kor.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.por.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.rus.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.spa.translation", "res://Localization stuff/LOVE DRUNK TRANSLATIONS - Sheet1.vie.translation")
 
 [physics]
 
 common/physics_interpolation=true
+
+[rendering]
+
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true

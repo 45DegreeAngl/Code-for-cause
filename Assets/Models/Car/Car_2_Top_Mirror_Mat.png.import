@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://djgelxil3u65x"
 path.s3tc="res://.godot/imported/Car_2_Top_Mirror_Mat.png-af1c61d0771608b7ae1b94e7aa7f4492.s3tc.ctex"
+path.etc2="res://.godot/imported/Car_2_Top_Mirror_Mat.png-af1c61d0771608b7ae1b94e7aa7f4492.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Car/Car_2_Top_Mirror_Mat.png"
-dest_files=["res://.godot/imported/Car_2_Top_Mirror_Mat.png-af1c61d0771608b7ae1b94e7aa7f4492.s3tc.ctex"]
+dest_files=["res://.godot/imported/Car_2_Top_Mirror_Mat.png-af1c61d0771608b7ae1b94e7aa7f4492.s3tc.ctex", "res://.godot/imported/Car_2_Top_Mirror_Mat.png-af1c61d0771608b7ae1b94e7aa7f4492.etc2.ctex"]
 
 [params]
 

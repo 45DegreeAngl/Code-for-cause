@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://662v0uhpxnkj"
 path.s3tc="res://.godot/imported/splashartscene_Front Seats Base Color.png-b46d1a021e32e641591ac17bed2dfe71.s3tc.ctex"
+path.etc2="res://.godot/imported/splashartscene_Front Seats Base Color.png-b46d1a021e32e641591ac17bed2dfe71.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/splashartscene_Front Seats Base Color.png"
-dest_files=["res://.godot/imported/splashartscene_Front Seats Base Color.png-b46d1a021e32e641591ac17bed2dfe71.s3tc.ctex"]
+dest_files=["res://.godot/imported/splashartscene_Front Seats Base Color.png-b46d1a021e32e641591ac17bed2dfe71.s3tc.ctex", "res://.godot/imported/splashartscene_Front Seats Base Color.png-b46d1a021e32e641591ac17bed2dfe71.etc2.ctex"]
 
 [params]
 

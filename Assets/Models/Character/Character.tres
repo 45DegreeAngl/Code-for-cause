@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://5kibmphxr6lb"]
+
+[ext_resource type="Texture2D" uid="uid://dinlqrwe3m1l7" path="res://Assets/Models/Character/PlayerCharacter_Character Base Color.png" id="1_4sete"]
+
+[resource]
+resource_name = "Character"
+cull_mode = 2
+albedo_texture = ExtResource("1_4sete")
+roughness = 0.5

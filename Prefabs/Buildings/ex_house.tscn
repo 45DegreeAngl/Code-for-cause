@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://jyiluolku0k5" path="res://Prefabs/Buildings/ex_house.gd" id="1_qx76o"]
 [ext_resource type="Texture2D" uid="uid://calxasyjehumx" path="res://Assets/Models/Buildings/Ex_House_Concreate.png" id="1_vu4qo"]
 [ext_resource type="Texture2D" uid="uid://x1raydyp12fw" path="res://Assets/Models/Buildings/Ex_House_Concreate_n.jpg" id="2_k0x62"]
-[ext_resource type="Texture2D" uid="uid://digiawk6nftwe" path="res://Assets/Models/Buildings/Ex_House_Asphalt.png" id="3_vg37n"]
+[ext_resource type="Texture2D" uid="uid://ccg7v3cesnnr8" path="res://Assets/Models/Buildings/Ex_House_Asphalt.png" id="3_vg37n"]
 [ext_resource type="Texture2D" uid="uid://uvxqk2wxvho" path="res://Assets/Models/Buildings/Ex_House_Asphalt_n.png" id="4_ngimu"]
-[ext_resource type="Texture2D" uid="uid://dtbsk2q72eknq" path="res://Assets/Textures/objective Circle.png" id="7_52uab"]
+[ext_resource type="Texture2D" uid="uid://dtbsk2q72eknq" path="res://Deprecated/objective Circle.png" id="7_52uab"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8eg5"]
 resource_name = "Base"

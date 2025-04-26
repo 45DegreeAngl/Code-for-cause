@@ -1,9 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://fuvj7j3go7xh"]
+[gd_scene load_steps=32 format=3 uid="uid://fuvj7j3go7xh"]
 
 [ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_6evje"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Prefabs/Roads/road_segment.gd" id="2_vcq83"]
 [ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="3_a82uc"]
-[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Tree_wall.png" id="4_iudb2"]
+[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Environment/Tree_wall.png" id="4_iudb2"]
 [ext_resource type="PackedScene" uid="uid://draf67p2ehgfx" path="res://Prefabs/Buildings/house_1.tscn" id="5_ueshl"]
 [ext_resource type="PackedScene" uid="uid://b4jd38ifumhg7" path="res://Prefabs/Buildings/gabes_mart.tscn" id="6_i5ttn"]
 [ext_resource type="Script" uid="uid://dtk5ji61ml077" path="res://Prefabs/Debris/Groups/debris_group.gd" id="7_0xqex"]
@@ -42,6 +42,9 @@ uv1_scale = Vector3(6, 1, 1)
 material = SubResource("StandardMaterial3D_pgs63")
 size = Vector2(18, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dpxbs"]
+size = Vector3(1, 4.8252, 30.9814)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3lkfw"]
 load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
 
@@ -53,9 +56,6 @@ uv1_scale = Vector3(9.34, 1, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_whbdn"]
 material = SubResource("StandardMaterial3D_hmyff")
 size = Vector2(32, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dpxbs"]
-size = Vector3(1, 4.8252, 30.9814)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01nt0"]
 load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
@@ -80,6 +80,13 @@ size = Vector2(18, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qhubf"]
 size = Vector3(17.8518, 6.13373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8cqh"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7agfs"]
+material = SubResource("StandardMaterial3D_d8cqh")
+size = Vector2(32.36, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_756db"]
 size = Vector2(2.325, 1.71)
@@ -138,20 +145,22 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.61
 mesh = SubResource("QuadMesh_xbhla")
 skeleton = NodePath("../..")
 
+[node name="Boundary box" type="StaticBody3D" parent="Boundary"]
+transform = Transform3D(-0.0183075, 0, 0.999832, 0, 1, 0, -0.999832, 0, -0.0183075, 0.488921, 0, 0.30172)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Boundary box"]
+transform = Transform3D(1, 0, 6.14667e-08, 0, 1, 0, -6.14667e-08, 0, 1, 0.603683, 2.57542, -5.96046e-08)
+shape = SubResource("BoxShape3D_dpxbs")
+
 [node name="Left trees2" type="MeshInstance3D" parent="Boundary"]
 transform = Transform3D(-0.999832, 0, -0.0183075, 0, 1, 0, 0.0183075, 0, -0.999832, 0.53828, 0.973994, -0.761391)
+visible = false
 mesh = SubResource("QuadMesh_whbdn")
 skeleton = NodePath("../..")
 
-[node name="Boundary box" type="StaticBody3D" parent="Boundary/Left trees2"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0688138, -0.973994, -1.06203)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Left trees2/Boundary box"]
-transform = Transform3D(1.00001, 0, 6.14673e-08, 0, 1, 0, -6.14673e-08, 0, 1.00001, 0.603683, 2.57542, -5.96046e-08)
-shape = SubResource("BoxShape3D_dpxbs")
-
 [node name="Left trees secondary2" type="MeshInstance3D" parent="Boundary"]
 transform = Transform3D(-0.999832, 0, -0.0183075, 0, 1, 0, 0.0183075, 0, -0.999832, 0.199773, 0.973994, -0.61887)
+visible = false
 mesh = SubResource("QuadMesh_t7c1h")
 skeleton = NodePath("../..")
 
@@ -170,6 +179,10 @@ shape = SubResource("BoxShape3D_qhubf")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.6521, 0.989509, -9.06709)
 mesh = SubResource("QuadMesh_aorjo")
 skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundary"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, 0)
+mesh = SubResource("QuadMesh_7agfs")
 
 [node name="Tutorial end" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02465, -15.3788)
