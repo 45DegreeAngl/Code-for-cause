@@ -48,7 +48,8 @@ folder_colors={
 "res://Localization stuff/": "teal",
 "res://Material/": "green",
 "res://Resources/": "pink",
-"res://Shaders/": "blue"
+"res://Shaders/": "blue",
+"res://TRAILER/": "purple"
 }
 
 [filesystem]

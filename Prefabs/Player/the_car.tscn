@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=4 uid="uid://diakwvg84vkiw"]
+[gd_scene load_steps=109 format=4 uid="uid://diakwvg84vkiw"]
 
 [ext_resource type="Script" uid="uid://bgnr8nj6c2j1i" path="res://Prefabs/Player/player_car.gd" id="1_evy4q"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="1_ki6n6"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://ft4n32wk55a8" path="res://Assets/Models/Car/radio.tscn" id="14_ge4il"]
 [ext_resource type="Theme" uid="uid://ccmgdq4tewmwx" path="res://Assets/Themes/Kaph.tres" id="16_d020y"]
 [ext_resource type="FontFile" uid="uid://bkx2pb1ee5qek" path="res://Assets/Themes/Fonts/Digital7Italic-BW658.ttf" id="17_axgcv"]
+[ext_resource type="Script" uid="uid://q5yn3ejx3atd" path="res://TRAILER/trailer_camera_manager.gd" id="18_wqgg5"]
+[ext_resource type="Script" uid="uid://bi83jpdjdvxk5" path="res://TRAILER/free_cam.gd" id="19_onco8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eps3w"]
 friction = 0.1
@@ -435,6 +437,12 @@ cull_mode = 1
 albedo_texture = SubResource("ViewportTexture_1fn4a")
 emission_enabled = true
 emission_texture = SubResource("ViewportTexture_a6l4v")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wqgg5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqgg5"]
+emission_enabled = true
+emission = Color(0.999999, 0.996936, 0.780373, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mde6f"]
 size = Vector3(0.234375, 1.4801, 2.21973)
@@ -1060,6 +1068,43 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3li57")
 
+[sub_resource type="Animation" id="Animation_wqgg5"]
+resource_name = "orbit_anim"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OrbitPivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_onco8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OrbitPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa3wo"]
+_data = {
+&"RESET": SubResource("Animation_onco8"),
+&"orbit_anim": SubResource("Animation_wqgg5")
+}
+
 [node name="The_Car" type="VehicleBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_eps3w")
 gravity_scale = 2.0
@@ -1162,6 +1207,16 @@ transform = Transform3D(1, 0, 0, 0, 0.990355, -0.138551, 0, 0.138551, 0.990355, 
 mesh = SubResource("ArrayMesh_5gxrp")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wndiq")
+
+[node name="HeadlightL" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-0.28, 0, -4.22788e-08, 0, 0.28, 0, 4.22788e-08, 0, -0.28, -0.968968, 1.37803, -4.37133)
+mesh = SubResource("QuadMesh_wqgg5")
+surface_material_override/0 = SubResource("StandardMaterial3D_wqgg5")
+
+[node name="HeadlightR" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-0.28, 0, -4.22788e-08, 0, 0.28, 0, 4.22788e-08, 0, -0.28, 0.957881, 1.37803, -4.37133)
+mesh = SubResource("QuadMesh_wqgg5")
+surface_material_override/0 = SubResource("StandardMaterial3D_wqgg5")
 
 [node name="Interactibles" type="Node3D" parent="."]
 
@@ -1502,6 +1557,28 @@ autostart = true
 
 [node name="Ground Ray" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.727834, -2.88534)
+
+[node name="TrailerCameraManager" type="Node3D" parent="."]
+script = ExtResource("18_wqgg5")
+
+[node name="WheelCam" type="Camera3D" parent="TrailerCameraManager"]
+transform = Transform3D(0.99278, 0, -0.119946, 0, 1, 0, 0.119946, 0, 0.99278, -2.05852, 1.19498, -2.17655)
+fov = 120.0
+
+[node name="OrbitPivot" type="Node3D" parent="TrailerCameraManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
+
+[node name="OrbitCam" type="Camera3D" parent="TrailerCameraManager/OrbitPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="TrailerPlayer" type="AnimationPlayer" parent="TrailerCameraManager"]
+libraries = {
+&"": SubResource("AnimationLibrary_xa3wo")
+}
+
+[node name="FreeCam" type="Camera3D" parent="TrailerCameraManager"]
+top_level = true
+script = ExtResource("19_onco8")
 
 [connection signal="body_entered" from="." to="." method="_on_collide"]
 [connection signal="area_entered" from="Interactibles/EnterExit" to="." method="_on_enter_exit_area_entered"]
