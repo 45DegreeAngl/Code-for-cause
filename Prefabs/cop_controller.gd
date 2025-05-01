@@ -3,6 +3,7 @@ extends VehicleBody3D
 @export var target: VehicleBody3D
 @export var hunt_distance : float = 15
 
+
 @export var STEERING_CURVE : Curve
 @export var MAX_STEER_DEG : float = 45.0
 ##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are

@@ -8,17 +8,14 @@ extends MultiMeshInstance3D
 		replace_meshes()
 		generate = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		pass
 
 func replace_meshes():
+	if !tree_parent:
+		printerr("NO TREE PARENT SELECTED")
 	multimesh = MultiMesh.new()
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	multimesh.use_colors = true
@@ -27,5 +24,17 @@ func replace_meshes():
 	global_transform = tree_parent.global_transform
 	for i in range(tree_parent.get_child_count()):
 		var child = tree_parent.get_child(i)
-		multimesh.set_instance_transform(i, child.global_transform)
+		var child_mesh = child.get_child(0)
+		
+		var end_transform : Transform3D = child.global_transform
+		
+		var end_transform_origin = end_transform.origin
+		
+		var end_scale = child_mesh.scale
+		
+		end_transform = end_transform.scaled(end_scale)
+		
+		end_transform.origin = end_transform_origin
+		
+		multimesh.set_instance_transform(i, end_transform)
 	

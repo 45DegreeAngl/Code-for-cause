@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmkmxv7al3s1n"
-path.s3tc="res://.godot/imported/Gabes_Mart_Checkered Pattern.jpg-6588da7f6c7171936c4122817a3c0e8b.s3tc.ctex"
-path.etc2="res://.godot/imported/Gabes_Mart_Checkered Pattern.jpg-6588da7f6c7171936c4122817a3c0e8b.etc2.ctex"
+uid="uid://nqqbes2mdyqv"
+path.s3tc="res://.godot/imported/Gabes_Mart (1)_Concreate.png-73b1235176a108707bec7379da139f4d.s3tc.ctex"
+path.etc2="res://.godot/imported/Gabes_Mart (1)_Concreate.png-73b1235176a108707bec7379da139f4d.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "5b684c1ac32818a2e26295d58472c4ee"
+"md5": "deecda56f7d884027398d563a7c954a5"
 }
 
 [deps]
 
-source_file="res://Assets/Models/Buildings/Gabes_Mart_Checkered Pattern.jpg"
-dest_files=["res://.godot/imported/Gabes_Mart_Checkered Pattern.jpg-6588da7f6c7171936c4122817a3c0e8b.s3tc.ctex", "res://.godot/imported/Gabes_Mart_Checkered Pattern.jpg-6588da7f6c7171936c4122817a3c0e8b.etc2.ctex"]
+source_file="res://Assets/Models/NEW GABESMART/Gabes_Mart (1)_Concreate.png"
+dest_files=["res://.godot/imported/Gabes_Mart (1)_Concreate.png-73b1235176a108707bec7379da139f4d.s3tc.ctex", "res://.godot/imported/Gabes_Mart (1)_Concreate.png-73b1235176a108707bec7379da139f4d.etc2.ctex"]
 
 [params]
 

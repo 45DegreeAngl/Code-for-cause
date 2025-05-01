@@ -1,6 +1,6 @@
 [gd_scene load_steps=68 format=4 uid="uid://decdg2b8cnq74"]
 
-[ext_resource type="Script" uid="uid://dc3njjeb7s7o4" path="res://Prefabs/Car/Average Sober driver.gd" id="1_vl3j8"]
+[ext_resource type="Script" uid="uid://dt5e1h3wu7154" path="res://Prefabs/Car/Sober Driver/Navigation_Sober.gd" id="1_00t7x"]
 [ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_xhm5i"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="3_pqhiw"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="4_faqvl"]
@@ -913,9 +913,15 @@ gravity_scale = 2.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, -1.3)
 linear_damp = 0.1
-script = ExtResource("1_vl3j8")
+script = ExtResource("1_00t7x")
 STEERING_CURVE = ExtResource("2_xhm5i")
 human_drivers = [NodePath("Dude 3/MeshInstance3D")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+simplify_path = true
+simplify_epsilon = 10.0
+avoidance_enabled = true
+debug_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00600743, 2.53772, -1.44675)
@@ -1091,3 +1097,4 @@ spot_range = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88379, -0.468765)
 
 [connection signal="body_entered" from="." to="." method="_on_collide"]
+[connection signal="navigation_finished" from="NavigationAgent3D" to="." method="navigation_is_finished"]

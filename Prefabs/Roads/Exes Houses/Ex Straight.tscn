@@ -1,428 +1,275 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr75h2k10e6eh"]
+[gd_scene load_steps=9 format=3 uid="uid://cr75h2k10e6eh"]
 
-[ext_resource type="MeshLibrary" uid="uid://cv1supg7fxwgm" path="res://Assets/Models/Mesh Libraries/New Streets.tres" id="1_5oarg"]
+[ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_qks7c"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Prefabs/Roads/road_segment.gd" id="2_wo87c"]
-[ext_resource type="MeshLibrary" uid="uid://wwiits5ma1sj" path="res://Assets/Models/Mesh Libraries/Floors.tres" id="3_0icgw"]
+[ext_resource type="MeshLibrary" uid="uid://cqrvpxgdtlk7k" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/grass.tres" id="3_v3q3r"]
 [ext_resource type="PackedScene" uid="uid://brg1w0alicchh" path="res://Prefabs/Buildings/ex_house.tscn" id="4_ua8vv"]
-[ext_resource type="Script" uid="uid://dtk5ji61ml077" path="res://Prefabs/Debris/Groups/debris_group.gd" id="5_jkjef"]
 [ext_resource type="PackedScene" uid="uid://b4jd38ifumhg7" path="res://Prefabs/Buildings/gabes_mart.tscn" id="7_bia0c"]
 [ext_resource type="PackedScene" uid="uid://b8u6v41tnr240" path="res://Prefabs/Debris/Individual/stop_sign.tscn" id="9_j2i50"]
 [ext_resource type="PackedScene" uid="uid://dptwj8d7qoypj" path="res://Prefabs/Debris/Individual/direction_sign.tscn" id="10_nuy8g"]
 
-[sub_resource type="Curve3D" id="Curve3D_5u1vu"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.539585, 0.551673, -0.0355971, 0, 0, 0, 0, 0, 0, 0.514456, 0.551673, -31.7999),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
+[sub_resource type="NavigationMesh" id="NavigationMesh_3xva0"]
+vertices = PackedVector3Array(-409.5, 0.4, -579.5, -409.5, 0.4, -0.5, 509.5, 0.4, -0.5, 509.5, 0.4, -579.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
-[node name="Debug Straight" type="GridMap" node_paths=PackedStringArray("debris_node")]
-mesh_library = ExtResource("1_5oarg")
-cell_size = Vector3(1, 1, 1)
-data = {
-"cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65531, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792, 0, 65528, 655364, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65526, 1441792, 0, 65532, 1441792, 0, 65530, 1441792, 65534, 65528, 0, 65532, 65528, 1441815, 65532, 65531, 1048599, 65529, 65531, 1441815, 65529, 65534, 1048599, 65524, 65534, 26, 131060, 65527, 1441817, 196601, 65527, 655383, 196601, 65532, 1048603, 65538, 65532, 1048602, 65538, 65528, 1048583, 65538, 65527, 1048583, 65538, 65526, 1441794, 65539, 65526, 1048578, 65539, 65522, 1441798, 131079, 65522, 655360, 131080, 65522, 655360, 131081, 65522, 655360, 131085, 65522, 655386, 196621, 65529, 1048601, 196614, 65529, 655378, 196613, 65529, 16, 262145, 65529, 655364, 262145, 65531, 1048578, 262145, 65527, 655362, 327679, 65527, 1441815, 327679, 65531, 23, 327679, 65529, 0, 327678, 65529, 18, 393210, 65529, 8, 393208, 65529, 11, 393208, 65526, 1441803, 393210, 65526, 1048586, 393210, 65525, 655370, 393209, 65525, 15, 458742, 65525, 655368, 393202, 65525, 1048604, 327666, 65518, 27, 327670, 65518, 655376, 327678, 65518, 16, 327679, 65518, 655376, 262150, 65518, 16, 262152, 65518, 655383, 262152, 65520, 1048592, 327688, 65523, 1048593, 393224, 65527, 1048579, 393229, 65527, 655386, 393229, 65534, 655387, 393224, 65534, 23, 393224, 65529, 2, 393225, 65529, 655362, 393225, 65530, 1048578, 393224, 65530, 1441794, 393224, 65531, 2, 393225, 65531, 655362, 393225, 65532, 1048578, 393224, 65532, 1441794, 393222, 65527, 16, 458752, 65527, 0, 524285, 65527, 655360, 524281, 65527, 6, 589817, 65523, 1441810, 589817, 65516, 1048594, 589817, 65515, 655362, 589816, 65515, 1441794, 589816, 65519, 23, 589819, 65519, 655383, 589816, 65516, 1048576, 589816, 65517, 1048576, 589819, 65524, 1048603, 589826, 65524, 655389, 655362, 65517, 1441821, 786427, 65517, 28, 851963, 65521, 1441799, 851963, 65523, 1441799, 851963, 65525, 1441799, 851963, 65522, 1441792, 851963, 65524, 1441792, 851963, 65529, 1048603, 720900, 65529, 1048602, 720900, 65522, 1441818, 786440, 65521, 655360, 786441, 65521, 655360, 786439, 65521, 655360, 786438, 65521, 655360, 786442, 65521, 655360, 786443, 65521, 655362, 786443, 65522, 1048576, 786443, 65523, 1048576, 786448, 65524, 655364, 786448, 65521, 1441796, 786451, 65521, 1048599, 786445, 65521, 23, 786445, 65517, 1441815, 786451, 65517, 655383, 786449, 65517, 655360, 786448, 65517, 655360, 786447, 65517, 655360, 786445, 65519, 1048576, 786451, 65519, 1048576, 786448, 65526, 1048592, 851984, 65532, 1048576, 851984, 65533, 1048576, 851984, 65535, 1048599, 786446, 65524, 1441794, 786446, 65526, 1048599, 786443, 65526, 23, 786443, 65524, 1441792, 851982, 65535, 16, 917515, 65535, 1, 983049, 65535, 1, 1048583, 65535, 17, 1048578, 65535, 655377, 1048575, 65535, 655376, 1048571, 65535, 26, 1114105, 65527, 27, 1114110, 65527, 1048599, 589812, 65530, 1048580, 1114110, 65525, 1441792, 1114110, 65524, 1441792, 1114110, 65523, 1441792, 1114110, 65522, 1441792, 1114110, 65521, 1441792, 1114110, 65520, 1441792, 1114110, 65519, 1441792, 1114110, 65518, 1441792, 1114110, 65517, 1441792, 1114110, 65516, 1441792, 1114110, 65515, 1441792, 1114110, 65514, 1441792, 1114110, 65512, 655383, 1114100, 65512, 1441815, 1114108, 65512, 655360, 1114107, 65512, 655360, 1114106, 65512, 655360, 1114105, 65512, 655360, 1114104, 65512, 655360, 1114103, 65512, 655360, 1114102, 65512, 655360, 1114100, 65515, 23, 1114103, 65515, 655383, 1114103, 65518, 1048599, 1114100, 65518, 1441815, 1114100, 65521, 23, 1114103, 65521, 655383, 1114103, 65524, 1048599, 1114100, 65524, 1441815, 1114099, 65529, 1048578, 1114100, 65529, 2, 1114099, 65530, 655362, 1114100, 65530, 1441794, 1114098, 65530, 2, 1114098, 65529, 1441794, 1114099, 65531, 2, 1114100, 65531, 1048578, 1114101, 65530, 1048578, 1114101, 65529, 655362, 1114099, 65528, 655362, 1114098, 65528, 2, 1114098, 65527, 1441794, 1114100, 65527, 655364)
-}
+[node name="Ex_Straight" type="Node3D" node_paths=PackedStringArray("nav_region")]
 script = ExtResource("2_wo87c")
-debris_node = NodePath("Debree")
-metadata/_editor_floor_ = Vector3(0, 16, 0)
+nav_region = NodePath("NavigationRegion3D")
 
 [node name="Exit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 
-[node name="Path3D" type="Path3D" parent="." groups=["road_path"]]
-curve = SubResource("Curve3D_5u1vu")
+[node name="Ex_House" parent="." instance=ExtResource("4_ua8vv")]
+transform = Transform3D(1.50996e-06, 0, 20, 0, 20, 0, -20, 0, 1.50996e-06, -230, 159.989, -159.03)
 
-[node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("3_0icgw")
-cell_size = Vector3(1, 1, 1)
+[node name="Decor" type="Node3D" parent="."]
+
+[node name="Debree" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="Direction_Sign" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.524996, 0, -0.851104, 0, 1, 0, 0.851104, 0, 0.524996, 0, 9.29592, -119.98)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign2" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, 1, -10.88, 150.2, -188.66)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign3" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, 1, -6.6811, 150.2, -188.66)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign4" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, 1, -2.35098, 150.2, -188.66)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign5" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.707107, 0.707107, 0, 0.707107, 0.707107, -4.37114e-08, 158.74, 246.607, -266.602)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign6" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.707107, 0.707107, 0, 0.707107, 0.707107, -4.37114e-08, 158.74, 250.304, -270.29)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign7" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.707107, 0.707107, 0, 0.707107, 0.707107, -4.37114e-08, 158.74, 254.288, -274.3)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign34" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -83.413, 323.862, -79.632)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign35" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -87.1016, 327.302, -79.632)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign8" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -140.406, 109.677, -341.524)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign10" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-0.707107, 6.18172e-08, 0.707107, 8.74228e-08, 1, 0, -0.707107, 6.18172e-08, -0.707107, -140.401, 109.673, -358.48)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign9" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 39.6244, 109.677, -341.524)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign11" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-0.707107, 6.18172e-08, 0.707107, 8.74228e-08, 1, 0, -0.707107, 6.18172e-08, -0.707107, 39.629, 109.673, -358.48)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign12" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707106, 161.636, 130.237, -142.108)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign13" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.707107, -6.18172e-08, 0.707107, 8.74228e-08, 1, 0, -0.707107, 6.18172e-08, 0.707107, 178.593, 130.233, -142.103)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign14" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.707107, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707107, 80.2242, 149.887, -178.405)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign15" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.707107, -6.18172e-08, -0.707107, 8.74228e-08, 1, 0, 0.707107, -6.18172e-08, 0.707107, 80.2194, 149.883, -161.448)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign20" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.707107, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707107, 60.1816, 89.8694, -138.616)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign21" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.707107, -6.18172e-08, -0.707107, 8.74228e-08, 1, 0, 0.707107, -6.18172e-08, 0.707107, 60.1768, 89.8654, -121.659)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign16" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707106, 321.646, 270.012, -140.154)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign17" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.707107, -6.18172e-08, 0.707107, 8.74228e-08, 1, 3.81165e-21, -0.707107, 6.18172e-08, 0.707107, 338.604, 270.008, -140.15)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign22" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707106, 321.646, 250.26, -258.168)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign24" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-2.8213e-07, 0, -1, 0, 1, 0, 1, 0, -2.8213e-07, 338.468, 250.26, -227.552)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign25" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-2.8213e-07, 0, -1, 0, 1, 0, 1, 0, -2.8213e-07, 338.468, 250.26, -232.726)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign26" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-2.8213e-07, 0, -1, 0, 1, 0, 1, 0, -2.8213e-07, 338.468, 250.26, -237.428)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign27" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-2.8213e-07, 0, -1, 0, 1, 0, 1, 0, -2.8213e-07, 338.468, 250.26, -222.394)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign28" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-2.8213e-07, 0, -1, 0, 1, 0, 1, 0, -2.8213e-07, 338.468, 250.26, -216.552)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign29" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(1, 0, -2.54312e-07, 0, 1, 0, 2.54312e-07, 0, 1, 328.766, 250.26, -298.284)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign30" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(1, 0, -2.54312e-07, 0, 1, 0, 2.54312e-07, 0, 1, 323.594, 250.26, -298.284)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign31" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(1, 0, -2.54312e-07, 0, 1, 0, 2.54312e-07, 0, 1, 318.89, 250.26, -298.284)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign32" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(1, 0, -2.54312e-07, 0, 1, 0, 2.54312e-07, 0, 1, 333.926, 250.26, -298.284)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign33" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(1, 0, -2.54312e-07, 0, 1, 0, 2.54312e-07, 0, 1, 339.766, 250.26, -298.284)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign23" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(0.707107, -6.18172e-08, 0.707107, 8.74228e-08, 1, 3.81165e-21, -0.707107, 6.18172e-08, 0.707107, 338.604, 250.256, -258.162)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign18" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(-1, 0, 3.89414e-07, 0, 1, 0, -3.89414e-07, 0, -1, -260.332, 330.174, -119.993)
+lock_rotation = true
+freeze = true
+
+[node name="Direction_Sign19" parent="Debree" instance=ExtResource("10_nuy8g")]
+transform = Transform3D(1, -8.74228e-08, -2.68221e-07, 8.74228e-08, 1, 7.6233e-21, 2.68221e-07, -1.06581e-14, 1, -218.924, 330.17, -119.988)
+lock_rotation = true
+freeze = true
+
+[node name="Stop_Sign" parent="Debree" instance=ExtResource("9_j2i50")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -92.309, 110.207, -121.504)
+sleeping = true
+lock_rotation = true
+freeze = true
+
+[node name="Stop_Sign2" parent="Debree" instance=ExtResource("9_j2i50")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -92.309, 110.207, -138.409)
+sleeping = true
+lock_rotation = true
+freeze = true
+
+[node name="Stop_Sign3" parent="Debree" instance=ExtResource("9_j2i50")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -81.6482, 250.274, -299.37)
+sleeping = true
+lock_rotation = true
+freeze = true
+
+[node name="Stop_Sign4" parent="Debree" instance=ExtResource("9_j2i50")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -98.5534, 250.274, -299.37)
+sleeping = true
+lock_rotation = true
+freeze = true
+
+[node name="Gabes_Mart" parent="." instance=ExtResource("7_bia0c")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -15.1754, 144.692, -167.936)
+
+[node name="Nav Points" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="Nav Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.73322, 0, -317.298)
+
+[node name="Marker3D2" type="Marker3D" parent="Nav Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 234.413, 0, -261.314)
+
+[node name="Marker3D3" type="Marker3D" parent="Nav Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.095, 0, -91.6373)
+
+[node name="Marker3D4" type="Marker3D" parent="Nav Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.69011, 0, -56.1338)
+
+[node name="Marker3D5" type="Marker3D" parent="Nav Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.7269, 0, -120.483)
+
+[node name="Marker3D6" type="Marker3D" parent="Nav Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.062, 0, -248.163)
+
+[node name="Marker3D7" type="Marker3D" parent="Nav Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.0796, 0, -350.171)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_3xva0")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
+mesh_library = ExtResource("3_v3q3r")
+cell_size = Vector3(20, 20, 20)
+cell_center_y = false
 data = {
 "cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 0, 65530, 1441792, 0, 65529, 1441792, 0, 65528, 1441792, 0, 65527, 1441792, 0, 65526, 1441792, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792, 10, 65535, 1048576, 10, 65534, 1048576, 10, 65533, 1048576, 10, 65532, 1048576, 10, 65531, 1048576, 10, 65530, 1048576, 10, 65529, 1048576, 10, 65528, 1048576, 10, 65527, 1048576, 10, 65526, 1048576, 10, 65525, 1048576, 10, 65524, 1048576, 10, 65523, 1048576, 10, 65522, 1048576, 10, 65521, 1048576, 10, 65520, 1048576, 10, 65519, 1048576, 10, 65518, 1048576, 10, 65517, 1048576, 10, 65516, 1048576, 10, 65515, 1048576, 10, 65514, 1048576, 10, 65513, 1048576, 10, 65512, 1048576, 10, 65511, 1441792, 10, 65510, 1441792, 10, 65509, 1441792, 65530, 65509, 1441792, 65530, 65510, 1441792, 65530, 65511, 1441792, 65530, 65512, 1441792, 65530, 65513, 1441792, 65530, 65514, 1441792, 65530, 65515, 1441792, 65530, 65516, 1441792, 65530, 65517, 1441792, 65530, 65518, 1441792, 65530, 65519, 1441792, 65530, 65525, 1441792, 65530, 65526, 1441792, 65530, 65527, 1441792, 65530, 65528, 1441792, 65530, 65529, 1441792, 65530, 65530, 1441792, 65530, 65531, 1441792, 65530, 65532, 1441792, 65530, 65533, 1441792, 65530, 65534, 1441792, 65530, 65535, 1441792, 65530, 65520, 1441792, 65530, 65521, 1441792, 65530, 65522, 1441792, 65531, 65522, 1441792, 65530, 65523, 1441792, 65530, 65524, 1441792, 65530, 65508, 1441792, 65530, 65507, 1441792, 10, 65508, 1441792, 10, 65507, 1441792)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Ex_House" parent="." instance=ExtResource("4_ua8vv")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -11.5, 8.5, -7.955)
-
-[node name="Decor" type="Node3D" parent="."]
-
-[node name="Debree" type="Node3D" parent="."]
-script = ExtResource("5_jkjef")
-
-[node name="Direction_Sign" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.524996, 0, -0.851104, 0, 1, 0, 0.851104, 0, 0.524996, 0, 0.464796, -5.99898)
-
-[node name="Direction_Sign2" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(1, 0, 1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.544, 7.51, -9.433)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-
-[node name="Direction_Sign3" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(1, 0, 1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.334055, 7.51, -9.433)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-
-[node name="Direction_Sign4" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(1, 0, 1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.117549, 7.51, -9.433)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-
-[node name="Direction_Sign5" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-1.94707e-07, 0, 1, -0.707107, 0.707107, -1.37679e-07, 0.707107, 0.707107, 1.37679e-07, 7.93698, 12.3686, -13.3301)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign6" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-1.94707e-07, 0, 1, -0.707107, 0.707107, -1.37679e-07, 0.707107, 0.707107, 1.37679e-07, 7.93698, 12.5152, -13.5145)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign7" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-1.94707e-07, 0, 1, -0.707107, 0.707107, -1.37679e-07, 0.707107, 0.707107, 1.37679e-07, 7.93698, 12.7144, -13.715)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign34" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.707107, 0.707107, 9.39674e-08, -0.707107, 0.707107, -1.37679e-07, 1.63799e-07, -3.09086e-08, -1, -4.17065, 16.1931, -3.9816)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign35" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.707107, 0.707107, 9.39674e-08, -0.707107, 0.707107, -1.37679e-07, 1.63799e-07, -3.09086e-08, -1, -4.35508, 16.3651, -3.9816)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign8" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-0.707107, 2.4809e-22, 0.707107, -1.64923e-28, 1, 1.42109e-14, 0.707107, -5.98943e-22, 0.707107, -7.0203, 5.48385, -17.0762)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign10" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-0.707107, 6.18172e-08, 0.707107, 8.74228e-08, 1, 0, -0.707107, 6.18172e-08, -0.707107, -7.02006, 5.48365, -17.924)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign9" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-0.707107, 2.4809e-22, 0.707107, -1.64923e-28, 1, 1.42109e-14, 0.707107, -5.98943e-22, 0.707107, 1.98122, 5.48385, -17.0762)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign11" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-0.707107, 6.18172e-08, 0.707107, 8.74228e-08, 1, 0, -0.707107, 6.18172e-08, -0.707107, 1.98145, 5.48365, -17.924)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign12" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-0.707106, 5.98943e-22, -0.707107, -1.64923e-28, 1, 1.42109e-14, -0.707107, 2.4809e-22, 0.707107, 8.08182, 6.51185, -7.1054)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign13" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.707107, -6.18172e-08, 0.707107, 8.74228e-08, 1, 0, -0.707107, 6.18172e-08, 0.707107, 8.92965, 6.51165, -7.10516)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign14" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.707107, -2.4809e-22, -0.707107, -1.64923e-28, 1, 1.42109e-14, -0.707106, 5.98943e-22, -0.707107, 4.01121, 7.49437, -8.92024)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign15" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.707107, -6.18172e-08, -0.707107, 8.74228e-08, 1, 0, 0.707107, -6.18172e-08, 0.707107, 4.01097, 7.49417, -8.07241)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign20" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.707107, -2.4809e-22, -0.707107, -1.64923e-28, 1, 1.42109e-14, -0.707106, 5.98943e-22, -0.707107, 3.00908, 4.49347, -6.9308)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign21" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.707107, -6.18172e-08, -0.707107, 8.74228e-08, 1, 0, 0.707107, -6.18172e-08, 0.707107, 3.00884, 4.49327, -6.08297)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign16" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-0.707106, 5.98943e-22, -0.707107, -1.64923e-28, 1, 1.42109e-14, -0.707107, 2.4809e-22, 0.707107, 16.0823, 13.5006, -7.00772)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign17" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.707107, -6.18172e-08, 0.707107, 8.74228e-08, 1, 3.81165e-21, -0.707107, 6.18172e-08, 0.707107, 16.9302, 13.5004, -7.00748)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign22" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-0.707106, 5.98943e-22, -0.707107, -1.64923e-28, 1, 1.42109e-14, -0.707107, 2.4809e-22, 0.707107, 16.0823, 12.513, -12.9084)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign24" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-2.98023e-07, -2.4809e-22, 1, -1.64923e-28, 1, 1.42109e-14, 1, -5.98943e-22, 2.08616e-07, 16.9234, 12.513, -11.3776)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign25" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-2.98023e-07, -2.4809e-22, 1, -1.64923e-28, 1, 1.42109e-14, 1, -5.98943e-22, 2.08616e-07, 16.9234, 12.513, -11.6363)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign26" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-2.98023e-07, -2.4809e-22, 1, -1.64923e-28, 1, 1.42109e-14, 1, -5.98943e-22, 2.08616e-07, 16.9234, 12.513, -11.8714)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign27" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-2.98023e-07, -2.4809e-22, 1, -1.64923e-28, 1, 1.42109e-14, 1, -5.98943e-22, 2.08616e-07, 16.9234, 12.513, -11.1197)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign28" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-2.98023e-07, -2.4809e-22, 1, -1.64923e-28, 1, 1.42109e-14, 1, -5.98943e-22, 2.08616e-07, 16.9234, 12.513, -10.8276)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign29" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(1, -5.98943e-22, 1.64905e-07, 2.38973e-28, 1, 1.42109e-14, 2.54312e-07, 2.48091e-22, -1, 16.4383, 12.513, -14.9142)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign30" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(1, -5.98943e-22, 1.64905e-07, 2.38973e-28, 1, 1.42109e-14, 2.54312e-07, 2.48091e-22, -1, 16.1797, 12.513, -14.9142)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign31" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(1, -5.98943e-22, 1.64905e-07, 2.38973e-28, 1, 1.42109e-14, 2.54312e-07, 2.48091e-22, -1, 15.9445, 12.513, -14.9142)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign32" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(1, -5.98943e-22, 1.64905e-07, 2.38973e-28, 1, 1.42109e-14, 2.54312e-07, 2.48091e-22, -1, 16.6963, 12.513, -14.9142)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign33" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(1, -5.98943e-22, 1.64905e-07, 2.38973e-28, 1, 1.42109e-14, 2.54312e-07, 2.48091e-22, -1, 16.9883, 12.513, -14.9142)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign23" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(0.707107, -6.18172e-08, 0.707107, 8.74228e-08, 1, 3.81165e-21, -0.707107, 6.18172e-08, 0.707107, 16.9302, 12.5128, -12.9081)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign18" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(-1, 5.98943e-22, -2.08616e-07, -1.64923e-28, 1, 1.42109e-14, -2.98023e-07, -2.4809e-22, 1, -13.0166, 16.5087, -5.99964)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Direction_Sign19" parent="Debree" instance=ExtResource("10_nuy8g")]
-transform = Transform3D(1, -8.74228e-08, -2.68221e-07, 8.74228e-08, 1, 7.6233e-21, 2.68221e-07, -1.06581e-14, 1, -10.9462, 16.5085, -5.9994)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-sleeping = true
-
-[node name="Stop_Sign" parent="Debree" instance=ExtResource("9_j2i50")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.61545, 5.51033, -6.07518)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-
-[node name="Stop_Sign2" parent="Debree" instance=ExtResource("9_j2i50")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.61545, 5.51033, -6.92044)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-
-[node name="Stop_Sign3" parent="Debree" instance=ExtResource("9_j2i50")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.08241, 12.5137, -14.9685)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-
-[node name="Stop_Sign4" parent="Debree" instance=ExtResource("9_j2i50")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.92767, 12.5137, -14.9685)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-
-[node name="Gabes_Mart" parent="." instance=ExtResource("7_bia0c")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.956, 7.5, -8.5)
+[node name="Debug Straight" type="GridMap" parent="."]
+mesh_library = ExtResource("1_qks7c")
+cell_size = Vector3(20, 20, 20)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 65535, 1441792, 0, 65534, 1441792, 0, 65533, 1441792, 0, 65531, 1441792, 0, 65523, 1441792, 0, 65522, 1441792, 0, 65521, 1441792, 0, 65520, 1441792, 0, 65528, 655364, 0, 65525, 1441792, 0, 65524, 1441792, 0, 65526, 1441792, 0, 65532, 1441792, 0, 65530, 1441792, 65534, 65528, 0, 65532, 65528, 1441815, 65532, 65531, 1048599, 65529, 65531, 1441815, 65529, 65534, 1048599, 65524, 65534, 26, 131060, 65527, 1441817, 196601, 65527, 655383, 196601, 65532, 1048603, 65538, 65532, 1048602, 65538, 65528, 1048583, 65538, 65527, 1048583, 65538, 65526, 1441794, 65539, 65526, 1048578, 65539, 65522, 1441798, 131079, 65522, 655360, 131080, 65522, 655360, 131081, 65522, 655360, 131085, 65522, 655386, 196621, 65529, 1048601, 196614, 65529, 655378, 196613, 65529, 16, 262145, 65529, 655364, 262145, 65531, 1048578, 262145, 65527, 655362, 327679, 65527, 1441815, 327679, 65531, 23, 327679, 65529, 0, 327678, 65529, 18, 393210, 65529, 8, 393208, 65529, 11, 393208, 65526, 1441803, 393210, 65526, 1048586, 393210, 65525, 655370, 393209, 65525, 15, 458742, 65525, 655368, 393202, 65525, 1048604, 327666, 65518, 27, 327670, 65518, 655376, 327678, 65518, 16, 327679, 65518, 655376, 262150, 65518, 16, 262152, 65518, 655383, 262152, 65520, 1048592, 327688, 65523, 1048593, 393224, 65527, 1048579, 393229, 65527, 655386, 393229, 65534, 655387, 393224, 65534, 23, 393224, 65529, 2, 393225, 65529, 655362, 393225, 65530, 1048578, 393224, 65530, 1441794, 393224, 65531, 2, 393225, 65531, 655362, 393225, 65532, 1048578, 393224, 65532, 1441794, 393222, 65527, 16, 458752, 65527, 0, 524285, 65527, 655360, 524281, 65527, 6, 589817, 65523, 1441810, 589817, 65516, 1048594, 589817, 65515, 655362, 589816, 65515, 1441794, 589816, 65519, 23, 589819, 65519, 655383, 589816, 65516, 1048576, 589816, 65517, 1048576, 589819, 65524, 1048603, 589826, 65524, 655389, 655362, 65517, 1441821, 786427, 65517, 28, 851963, 65521, 1441799, 851963, 65523, 1441799, 851963, 65525, 1441799, 851963, 65522, 1441792, 851963, 65524, 1441792, 851963, 65529, 1048603, 720900, 65529, 1048602, 720900, 65522, 1441818, 786440, 65521, 655360, 786441, 65521, 655360, 786439, 65521, 655360, 786438, 65521, 655360, 786442, 65521, 655360, 786443, 65521, 655362, 786443, 65522, 1048576, 786443, 65523, 1048576, 786448, 65524, 655364, 786448, 65521, 1441796, 786451, 65521, 1048599, 786445, 65521, 23, 786445, 65517, 1441815, 786451, 65517, 655383, 786449, 65517, 655360, 786448, 65517, 655360, 786447, 65517, 655360, 786445, 65519, 1048576, 786451, 65519, 1048576, 786448, 65526, 1048592, 851984, 65532, 1048576, 851984, 65533, 1048576, 851984, 65535, 1048599, 786446, 65524, 1441794, 786446, 65526, 1048599, 786443, 65526, 23, 786443, 65524, 1441792, 851982, 65535, 16, 917515, 65535, 1, 983049, 65535, 1, 1048583, 65535, 17, 1048578, 65535, 655377, 1048575, 65535, 655376, 1048571, 65535, 26, 1114105, 65527, 27, 1114110, 65527, 1048599, 589812, 65530, 1048580, 1114110, 65525, 1441792, 1114110, 65524, 1441792, 1114110, 65523, 1441792, 1114110, 65522, 1441792, 1114110, 65521, 1441792, 1114110, 65520, 1441792, 1114110, 65519, 1441792, 1114110, 65518, 1441792, 1114110, 65517, 1441792, 1114110, 65516, 1441792, 1114110, 65515, 1441792, 1114110, 65514, 1441792, 1114110, 65512, 655383, 1114100, 65512, 1441815, 1114108, 65512, 655360, 1114107, 65512, 655360, 1114106, 65512, 655360, 1114105, 65512, 655360, 1114104, 65512, 655360, 1114103, 65512, 655360, 1114102, 65512, 655360, 1114100, 65515, 23, 1114103, 65515, 655383, 1114103, 65518, 1048599, 1114100, 65518, 1441815, 1114100, 65521, 23, 1114103, 65521, 655383, 1114103, 65524, 1048599, 1114100, 65524, 1441815, 1114099, 65529, 1048578, 1114100, 65529, 2, 1114099, 65530, 655362, 1114100, 65530, 1441794, 1114098, 65530, 2, 1114098, 65529, 1441794, 1114099, 65531, 2, 1114100, 65531, 1048578, 1114101, 65530, 1048578, 1114101, 65529, 655362, 1114099, 65528, 655362, 1114098, 65528, 2, 1114098, 65527, 1441794, 1114100, 65527, 655364)
+}
+metadata/_editor_floor_ = Vector3(0, 16, 0)
+metadata/Road = true

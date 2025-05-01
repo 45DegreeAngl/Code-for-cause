@@ -8,11 +8,13 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in randi_range(min_buyables,max_buyables):
-		var bottle_instance : Node3D 
 		if randi_range(0,9) != 0:
-			bottle_instance = buyable.pick_random().instantiate()
+			spawn_bottle(buyable.pick_random().instantiate())
 		else:
-			bottle_instance = beer_crate.instantiate()
-		
-		add_child(bottle_instance)
-		bottle_instance.global_position = $Spawns.get_children().pick_random().global_position
+			spawn_bottle(beer_crate.instantiate())
+	spawn_bottle(beer_crate.instantiate())
+
+func spawn_bottle(bottle_instance:Node3D):
+	add_child(bottle_instance)
+	bottle_instance.scale = Vector3(0.3,0.6,0.3)
+	bottle_instance.global_position = $Spawns.get_children().pick_random().global_position

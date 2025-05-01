@@ -1146,19 +1146,19 @@ mesh = SubResource("ArrayMesh_asbhe")
 skeleton = NodePath("")
 
 [node name="Left_Mirror" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58522, 1.83675, -2.18483)
+transform = Transform3D(0.999622, 0, 0.0274855, 0, 1, 0, -0.0274855, 0, 0.999622, -1.58522, 1.83675, -2.16246)
 mesh = SubResource("ArrayMesh_co2kh")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_dxpoq")
 
 [node name="Right_Mirror" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58522, 1.83675, -2.18483)
+transform = Transform3D(0.993776, 0, -0.1114, 0, 1, 0, 0.1114, 0, 0.993776, 1.58522, 1.83675, -2.15191)
 mesh = SubResource("ArrayMesh_ugnnj")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_5em8d")
 
 [node name="Top_Mirror" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47319, -1.41985)
+transform = Transform3D(1, 0, 0, 0, 0.990355, -0.138551, 0, 0.138551, 0.990355, 0, 2.47319, -1.40671)
 mesh = SubResource("ArrayMesh_5gxrp")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wndiq")

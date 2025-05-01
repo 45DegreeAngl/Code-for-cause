@@ -1,6 +1,6 @@
 [gd_scene load_steps=64 format=4 uid="uid://cxp2kocirrm37"]
 
-[ext_resource type="Script" uid="uid://cac754kfmnfc3" path="res://Prefabs/cop_controller.gd" id="1_5c3t6"]
+[ext_resource type="Script" uid="uid://30t5f7mkkqhq" path="res://Prefabs/navigation_cop.gd" id="1_cu7d0"]
 [ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_tcl5t"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="3_uw1wd"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="5_gc1n0"]
@@ -878,11 +878,16 @@ gravity_scale = 2.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, -1.3)
 linear_damp = 0.1
-script = ExtResource("1_5c3t6")
+script = ExtResource("1_cu7d0")
 hunt_distance = 100.0
 STEERING_CURVE = ExtResource("2_tcl5t")
 human_drivers = [NodePath("Dude 1/MeshInstance3D"), NodePath("Dude 2/MeshInstance3D")]
 metadata/Cop = false
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+simplify_path = true
+simplify_epsilon = 10.0
+debug_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00600743, 2.53772, -1.44675)
@@ -1076,5 +1081,6 @@ shadow_enabled = true
 omni_range = 10.0
 
 [connection signal="body_entered" from="." to="." method="_on_collide"]
+[connection signal="navigation_finished" from="NavigationAgent3D" to="." method="navigation_is_finished"]
 [connection signal="timeout" from="Timer" to="." method="talk"]
 [connection signal="timeout" from="Flicker Timer" to="." method="toggle_colors"]

@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://badwkkjq47c72"]
+[gd_scene load_steps=2 format=3 uid="uid://badwkkjq47c72"]
 
-[ext_resource type="Script" uid="uid://dtk5ji61ml077" path="res://Prefabs/Debris/Groups/debris_group.gd" id="1_sd24v"]
 [ext_resource type="PackedScene" uid="uid://gq811rsmjlhl" path="res://Prefabs/Debris/Individual/tire_debris.tscn" id="2_l6rdh"]
 
 [node name="Tire Debris Large" type="Node3D"]
-script = ExtResource("1_sd24v")
 
 [node name="Tire Debris" parent="." instance=ExtResource("2_l6rdh")]
 sleeping = true

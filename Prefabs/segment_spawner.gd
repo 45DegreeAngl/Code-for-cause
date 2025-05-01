@@ -155,12 +155,17 @@ func append_segment(segment:PackedScene = null):
 		instanced_segment = spawn_road(segment)
 	else:
 		instanced_segment = spawn_road()
-
+	
+	instanced_segment.visible = false
+	
 	$Roads.add_child(instanced_segment)
 	instanced_segment.global_position = previous_road.find_child("Exit").global_position
 	if instanced_segment.has_signal("increment_player_road_counter"):
 		instanced_segment.increment_player_road_counter.connect(increment_player_road)
+	if instanced_segment.has_signal("driver_spawned"):
+		instanced_segment.driver_spawned.connect(give_new_nav_region)
 	previous_road = instanced_segment
+	instanced_segment.visible = true
 	instanced_segment.spawn_drivers()
 
 var cur_player_road:int = 0:
@@ -190,6 +195,43 @@ var cur_player_road:int = 0:
 						print("Deleting this pedestrian: ",pedestrian)
 						pedestrian.call_deferred("queue_free")
 				temp.queue_free()
+
+##driver management
+func give_new_nav_region(vehicle:VehicleBody3D):
+	var vehicle_road : RoadSegment = get_road_at_pos(vehicle.global_position)
+	#now i should have a vehicle road that IS proper, now we just need to assign the proper
+	#variables to the vehicle that was given
+	if vehicle.has_method("set_nav_region"):
+		vehicle.set_nav_region(vehicle_road.nav_curve)
+		#print("Nav Region Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_region)
+	if vehicle.has_method("set_nav_path"):
+		vehicle.set_nav_path(vehicle_road.nav_points)
+		#print("Nav Points Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_points)
+	if vehicle.has_method("adjust_cur_nav_index"):
+		vehicle.adjust_cur_nav_index()
+		#print("Adjusting Nav Index for Vehicle: ",vehicle)
+	if vehicle.has_signal("request_new_nav_region"):
+		if !vehicle.is_connected("request_new_nav_region",give_new_nav_region):
+			vehicle.request_new_nav_region.connect(give_new_nav_region)
+
+##we move in the -z direction
+func get_road_at_pos(glob_pos:Vector3)->RoadSegment:
+	#if glob_pos is greater than the position of the first road, return first road
+	var first_road : RoadSegment = $Roads.get_children().front()
+	if glob_pos.z>first_road.global_position.z:
+		return first_road
+	#if glob_pos is less than the position of the last road, return last road
+	var last_road : RoadSegment = $Roads.get_children().back()
+	if glob_pos.z>last_road.global_position.z:
+		return last_road
+	
+	var cur_road : RoadSegment
+	#loop through all roads
+	for index:int in $Roads.get_child_count():
+		cur_road = $Roads.get_child(index)
+		if glob_pos.z>cur_road.global_position.z:
+			return $Roads.get_child(index-1)
+	return last_road
 
 func increment_player_road():
 	cur_player_road+=1

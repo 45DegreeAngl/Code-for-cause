@@ -172,7 +172,6 @@ size = Vector3(0.435669, 0.168457, 1.01733)
 size = Vector3(0.17041, 0.160065, 1)
 
 [node name="House_1" type="Node3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_pn6bx")

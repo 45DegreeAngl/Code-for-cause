@@ -1,7 +1,5 @@
 [gd_scene load_steps=8 format=4 uid="uid://b8u6v41tnr240"]
 
-[ext_resource type="Script" uid="uid://chkowncssv3ap" path="res://Prefabs/Debris/Individual/debris.gd" id="1_1uuqo"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ep3k"]
 resource_name = "Material.002"
 cull_mode = 2
@@ -103,17 +101,24 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8m5ra")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hb50t"]
-size = Vector3(0.266846, 0.355225, 8.53125)
+[sub_resource type="BoxShape3D" id="BoxShape3D_mlavg"]
+size = Vector3(1, 1, 8.72731)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3q1r3"]
+height = 0.518555
+radius = 1.61475
 
 [node name="Stop_Sign" type="RigidBody3D"]
-script = ExtResource("1_1uuqo")
 
-[node name="Sign" type="MeshInstance3D" parent="." groups=["Please Move"]]
-transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 0, 0.131351, 0.0110433)
+[node name="Sign" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6.6, 0.55)
 mesh = SubResource("ArrayMesh_g6w0v")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." groups=["Please Move"]]
-transform = Transform3D(-0.02, -3.01992e-09, 1.32005e-16, 0, -8.74228e-10, -0.02, 3.01992e-09, -0.02, 8.74228e-10, -0.000666504, 0.0846875, 0.000227047)
-shape = SubResource("BoxShape3D_hb50t")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.40441, 1.92523e-07)
+shape = SubResource("BoxShape3D_mlavg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6.79112, 0.195284)
+shape = SubResource("CylinderShape3D_3q1r3")

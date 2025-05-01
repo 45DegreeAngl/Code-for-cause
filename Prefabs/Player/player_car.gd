@@ -94,7 +94,8 @@ func _process(delta: float) -> void:
 	
 	if $"Ground Ray".get_collider():
 		var collision_thing = $"Ground Ray".get_collider()
-		if collision_thing is GridMap and !collision_thing is RoadSegment:
+		#print("balls",collision_thing)
+		if collision_thing is GridMap and collision_thing.has_meta("Road") and !collision_thing.get_meta("Road"):
 			ENGINE_POWER = original_engine_power/2
 		else:
 			ENGINE_POWER = original_engine_power
@@ -409,6 +410,8 @@ var closest_cop : VehicleBody3D = null
 @export var cops_node: Node3D
 
 func update_cop_detector():
+	if !cops_node:
+		return
 	if cops_node.get_child_count()<1:
 		label_3d.text = tr("NONE_DETECTED_TEXT")
 		closest_cop = null

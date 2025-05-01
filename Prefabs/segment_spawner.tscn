@@ -44,12 +44,11 @@ shadow_enabled = true
 environment = SubResource("Environment_v2tje")
 
 [node name="Roads" type="Node3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
 [node name="Cul de Sac Tutorial" parent="Roads" instance=ExtResource("13_r5rt5")]
 
 [node name="The_Car" parent="." node_paths=PackedStringArray("cops_node") instance=ExtResource("10_lxkwt")]
-transform = Transform3D(0.0265783, 0, 0.999647, 0, 1, 0, -0.999647, 0, 0.0265783, 264.276, 10.1102, -69.4266)
+transform = Transform3D(0.0265783, 0, 0.999647, 0, 1, 0, -0.999647, 0, 0.0265783, 264.276, -0.0818691, -69.4266)
 cops_node = NodePath("../Cops")
 
 [node name="Cops" type="Node3D" parent="."]

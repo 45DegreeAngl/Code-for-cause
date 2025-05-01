@@ -1098,7 +1098,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8f0um")
 
 [node name="Ex_House" type="Node3D"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
 script = ExtResource("1_qx76o")
 
 [node name="Street" type="MeshInstance3D" parent="."]
@@ -1112,7 +1112,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_oljlf")
 
 [node name="Parking 1" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.18947e-10, 0, 0.0109922, 0, 0.00258741, 0, -0.000997796, 0, -1.31038e-09, -0.616189, 0.00924658, -0.732049)
+transform = Transform3D(-1.62562e-10, 0, 0.0109922, 0, 0.00258741, 0, -0.000997796, 0, -1.79086e-09, -0.616189, 0.00924658, -0.732049)
 mesh = SubResource("ArrayMesh_gpsqv")
 skeleton = NodePath("")
 
@@ -1122,7 +1122,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_xpeij")
 
 [node name="Parking 1_001" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.18947e-10, 0, 0.0109922, 0, 0.00258741, 0, -0.000997796, 0, -1.31038e-09, -0.288184, 0.00924658, -0.732049)
+transform = Transform3D(-1.62562e-10, 0, 0.0109922, 0, 0.00258741, 0, -0.000997796, 0, -1.79086e-09, -0.288184, 0.00924658, -0.732049)
 mesh = SubResource("ArrayMesh_144c3")
 skeleton = NodePath("")
 
@@ -1132,7 +1132,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_155x4")
 
 [node name="Parking 1_002" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.5684e-10, 0, -0.0109922, 0, 0.00258741, 0, 0.000997796, 0, 3.93113e-09, -0.616189, 0.00924658, 0.729338)
+transform = Transform3D(3.13225e-10, 0, -0.0109922, 0, 0.00258741, 0, 0.000997796, 0, 3.45063e-09, -0.616189, 0.00924658, 0.729338)
 mesh = SubResource("ArrayMesh_xxihs")
 skeleton = NodePath("")
 
@@ -1142,7 +1142,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_23ctj")
 
 [node name="Parking 1_003" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.5684e-10, 0, -0.0109922, 0, 0.00258741, 0, 0.000997796, 0, 3.93113e-09, -0.288184, 0.00924658, 0.729338)
+transform = Transform3D(3.13225e-10, 0, -0.0109922, 0, 0.00258741, 0, 0.000997796, 0, 3.45063e-09, -0.288184, 0.00924658, 0.729338)
 mesh = SubResource("ArrayMesh_rlj31")
 skeleton = NodePath("")
 
@@ -1174,10 +1174,10 @@ material = SubResource("StandardMaterial3D_yo6vt")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.418586, 1.04775, 3.6594e-08)
 
 [node name="exhouse" type="Node3D" parent="."]
-transform = Transform3D(-0.15, 0, 1.31134e-08, 0, 0.15, 0, -1.31134e-08, 0, -0.15, 0.352284, -0.0163816, -0.170738)
+transform = Transform3D(-0.15, 0, 2.26494e-08, 0, 0.15, 0, -2.26494e-08, 0, -0.15, 0.352284, -0.0163816, -0.170738)
 
 [node name="Plane" type="MeshInstance3D" parent="exhouse"]
-transform = Transform3D(0, 0, 4, 0, 4, 0, -4, 0, 0, 0.00346096, 0, 0.00856683)
+transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 0.00346096, 0, 0.00856683)
 mesh = SubResource("ArrayMesh_p8udk")
 skeleton = NodePath("")
 
