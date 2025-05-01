@@ -3,7 +3,7 @@ extends VehicleBody3D
 @export var DEBUG_MODE : bool = false
 @export var target: VehicleBody3D
 @export var hunt_distance : float = 15
-
+@export var point_accept_distance : float = 15
 
 @export var STEERING_CURVE : Curve
 @export var MAX_STEER_DEG : float = 45.0
@@ -65,7 +65,7 @@ func nav_control(_delta: float) -> void:
 	# Get the global position of the target
 	var target_position = curve_point_to_global(navigation_endpoint,navigation_path)
 	
-	if distance_to(self.global_position,target_position)<=10:
+	if distance_to(self.global_position,target_position)<=point_accept_distance:
 		navigation_is_finished()
 	
 	if reversing:

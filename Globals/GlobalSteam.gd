@@ -33,7 +33,7 @@ func _initialize_steam() -> void:
 		OS.set_environment("SteamAppId", str(game_id))
 		OS.set_environment("SteamGameId", str(game_id))
 		
-		var init_response: Dictionary = Steam.steamInit(false)
+		var init_response: Dictionary = Steam.steamInitEx(false)
 		# If the status isn't one, print out the possible error and quit the program
 		if init_response['status'] != 1:
 			printerr("[STEAM] Failed to initialize: %s Shutting down..." % 
