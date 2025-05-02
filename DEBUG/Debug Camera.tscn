@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmd7g853vm7pb"]
+
+[ext_resource type="Script" uid="uid://dmgsrdnqxd8d4" path="res://DEBUG/debug_camera.gd" id="1_8c1mq"]
+
+[node name="DebugCamera" type="Window"]
+initial_position = 1
+size = Vector2i(425, 250)
+script = ExtResource("1_8c1mq")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(425, 250)
+render_target_update_mode = 4
+
+[node name="CAMERAS" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Free" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS"]
+
+[node name="Car" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS"]
+
+[node name="First Person" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS"]
+
+[node name="Wheel" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS"]
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

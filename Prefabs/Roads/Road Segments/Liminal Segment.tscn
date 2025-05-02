@@ -1,11 +1,9 @@
-[gd_scene load_steps=26 format=4 uid="uid://bsawvuh1yr6x3"]
+[gd_scene load_steps=24 format=4 uid="uid://bsawvuh1yr6x3"]
 
 [ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_r0pfw"]
-[ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Prefabs/the_cop.tscn" id="2_8t7pw"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Prefabs/Roads/road_segment.gd" id="2_d4v6j"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Prefabs/Buildings/lamp_post.tscn" id="3_h7e8l"]
 [ext_resource type="MeshLibrary" uid="uid://cqrvpxgdtlk7k" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/grass.tres" id="3_qk62e"]
-[ext_resource type="PackedScene" uid="uid://decdg2b8cnq74" path="res://Prefabs/Car/Average Sober Driver.tscn" id="3_qvuw1"]
 [ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Environment/Tree_wall.png" id="5_x711k"]
 [ext_resource type="Texture2D" uid="uid://jj4h3poeat31" path="res://Assets/Models/Debris/Tree_1_Cylinder Base Color.png" id="7_0l6xj"]
 [ext_resource type="Texture2D" uid="uid://c7sl5akbr3rnv" path="res://Assets/Models/Debris/Tree_1_Cone.png" id="8_855v1"]
@@ -133,19 +131,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -420)
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_di3wa")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.0408293, -0.991182, 0.126059, 0, 0.126164, 0.992009, -0.999166, 0.0405031, -0.00515121, 58.4902, 231.589, -207.332)
-
-[node name="The_Cop" parent="." node_paths=PackedStringArray("navigation_region", "navigation_path") instance=ExtResource("2_8t7pw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.69054, 0.477321, -25.271)
-navigation_region = NodePath("../NavigationRegion3D")
-navigation_path = NodePath("../Path3D")
-
-[node name="Sober Driver" parent="." node_paths=PackedStringArray("navigation_region", "navigation_path") instance=ExtResource("3_qvuw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4136, 0.842244, -90.3399)
-navigation_region = NodePath("../NavigationRegion3D")
-navigation_path = NodePath("../Path3D")
 
 [node name="Exit Area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -310.58)

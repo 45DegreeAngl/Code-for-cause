@@ -166,7 +166,7 @@ func append_segment(segment:PackedScene = null):
 		instanced_segment.driver_spawned.connect(give_new_nav_region)
 	previous_road = instanced_segment
 	instanced_segment.visible = true
-	instanced_segment.spawn_drivers()
+	#instanced_segment.spawn_drivers()
 
 var cur_player_road:int = 0:
 	set(value):

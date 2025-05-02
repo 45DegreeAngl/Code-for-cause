@@ -36,6 +36,12 @@ func _ready() -> void:
 	MainShaderCanvas.filter_dict["drunk"][0].visible = !Globals.motion_sickness
 	MainShaderCanvas.filter_dict["BeerMeter"][0].visible = true
 	Globals.drunkenness= Globals.drunkenness
+	
+	Debug.fp_cam = $Cameras/Windshield
+	Debug.wheel_cam = $Cameras/Camera3D
+	Debug.lock_target = self
+	Debug.car_target = self
+	Debug.player_model = $Mesh/Character
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

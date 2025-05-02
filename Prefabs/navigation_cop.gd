@@ -47,8 +47,8 @@ func _ready() -> void:
 		randomize_driver_color(driver)
 	adjust_cur_nav_index()
 var saved_linear_velocity : Vector3 = Vector3.ZERO
-func distance_to(a, b):
-	return sqrt(pow((a.x-b.x),2) + pow((a.z-b.z),2))
+#func distance_to(a, b):
+	#return sqrt(pow((a.x-b.x),2) + pow((a.z-b.z),2))
 
 func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
@@ -65,7 +65,7 @@ func nav_control(_delta: float) -> void:
 	# Get the global position of the target
 	var target_position = curve_point_to_global(navigation_endpoint,navigation_path)
 	
-	if distance_to(self.global_position,target_position)<=point_accept_distance:
+	if self.global_position.distance_to(target_position)<=point_accept_distance:
 		navigation_is_finished()
 	
 	if reversing:
@@ -131,10 +131,9 @@ func get_closest_nav_point()->int:
 	var current_closest : Vector3 = navigation_path.curve.get_point_position(result)
 	
 	for point in navigation_path.curve.point_count:
-		if distance_to(global_position,\
-		curve_point_to_global(current_closest,navigation_path))>=\
-		distance_to(global_position,\
-		curve_point_to_global(navigation_path.curve.get_point_position(point),navigation_path)):
+		if curve_point_to_global(current_closest,navigation_path).distance_to(global_position)>=\
+		curve_point_to_global(navigation_path.curve.get_point_position(point),\
+		navigation_path).distance_to(global_position):
 			current_closest = navigation_path.curve.get_point_position(point)
 			result = point
 	
@@ -167,7 +166,7 @@ func _process(delta: float) -> void:
 	check_stuck()
 	
 	if target:
-		var distance_to_target = distance_to(self.global_position,target.global_position)
+		var distance_to_target = self.global_position.distance_to(target.global_position)
 		#print(distance_to(self.global_position,target.global_position))
 		if distance_to_target<hunt_distance:
 			if $Timer.is_stopped():

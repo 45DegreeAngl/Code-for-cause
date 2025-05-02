@@ -3,6 +3,7 @@ extends VehicleBody3D
 @export var backwards : bool = false
 @export var target: VehicleBody3D
 @export var hunt_distance : float = 15
+@export var point_accept_distance : float = 15
 
 @export var STEERING_CURVE : Curve
 @export var MAX_STEER_DEG : float = 45.0
@@ -56,8 +57,8 @@ func _on_collide(_body):
 		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
 		$Sounds/Crash.play()
 
-func distance_to(a, b):
-	return sqrt(pow((a.x-b.x),2) + pow((a.z-b.z),2))
+#func distance_to(a, b):
+	#return sqrt(pow((a.x-b.x),2) + pow((a.z-b.z),2))
 
 func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
@@ -73,7 +74,7 @@ func nav_control(_delta: float) -> void:
 	# Get the global position of the target
 	var target_position = curve_point_to_global(navigation_endpoint,navigation_path)
 	
-	if distance_to(self.global_position,target_position)<=10:
+	if target_position.distance_to(self.global_position)<=point_accept_distance:
 		navigation_is_finished()
 	
 	if reversing:
@@ -102,7 +103,9 @@ func nav_control(_delta: float) -> void:
 
 	# Compute the steering input based on the direction vector
 	var angle_to_target = (-basis.z).signed_angle_to(direction_vector, Vector3.UP)
-	steer_input = angle_to_target / deg_to_rad(MAX_STEER_DEG)
+	steer_input = clamp(angle_to_target / deg_to_rad(MAX_STEER_DEG), -1, 1)
+
+	print(steer_input)
 
 	# Compute engine input based on distance to next position
 	var distance_to_next = global_position.distance_to(next_position)
@@ -139,10 +142,10 @@ func get_closest_nav_point()->int:
 	var current_closest : Vector3 = navigation_path.curve.get_point_position(result)
 	
 	for point in navigation_path.curve.point_count:
-		if distance_to(global_position,\
-		curve_point_to_global(current_closest,navigation_path))>=\
-		distance_to(global_position,\
-		curve_point_to_global(navigation_path.curve.get_point_position(point),navigation_path)):
+		if curve_point_to_global(current_closest,\
+		navigation_path).distance_to(global_position)>=\
+		curve_point_to_global(navigation_path.curve.get_point_position(point),\
+		navigation_path).distance_to(global_position):
 			current_closest = navigation_path.curve.get_point_position(point)
 			result = point
 	
@@ -158,7 +161,7 @@ func _process(delta: float) -> void:
 	
 	if target:
 		#print(distance_to(self.global_position,target.global_position))
-		if distance_to(self.global_position,target.global_position)<hunt_distance:
+		if target.global_position.distance_to(self.global_position)<hunt_distance:
 			hunt = true
 		else:
 			hunt = false
