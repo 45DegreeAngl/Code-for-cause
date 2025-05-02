@@ -173,6 +173,8 @@ func leaderboard_scores(message,handle,result):
 
 func setAchievement(ach:String):
 	var status = Steam.getAchievement(ach)
+	if !status:
+		return
 	if status["achieved"]:
 		print("Already Unlocked")
 		return

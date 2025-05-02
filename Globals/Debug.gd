@@ -12,6 +12,8 @@ var debug_camera_spawned : bool = false
 @onready var player_model : Node3D
 @onready var debug_camera_packed = preload("res://DEBUG/Debug Camera.tscn")
 
+@onready var temp_road_packed = preload("res://Prefabs/Roads/Road Segments/TEMP ROAD.tscn")
+
 func _process(_delta)->void:
 	if Input.is_action_just_pressed("Tilde"):
 		if !Globals.is_cheater:
@@ -48,7 +50,10 @@ func _input(event: InputEvent) -> void:
 				debug_cam.close_requested.connect(on_cam_close)
 				debug_cam.player_model = player_model
 				debug_cam.visible = true
-				
+			KEY_INSERT:#spawn road
+				Globals.world_node.cur_player_road +=1
+			KEY_HOME:
+				Globals.world_node.append_segment(temp_road_packed)
 
 func on_cam_close():
 	debug_camera_spawned = false

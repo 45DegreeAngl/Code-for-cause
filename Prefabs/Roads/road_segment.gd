@@ -13,6 +13,28 @@ var passed : bool = false
 func _ready():
 	if debris_node:
 		spawn_debris()
+	#for child in get_children():
+		#if child is NavigationRegion3D:
+			#if child.is_baking():
+				#print("awaiting to bake :",child)
+				##await child.bake_finished
+				#for grand_child in child.get_children():
+					#if grand_child is GridMap:
+						#nav_region.bake_navigation_mesh()
+						##if grand_child.has_meta("Road") and grand_child.get_meta("Road"):
+							##nav_region.bake_navigation_mesh(false)#bake off of thread
+						##else:
+							##nav_region.bake_navigation_mesh(true)#bake on thread
+			#else:
+				#print("baking :",child)
+				#for grand_child in child.get_children():
+					#if grand_child is GridMap:
+						#nav_region.bake_navigation_mesh()
+						#if grand_child.has_meta("Road") and grand_child.get_meta("Road"):
+							#nav_region.bake_navigation_mesh(false)#bake off of thread
+						#else:
+							#nav_region.bake_navigation_mesh(true)#bake on thread
+
 
 func spawn_debris():
 	for child in debris_node.get_children():

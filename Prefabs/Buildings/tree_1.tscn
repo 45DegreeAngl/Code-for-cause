@@ -17,6 +17,3 @@ mesh = ExtResource("1_parmu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.208, 0)
 shape = SubResource("CylinderShape3D_f44wa")
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 1.5

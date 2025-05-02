@@ -1,13 +1,13 @@
 extends VehicleBody3D
-@export var backwards : bool = false
+
 @export var DEBUG_MODE : bool = false
+@export var backwards : bool = false
 @export var target: VehicleBody3D
 @export var hunt_distance : float = 15
 @export var point_accept_distance : float = 15
 
 @export var STEERING_CURVE : Curve
 @export var MAX_STEER_DEG : float = 45.0
-##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are
 @export var ENGINE_POWER : float = 200
 @export var SOUND_MAX_SPEED : float = 75
 
@@ -20,228 +20,174 @@ var engine_input : float :
 	set(val):
 		engine_input = clampf(val, -1, 1)
 
-
 @export var navigation_region : NavigationRegion3D
-func set_nav_region(nav:NavigationRegion3D):
+func set_nav_region(nav: NavigationRegion3D):
+	if nav == navigation_region:
+		printerr("Attempting to set current nav region to current nav region")
+		return false
 	navigation_region = nav
-@export var navigation_path : Path3D
-func set_nav_points(path_node:Path3D):
-	navigation_path = path_node
-@onready var navigation_agent : NavigationAgent3D = $NavigationAgent3D
+	navigation_agent.set_navigation_map(nav.get_navigation_map())
+	return true
 
+@export var navigation_path : Path3D
+func set_nav_path(path_node: Path3D):
+	if path_node == navigation_path:
+		printerr("Attempting to set current path node to current nav path")
+		return false
+	navigation_path = path_node
+	
+	# Reset navigation index when a new path is given
+	cur_nav_index = get_closest_nav_point() 
+	if navigation_path:
+		navigation_endpoint = navigation_path.global_transform * navigation_path.curve.get_point_position(cur_nav_index)
+	return true
+
+@export var navigation_agent : NavigationAgent3D
 
 var navigation_endpoint : Vector3
-var cur_nav_index:int = 0
+var cur_nav_index: int = 0
+
+signal request_new_nav_region(vehicle: VehicleBody3D)
 
 var hunt : bool = false
-
 var reversing := false
-
 var parked : bool = false
+var saved_linear_velocity : Vector3 = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$StuckTimer.connect("timeout", on_stuck_timer_ended)
-	$ReverseTimer.connect("timeout", on_reverse_timer_ended)
+	#$StuckTimer.connect("timeout", on_stuck_timer_ended)
+	#$ReverseTimer.connect("timeout", on_reverse_timer_ended)
 	for driver in human_drivers:
 		randomize_driver_color(driver)
-	adjust_cur_nav_index()
-var saved_linear_velocity : Vector3 = Vector3.ZERO
-#func distance_to(a, b):
-	#return sqrt(pow((a.x-b.x),2) + pow((a.z-b.z),2))
-
-func curve_point_to_global(point : Vector3, path : Path3D):
-	return path.global_basis * point + path.global_position
-
-signal request_new_nav_region(vehicle:VehicleBody3D)
-func nav_control(_delta: float) -> void:
-	if !navigation_path:
-		return
-	if !navigation_endpoint:
-		if backwards:
-			cur_nav_index = navigation_path.curve.point_count-1
-		
-		navigation_endpoint = navigation_path.curve.get_point_position(cur_nav_index)
-	# Get the global position of the target
-	var target_position = curve_point_to_global(navigation_endpoint,navigation_path)
-	
-	if self.global_position.distance_to(target_position)<=point_accept_distance:
-		navigation_is_finished()
-	
-	if reversing:
-		engine_input = -1
-		steer_input = 0
-		return
-	elif hunt:
-		target_position = target.global_position
-	
-	# If parked or hunt is active, stop moving
-	if parked :
-		return
-
-	# Set the target position for the navigation agent
-	navigation_agent.set_target_position(target_position)
-
-	# Check if the path is valid and ready
-	if navigation_agent.is_navigation_finished():
-		return
-
-	# Get the current location to follow the calculated path
-	var next_position = navigation_agent.get_next_path_position()
-
-	# Calculate the vector to the next position
-	var direction_vector = (next_position - global_position).normalized()
-
-	# Compute the steering input based on the direction vector
-	var angle_to_target = (-basis.z).signed_angle_to(direction_vector, Vector3.UP)
-	steer_input = angle_to_target / deg_to_rad(MAX_STEER_DEG)
-
-	# Compute engine input based on distance to next position
-	var distance_to_next = global_position.distance_to(next_position)
-	engine_input = 1 if distance_to_next > 2 else 0  # Adjust threshold as needed
-
-func navigation_is_finished():
-	if !navigation_path or !navigation_region:
-		print("I ",self," require a nav path node or a navigation region")
-		request_new_nav_region.emit(self)
-		return
-	if backwards:
-		cur_nav_index-=1
-	else:
-		cur_nav_index+=1
-	#check if the next road is present
-	if 0<=cur_nav_index and cur_nav_index<navigation_path.curve.point_count:
-		#if we reach a point in the path, look for next point
-		navigation_endpoint = navigation_path.curve.get_point_position(cur_nav_index)
-	#if no point is found, look for next navigation region
-	else:
-		request_new_nav_region.emit(self)
-
-func adjust_cur_nav_index():
-	if !navigation_path:
-		cur_nav_index = 0
-		return
-	cur_nav_index = get_closest_nav_point()
-	print("Adjusted nav index to: ",cur_nav_index)
-
-func get_closest_nav_point()->int:
-	if !navigation_path or navigation_path.curve.point_count==0:
-		return -1
-	var result : int = 0
-	var current_closest : Vector3 = navigation_path.curve.get_point_position(result)
-	
-	for point in navigation_path.curve.point_count:
-		if curve_point_to_global(current_closest,navigation_path).distance_to(global_position)>=\
-		curve_point_to_global(navigation_path.curve.get_point_position(point),\
-		navigation_path).distance_to(global_position):
-			current_closest = navigation_path.curve.get_point_position(point)
-			result = point
-	
-	return result
+	request_new_nav_region.emit(self)
 
 func _on_collide(_body):
-	if abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
+	if abs(linear_velocity.length() - saved_linear_velocity.length()) > 1 and !$Sounds/Crash.playing:
 		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
 		$Sounds/Crash.play()
 
-#returns triangle area in xz plane
-func area(a,b,c):
-	return (b.x-a.x)*(c.z-a.z) - (b.z-a.z)*(c.x-a.x)
-
-func find_nearest_path() -> Path3D:
-	var paths : Array[Node] = get_tree().get_nodes_in_group("road_path")
-	var closest_path = null
-	var min_dist = INF
-	for path in paths:
-		var dist = global_position.distance_to(path.global_position)
-		if dist < min_dist:
-			min_dist = dist
-			closest_path = path
-	return closest_path
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	nav_control(delta)
-	change_engine_pitch()
-	check_stuck()
-	
+	# Check if the target is within hunting distance
 	if target:
 		var distance_to_target = self.global_position.distance_to(target.global_position)
-		#print(distance_to(self.global_position,target.global_position))
-		if distance_to_target<hunt_distance:
+		if distance_to_target < hunt_distance:
 			if $Timer.is_stopped():
 				$Timer.start()
-				$Siren.playing = true
+				$Siren.playing = true  # Activate siren
 			Globals.detected = true
 			hunt = true
 		else:
 			if !$Timer.is_stopped():
 				$Timer.stop()
-				$Siren.playing = false
+				$Siren.playing = false  # Stop siren
 			hunt = false
-		#print(" D",target.global_position.z+500)
-		#print(self.global_position.z)
+			cur_nav_index = get_closest_nav_point()
 		
-		if target.global_position.z-300>self.global_position.z:
+		if target.global_position.z - 300 > self.global_position.z:
 			if !hunt:
 				parked = true
 		else:
 			parked = false
+			cur_nav_index = get_closest_nav_point()
 	
 	if parked:
 		return
 	
-	steering = move_toward(steering,steer_input * get_max_steer(),delta*2.5)
-	engine_force = max(engine_input * ENGINE_POWER,-ENGINE_POWER/1.5)
+	nav_control(delta)  # Follow path or chase target
+	change_engine_pitch()
+	check_stuck()
+
+	steering = move_toward(steering, steer_input * get_max_steer(), delta * 2.5)
+	engine_force = max(engine_input * ENGINE_POWER, -ENGINE_POWER / 1.5)
+
+func nav_control(_delta: float) -> void:
+	if !navigation_path or navigation_path.curve.point_count == 0:
+		return  # No valid path
 	
-	
+	if reversing:
+		engine_input=-1
+		steer_input=0
+		return
+	# Follow path normally
+	if global_position.distance_to(navigation_endpoint) <= point_accept_distance:
+		cur_nav_index += 1
+
+		# If at the last point, request a new navigation region
+		if cur_nav_index >= navigation_path.curve.point_count:
+			await get_tree().create_timer(0.25).timeout  # Delay to prevent instant switching
+			request_new_nav_region.emit(self)
+			return
+
+		# Update the next target position along the path
+		navigation_endpoint = navigation_path.global_transform * navigation_path.curve.get_point_position(cur_nav_index)
+	# If hunting, override normal navigation and chase target
+	if hunt:
+		navigation_endpoint = target.global_position
+	# Set navigation agent target position
+	navigation_agent.set_target_position(navigation_endpoint)
+
+	# Get next path position
+	var next_position = navigation_agent.get_next_path_position()
+	var direction_vector = (next_position - global_position).normalized()
+
+	# Compute steering input
+	var angle_to_target = (-basis.z).signed_angle_to(direction_vector, Vector3.UP)
+	steer_input = clampf(angle_to_target / deg_to_rad(MAX_STEER_DEG), -1, 1)
+
+	# Compute engine input based on distance
+	engine_input = 1.0 if global_position.distance_to(next_position) > 1.0 else 0.0
+
+func get_closest_nav_point() -> int:
+	if !navigation_path or navigation_path.curve.point_count == 0:
+		return 0  # Default to the first point
+
+	var result: int = 0
+	var closest_distance = INF
+
+	for point in range(navigation_path.curve.point_count):
+		var world_point = navigation_path.global_transform * navigation_path.curve.get_point_position(point)
+		var distance = global_position.distance_to(world_point)
+
+		if distance < closest_distance:
+			closest_distance = distance
+			result = point
+
+	return result
+
 func change_engine_pitch():
 	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:
 		$Engine.play()
-	var pitch = min(1, linear_velocity.length()/SOUND_MAX_SPEED)
+	var pitch = min(1, linear_velocity.length() / SOUND_MAX_SPEED)
 	if pitch <= 0.01:
 		$Engine.stop()
-	if pitch>0.0:
+	if pitch > 0.0:
 		$Engine.pitch_scale = pitch
-
-var red_light = false
-
+var red_light: bool = false  # Controls police light toggle
 func toggle_colors():
 	var red_mat : StandardMaterial3D = $Mesh/Chassis.get_active_material(4)
 	var blue_mat : StandardMaterial3D = $Mesh/Chassis.get_active_material(6)
 	
-	if red_light:
-		blue_mat.emission_enabled = false
-		#$Light/BLUE.visible = false
-		red_mat.emission_enabled = true
-		red_mat.emission = Color.RED
-		#$Light/RED.visible = true
-		$Mesh/Chassis.set_surface_override_material(4, red_mat)
-	else:
-		#$Light/BLUE.visible = false
-		#$Light/RED.light_energy = false
-		red_mat.emission_enabled = false
-		#$Light/RED.visible = true
-		blue_mat.emission_enabled = true
-		blue_mat.emission = Color.BLUE
-		$Mesh/Chassis.set_surface_override_material(6, red_mat)
+	red_mat.emission_enabled = red_light
+	blue_mat.emission_enabled = !red_light
+	red_mat.emission = Color.RED if red_light else Color.BLACK
+	blue_mat.emission = Color.BLUE if !red_light else Color.BLACK
+	
 	red_light = !red_light
 
 func talk():
-	if randi_range(0,5)!=0:
+	if randi_range(0, 5) != 0:
 		return
-	if int(Globals.timer)%2==0:
+	if int(Globals.timer) % 2 == 0:
 		$Announcement.stream = Globals.world_voice_lines["Pull Over"]
-		$Announcement.play()
 	else:
 		$Announcement.stream = Globals.world_voice_lines["Best Driver"]
-		$Announcement.play()
-
+	$Announcement.play()
 
 func get_max_steer():
 	if linear_velocity.length() >= 60:
 		return deg_to_rad(MAX_STEER_DEG) * 0.1
-	return deg_to_rad(MAX_STEER_DEG) * STEERING_CURVE.sample(linear_velocity.length()/60)
+	return deg_to_rad(MAX_STEER_DEG) * STEERING_CURVE.sample(linear_velocity.length() / 60)
 
 func check_stuck():
 	if linear_velocity.length() < 1:
@@ -255,16 +201,17 @@ func on_stuck_timer_ended():
 	$ReverseTimer.start()
 
 func on_reverse_timer_ended():
+	cur_nav_index = get_closest_nav_point()
 	reversing = false
+	
 
 @export var human_drivers: Array[MeshInstance3D]
-
-func randomize_driver_color(mesh:MeshInstance3D):
-	if Globals.car_colors.size()==0 or !mesh:
+func randomize_driver_color(mesh: MeshInstance3D):
+	if Globals.car_colors.size() == 0 or !mesh:
 		return
 	var chosen_color = Globals.car_colors[Globals.car_colors.keys().pick_random()]
-	var human_mesh:Mesh = mesh.mesh.duplicate()
-	var human_material:StandardMaterial3D = human_mesh.surface_get_material(0).duplicate()
+	var human_mesh: Mesh = mesh.mesh.duplicate()
+	var human_material: StandardMaterial3D = human_mesh.surface_get_material(0).duplicate()
 	human_material.albedo_color = chosen_color
-	human_mesh.surface_set_material(0,human_material)
+	human_mesh.surface_set_material(0, human_material)
 	mesh.mesh = human_mesh

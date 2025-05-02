@@ -367,6 +367,7 @@ func _on_raycast_exit(area:Area3D)->void:
 
 
 func _on_sobriety_timer_timeout() -> void:
+	print(Globals.drunkenness)
 	if DEBUG_MODE:
 		return
 	Globals.drunkenness-=1

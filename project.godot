@@ -36,6 +36,7 @@ project/assembly_name="Code-for-cause"
 
 [editor]
 
+movie_writer/movie_file="C:/Users/Owner/Downloads/Github/trailer footage/lovedrunk.avi"
 export/convert_text_resources_to_binary=false
 
 [file_customization]
@@ -59,6 +60,7 @@ import/blender/enabled=false
 [global_group]
 
 "Please Move"="Used for collision hitbox handling of debris "
+navigation_path=""
 
 [input]
 

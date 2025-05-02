@@ -52,7 +52,8 @@ func _input(event):
 		toggle_lock_on()  # Toggles lock-on mode
 
 	if event is InputEventKey and event.keycode == KEY_SPACE and event.is_pressed():
-		sync_free_camera_to_first_person()  # Sync camera position
+		if first_person:
+			free.global_transform = first_person.global_transform
 
 	# Adjust sensitivity and speed (only in free mode)
 	if free.current and !is_locked_on:
@@ -99,10 +100,11 @@ func switch_camera(new_camera: Camera3D):
 
 func sync_free_camera_to_first_person():
 	if first_person_cam:
-		free.global_transform = first_person_cam.global_transform  # Sync position & rotation
+		free.global_transform = first_person_cam.global_transform
+		#free.global_transform = first_person_cam.global_transform  # Sync position & rotation
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if first_person_cam:
 		first_person.global_transform = first_person_cam.global_transform
 	
@@ -127,7 +129,7 @@ func update_car_camera(_delta):
 	)
 
 	var target_position = car_target.global_transform.origin + offset
-	car.global_transform.origin = car.global_transform.origin.lerp(target_position, 0.1)  # Smooth movement
+	car.global_transform.origin = lerp(car.global_transform.origin,target_position, 0.1)  # Smooth movement
 
 	# Make the camera look at the car
 	car.look_at(car_target.global_transform.origin, Vector3.UP)
