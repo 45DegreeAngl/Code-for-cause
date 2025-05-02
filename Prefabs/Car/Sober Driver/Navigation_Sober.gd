@@ -23,7 +23,7 @@ var engine_input : float :
 @export var navigation_region : NavigationRegion3D
 func set_nav_region(nav: NavigationRegion3D):
 	if nav == navigation_region:
-		printerr("Attempting to set current nav region to current nav region")
+		#printerr("Attempting to set current nav region to current nav region")
 		return false
 	navigation_region = nav
 	navigation_agent.set_navigation_map(nav.get_navigation_map())
@@ -32,7 +32,7 @@ func set_nav_region(nav: NavigationRegion3D):
 @export var navigation_path : Path3D
 func set_nav_path(path_node: Path3D):
 	if path_node == navigation_path:
-		printerr("Attempting to set current path node to current nav path")
+		#printerr("Attempting to set current path node to current nav path")
 		return false
 	navigation_path = path_node
 	
