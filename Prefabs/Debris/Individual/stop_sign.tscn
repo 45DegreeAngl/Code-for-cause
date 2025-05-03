@@ -102,23 +102,23 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8m5ra")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mlavg"]
-size = Vector3(1, 1, 8.72731)
+size = Vector3(0.53894, 0.594238, 5.13617)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3q1r3"]
 height = 0.518555
-radius = 1.61475
+radius = 1.01709
 
 [node name="Stop_Sign" type="RigidBody3D"]
 
 [node name="Sign" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6.6, 0.55)
+transform = Transform3D(0.59, 0, 0, 0, -2.57897e-08, -0.59, 0, 0.59, -2.57897e-08, 0, 3.89363, 0.55)
 mesh = SubResource("ArrayMesh_g6w0v")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.40441, 1.92523e-07)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0410767, 2.60884, 0.202881)
 shape = SubResource("BoxShape3D_mlavg")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6.79112, 0.195284)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.90807, 0.195284)
 shape = SubResource("CylinderShape3D_3q1r3")

@@ -309,13 +309,13 @@ transform = Transform3D(0.58107, 0.407047, 0.704748, -0.0943941, 0.893803, -0.43
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94, -10, 0)
 
 [node name="Lampos18" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.0322, 10.1037, -111.366)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.0322, 9.65518, -111.366)
 
 [node name="Lampos20" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.0322, 10.1037, -119.315)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.0322, 9.65518, -119.315)
 
 [node name="Lampos22" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.0322, 10.1037, -128.802)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.0322, 9.65518, -128.802)
 
 [node name="Lampos32" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
 transform = Transform3D(10.6841, -1.20792, -16.8639, -3.79406, 19.2688, -3.7839, 16.4759, 5.22051, 10.0643, 43.9384, 8.86666, -244.592)
@@ -333,22 +333,22 @@ transform = Transform3D(10.1126, 10.7866, -2.52713, -8.46943, 9.73279, 7.65124, 
 transform = Transform3D(0.703333, -0.309125, -0.640128, 0.366381, 0.929316, -0.04622, 0.60917, -0.202023, 0.766876, 102.101, 9.85926, -57.8274)
 
 [node name="Lampos23" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.3224, 10.1037, -111.366)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.3224, 9.65518, -111.366)
 
 [node name="Lampos27" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.3224, 10.1037, -119.315)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.3224, 9.65518, -119.315)
 
 [node name="Lampos28" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.3224, 10.1037, -128.802)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.3224, 9.65518, -128.802)
 
 [node name="Lampos29" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.626, 10.1037, -111.366)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.626, 9.65518, -111.366)
 
 [node name="Lampos33" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.626, 10.1037, -119.315)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.626, 9.65518, -119.315)
 
 [node name="Lampos34" parent="Grass/Lamps/Lamp_Army" instance=ExtResource("3_h7e8l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.626, 10.1037, -128.802)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.626, 9.65518, -128.802)
 
 [node name="Lamp_Army2" type="Node3D" parent="Grass/Lamps"]
 transform = Transform3D(0.921172, 0, -0.389156, 0, 1, 0, 0.389156, 0, 0.921172, -158.905, 0, -83.2762)

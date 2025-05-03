@@ -243,10 +243,10 @@ transform = Transform3D(-4.57162e-08, 6.45952e-10, 1, 0.306676, 0.951814, 1.3405
 transform = Transform3D(-4.57162e-08, 6.45952e-10, 1, 0.306676, 0.951814, 1.34052e-08, -0.951814, 0.306676, -4.37114e-08, 22.5778, -78.8058, -364.736)
 
 [node name="Lamp_post21" parent="NavigationRegion3D2/Lamps" instance=ExtResource("4_fh61i")]
-transform = Transform3D(-4.57162e-08, 6.45952e-10, 1, 0.306676, 0.951814, 1.34052e-08, -0.951814, 0.306676, -4.37114e-08, -2.96218, -95.006, -312.866)
+transform = Transform3D(-4.57162e-08, 6.45952e-10, 1, 0.306676, 0.951814, 1.34052e-08, -0.951814, 0.306676, -4.37114e-08, -2.96218, -95.938, -312.866)
 
 [node name="Lamp_post22" parent="NavigationRegion3D2/Lamps" instance=ExtResource("4_fh61i")]
-transform = Transform3D(-4.57162e-08, 6.45952e-10, 1, 0.306676, 0.951814, 1.34052e-08, -0.951814, 0.306676, -4.37114e-08, 22.5778, -95.006, -312.866)
+transform = Transform3D(-4.57162e-08, 6.45952e-10, 1, 0.306676, 0.951814, 1.34052e-08, -0.951814, 0.306676, -4.37114e-08, 22.5778, -95.938, -312.866)
 
 [node name="Lamp_post33" parent="NavigationRegion3D2/Lamps" instance=ExtResource("4_fh61i")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.96218, -100.463, -255.206)
