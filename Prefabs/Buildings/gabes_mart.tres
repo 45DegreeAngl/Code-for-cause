@@ -1,7 +1,7 @@
 [gd_resource type="ArrayMesh" load_steps=26 format=4 uid="uid://d2om0t7m5kyww"]
 
-[ext_resource type="Texture2D" uid="uid://bibpforcctvrm" path="res://Assets/Models/Buildings/Gabes_Mart_Checkered Pattern.jpg" id="1_x8kke"]
-[ext_resource type="Texture2D" uid="uid://8iag5mo0mk85" path="res://Assets/Models/Buildings/Gabes_Mart_Untitled.png" id="2_jptsj"]
+[ext_resource type="Texture2D" uid="uid://djnriup30orlh" path="res://Assets/Models/Buildings/Gabes_Mart_Checkered Pattern.jpg" id="1_x8kke"]
+[ext_resource type="Texture2D" uid="uid://cclou5gkln0ke" path="res://Assets/Models/Buildings/Gabes_Mart_Untitled.png" id="2_jptsj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxg1q"]
 resource_name = "Material.009"

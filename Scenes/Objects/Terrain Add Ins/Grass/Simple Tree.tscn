@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg6h1skr0ri2m"]
+
+[ext_resource type="ArrayMesh" uid="uid://c5tvfihe4mtg6" path="res://Scenes/Objects/Terrain Add Ins/Grass/Simple Tree Mesh.tres" id="1_jr4mx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f44wa"]
+height = 4.41604
+radius = 0.422363
+
+[node name="Tree Simple" type="Node3D"]
+
+[node name="optimized" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = ExtResource("1_jr4mx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.208, 0)
+shape = SubResource("CylinderShape3D_f44wa")

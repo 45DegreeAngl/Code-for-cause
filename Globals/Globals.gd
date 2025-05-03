@@ -4,7 +4,7 @@ signal game_lost()
 @warning_ignore("unused_signal")
 signal game_won()
 
-@onready var player_packed : PackedScene = preload("res://Prefabs/Player/test character.tscn")
+@onready var player_packed : PackedScene = preload("res://Scenes/User/Character/Ragdoll Character.tscn")
 @onready var player_voice_lines:Array = [
 	preload("res://Assets/Sounds/Voice Lines/MoreBeer_Sad.mp3"),
 	preload("res://Assets/Sounds/Voice Lines/MoreBeer_Angry.mp3"),
@@ -170,9 +170,10 @@ func load_random_song():
 	Color.GOLD: "Gold"
 }
 
-
-@onready var pedestrian_packed:PackedScene = preload("res://Prefabs/Car/Average Sober Driver.tscn")
-@onready var cop_packed:PackedScene = preload("res://Prefabs/the_cop.tscn")
+@onready var pedestrian_array:Array = [preload("res://Scenes/AI/Navigation/Smart Sober.tscn")]
+#@onready var pedestrian_packed:PackedScene = preload("res://Prefabs/Car/Average Sober Driver.tscn")
+@onready var cop_array:Array = [preload("res://Scenes/AI/Navigation/Smart Cop.tscn")]
+#@onready var cop_packed:PackedScene = preload("res://Prefabs/the_cop.tscn")
 
 var timer:float = 0
 var is_cheater : bool = false

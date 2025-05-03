@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Love Drunk"
-run/main_scene="res://main_menu.tscn"
+run/main_scene="res://Scenes/UI/Main Menu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/image="res://Assets/Textures/Disclaimer.png"
 config/icon="res://icon Image.png"
@@ -20,7 +20,7 @@ config/icon="res://icon Image.png"
 
 Actions="*res://Globals/Actions.gd"
 Globals="*res://Globals/Globals.gd"
-MainShaderCanvas="*res://Shaders/Main Shader Canvas.tscn"
+MainShaderCanvas="*res://Scenes/UI/Misc/Main Shader Canvas.tscn"
 GlobalSteam="*res://Globals/GlobalSteam.gd"
 GlobalWorkshop="*res://Globals/GlobalWorkshop.gd"
 Debug="*res://Globals/Debug.gd"
@@ -45,12 +45,11 @@ folder_colors={
 "res://Assets/": "orange",
 "res://DEBUG/": "purple",
 "res://Deprecated/": "red",
+"res://Deprecated/TRAILER/": "purple",
 "res://Globals/": "gray",
 "res://Localization stuff/": "teal",
-"res://Material/": "green",
 "res://Resources/": "pink",
-"res://Shaders/": "blue",
-"res://TRAILER/": "purple"
+"res://Shaders/": "blue"
 }
 
 [filesystem]

@@ -10,9 +10,9 @@ var debug_camera_spawned : bool = false
 @onready var lock_target : Node3D
 @onready var car_target : Node3D
 @onready var player_model : Node3D
-@onready var debug_camera_packed = preload("res://DEBUG/Debug Camera.tscn")
+@onready var debug_camera_packed = preload("res://DEBUG/Debug Popout Cam.tscn")
 
-@onready var temp_road_packed = preload("res://Prefabs/Roads/Road Segments/TEMP ROAD.tscn")
+@onready var temp_road_packed = preload("res://Scenes/Roads/Normal Segments/TEMP ROAD.tscn")
 
 func _process(_delta)->void:
 	if Input.is_action_just_pressed("Tilde"):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwh72emd0kt0o"]
 
-[ext_resource type="PackedScene" uid="uid://lvgwnfheptfj" path="res://Prefabs/Alcohol Crate.tscn" id="1_1nonp"]
+[ext_resource type="PackedScene" uid="uid://lvgwnfheptfj" path="res://Scenes/User/Car/Alcohol Crate.tscn" id="1_1nonp"]
 
 [node name="Milk Crate Debug" type="Node3D"]
 

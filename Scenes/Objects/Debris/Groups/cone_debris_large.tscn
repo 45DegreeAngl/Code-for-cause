@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://fnfpbgvblxdg"]
+
+[ext_resource type="PackedScene" uid="uid://cyf4gwwy1p5ut" path="res://Scenes/Objects/Debris/Individuals/cone_debris.tscn" id="2_d5xri"]
+
+[node name="Cone Debris Large" type="Node3D"]
+
+[node name="Cone Debris" parent="." instance=ExtResource("2_d5xri")]
+
+[node name="Cone Debris3" parent="." instance=ExtResource("2_d5xri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0, 0)
+
+[node name="Cone Debris6" parent="." instance=ExtResource("2_d5xri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0, 0.1)
+
+[node name="Cone Debris5" parent="." instance=ExtResource("2_d5xri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0)
+
+[node name="Cone Debris2" parent="." instance=ExtResource("2_d5xri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0, 0)
+
+[node name="Cone Debris7" parent="." instance=ExtResource("2_d5xri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="Cone Debris9" parent="." instance=ExtResource("2_d5xri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+
+[node name="Cone Debris8" parent="." instance=ExtResource("2_d5xri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0, 0.1)
+
+[node name="Cone Debris4" parent="." instance=ExtResource("2_d5xri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0)

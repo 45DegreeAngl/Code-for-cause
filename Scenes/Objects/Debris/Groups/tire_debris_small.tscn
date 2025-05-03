@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ep41w0sah178"]
+
+[ext_resource type="PackedScene" uid="uid://gq811rsmjlhl" path="res://Scenes/Objects/Debris/Individuals/tire_debris.tscn" id="1_cp5ao"]
+
+[node name="Tire Debris Small" type="Node3D"]
+
+[node name="Tire Debris" parent="." instance=ExtResource("1_cp5ao")]
+sleeping = true
+
+[node name="Tire Debris2" parent="." instance=ExtResource("1_cp5ao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0260512, 0)
+sleeping = true
+
+[node name="Tire Debris3" parent="." instance=ExtResource("1_cp5ao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.052, 0)
+sleeping = true
