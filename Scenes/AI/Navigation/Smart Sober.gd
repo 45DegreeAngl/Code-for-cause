@@ -79,7 +79,7 @@ func _process(delta: float) -> void:
 			cur_nav_index = get_closest_nav_point()
 			
 		if target.global_position.z - 300 > self.global_position.z:
-			if !hunt:
+			if !hunt and !backwards:
 				parked = true
 		else:
 			parked = false
@@ -121,10 +121,13 @@ func navigation_control(_delta: float) -> void:
 	
 	# Check if we're near the current navigation point
 	if global_position.distance_to(navigation_endpoint) <= point_accept_distance:
-		cur_nav_index += 1
+		if backwards:
+			cur_nav_index -= 1
+		else:
+			cur_nav_index += 1
 
 		# If at the last point, request a new navigation region
-		if cur_nav_index >= navigation_path.curve.point_count:
+		if cur_nav_index >= navigation_path.curve.point_count or cur_nav_index<0:
 			await get_tree().create_timer(0.3).timeout  # Wait before switching
 			request_new_nav_region.emit(self)
 			return
@@ -144,7 +147,7 @@ func navigation_control(_delta: float) -> void:
 	var direction_vector = (next_position - global_position).normalized()
 	var angle_to_target = (-basis.z).signed_angle_to(direction_vector, Vector3.UP)
 
-	var adjusted_angle = angle_to_target if angle_to_target >= 0 else TAU + angle_to_target
+	#var adjusted_angle = angle_to_target if angle_to_target >= 0 else TAU + angle_to_target
 	var distance_to_next = global_position.distance_to(next_position)
 
 	# Apply movement logic based on reversing state
@@ -162,18 +165,20 @@ func get_closest_nav_point() -> int:
 	if !navigation_path or navigation_path.curve.point_count == 0:
 		return 0  # Default to the first point
 
-	var result: int = 0
+	var result: int
+	if backwards:
+		result = navigation_path.curve.point_count-1
+	else:
+		result = 0
 	var closest_distance = INF
-
 	for point in range(navigation_path.curve.point_count):
 		var world_point = navigation_path.global_transform * navigation_path.curve.get_point_position(point)
 		var distance = global_position.distance_to(world_point)
-
 		if distance < closest_distance:
 			closest_distance = distance
 			result = point
-
 	return result
+
 func change_engine_pitch():
 	if (not $Engine.playing) and $Engine.pitch_scale > 0.01:
 		$Engine.play()

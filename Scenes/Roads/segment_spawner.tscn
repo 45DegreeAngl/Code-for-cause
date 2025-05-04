@@ -1,8 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=9 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" uid="uid://bknkigk4grssx" path="res://Scenes/Roads/segment_spawner.gd" id="1_rkbci"]
-[ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Scenes/AI/Navigation/Smart Cop.tscn" id="6_nywt8"]
-[ext_resource type="PackedScene" uid="uid://decdg2b8cnq74" path="res://Scenes/AI/Navigation/Smart Sober.tscn" id="7_pck8j"]
 [ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Scenes/User/Car/The Car.tscn" id="10_lxkwt"]
 [ext_resource type="PackedScene" uid="uid://cr75h2k10e6eh" path="res://Scenes/Roads/Ex Segments/Ex Straight.tscn" id="11_3gyvj"]
 [ext_resource type="Texture2D" uid="uid://bvk6p748nx6p5" path="res://Assets/Models/Skybox/AllSky_Night_MoonBurst Equirect.png" id="11_ftxy5"]
@@ -55,13 +53,4 @@ cops_node = NodePath("../Cops")
 
 [node name="Cops" type="Node3D" parent="."]
 
-[node name="The_Cop" parent="Cops" instance=ExtResource("6_nywt8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1111, 0.742819, -143.9)
-
 [node name="Pedestrians" type="Node3D" parent="."]
-
-[node name="Sober Driver" parent="Pedestrians" instance=ExtResource("7_pck8j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.98571, 1.35965, -203.692)
-
-[connection signal="request_new_nav_region" from="Cops/The_Cop" to="." method="give_new_nav_region"]
-[connection signal="request_new_nav_region" from="Pedestrians/Sober Driver" to="." method="give_new_nav_region"]

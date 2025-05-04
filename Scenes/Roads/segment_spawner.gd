@@ -205,12 +205,12 @@ func give_new_nav_region(vehicle:VehicleBody3D):
 	debug_dic[vehicle.name] = cur_entry+1
 	print("I ",vehicle.name," called this function #:",debug_dic[vehicle.name])
 	var vehicle_road : RoadSegment = get_road_at_pos(vehicle.global_position)
-	print(vehicle_road.name)
+	#print(vehicle_road.name)
 	#now i should have a vehicle road that IS proper, now we just need to assign the proper
 	if !vehicle_road.nav_region:
-		print("fuck")
+		print("Missing Nav_Region for road")
 	if !vehicle_road.nav_curve:
-		print("dick")
+		print("Missing Nav_Curve for road")
 	#variables to the vehicle that was given
 	if vehicle.has_method("set_nav_region"):
 		var result:bool = vehicle.set_nav_region(vehicle_road.nav_region)
@@ -219,25 +219,24 @@ func give_new_nav_region(vehicle:VehicleBody3D):
 	if vehicle.has_method("set_nav_path"):
 		var result = vehicle.set_nav_path(vehicle_road.nav_curve)
 		if result:
-			print("Nav Points Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_curve)
-	if vehicle.has_method("adjust_cur_nav_index"):
-		vehicle.adjust_cur_nav_index()
+			print("Nav Path Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_curve)
+	#if vehicle.has_method("adjust_cur_nav_index"):
+		#vehicle.adjust_cur_nav_index()
 		#print("Adjusting Nav Index for Vehicle: ",vehicle)
 	if vehicle.has_signal("request_new_nav_region"):
 		if !vehicle.is_connected("request_new_nav_region",give_new_nav_region):
 			vehicle.request_new_nav_region.connect(give_new_nav_region)
 		
-
+#change this to give Array [prev, next]
 ##we move in the -z direction
 func get_road_at_pos(glob_pos:Vector3)->RoadSegment:
-	#if glob_pos is greater than the position of the first road, return first road
-	var first_road : RoadSegment = $Roads.get_children().front()
 	#if glob_pos.z>first_road.global_position.z:
 		#return first_road
 	#if glob_pos is less than the position of the last road, return last road
 	var last_road : RoadSegment = $Roads.get_children().back()
 	#if glob_pos.z>last_road.global_position.z:
 		#return last_road
+	#var segment_arrays : Array[RoadSegment] = [$Roads.get_children()[0],$Roads.get_children()[1]]
 	
 	var cur_road : RoadSegment
 	#loop through all roads

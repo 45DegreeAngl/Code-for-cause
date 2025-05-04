@@ -1,5 +1,6 @@
 extends VehicleBody3D
 @export var DEBUG_MODE : bool = false
+@export var backwards:bool = false
 @export var target: VehicleBody3D
 @export var hunt_distance : float = 15
 
@@ -17,7 +18,21 @@ var engine_input : float :
 	set(val):
 		engine_input = clampf(val, -1, 1)
 
-var current_path : Path3D = null
+var cur_nav_index:int = 0
+var path_endpoint : Vector3
+
+var navigation_path : Path3D = null
+func set_nav_path(path_node: Path3D):
+	if path_node == navigation_path:
+		#printerr("Attempting to set current path node to current nav path")
+		return false
+	navigation_path = path_node
+	
+	# Reset navigation index when a new path is given
+	cur_nav_index = get_closest_nav_point() 
+	if navigation_path:
+		path_endpoint = navigation_path.global_transform * navigation_path.curve.get_point_position(cur_nav_index)
+	return true
 
 var hunt : bool = false
 
@@ -32,10 +47,13 @@ func _ready() -> void:
 	randomize_chasis_color()
 	for driver in human_drivers:
 		randomize_driver_color(driver)
+	request_new_nav_region.emit(self)
 
 func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
 var saved_linear_velocity : Vector3 = Vector3.ZERO
+
+signal request_new_nav_region(vehicle: VehicleBody3D)
 
 func control(_delta) -> void:
 	saved_linear_velocity = linear_velocity
@@ -46,7 +64,7 @@ func control(_delta) -> void:
 		engine_input = -1
 		steer_input = 0
 	elif hunt:
-		current_path = null
+		navigation_path = null
 		var target_point_global = Globals.player_vehicle.global_position
 		var target_lookahead_vector = (target_point_global - global_position).normalized()
 		var target_angle_to_lookahead = (-basis.z).signed_angle_to(target_lookahead_vector, global_basis.y)
@@ -60,20 +78,20 @@ func control(_delta) -> void:
 		else:
 			engine_input = 1
 	else:
-		if current_path == null:
-			current_path = find_nearest_path()
+		if !navigation_path:
+			return
 		
-		var global_to_curve_space_pos = current_path.global_basis.inverse() * (global_position - current_path.global_position)
-		var closest_point_offset = current_path.curve.get_closest_offset(global_to_curve_space_pos)
-		var lookahead_point = current_path.curve.sample_baked(closest_point_offset + lookahead_dist)
-		var lookahead_point_global = curve_point_to_global(lookahead_point, current_path)
+		var global_to_curve_space_pos = navigation_path.global_basis.inverse() * (global_position - navigation_path.global_position)
+		var closest_point_offset = navigation_path.curve.get_closest_offset(global_to_curve_space_pos)
+		var lookahead_point = navigation_path.curve.sample_baked(closest_point_offset + lookahead_dist)
+		var lookahead_point_global = curve_point_to_global(lookahead_point, navigation_path)
 		var lookahead_vector = (lookahead_point_global - global_position).normalized()
 		var angle_to_lookahead = (-basis.z).signed_angle_to(lookahead_vector, global_basis.y)
 		
-		var closest_point = current_path.curve.get_closest_point(global_to_curve_space_pos)
-		var slightly_ahead_point = current_path.curve.sample_baked(closest_point_offset + 0.1)
-		var global_slightly_ahead_point = curve_point_to_global(slightly_ahead_point, current_path)
-		var global_closest_point = curve_point_to_global(closest_point, current_path)
+		var closest_point = navigation_path.curve.get_closest_point(global_to_curve_space_pos)
+		var slightly_ahead_point = navigation_path.curve.sample_baked(closest_point_offset + 0.1)
+		var global_slightly_ahead_point = curve_point_to_global(slightly_ahead_point, navigation_path)
+		var global_closest_point = curve_point_to_global(closest_point, navigation_path)
 		var path_heading = (global_slightly_ahead_point - global_closest_point).normalized()
 		var path_normal = path_heading.rotated(Vector3.UP, PI/2)
 		var cross_track_error = (global_closest_point - global_position).dot(path_normal)
@@ -87,8 +105,8 @@ func control(_delta) -> void:
 		
 		for i in range(3):
 			var this_lookahead_dist = throttle_lookahead_dist/3.0 * (i+1)
-			var this_lookahead_point = current_path.curve.sample_baked(closest_point_offset + this_lookahead_dist)
-			var this_lookahead_point_global = curve_point_to_global(this_lookahead_point, current_path)
+			var this_lookahead_point = navigation_path.curve.sample_baked(closest_point_offset + this_lookahead_dist)
+			var this_lookahead_point_global = curve_point_to_global(this_lookahead_point, navigation_path)
 			sample_pts.append(this_lookahead_point_global)
 		
 		var A = area(sample_pts[0], sample_pts[1], sample_pts[2])
@@ -99,13 +117,32 @@ func control(_delta) -> void:
 		else:
 			engine_input = 1
 		
-		if(closest_point_offset/current_path.curve.get_baked_length() > 0.95):
-			current_path = null
+		if(closest_point_offset/navigation_path.curve.get_baked_length() > 0.95):
+			request_new_nav_region.emit(self)
 
 func _on_collide(_body):
 	if abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
 		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
 		$Sounds/Crash.play()
+
+func get_closest_nav_point() -> int:
+	if !navigation_path or navigation_path.curve.point_count == 0:
+		return 0  # Default to the first point
+
+	var result: int
+	if backwards:
+		result = navigation_path.curve.point_count-1
+	else:
+		result = 0
+	var closest_distance = INF
+	for point in range(navigation_path.curve.point_count):
+		var world_point = navigation_path.global_transform * navigation_path.curve.get_point_position(point)
+		var distance = global_position.distance_to(world_point)
+		if distance < closest_distance:
+			closest_distance = distance
+			result = point
+	return result
+
 
 #returns triangle area in xz plane
 func area(a,b,c):
@@ -114,16 +151,16 @@ func area(a,b,c):
 func distance_to(a, b):
 	return sqrt(pow((a.x-b.x),2) + pow((a.z-b.z),2))
 
-func find_nearest_path() -> Path3D:
-	var paths : Array[Node] = get_tree().get_nodes_in_group("road_path")
-	var closest_path = null
-	var min_dist = INF
-	for path in paths:
-		var dist = global_position.distance_to(path.global_position)
-		if dist < min_dist:
-			min_dist = dist
-			closest_path = path
-	return closest_path
+#func find_nearest_path() -> Path3D:
+	#var paths : Array[Node] = get_tree().get_nodes_in_group("road_path")
+	#var closest_path = null
+	#var min_dist = INF
+	#for path in paths:
+		#var dist = global_position.distance_to(path.global_position)
+		#if dist < min_dist:
+			#min_dist = dist
+			#closest_path = path
+	#return closest_path
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

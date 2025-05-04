@@ -23,7 +23,7 @@ var engine_input : float :
 @export var navigation_region : NavigationRegion3D
 func set_nav_region(nav: NavigationRegion3D):
 	if nav == navigation_region:
-		printerr("Attempting to set current nav region to current nav region")
+		#printerr("Attempting to set current nav region to current nav region")
 		return false
 	navigation_region = nav
 	navigation_agent.set_navigation_map(nav.get_navigation_map())
@@ -32,7 +32,7 @@ func set_nav_region(nav: NavigationRegion3D):
 @export var navigation_path : Path3D
 func set_nav_path(path_node: Path3D):
 	if path_node == navigation_path:
-		printerr("Attempting to set current path node to current nav path")
+		#printerr("Attempting to set current path node to current nav path")
 		return false
 	navigation_path = path_node
 	
@@ -85,7 +85,7 @@ func _process(delta: float) -> void:
 			cur_nav_index = get_closest_nav_point()
 		
 		if target.global_position.z - 300 > self.global_position.z:
-			if !hunt:
+			if !hunt and !backwards:
 				parked = true
 		else:
 			parked = false
@@ -111,10 +111,13 @@ func nav_control(_delta: float) -> void:
 		return
 	# Follow path normally
 	if global_position.distance_to(navigation_endpoint) <= point_accept_distance:
-		cur_nav_index += 1
+		if backwards:
+			cur_nav_index -= 1
+		else:
+			cur_nav_index += 1
 
 		# If at the last point, request a new navigation region
-		if cur_nav_index >= navigation_path.curve.point_count:
+		if cur_nav_index >= navigation_path.curve.point_count or cur_nav_index <0:
 			await get_tree().create_timer(0.25).timeout  # Delay to prevent instant switching
 			request_new_nav_region.emit(self)
 			return
@@ -142,7 +145,11 @@ func get_closest_nav_point() -> int:
 	if !navigation_path or navigation_path.curve.point_count == 0:
 		return 0  # Default to the first point
 
-	var result: int = 0
+	var result: int
+	if backwards:
+		result = navigation_path.curve.point_count-1
+	else:
+		result = 0
 	var closest_distance = INF
 
 	for point in range(navigation_path.curve.point_count):
