@@ -9,10 +9,16 @@ var passed : bool = false
 @export var nav_curve : Path3D
 
 @export var debris_node : Node3D
+@onready var spawn_driver_timer : Timer = Timer.new()
 
 func _ready():
 	if debris_node:
 		spawn_debris()
+	add_child(spawn_driver_timer)
+	spawn_driver_timer.autostart = false
+	spawn_driver_timer.one_shot = true
+	spawn_driver_timer.wait_time = randf_range(3.0,10.0)
+	spawn_driver_timer.timeout.connect(spawn_timer_timeout)
 	#for child in get_children():
 		#if child is NavigationRegion3D:
 			#if child.is_baking():
@@ -48,6 +54,7 @@ func _on_exit_area_body_entered(body: Node3D) -> void:
 	if body == Globals.player_vehicle:
 		passed = true
 		increment_player_road_counter.emit()
+		spawn_driver_timer.start()
  
 func disable_tutorial(body:Node3D):
 	if body == Globals.player_vehicle:
@@ -63,12 +70,18 @@ func spawn_drivers():
 		print("not spawning driver")
 		return
 	if randi_range(0,2) == 0:#Cop Spawn
-		driver_spawned.emit(spawn_individual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops")))
+		var result = spawn_individual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
+		if result:
+			driver_spawned.emit(result)
 	if randi_range(0,3)!=0:#Pedestrian Spawn
-		driver_spawned.emit(spawn_individual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians")))
+		var result = spawn_individual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
+		if result:
+			driver_spawned.emit(result)
 
 func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleBody3D:
 	var chosen_marker:Marker3D = driver_spawns.get_children().pick_random()
+	if chosen_marker == null:
+		return null
 	var driver_instance : VehicleBody3D = packed.instantiate()
 	driver_type_node.add_child(driver_instance)
 	driver_instance.target = Globals.player_vehicle
@@ -79,6 +92,35 @@ func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D)->Vehicl
 	
 	if driver_instance.backwards:
 		print("Spawning backwards")
+	chosen_marker.reparent(self)
+	chosen_marker.queue_free()
+	return driver_instance
+
+func spawn_timer_timeout():
+	if !driver_spawns or randi_range(0,9)==0:
+		print("not spawning driver")
+		return
+	print("SPAWNING RESIDUAL DRIVERS")
+	if randi_range(0,1) == 0:#Cop Spawn
+		var result = spawn_residual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
+		if result:
+			driver_spawned.emit(result)
+	if randi_range(0,3)!=0:#Pedestrian Spawn
+		var result = spawn_residual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
+		if result:
+			driver_spawned.emit(result)
+
+func spawn_residual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleBody3D:
+	var chosen_marker:Marker3D = driver_spawns.get_children().pick_random()
+	if chosen_marker == null:
+		return null
+	var driver_instance : VehicleBody3D = packed.instantiate()
+	driver_type_node.add_child(driver_instance)
+	driver_instance.target = Globals.player_vehicle
+	driver_instance.process_mode = Node.PROCESS_MODE_DISABLED
+	driver_instance.backwards = false
+	driver_instance.global_position = chosen_marker.global_position
+	driver_instance.process_mode = Node.PROCESS_MODE_INHERIT
 	chosen_marker.reparent(self)
 	chosen_marker.queue_free()
 	return driver_instance

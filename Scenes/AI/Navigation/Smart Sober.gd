@@ -51,7 +51,7 @@ func set_nav_path(path_node: Path3D):
 var navigation_endpoint : Vector3
 var cur_nav_index: int = 0
 
-signal request_new_nav_region(vehicle: VehicleBody3D)
+signal request_new_nav_region(vehicle: VehicleBody3D,road_completed:bool)
 
 var hunt : bool = false
 var reversing := false
@@ -133,7 +133,7 @@ func navigation_control(_delta: float) -> void:
 		# If at the last point, request a new navigation region
 		if cur_nav_index >= navigation_path.curve.point_count or cur_nav_index<0:
 			await get_tree().create_timer(0.3).timeout  # Wait before switching
-			request_new_nav_region.emit(self)
+			request_new_nav_region.emit(self,true)
 			return
 
 		# Update the next target position along the path

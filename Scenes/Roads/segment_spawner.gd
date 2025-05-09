@@ -203,7 +203,7 @@ var cur_player_road:int = 0:
 var debug_dic : Dictionary = {}
 
 ##driver management
-func give_new_nav_region(vehicle:VehicleBody3D):
+func give_new_nav_region(vehicle:VehicleBody3D,road_completed:bool = false):
 	var cur_entry = debug_dic.get_or_add(vehicle.name,0)
 	debug_dic[vehicle.name] = cur_entry+1
 	print("I ",vehicle.name," called this function #:",debug_dic[vehicle.name])
@@ -211,7 +211,7 @@ func give_new_nav_region(vehicle:VehicleBody3D):
 	
 	if vehicle.has_method("get_cur_road"):
 		var cur_road = vehicle.get_cur_road()
-		if cur_road:
+		if cur_road and road_completed:
 			vehicle_road = get_next_road(cur_road,vehicle.backwards)
 			#print(vehicle_road)
 		else:

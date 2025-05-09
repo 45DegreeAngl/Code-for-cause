@@ -57,7 +57,7 @@ func curve_point_to_global(point : Vector3, path : Path3D):
 	return path.global_basis * point + path.global_position
 var saved_linear_velocity : Vector3 = Vector3.ZERO
 
-signal request_new_nav_region(vehicle: VehicleBody3D)
+signal request_new_nav_region(vehicle: VehicleBody3D,road_completed:bool)
 
 func control(_delta) -> void:
 	saved_linear_velocity = linear_velocity
@@ -123,7 +123,7 @@ func control(_delta) -> void:
 		
 		if(closest_point_offset/navigation_path.curve.get_baked_length() > 0.95):
 			printerr("I a dumb driver am requesting a new road")
-			request_new_nav_region.emit(self)
+			request_new_nav_region.emit(self,true)
 
 func _on_collide(_body):
 	if abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
