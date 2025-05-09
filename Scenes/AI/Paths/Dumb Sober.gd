@@ -21,6 +21,10 @@ var engine_input : float :
 var cur_nav_index:int = 0
 var path_endpoint : Vector3
 
+@onready var cur_road : RoadSegment = null
+func get_cur_road():
+	return cur_road
+
 var navigation_path : Path3D = null
 func set_nav_path(path_node: Path3D):
 	if path_node == navigation_path:

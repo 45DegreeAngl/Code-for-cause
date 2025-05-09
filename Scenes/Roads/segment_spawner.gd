@@ -222,6 +222,9 @@ func give_new_nav_region(vehicle:VehicleBody3D):
 		vehicle_road = get_road_at_pos(vehicle.global_position)
 	#= get_road_at_pos(vehicle.global_position)
 	#print(vehicle_road.name)
+	if !vehicle_road:
+		printerr("ERROR: vehicle_road is null!")
+		return
 	#now i should have a vehicle road that IS proper, now we just need to assign the proper
 	if !vehicle_road.nav_region:
 		print("Missing Nav_Region for road")
