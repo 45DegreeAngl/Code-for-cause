@@ -64,7 +64,7 @@ func control(_delta) -> void:
 		engine_input = -1
 		steer_input = 0
 	elif hunt:
-		navigation_path = null
+		#navigation_path = null
 		var target_point_global = Globals.player_vehicle.global_position
 		var target_lookahead_vector = (target_point_global - global_position).normalized()
 		var target_angle_to_lookahead = (-basis.z).signed_angle_to(target_lookahead_vector, global_basis.y)
@@ -118,6 +118,7 @@ func control(_delta) -> void:
 			engine_input = 1
 		
 		if(closest_point_offset/navigation_path.curve.get_baked_length() > 0.95):
+			printerr("I a dumb driver am requesting a new road")
 			request_new_nav_region.emit(self)
 
 func _on_collide(_body):

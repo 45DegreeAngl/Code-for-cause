@@ -10,6 +10,8 @@ var debug_camera_spawned : bool = false
 @onready var lock_target : Node3D
 @onready var car_target : Node3D
 @onready var player_model : Node3D
+@export var cops_node : Node3D
+@export var sober_node : Node3D
 @onready var debug_camera_packed = preload("res://DEBUG/Debug Popout Cam.tscn")
 
 @onready var temp_road_packed = preload("res://Scenes/Roads/Normal Segments/TEMP ROAD.tscn")
@@ -40,7 +42,7 @@ func _input(event: InputEvent) -> void:
 				if debug_camera_spawned:
 					return
 				debug_camera_spawned = true
-				print("WAL:OUJSDIOHJW")
+				#print("WAL:OUJSDIOHJW")
 				var debug_cam : Window = debug_camera_packed.instantiate()
 				add_child(debug_cam)
 				debug_cam.first_person_cam = fp_cam
@@ -49,6 +51,9 @@ func _input(event: InputEvent) -> void:
 				debug_cam.car_target = car_target
 				debug_cam.close_requested.connect(on_cam_close)
 				debug_cam.player_model = player_model
+				debug_cam.cops_node = cops_node
+				debug_cam.player_vehicle = Globals.player_vehicle
+				debug_cam.sober_node = sober_node
 				debug_cam.visible = true
 			KEY_INSERT:#spawn road
 				Globals.world_node.cur_player_road +=1

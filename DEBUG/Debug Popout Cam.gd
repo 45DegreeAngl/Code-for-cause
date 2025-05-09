@@ -20,6 +20,10 @@ var distance = default_distance
 @onready var first_person: Camera3D = $"SubViewportContainer/SubViewport/CAMERAS/First Person"
 @onready var wheel: Camera3D = $SubViewportContainer/SubViewport/CAMERAS/Wheel
 
+@export var cops_node : Node3D
+@export var sober_node : Node3D
+@export var player_vehicle : VehicleBody3D
+
 @export var fp_sensitivity: float = 0.2
 @export var fp_speed: float = 50
 @export var fp_speed_increment: float = 5
@@ -41,6 +45,18 @@ func _input(event):
 				switch_camera(first_person)
 			KEY_4:
 				switch_camera(wheel)
+			KEY_KP_1:
+				focus_player = true
+				set_target(player_vehicle)
+			KEY_KP_2:
+				focus_player = false
+				current_sober_index = cycle_target(sober_node,current_sober_index)
+			KEY_KP_3:
+				focus_player = false
+				current_cop_index = cycle_target(cops_node,current_cop_index)
+			KEY_L:
+				toggle_lock_on()
+			
 	
 	if !window_focus:
 		return  # Skip processing if the window isn't focused
@@ -48,12 +64,13 @@ func _input(event):
 	if event is InputEventKey and event.keycode == KEY_ESCAPE and event.is_pressed():
 		toggle_mouse_capture()
 	
-	if event is InputEventKey and event.keycode == KEY_L and event.is_pressed():
-		toggle_lock_on()  # Toggles lock-on mode
+	#if event is InputEventKey and event.keycode == KEY_L and event.is_pressed():
+		#toggle_lock_on()  # Toggles lock-on mode
 
 	if event is InputEventKey and event.keycode == KEY_SPACE and event.is_pressed():
-		if first_person:
-			free.global_transform = first_person.global_transform
+		teleport_free_cam_to_interest()
+		#if first_person:
+			#free.global_transform = first_person.global_transform
 
 	# Adjust sensitivity and speed (only in free mode)
 	if free.current and !is_locked_on:
@@ -90,6 +107,23 @@ func _input(event):
 	if free.current and event is InputEventMouseMotion and !mouse_captured and !is_locked_on:
 		mouse_input = event.relative * fp_sensitivity *20
 
+func set_target(target:Node3D):
+	if target:
+		lock_target = target
+		car_target = target
+
+var current_sober_index:int = 0
+var current_cop_index:int = 0
+
+func cycle_target(parent_node:Node3D,cur_index:int):
+	if parent_node and parent_node.get_child_count()>0:
+		var children = parent_node.get_children().filter(func(child):return child is VehicleBody3D)
+		if children.size()>0:
+			cur_index = (cur_index+1)%children.size()
+			print("getting child :\t{0}\nfrom node {1}".format([children[cur_index],parent_node]))
+			set_target(children[cur_index])
+	return cur_index
+
 func switch_camera(new_camera: Camera3D):
 	if new_camera:
 		free.current = new_camera == free
@@ -97,12 +131,19 @@ func switch_camera(new_camera: Camera3D):
 		first_person.current = new_camera == first_person
 		wheel.current = new_camera == wheel
 
+var focus_player:bool = true
 
-func sync_free_camera_to_first_person():
-	if first_person_cam:
-		free.global_transform = first_person_cam.global_transform
+func teleport_free_cam_to_interest():
+	if focus_player:
+		if first_person_cam.current:
+			free.global_transform = first_person.global_transform
+		elif car_target:
+			free.global_transform = car.global_transform
+	else:
+		if car_target:
+			free.global_transform = car.global_transform
+	
 		#free.global_transform = first_person_cam.global_transform  # Sync position & rotation
-
 
 func _physics_process(delta: float) -> void:
 	if first_person_cam:

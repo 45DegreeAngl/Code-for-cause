@@ -158,9 +158,6 @@ func navigation_control(_delta: float) -> void:
 
 	steer_input = clampf(angle_to_target / deg_to_rad(MAX_STEER_DEG), -1, 1)
 
-
-
-
 func get_closest_nav_point() -> int:
 	if !navigation_path or navigation_path.curve.point_count == 0:
 		return 0  # Default to the first point

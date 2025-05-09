@@ -995,6 +995,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Center of mass"]
 simplify_path = true
 simplify_epsilon = 1.0
+debug_enabled = true
 
 [node name="Dude 1" type="Node3D" parent="."]
 

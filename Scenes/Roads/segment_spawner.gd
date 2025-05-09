@@ -36,6 +36,9 @@ func _ready():
 		append_segment()
 	#spawn_road(road_segments[2])#PENISPENISPENISPENISCOCKOCKCOCKOCKCOCKOCKCOKCOKC
 	
+	Debug.cops_node = $Cops
+	Debug.sober_node = $Pedestrians
+	
 	#if exes_house:
 		#spawn_road(exes_house)
 		
