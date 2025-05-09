@@ -207,7 +207,20 @@ func give_new_nav_region(vehicle:VehicleBody3D):
 	var cur_entry = debug_dic.get_or_add(vehicle.name,0)
 	debug_dic[vehicle.name] = cur_entry+1
 	print("I ",vehicle.name," called this function #:",debug_dic[vehicle.name])
-	var vehicle_road : RoadSegment = get_road_at_pos(vehicle.global_position)
+	var vehicle_road : RoadSegment 
+	
+	if vehicle.has_method("get_cur_road"):
+		var cur_road = vehicle.get_cur_road()
+		if cur_road:
+			vehicle_road = get_next_road(cur_road,vehicle.backwards)
+			#print(vehicle_road)
+		else:
+			vehicle_road = get_road_at_pos(vehicle.global_position)
+
+		vehicle.cur_road = vehicle_road
+	else:
+		vehicle_road = get_road_at_pos(vehicle.global_position)
+	#= get_road_at_pos(vehicle.global_position)
 	#print(vehicle_road.name)
 	#now i should have a vehicle road that IS proper, now we just need to assign the proper
 	if !vehicle_road.nav_region:
@@ -240,7 +253,6 @@ func get_road_at_pos(glob_pos:Vector3)->RoadSegment:
 	#if glob_pos.z>last_road.global_position.z:
 		#return last_road
 	#var segment_arrays : Array[RoadSegment] = [$Roads.get_children()[0],$Roads.get_children()[1]]
-	
 	var cur_road : RoadSegment
 	#loop through all roads
 	for index:int in $Roads.get_child_count():
@@ -248,6 +260,20 @@ func get_road_at_pos(glob_pos:Vector3)->RoadSegment:
 		if glob_pos.z>cur_road.global_position.z:
 			return $Roads.get_child(index-1)
 	return last_road
+
+func get_next_road(cur:RoadSegment,reverse:bool=false)->RoadSegment:
+	var result:RoadSegment
+	var road_array:Array = $Roads.get_children()
+	var result_index = road_array.find(cur)
+	if reverse:
+		result_index = maxi(0,result_index-1)
+	else:
+		result_index = mini(road_array.size()-1,result_index+1)
+	
+	result = road_array.get(result_index)
+	print("result index: ",result_index)
+	print(result)
+	return result
 
 func increment_player_road():
 	cur_player_road+=1

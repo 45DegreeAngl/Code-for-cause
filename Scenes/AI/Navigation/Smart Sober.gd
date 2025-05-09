@@ -20,6 +20,10 @@ var engine_input : float :
 	set(val):
 		engine_input = clampf(val, -1, 1)
 
+@onready var cur_road : RoadSegment = null
+func get_cur_road():
+	return cur_road
+
 @export var navigation_region : NavigationRegion3D
 func set_nav_region(nav: NavigationRegion3D):
 	if nav == navigation_region:
