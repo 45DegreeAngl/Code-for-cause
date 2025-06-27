@@ -1,20 +1,14 @@
-extends VehicleBody3D
+extends BaseCar
+class_name PlayerCar
 ##This car is from
 ##https://poly.pizza/m/a_HKCtYAv2W
 ##the creative commons liscence is this Nissan GTR by David Sirera [CC-BY] via Poly Pizza
 ##Nissan GTR by David Sirera [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/a_HKCtYAv2W)
 @export var DEBUG_MODE : bool = false
 
-@export_subgroup("Car Stats")
-@export var STEERING_CURVE : Curve
-@export var MAX_STEER_DEG : float = 45.0
-##this is applied per traction wheel, so dont forget to adjust relative to how many traction wheels there are
-@export var ENGINE_POWER : float = 200
-@export var SOUND_MAX_SPEED : float = 75
-var original_engine_power:float = 0
+@export var cosmetic_node : PlayerCosmetic
+@export var cop_node : Node
 
-@export_subgroup("Radio")
-@export var radio_on : bool = false
 var occupied:bool = true
 
 @onready var driver_look_area:Area3D = $Cameras/Windshield/Area3D
@@ -25,12 +19,11 @@ func _ready() -> void:
 	original_engine_power = ENGINE_POWER
 	Globals.player_vehicle = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	_on_radio_finished()
+	cosmetic_node._on_radio_finished()
 	Globals.car_contents = {"Beer":1,"Sake":0,"Jaeger":0}
 	Globals.update_bottles.emit()
 	Globals.timer = 0
-	if radio_on:
-		$Sounds/Radio.volume_db = -25
+	
 	if DEBUG_MODE:
 		return
 	MainShaderCanvas.filter_dict["drunk"][0].visible = !Globals.motion_sickness
@@ -43,28 +36,27 @@ func _ready() -> void:
 	Debug.car_target = self
 	Debug.player_model = $Mesh/Character
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func driver_process(delta):
 	Globals.timer+=delta
+
+func update_context_variables(delta):
+	if $"Ground Ray".get_collider():
+		var collision_thing = $"Ground Ray".get_collider()
+		#print("balls",collision_thing)
+		if collision_thing is GridMap and collision_thing.has_meta("Road") and !collision_thing.get_meta("Road"):
+			ENGINE_POWER = original_engine_power/2
+		else:
+			ENGINE_POWER = original_engine_power
+
+func update_steer(delta):
 	if !occupied or Globals.game_over or Globals.game_paused:
 		if abs(linear_velocity):
 			engine_force = move_toward(linear_velocity.length(),-linear_velocity.length(),delta)
 		else:
 			engine_force = move_toward(engine_force,0,delta)
 		return
-	
-	#The line thats commented out below should remain here but commented as a reminder to check the cars max speed every time it's tweaked
-	#print(linear_velocity.length())
-	if Input.is_action_just_pressed("KEYWORD_MISC_INTERACT"):#toggle Headlights
-		for child in $Light.get_children():
-			if child is Light3D and child.name.findn("Head")!=-1 and child.has_method("get_param"):
-				#print(child)
-				var cur_energy = child.get_param(Light3D.PARAM_ENERGY)
-				if cur_energy:
-					child.set_param(Light3D.PARAM_ENERGY,0)
-				else:
-					child.set_param(Light3D.PARAM_ENERGY,1)
-	elif Input.is_action_just_pressed("KEYWORD_INTERACT"):
+
+	if Input.is_action_just_pressed("KEYWORD_INTERACT"):
 		match cur_look_at:
 			looking_at.Door:#spawn human player, switch camera
 				if !door_blocked:
@@ -81,53 +73,33 @@ func _process(delta: float) -> void:
 				update_tooltip_text()
 				#print("glug glug glug")
 			looking_at.Radio:#change radio 
-				#toggle on and off
-				if radio_on:
-					$Sounds/Radio.volume_db = -80
-					radio_on = false
-				else:
-					$Sounds/Radio.volume_db = -25
-					radio_on = true
+				cosmetic_node.toggle_radio()
 					
 	elif Input.is_action_just_pressed("KEYWORD_ALT_INTERACT"):#change radio track if playing
 		if cur_look_at == looking_at.Radio:
-			if radio_on:
-				$Sounds/Radio.stop()
-				_on_radio_finished()
-				seek_random_position()
+			cosmetic_node.change_freqency()
 		else:
 			throw_debris()
-	
-	if $"Ground Ray".get_collider():
-		var collision_thing = $"Ground Ray".get_collider()
-		#print("balls",collision_thing)
-		if collision_thing is GridMap and collision_thing.has_meta("Road") and !collision_thing.get_meta("Road"):
-			ENGINE_POWER = original_engine_power/2
-		else:
-			ENGINE_POWER = original_engine_power
-	#print(ENGINE_POWER)
-	
 	if joy_pad_RStick:
 		rot_x += joy_pad_RStick.x * Globals.car_cont_sens * delta *25
 		rot_y += joy_pad_RStick.y * Globals.car_cont_sens * delta *25
 		rot_y = clampf(rot_y,-1.5,0.75)
 		handle_cam_rotation()
-	
-	change_engine_pitch()
+
 	steering = move_toward(steering,Input.get_axis("KEYWORD_RIGHT","KEYWORD_LEFT") * get_max_steer(),delta*2.5)
-	##Fix rotate code when smarter
-	$Wheel.rotation.z = steering*2*PI
 	var forward_axis = Input.get_axis("KEYWORD_BACKWARD","KEYWORD_FORWARD")
 	engine_force = max(forward_axis * ENGINE_POWER,-ENGINE_POWER/1.5)
-	##Fix rotate code when smarter
-	$Spedometer/Tick.rotate_object_local(-Vector3(deg_to_rad(0),deg_to_rad(-90),deg_to_rad(30)).normalized(),move_toward((engine_force/ENGINE_POWER),(engine_force/ENGINE_POWER),delta))
-	saved_linear_velocity = linear_velocity
 
-var saved_linear_velocity : Vector3
+func update_cosmetics(delta):
+	if Input.is_action_just_pressed("KEYWORD_MISC_INTERACT"):#toggle Headlights
+		cosmetic_node.toggle_head_lights()
+	cosmetic_node.update_wheel(steering*2*PI)
+	cosmetic_node.update_speedometer_tick(-Vector3(deg_to_rad(0),deg_to_rad(-90),deg_to_rad(30)).normalized(),move_toward((engine_force/ENGINE_POWER),(engine_force/ENGINE_POWER),delta))
+
 func _on_collide(body):
 	if body.has_meta("Cop"):
 		call_deferred("die_by_cop")
-	elif abs(linear_velocity.length()-saved_linear_velocity.length())>1 and !$Sounds/Crash.playing:
+	elif abs(linear_velocity.length()-cur_lin_vel.length())>1 and !$Sounds/Crash.playing:
 		$Sounds/Crash.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
 		$Sounds/Crash.play()
 	elif body is Debris:
@@ -156,8 +128,7 @@ func drink_random():
 	if temp_array.is_empty():
 		return
 	if randi_range(0,2)==0:
-		$"Sounds/Voice Lines".stream = Globals.player_voice_lines[randi_range(2, Globals.player_voice_lines.size()-1)]
-		$"Sounds/Voice Lines".play()
+		cosmetic_node.play_voice()
 	var picked_bottle : String = temp_array.pick_random()
 	match picked_bottle:
 		"Beer":
@@ -211,15 +182,6 @@ func handle_cam_rotation():
 	$Cameras/Windshield.transform.basis = Basis() #reset rot
 	$Cameras/Windshield.rotate_object_local(Vector3(0,1,0),-rot_x)
 	$Cameras/Windshield.rotate_object_local(Vector3(1,0,0),-rot_y)
-
-func change_engine_pitch():
-	if (not $Sounds/Engine.playing) and $Sounds/Engine.pitch_scale > 0.01:
-		$Sounds/Engine.play()
-	var pitch = min(1, linear_velocity.length()/SOUND_MAX_SPEED)
-	if pitch <= 0.01:
-		$Sounds/Engine.stop()
-	if pitch>0.0:
-		$Sounds/Engine.pitch_scale = pitch
 
 func get_max_steer():
 	if linear_velocity.length() >= 60:
@@ -280,8 +242,6 @@ func enter_car():
 	set_deferred("player_instance",null)
 	Globals.set_deferred("player_character",null)
 	await spawned_player.tree_exiting
-	
-
 
 func throw_debris():
 	if $Debrie.get_child_count()>0:
@@ -366,7 +326,6 @@ func _on_raycast_exit(area:Area3D)->void:
 		cur_look_at = null
 		update_tooltip_text()
 
-
 func _on_sobriety_timer_timeout() -> void:
 	print(Globals.drunkenness)
 	if DEBUG_MODE:
@@ -380,62 +339,3 @@ func _on_sobriety_timer_timeout() -> void:
 		$"Sounds/Sobriety Alarm".play()
 	else:
 		$"Sounds/Sobriety Alarm".stop()
-
-var step : int = 1
-var cur_index : int = 0
-var cur_song : String = ""
-
-#go to next track
-func _on_radio_finished() -> void:
-	if !Globals.radio.keys().is_empty():
-		Globals.radio.erase(Globals.radio.keys()[cur_index])
-		Globals.load_random_song()
-	if Globals.radio.keys().is_empty():
-		return
-	print("RADIO CHANGED")
-	step = randi_range(1,Globals.radio.size())
-	cur_index += step
-	cur_index = cur_index%Globals.radio.size()
-	print(Globals.radio.keys()[cur_index])
-	$Sounds/Radio.stream = Globals.radio[Globals.radio.keys()[cur_index]]
-	$Sounds/Radio.play()
-
-# Function to seek to a random position in the audio stream
-func seek_random_position():
-	$Sounds/Radio.stop()
-	var stream_length = $Sounds/Radio.get_stream().get_length()
-	if stream_length > 0:
-		
-		var random_position = (randf_range(0,stream_length))
-		$Sounds/Radio.play(random_position)
-		print("Seeking to position:", random_position)
-	else:
-		print("Stream length is zero or undefined.")
-
-@export_subgroup("COPS NODE")
-var closest_cop : VehicleBody3D = null
-@onready var label_3d: Label3D = $Cop_Detector/Label3D
-@export var cops_node: Node3D
-
-func update_cop_detector():
-	if !cops_node:
-		return
-	if cops_node.get_child_count()<1:
-		label_3d.text = tr("NONE_DETECTED_TEXT")
-		closest_cop = null
-		return
-	var cur_distance = INF
-	for cop in cops_node.get_children():
-		if !closest_cop:
-			closest_cop = cop
-			cur_distance = self.global_position.distance_to(cop.global_position)
-		if cur_distance>self.global_position.distance_to(cop.global_position):
-			closest_cop = cop
-			cur_distance = self.global_position.distance_to(cop.global_position)
-	label_3d.text = str(roundi(cur_distance)) + "m"
-	if cur_distance<=100:
-		$Cop_Detector/Green/OmniLight3D.light_energy = 0
-		$Cop_Detector/Red/OmniLight3D.light_energy = 0.2
-	else:
-		$Cop_Detector/Green/OmniLight3D.light_energy = 0.1
-		$Cop_Detector/Red/OmniLight3D.light_energy = 0

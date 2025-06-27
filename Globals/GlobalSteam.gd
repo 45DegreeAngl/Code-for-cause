@@ -14,6 +14,9 @@ const steam_profile_url_handle : String = "https://steamcommunity.com/profiles/"
 func _init() -> void:
 	_initialize_steam()
 
+func is_steam_authority(id:int):
+	return steam_id==id
+
 func _process(_delta: float) -> void:
 	if is_on_steam:
 		Steam.run_callbacks()

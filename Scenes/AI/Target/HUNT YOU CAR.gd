@@ -18,7 +18,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	hunt(delta)
 	engine_force = -ENGINE_POWER/4
-	pass
 
 func hunt(delta:float):
 	var target_pos = to_local(target.global_position)

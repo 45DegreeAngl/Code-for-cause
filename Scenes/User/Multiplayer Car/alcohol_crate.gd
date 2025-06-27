@@ -14,40 +14,6 @@ const bottle_step_count : float = 2
 var x = 0
 var z = 0
 
-func update_bottles_directly(dict:Dictionary):
-	alchohol_count=0
-	##add keys to this temp array to remove them one by one
-	for i:String in dict.keys():
-		#print(i)
-		randomize_array.append(i)
-	#print(randomize_array)
-	var bottle_type = ""
-	for instance in $instances.get_children():
-		instance.queue_free()
-	for balls in randomize_array.size():
-		bottle_type = randomize_array.pick_random()
-		#print(str(randomize_array),bottle_type)
-		randomize_array.erase(bottle_type)
-		
-		var beg_marker_pos : Vector3 = $Beginning.position
-		var end_marker_pos : Vector3 = $End.position
-		var bottle_y_pos : float = drinks[bottle_type].position.y
-		
-		for b in dict[bottle_type]:
-			alchohol_count+=1
-			var new_mesh : MeshInstance3D = MeshInstance3D.new()
-			$instances.add_child(new_mesh)
-			new_mesh.mesh = drinks[bottle_type].mesh
-			
-			if beg_marker_pos.x+x*bottle_step_count>end_marker_pos.x:
-				z+=1
-				x=0
-			if beg_marker_pos.z+z*bottle_step_count>end_marker_pos.z:
-				z=0
-			new_mesh.position = Vector3(beg_marker_pos.x+x*bottle_step_count,bottle_y_pos,beg_marker_pos.z+z*bottle_step_count)
-			x+=1
-	$Label3D.text = str(alchohol_count)
-
 func update_bottles():
 	alchohol_count=0
 	##add keys to this temp array to remove them one by one

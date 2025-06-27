@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8moiym41ps0d"]
+
+[ext_resource type="Script" uid="uid://51bc151ys5y3" path="res://Globals/Steam Multiplayer/steam_mic.gd" id="1_v3pv2"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_v3pv2"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_2wdoa"]
+
+[node name="Steam Mic" type="Node"]
+script = ExtResource("1_v3pv2")
+
+[node name="Local" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamGenerator_v3pv2")
+volume_db = -80.0
+autoplay = true
+
+[node name="Network" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamGenerator_2wdoa")
+autoplay = true

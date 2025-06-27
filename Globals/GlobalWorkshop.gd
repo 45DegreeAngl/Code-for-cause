@@ -266,7 +266,10 @@ func get_files_in_directory_unbounded_iterative(directory_path: String) -> Array
 					if file_name != "." and file_name != "..":
 						stack.append(current_path + "/" + file_name)
 				else:
-					result.append(current_path + "/" + file_name)
+					if current_path!="user://":
+						result.append(current_path + "/" + file_name)
+					else:
+						result.append(current_path + file_name)
 				file_name = dir.get_next()
 			dir.list_dir_end()
 		else:

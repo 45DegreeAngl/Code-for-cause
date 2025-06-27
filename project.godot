@@ -24,6 +24,9 @@ MainShaderCanvas="*res://Scenes/UI/Misc/Main Shader Canvas.tscn"
 GlobalSteam="*res://Globals/GlobalSteam.gd"
 GlobalWorkshop="*res://Globals/GlobalWorkshop.gd"
 Debug="*res://Globals/Debug.gd"
+Network="*res://Globals/Steam Multiplayer/Network.gd"
+ServerFunc="*res://Globals/Steam Multiplayer/Server Function.gd"
+SteamMic="*res://Globals/Steam Multiplayer/steam_mic.tscn"
 
 [display]
 

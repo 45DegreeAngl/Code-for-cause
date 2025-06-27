@@ -184,9 +184,9 @@ var car_contents:Dictionary = {"Beer":1,"Sake":0,"Jaeger":0}:
 		car_contents = value
 		update_bottles.emit()
 
-const starting_amplitude = 0.04
-const starting_frequency = 0.02
-const starting_scale = 1.1
+#const starting_amplitude = 0.04
+#const starting_frequency = 0.02
+#const starting_scale = 1.1
 #const max_freq_amp = 0.2
 ##this is a float of 6% to 100%
 @onready var game_over : bool = true
