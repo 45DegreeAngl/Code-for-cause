@@ -39,7 +39,7 @@ func _ready() -> void:
 func driver_process(delta):
 	Globals.timer+=delta
 
-func update_context_variables(delta):
+func update_context_variables(_delta):
 	if $"Ground Ray".get_collider():
 		var collision_thing = $"Ground Ray".get_collider()
 		#print("balls",collision_thing)
@@ -77,7 +77,7 @@ func update_steer(delta):
 					
 	elif Input.is_action_just_pressed("KEYWORD_ALT_INTERACT"):#change radio track if playing
 		if cur_look_at == looking_at.Radio:
-			cosmetic_node.change_freqency()
+			cosmetic_node.change_frequency()
 		else:
 			throw_debris()
 	if joy_pad_RStick:

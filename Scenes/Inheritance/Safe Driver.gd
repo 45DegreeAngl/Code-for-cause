@@ -40,7 +40,7 @@ func _ready()->void:
 		#request_new_nav_region.connect(Globals.world_node.give_new_nav_region)
 	request_new_nav_region.emit(self)
 
-func update_context_variables(delta):
+func update_context_variables(_delta):
 	# Check if the target is within hunting distance
 	if target:
 		var distance_to_target = self.global_position.distance_to(target.global_position)

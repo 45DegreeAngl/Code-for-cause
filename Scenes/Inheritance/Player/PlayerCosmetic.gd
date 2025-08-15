@@ -16,7 +16,7 @@ func context_ready()->void:
 	if radio_on:
 		radio.volume_db = -25
 
-func context_process(delta):
+func context_process(_delta):
 	pass
 
 func update_wheel(value):

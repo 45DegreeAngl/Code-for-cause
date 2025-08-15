@@ -3,8 +3,7 @@ class_name RecklessDriver
 
 @export var front_ray : RayCast3D
 
-
-func update_context_variables(delta):
+func update_context_variables(_delta):
 	engine_input = -ENGINE_POWER/4
 
 func update_steer(delta):
