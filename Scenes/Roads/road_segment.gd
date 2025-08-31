@@ -9,9 +9,10 @@ var passed : bool = false
 @export var nav_curve : Path3D
 
 @export var debris_node : Node3D
-@onready var spawn_driver_timer : Timer = Timer.new()
+@onready var spawn_driver_timer : Timer
 
 func _ready():
+	spawn_driver_timer =  Timer.new()
 	if debris_node:
 		spawn_debris()
 	add_child(spawn_driver_timer)
@@ -66,6 +67,7 @@ func disable_tutorial(body:Node3D):
 signal driver_spawned(driver:VehicleBody3D)
 #$Pedestrians $Cops
 func spawn_drivers():
+	return
 	if !driver_spawns or randi_range(0,9)==0:
 		print("not spawning driver")
 		return
@@ -97,6 +99,7 @@ func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D)->Vehicl
 	return driver_instance
 
 func spawn_timer_timeout():
+	return
 	if !driver_spawns or randi_range(0,9)==0:
 		print("not spawning driver")
 		return
@@ -111,6 +114,7 @@ func spawn_timer_timeout():
 			driver_spawned.emit(result)
 
 func spawn_residual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleBody3D:
+	return
 	var chosen_marker:Marker3D = driver_spawns.get_children().pick_random()
 	if chosen_marker == null:
 		return null

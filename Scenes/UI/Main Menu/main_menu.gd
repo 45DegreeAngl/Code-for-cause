@@ -21,7 +21,7 @@ func _on_start_pressed() -> void:
 	Debug.console_active = false
 	Globals.reset_stats()
 	Globals.game_over = false
-	MainShaderCanvas.visible = true
+	MainShaderCanvas.visible = false
 	Globals.detected = false
 	get_tree().change_scene_to_packed(intro_packed)
 

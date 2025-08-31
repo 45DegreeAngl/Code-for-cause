@@ -45,4 +45,5 @@ func play_intro():
 	await animp.animation_finished
 
 func _on_go_to_game_pressed() -> void:
+	MainShaderCanvas.visible = true
 	get_tree().change_scene_to_file("res://Scenes/SinglePlayer/Game.tscn")

@@ -40,10 +40,13 @@ func _on_leaderboard_container_tab_selected(tab: int) -> void:
 	prev_tab = tab
 	
 	var container:VBoxContainer = $"Leaderboard/Leaderboard Container".get_child(tab).get_child(0)
-	for r in leaderboard_entries[2]:
+	if leaderboard_entries.size()<3 or not(leaderboard_entries[2] is Array):
+		return
+	for r:Dictionary in leaderboard_entries[2]:
 		#print("create entry")
-		var entry : Control = create_leaderboard_entry(r["global_rank"],r["steam_id"],r["score"])
-		container.add_child(entry)
+		if r.has("global_rank")and r.has("steam_id") and r.has("score"):
+			var entry : Control = create_leaderboard_entry(r["global_rank"],r["steam_id"],r["score"])
+			container.add_child(entry)
 
 func create_leaderboard_entry(rank:int,steam_id:int,score)->Control:
 	var container : HBoxContainer = HBoxContainer.new()
