@@ -1574,5 +1574,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.727834, -2.88534)
 [connection signal="body_entered" from="Interactibles/Door box" to="." method="_on_door_box_body_entered"]
 [connection signal="body_exited" from="Interactibles/Door box" to="." method="_on_door_box_body_exited"]
 [connection signal="timeout" from="Sobriety Timer" to="." method="_on_sobriety_timer_timeout"]
-[connection signal="finished" from="Sounds/Radio" to="." method="_on_radio_finished"]
+[connection signal="finished" from="Sounds/Radio" to="Cosmetic" method="_on_radio_finished"]
 [connection signal="timeout" from="Cop_Detector/Cop Detector timer" to="Cosmetic" method="update_cop_detector"]
