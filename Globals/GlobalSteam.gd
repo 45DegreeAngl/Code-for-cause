@@ -135,9 +135,9 @@ func set_statistic(this_stat: String, new_value: int = 0) -> void:
 ##LEADERBOARDS
 var boardhandles:Dictionary = {}
 func set_up_leaderboards():
-	Steam.findLeaderboard("RECORD TIME EASY")
-	await leaderboard_update
 	Steam.findLeaderboard("RECORD TIME PRACTICE")
+	await leaderboard_update
+	Steam.findLeaderboard("RECORD TIME EASY")
 	await leaderboard_update
 	Steam.findLeaderboard("RECORD TIME NORMAL")
 	await leaderboard_update
@@ -185,3 +185,59 @@ func setAchievement(ach:String):
 	print("Unlocked achievement: ",ach)
 	if not Steam.storeStats():
 		print("Balls")
+
+func upload_win():
+	if Globals.is_cheater:
+		return
+	match Globals.roads_to_win:
+		int(INF):
+			if Globals.world_node.cur_player_road>=200:
+				setAchievement("BEAT ENDLESS")
+			upload_records()
+		10:
+			setAchievement("BEAT PRACTICE")
+			upload_records()
+		25:
+			setAchievement("BEAT EASY")
+			upload_records()
+		50:
+			setAchievement("BEAT NORMAL")
+			upload_records()
+		100:
+			setAchievement("BEAT HARD")
+			upload_records()
+
+func upload_records():
+	if Globals.is_cheater:
+		return
+	match Globals.roads_to_win:
+		int(INF):
+			submit_leaderboard_score("RECORD TIME ENDLESS",Globals.world_node.cur_player_road)
+		10:
+			submit_leaderboard_score("RECORD TIME PRACTICE",Globals.timer)
+		25:
+			submit_leaderboard_score("RECORD TIME EASY",Globals.timer)
+		50:
+			submit_leaderboard_score("RECORD TIME NORMAL",Globals.timer)
+		100:
+			submit_leaderboard_score("RECORD TIME HARD",Globals.timer)
+	
+
+func update_stats():
+	if Globals.is_cheater:
+		return
+	statistics["DRUNK MENACE"]+=Globals.sober_drivers_hit
+	statistics["LITTER COUNT"]+=Globals.litter_count
+	statistics["FLIP COUNT"]+=Globals.car_flip_count
+	statistics["GABE'S FAVOR"]+=Globals.total_alcohol_bought
+	for statistic in statistics:
+		set_statistic(statistic,statistics[statistic])
+	if statistics["DRUNK MENACE"]>=50:
+		setAchievement("SOBER DRIVER ENEMY NO 1")
+	if statistics["LITTER COUNT"]>=100:
+		setAchievement("PROFESSIONAL LITTERER")
+	if statistics["FLIP COUNT"]>=100:
+		setAchievement("CAR FLIPPER")
+	if statistics["GABE'S FAVOR"]>=500:
+		setAchievement("GABES FAVORITE")
+	submit_leaderboard_score("RECORD SOBER HATER",statistics["DRUNK MENACE"])

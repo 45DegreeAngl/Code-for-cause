@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://w7ute86vb38e"]
+
+[ext_resource type="Theme" uid="uid://ccmgdq4tewmwx" path="res://Assets/Themes/Kaph.tres" id="1_y1tgn"]
+[ext_resource type="Script" uid="uid://bv85qaa17b02i" path="res://Scenes/UI/Misc/win_screen.gd" id="2_h6ur4"]
+
+[node name="YOU WIN" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y1tgn")
+script = ExtResource("2_h6ur4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.297743
+anchor_right = 0.702257
+anchor_bottom = 0.330247
+grow_horizontal = 2
+bbcode_enabled = true
+text = "YOU WIN!!!!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.482639
+anchor_top = 0.482253
+anchor_right = 0.517361
+anchor_bottom = 0.517747
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Main Menu" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.46441
+anchor_top = 0.720679
+anchor_right = 0.571181
+anchor_bottom = 0.768519
+offset_top = 3.05176e-05
+offset_right = -27.0
+text = "Main Menu
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]

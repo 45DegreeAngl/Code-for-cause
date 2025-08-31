@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6btg6wb1cmm6"]
+
+[ext_resource type="Theme" uid="uid://ccmgdq4tewmwx" path="res://Assets/Themes/Kaph.tres" id="1_xeqlp"]
+[ext_resource type="Script" uid="uid://bbnyuavr5ue77" path="res://Scenes/UI/Misc/game_over.gd" id="2_374ua"]
+
+[node name="Game Over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xeqlp")
+script = ExtResource("2_374ua")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.297743
+anchor_right = 0.702257
+anchor_bottom = 0.330247
+grow_horizontal = 2
+bbcode_enabled = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.453125
+anchor_top = 0.482253
+anchor_right = 0.546875
+anchor_bottom = 0.517747
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xeqlp")
+text = "You lived"
+metadata/_edit_use_anchors_ = true
+
+[node name="Main Menu" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.453125
+anchor_top = 0.739198
+anchor_right = 0.559896
+anchor_bottom = 0.787037
+text = "Main Menu
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]

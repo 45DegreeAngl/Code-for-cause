@@ -1,0 +1,361 @@
+[gd_scene load_steps=4 format=3 uid="uid://craox76r56bvq"]
+
+[ext_resource type="Theme" uid="uid://ccmgdq4tewmwx" path="res://Assets/Themes/Kaph.tres" id="1_utg00"]
+[ext_resource type="Script" uid="uid://btrsl2wvlslru" path="res://Scenes/UI/Main Menu/Options Menu/options_menu.gd" id="2_s8jhm"]
+[ext_resource type="PackedScene" uid="uid://dv1d2gbksggao" path="res://Scenes/UI/Main Menu/Options Menu/controller_settings.tscn" id="3_owcoa"]
+
+[node name="Options" type="Control" node_paths=PackedStringArray("motion_check", "spider_fear_check", "spider_love_check", "controller", "mouse", "master", "voice", "radio", "world_sounds", "resolution", "quality", "window", "language", "controller_settings")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_utg00")
+script = ExtResource("2_s8jhm")
+motion_check = NodePath("PanelContainer/VBoxContainer/Motion Sickness Check")
+spider_fear_check = NodePath("PanelContainer/VBoxContainer/Aracnophobia mode")
+spider_love_check = NodePath("PanelContainer/VBoxContainer/Aracnophilia mode")
+controller = NodePath("PanelContainer/VBoxContainer/sensitivity panel/VBoxContainer/Controller")
+mouse = NodePath("PanelContainer/VBoxContainer/sensitivity panel/VBoxContainer/Mouse")
+master = NodePath("PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer/Master")
+voice = NodePath("PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer/Voice")
+radio = NodePath("PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer/Radio")
+world_sounds = NodePath("PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer/World Sounds")
+resolution = NodePath("Resolution holder/VBoxContainer/Resolution options")
+quality = NodePath("Resolution holder/VBoxContainer/Quality Options")
+window = NodePath("Resolution holder/VBoxContainer/Window Options")
+language = NodePath("Resolution holder/VBoxContainer/Language Options")
+controller_settings = NodePath("Controller Settings")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 760.0
+offset_bottom = 610.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_utg00")
+theme_override_font_sizes/font_size = 30
+text = "OPTIONS_LABEL"
+
+[node name="Motion Sickness Check" type="CheckBox" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../Resolution holder/VBoxContainer/Resolution options")
+focus_neighbor_top = NodePath("../../../true options/VBoxContainer/Back")
+focus_neighbor_right = NodePath("../../../Resolution holder/VBoxContainer/Resolution options")
+focus_neighbor_bottom = NodePath("../Aracnophobia mode")
+theme = ExtResource("1_utg00")
+text = "MOTION_SICK_MODE_CHECK"
+
+[node name="Aracnophobia mode" type="CheckBox" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../Resolution holder/VBoxContainer/Resolution options")
+focus_neighbor_top = NodePath("../Motion Sickness Check")
+focus_neighbor_right = NodePath("../../../Resolution holder/VBoxContainer/Resolution options")
+focus_neighbor_bottom = NodePath("../Aracnophilia mode")
+theme = ExtResource("1_utg00")
+text = "ARACHNOPHOBIA_MODE_CHECK"
+
+[node name="Aracnophilia mode" type="CheckBox" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../Resolution holder/VBoxContainer/Resolution options")
+focus_neighbor_top = NodePath("../Aracnophobia mode")
+focus_neighbor_right = NodePath("../../../Resolution holder/VBoxContainer/Resolution options")
+focus_neighbor_bottom = NodePath("../HBoxContainer/Controls")
+theme = ExtResource("1_utg00")
+button_pressed = true
+text = "ARACHNOPHILIA_MODE_CHECK"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Aracnophilia mode")
+focus_neighbor_bottom = NodePath("../Sensitivity Panel/HBoxContainer")
+
+[node name="Controls" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Aracnophilia mode")
+focus_neighbor_right = NodePath("../Reset")
+focus_neighbor_bottom = NodePath("../../sensitivity panel/VBoxContainer/Controller")
+text = "OPEN_CONTROLS_BUTTON"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Reset" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Controls")
+focus_neighbor_top = NodePath("../../Aracnophilia mode")
+focus_neighbor_right = NodePath("../../../../Resolution holder/VBoxContainer/Resolution options")
+focus_neighbor_bottom = NodePath("../../sensitivity panel/VBoxContainer/Controller")
+text = "RESET_CONTROLS_BUTTON"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Sensitivity Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "KEYWORD_SENSITIVITY"
+
+[node name="sensitivity panel" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/sensitivity panel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/sensitivity panel/VBoxContainer"]
+layout_mode = 2
+text = "CONT_SENSITIVITY_LABEL"
+
+[node name="Controller" type="HSlider" parent="PanelContainer/VBoxContainer/sensitivity panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer/Controls")
+focus_neighbor_bottom = NodePath("../Mouse")
+min_value = 0.5
+max_value = 4.0
+step = 0.1
+value = 1.0
+tick_count = 18
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/sensitivity panel/VBoxContainer"]
+layout_mode = 2
+text = "MOUSE_SENSITIVITY_LABEL"
+
+[node name="Mouse" type="HSlider" parent="PanelContainer/VBoxContainer/sensitivity panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Controller")
+focus_neighbor_bottom = NodePath("../../../Sensitivity Panel/HBoxContainer/Master")
+min_value = 0.5
+max_value = 4.0
+step = 0.1
+value = 1.0
+tick_count = 18
+
+[node name="Audio Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_utg00")
+text = "AUDIO_LABEL"
+
+[node name="Sensitivity Panel" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Sensitivity Panel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_utg00")
+text = "MASTER_SLIDER_LABEL"
+
+[node name="Master" type="HSlider" parent="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../sensitivity panel/VBoxContainer/Mouse")
+focus_neighbor_bottom = NodePath("../Voice")
+max_value = 1.5
+step = 0.001
+tick_count = 20
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_utg00")
+text = "VOICE_LINE_SLIDER_LABEL"
+
+[node name="Voice" type="HSlider" parent="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Master")
+focus_neighbor_bottom = NodePath("../Radio")
+max_value = 1.5
+step = 0.001
+tick_count = 20
+ticks_on_borders = true
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_utg00")
+text = "MUSIC_SLIDER_LABEL"
+
+[node name="Radio" type="HSlider" parent="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Voice")
+focus_neighbor_bottom = NodePath("../World Sounds")
+max_value = 1.5
+step = 0.001
+tick_count = 20
+ticks_on_borders = true
+
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_utg00")
+text = "SOUND_EFFECTS_SLIDER_LABEL"
+
+[node name="World Sounds" type="HSlider" parent="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Radio")
+focus_neighbor_bottom = NodePath("../../../../../true options/VBoxContainer/Become Sober")
+max_value = 1.5
+step = 0.001
+tick_count = 20
+ticks_on_borders = true
+
+[node name="Resolution holder" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 4.0
+offset_right = 1148.0
+offset_bottom = 330.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Resolution holder"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resolution holder/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_utg00")
+theme_override_font_sizes/font_size = 30
+text = "RESOLUTION_LABEL"
+
+[node name="Resolution options" type="OptionButton" parent="Resolution holder/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../PanelContainer/VBoxContainer/Motion Sickness Check")
+focus_neighbor_top = NodePath("../../../true options/VBoxContainer/Back")
+focus_neighbor_right = NodePath("../../../PanelContainer/VBoxContainer/Motion Sickness Check")
+focus_neighbor_bottom = NodePath("../Quality Options")
+theme = ExtResource("1_utg00")
+selected = 0
+item_count = 3
+popup/item_0/text = "RESOLUTION_OPTION_1"
+popup/item_0/id = 0
+popup/item_1/text = "RESOLUTION_OPTION_2"
+popup/item_1/id = 1
+popup/item_2/text = "RESOLUTION_OPTION_3"
+popup/item_2/id = 2
+
+[node name="Label2" type="Label" parent="Resolution holder/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_utg00")
+text = "QUALITY_LABEL"
+
+[node name="Quality Options" type="OptionButton" parent="Resolution holder/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../PanelContainer/VBoxContainer/Motion Sickness Check")
+focus_neighbor_top = NodePath("../Resolution options")
+focus_neighbor_right = NodePath("../../../PanelContainer/VBoxContainer/Motion Sickness Check")
+focus_neighbor_bottom = NodePath("../Window Options")
+theme = ExtResource("1_utg00")
+selected = 0
+item_count = 4
+popup/item_0/text = "QUALITY_OPTION_1"
+popup/item_0/id = 0
+popup/item_1/text = "QUALITY_OPTION_2"
+popup/item_1/id = 1
+popup/item_2/text = "QUALITY_OPTION_3"
+popup/item_2/id = 2
+popup/item_3/text = "QUALITY_OPTION_4"
+popup/item_3/id = 3
+
+[node name="Label3" type="Label" parent="Resolution holder/VBoxContainer"]
+layout_mode = 2
+text = "WINDOW_MODE_LABEL"
+
+[node name="Window Options" type="OptionButton" parent="Resolution holder/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../PanelContainer/VBoxContainer/HBoxContainer/Reset")
+focus_neighbor_top = NodePath("../Quality Options")
+focus_neighbor_bottom = NodePath("../Language Options")
+selected = 0
+item_count = 3
+popup/item_0/text = "WINDOW_OPTION_1"
+popup/item_0/id = 0
+popup/item_1/text = "WINDOW_OPTION_2"
+popup/item_1/id = 1
+popup/item_2/text = "WINDOW_OPTION_3"
+popup/item_2/id = 2
+
+[node name="Label4" type="Label" parent="Resolution holder/VBoxContainer"]
+layout_mode = 2
+text = "LANGUAGE_OPTION_LABEL"
+
+[node name="Language Options" type="OptionButton" parent="Resolution holder/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../PanelContainer/VBoxContainer/HBoxContainer/Reset")
+focus_neighbor_top = NodePath("../Window Options")
+focus_neighbor_bottom = NodePath("../../../true options/VBoxContainer/Back")
+selected = 0
+item_count = 9
+popup/item_0/text = "ENGLISH_OPTION"
+popup/item_0/id = 0
+popup/item_1/text = "ITALIAN_OPTION"
+popup/item_1/id = 1
+popup/item_2/text = "CHINESE_OPTION"
+popup/item_2/id = 2
+popup/item_3/text = "RUSSIAN_OPTION"
+popup/item_3/id = 3
+popup/item_4/text = "JAPANESE_OPTION"
+popup/item_4/id = 4
+popup/item_5/text = "KOREAN_OPTION"
+popup/item_5/id = 5
+popup/item_6/text = "VIETNAMESE_OPTION"
+popup/item_6/id = 6
+popup/item_7/text = "PORTUGUES_OPTION"
+popup/item_7/id = 7
+popup/item_8/text = "SPANISH_OPTION"
+popup/item_8/id = 8
+
+[node name="true options" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 482.0
+offset_right = 1067.0
+offset_bottom = 548.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="true options"]
+layout_mode = 2
+
+[node name="Save To Disk" type="Button" parent="true options/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Resolution holder/VBoxContainer/Language Options")
+text = "SAVE_OPTIONS_BUTTON"
+
+[node name="Become Sober" type="Button" parent="true options/VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Resolution holder/VBoxContainer/Language Options")
+theme = ExtResource("1_utg00")
+text = "COLD_TURKEY_BUTTON"
+
+[node name="Back" type="Button" parent="true options/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Become Sober")
+focus_neighbor_bottom = NodePath("../../../Resolution holder/VBoxContainer/Resolution options")
+theme = ExtResource("1_utg00")
+text = "BACK_BUTTON"
+
+[node name="Controller Settings" parent="." instance=ExtResource("3_owcoa")]
+visible = false
+layout_mode = 1
+
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Motion Sickness Check" to="." method="_on_motion_sickness_check_toggled"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/sensitivity panel/VBoxContainer/Controller" to="." method="_on_controller_value_changed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/sensitivity panel/VBoxContainer/Mouse" to="." method="_on_mouse_value_changed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer/Master" to="." method="_on_master_value_changed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer/Voice" to="." method="_on_voice_value_changed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer/Radio" to="." method="_on_radio_value_changed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Sensitivity Panel/HBoxContainer/World Sounds" to="." method="_on_world_sounds_value_changed"]
+[connection signal="item_selected" from="Resolution holder/VBoxContainer/Resolution options" to="." method="_on_resolution_options_item_selected"]
+[connection signal="item_selected" from="Resolution holder/VBoxContainer/Quality Options" to="." method="on_quality_changed"]
+[connection signal="item_selected" from="Resolution holder/VBoxContainer/Window Options" to="." method="_on_window_options_item_selected"]
+[connection signal="item_selected" from="Resolution holder/VBoxContainer/Language Options" to="." method="_on_language_options_item_selected"]
+[connection signal="pressed" from="true options/VBoxContainer/Save To Disk" to="." method="save_options"]
+[connection signal="pressed" from="true options/VBoxContainer/Become Sober" to="." method="_on_become_sober_pressed"]
+[connection signal="pressed" from="true options/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="back_pressed" from="Controller Settings" to="." method="_on_return_from_controls"]

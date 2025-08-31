@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://wb4xhroexlmq"]
+
+[ext_resource type="Script" uid="uid://cvdb3mhbhm6an" path="res://Scenes/SinglePlayer/game.gd" id="1_w7y0x"]
+[ext_resource type="PackedScene" uid="uid://craox76r56bvq" path="res://Scenes/UI/Main Menu/Options Menu/Options Menu.tscn" id="2_v5bp6"]
+[ext_resource type="PackedScene" uid="uid://c6btg6wb1cmm6" path="res://Scenes/UI/Misc/game_over.tscn" id="3_cnp2m"]
+[ext_resource type="PackedScene" uid="uid://w7ute86vb38e" path="res://Scenes/UI/Misc/Win_Screen.tscn" id="4_akwyd"]
+[ext_resource type="PackedScene" uid="uid://c0isynyusocwo" path="res://Scenes/Roads/segment_spawner.tscn" id="5_akwyd"]
+[ext_resource type="PackedScene" uid="uid://cpluashr5x3of" path="res://Scenes/Inheritance/Player/Player Car.tscn" id="6_tfqb6"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_w7y0x")
+
+[node name="Options" parent="." instance=ExtResource("2_v5bp6")]
+visible = false
+
+[node name="Game Over" parent="." instance=ExtResource("3_cnp2m")]
+visible = false
+
+[node name="YOU WIN" parent="." instance=ExtResource("4_akwyd")]
+visible = false
+
+[node name="Segment Spawner" parent="." instance=ExtResource("5_akwyd")]
+
+[node name="Player Car" parent="Segment Spawner" instance=ExtResource("6_tfqb6")]
+transform = Transform3D(0.0265784, 0, 0.999647, 0, 1, 0, -0.999647, 0, 0.0265784, 264.276, 0.726802, -69.4266)

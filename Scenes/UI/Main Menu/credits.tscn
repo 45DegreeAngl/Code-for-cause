@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://bplsepulhptkc"]
+
+[ext_resource type="Script" uid="uid://cyynajiv0c5ay" path="res://Scenes/UI/Main Menu/credits.gd" id="1_3epcy"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3epcy")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.349826
+anchor_top = 0.367284
+anchor_right = 0.640625
+anchor_bottom = 0.729938
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
+layout_mode = 2
+focus_neighbor_right = NodePath("../../Close")
+focus_mode = 2
+text = "CREDITS_RICH"
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.596354
+anchor_top = 0.679012
+anchor_right = 0.639757
+anchor_bottom = 0.726852
+offset_bottom = -3.05176e-05
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_left = NodePath("../PanelContainer/RichTextLabel")
+text = "BACK_BUTTON"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

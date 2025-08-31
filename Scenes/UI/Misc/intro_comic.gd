@@ -7,6 +7,9 @@ func _ready():
 	timer = $"Next animation timer"
 	animp = $AnimationPlayer
 	reset_anims()
+	
+	play_intro()
+	$GoToGame.grab_focus()
 
 func reset_anims():
 	$"1".visible = false
@@ -40,3 +43,6 @@ func play_intro():
 	await animp.animation_finished
 	animp.play("move_scene4")
 	await animp.animation_finished
+
+func _on_go_to_game_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/SinglePlayer/Game.tscn")

@@ -1,10 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=8 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" uid="uid://bknkigk4grssx" path="res://Scenes/Roads/segment_spawner.gd" id="1_rkbci"]
-[ext_resource type="PackedScene" uid="uid://d4hsagaogd510" path="res://Scenes/Inheritance/Cop/RecklessCop.tscn" id="5_akfd3"]
-[ext_resource type="PackedScene" uid="uid://bkobvs8d7edh8" path="res://Scenes/Inheritance/Cop/Safe Cop.tscn" id="6_evxtx"]
-[ext_resource type="PackedScene" uid="uid://cpluashr5x3of" path="res://Scenes/Inheritance/Player/Player Car.tscn" id="6_tey1w"]
-[ext_resource type="PackedScene" uid="uid://b0m67a7yo1hxy" path="res://Scenes/Inheritance/Cop/Super Cop.tscn" id="7_qwvi2"]
 [ext_resource type="PackedScene" uid="uid://cr75h2k10e6eh" path="res://Scenes/Roads/Ex Segments/Ex Straight.tscn" id="11_3gyvj"]
 [ext_resource type="Texture2D" uid="uid://bvk6p748nx6p5" path="res://Assets/Models/Skybox/AllSky_Night_MoonBurst Equirect.png" id="11_ftxy5"]
 [ext_resource type="PackedScene" uid="uid://fuvj7j3go7xh" path="res://Scenes/Roads/Misc Segments/cul_de_sac_tutorial.tscn" id="13_r5rt5"]
@@ -52,20 +48,4 @@ environment = SubResource("Environment_v2tje")
 
 [node name="Cops" type="Node3D" parent="."]
 
-[node name="Reckless Cop" parent="Cops" node_paths=PackedStringArray("target") instance=ExtResource("5_akfd3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1535, 19.4298, -27.9168)
-target = NodePath("../../Player Car")
-
-[node name="Safe Cop" parent="Cops" node_paths=PackedStringArray("target") instance=ExtResource("6_evxtx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7436, 17.7711, -27.3453)
-target = NodePath("../../Player Car")
-
-[node name="Super Cop" parent="Cops" node_paths=PackedStringArray("target") instance=ExtResource("7_qwvi2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.1339, 18.3488, -22.1314)
-target = NodePath("../../Player Car")
-
 [node name="Pedestrians" type="Node3D" parent="."]
-
-[node name="Player Car" parent="." node_paths=PackedStringArray("cop_node") instance=ExtResource("6_tey1w")]
-transform = Transform3D(0.0265784, 0, 0.999647, 0, 1, 0, -0.999647, 0, 0.0265784, 264.276, 0.726802, -69.4266)
-cop_node = NodePath("../Cops")

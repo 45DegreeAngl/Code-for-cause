@@ -1523,7 +1523,7 @@ offset_left = -149.0
 offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Continue to Game"
+text = "CONTINUE_BUTTON"
 
 [node name="Next animation timer" type="Timer" parent="."]
 wait_time = 2.0
@@ -1531,5 +1531,7 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_8a054")
+&"": SubResource("AnimationLibrary_8a054")
 }
+
+[connection signal="pressed" from="GoToGame" to="." method="_on_go_to_game_pressed"]
