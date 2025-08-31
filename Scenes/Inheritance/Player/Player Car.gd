@@ -47,6 +47,14 @@ func update_context_variables(_delta):
 			ENGINE_POWER = original_engine_power/2
 		else:
 			ENGINE_POWER = original_engine_power
+		if collision_thing.has_meta("Road"):
+			print("Has Meta: Road %s"%collision_thing.has_meta("Road"))
+			if collision_thing.get_meta("Road"):
+				print("Meta: %s"%[collision_thing.get_meta("Road")])
+			else:
+				print("no road")
+		else:
+			print("Collider has no road :(")
 
 func update_steer(delta):
 	if !occupied or Globals.game_over or Globals.game_paused:
