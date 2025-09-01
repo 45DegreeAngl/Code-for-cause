@@ -22,6 +22,12 @@ var gabesmart_pity = 0
 var first_roads_loaded : bool = false
 var first_gabes_loaded : bool = false
 
+@export_subgroup("Game Variables")
+@export var cops_node:Node3D
+@export var pedestrians_node:Node3D
+@export var road_node:Node3D
+@export var previous_road:RoadSegment
+
 signal road_generated
 
 func _ready():
@@ -36,15 +42,13 @@ func _ready():
 		append_segment()
 	#spawn_road(road_segments[2])#PENISPENISPENISPENISCOCKOCKCOCKOCKCOCKOCKCOKCOKC
 	
-	Debug.cops_node = $Cops
-	Debug.sober_node = $Pedestrians
+	Debug.cops_node = cops_node
+	Debug.sober_node = pedestrians_node
 	
 	#if exes_house:
 		#spawn_road(exes_house)
 		
 	road_generated.emit()
-
-@onready var previous_road : Node3D = $"Roads/Cul de Sac Tutorial"
 
 func load_road_segments_from_folder():
 	road_segments = {}
@@ -150,7 +154,7 @@ func spawn_road(segment:PackedScene = null)->Node3D:
 				gabesmart_segments.erase(segment_key)
 				load_random_gabe_seg()
 	
-	instanced_segment.name = str(cur_player_road+$Roads.get_child_count())
+	instanced_segment.name = str(cur_player_road+road_node.get_child_count())
 	return instanced_segment
 
 func append_segment(segment:PackedScene = null):
@@ -162,7 +166,7 @@ func append_segment(segment:PackedScene = null):
 	
 	instanced_segment.visible = false
 	
-	$Roads.add_child(instanced_segment)
+	road_node.add_child(instanced_segment)
 	instanced_segment.global_position = previous_road.find_child("Exit").global_position
 	if instanced_segment.has_signal("increment_player_road_counter"):
 		instanced_segment.increment_player_road_counter.connect(increment_player_road)
@@ -186,8 +190,8 @@ var cur_player_road:int = 0:
 			append_segment()
 
 		cur_player_road=value
-		if $Roads.get_child_count()>8:
-			var temp_array:Array[Node3D] = [$Roads.get_child(0)]
+		if road_node.get_child_count()>8:
+			var temp_array:Array[Node3D] = [road_node.get_child(0)]
 			
 			for temp:Node3D in temp_array:
 				for cop : Node3D in Globals.world_node.find_child("Cops").get_children():
@@ -206,7 +210,7 @@ var debug_dic : Dictionary = {}
 func give_new_nav_region(vehicle:VehicleBody3D,road_completed:bool = false):
 	var cur_entry = debug_dic.get_or_add(vehicle.name,0)
 	debug_dic[vehicle.name] = cur_entry+1
-	print("I ",vehicle.name," called this function #:",debug_dic[vehicle.name])
+	#print("I ",vehicle.name," called this function #:",debug_dic[vehicle.name])
 	var vehicle_road : RoadSegment 
 	
 	if vehicle.has_method("get_cur_road"):
@@ -232,13 +236,13 @@ func give_new_nav_region(vehicle:VehicleBody3D,road_completed:bool = false):
 		print("Missing Nav_Curve for road")
 	#variables to the vehicle that was given
 	if vehicle.has_method("set_nav_region"):
-		var result:bool = vehicle.set_nav_region(vehicle_road.nav_region)
-		if result:
-			print("Nav Region Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_region)
+		var _result:bool = vehicle.set_nav_region(vehicle_road.nav_region)
+		#if result:
+			#print("Nav Region Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_region)
 	if vehicle.has_method("set_nav_path"):
-		var result = vehicle.set_nav_path(vehicle_road.nav_curve)
-		if result:
-			print("Nav Path Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_curve)
+		var _result = vehicle.set_nav_path(vehicle_road.nav_curve)
+		#if result:
+			#print("Nav Path Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_curve)
 	#if vehicle.has_method("adjust_cur_nav_index"):
 		#vehicle.adjust_cur_nav_index()
 		#print("Adjusting Nav Index for Vehicle: ",vehicle)
@@ -252,21 +256,21 @@ func get_road_at_pos(glob_pos:Vector3)->RoadSegment:
 	#if glob_pos.z>first_road.global_position.z:
 		#return first_road
 	#if glob_pos is less than the position of the last road, return last road
-	var last_road : RoadSegment = $Roads.get_children().back()
+	var last_road : RoadSegment = road_node.get_children().back()
 	#if glob_pos.z>last_road.global_position.z:
 		#return last_road
 	#var segment_arrays : Array[RoadSegment] = [$Roads.get_children()[0],$Roads.get_children()[1]]
 	var cur_road : RoadSegment
 	#loop through all roads
-	for index:int in $Roads.get_child_count():
-		cur_road = $Roads.get_child(index)
+	for index:int in road_node.get_child_count():
+		cur_road = road_node.get_child(index)
 		if glob_pos.z>cur_road.global_position.z:
-			return $Roads.get_child(index-1)
+			return road_node.get_child(index-1)
 	return last_road
 
 func get_next_road(cur:RoadSegment,reverse:bool=false)->RoadSegment:
 	var result:RoadSegment
-	var road_array:Array = $Roads.get_children()
+	var road_array:Array = road_node.get_children()
 	var result_index = road_array.find(cur)
 	if reverse:
 		result_index = maxi(0,result_index-1)
@@ -274,7 +278,7 @@ func get_next_road(cur:RoadSegment,reverse:bool=false)->RoadSegment:
 		result_index = mini(road_array.size()-1,result_index+1)
 	
 	result = road_array.get(result_index)
-	print("result index: ",result_index)
+	#print("result index: ",result_index)
 	print(result)
 	return result
 

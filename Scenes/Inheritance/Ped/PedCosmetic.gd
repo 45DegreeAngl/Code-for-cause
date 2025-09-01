@@ -1,1 +1,2 @@
-extends Node
+extends BaseCosmetic
+class_name PedestrianCosmetic

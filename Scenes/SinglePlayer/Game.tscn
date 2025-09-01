@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://wb4xhroexlmq"]
+[gd_scene load_steps=12 format=3 uid="uid://wb4xhroexlmq"]
 
 [ext_resource type="Script" uid="uid://cvdb3mhbhm6an" path="res://Scenes/SinglePlayer/game.gd" id="1_w7y0x"]
 [ext_resource type="PackedScene" uid="uid://craox76r56bvq" path="res://Scenes/UI/Main Menu/Options Menu/Options Menu.tscn" id="2_v5bp6"]
@@ -6,6 +6,32 @@
 [ext_resource type="PackedScene" uid="uid://w7ute86vb38e" path="res://Scenes/UI/Misc/Win_Screen.tscn" id="4_akwyd"]
 [ext_resource type="PackedScene" uid="uid://c0isynyusocwo" path="res://Scenes/Roads/segment_spawner.tscn" id="5_akwyd"]
 [ext_resource type="PackedScene" uid="uid://cpluashr5x3of" path="res://Scenes/Inheritance/Player/Player Car.tscn" id="6_tfqb6"]
+[ext_resource type="Texture2D" uid="uid://bvk6p748nx6p5" path="res://Assets/Models/Skybox/AllSky_Night_MoonBurst Equirect.png" id="7_tfqb6"]
+[ext_resource type="PackedScene" uid="uid://fuvj7j3go7xh" path="res://Scenes/Roads/Misc Segments/cul_de_sac_tutorial.tscn" id="8_bj6j6"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bj6j6"]
+panorama = ExtResource("7_tfqb6")
+
+[sub_resource type="Sky" id="Sky_31a3a"]
+sky_material = SubResource("PanoramaSkyMaterial_bj6j6")
+
+[sub_resource type="Environment" id="Environment_ygm4a"]
+background_mode = 2
+sky = SubResource("Sky_31a3a")
+sky_rotation = Vector3(0, 3.14159, 0)
+ambient_light_source = 2
+ambient_light_color = Color(0.236061, 0.284208, 0.387266, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.1
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.001
+fog_sky_affect = 0.0
+adjustment_enabled = true
+adjustment_brightness = 1.5
+adjustment_contrast = 1.1
+adjustment_saturation = 0.8
 
 [node name="Game" type="Node"]
 script = ExtResource("1_w7y0x")
@@ -19,7 +45,28 @@ visible = false
 [node name="YOU WIN" parent="." instance=ExtResource("4_akwyd")]
 visible = false
 
-[node name="Segment Spawner" parent="." instance=ExtResource("5_akwyd")]
+[node name="Segment Spawner" parent="." node_paths=PackedStringArray("cops_node", "pedestrians_node", "road_node", "previous_road") instance=ExtResource("5_akwyd")]
+cops_node = NodePath("Cops")
+pedestrians_node = NodePath("Pedestrians")
+road_node = NodePath("Roads")
+previous_road = NodePath("Roads/Cul de Sac Tutorial")
 
 [node name="Player Car" parent="Segment Spawner" instance=ExtResource("6_tfqb6")]
 transform = Transform3D(0.0265784, 0, 0.999647, 0, 1, 0, -0.999647, 0, 0.0265784, 264.276, 0.726802, -69.4266)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Segment Spawner"]
+transform = Transform3D(-1, 0, -8.74228e-08, -3.01411e-08, 0.938686, 0.344774, 8.20625e-08, 0.344774, -0.938686, 0, 0, 0)
+light_color = Color(0.623529, 0.772549, 0.94902, 1)
+light_energy = 0.05
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Segment Spawner"]
+environment = SubResource("Environment_ygm4a")
+
+[node name="Cops" type="Node3D" parent="Segment Spawner"]
+
+[node name="Pedestrians" type="Node3D" parent="Segment Spawner"]
+
+[node name="Roads" type="Node3D" parent="Segment Spawner"]
+
+[node name="Cul de Sac Tutorial" parent="Segment Spawner/Roads" instance=ExtResource("8_bj6j6")]

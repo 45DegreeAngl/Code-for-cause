@@ -1,6 +1,6 @@
 [gd_scene load_steps=64 format=4 uid="uid://cxp2kocirrm37"]
 
-[ext_resource type="Script" uid="uid://30t5f7mkkqhq" path="res://Scenes/AI/Navigation/Smart Cop.gd" id="1_cu7d0"]
+[ext_resource type="Script" uid="uid://30t5f7mkkqhq" path="res://Deprecated/AI/Navigation/Smart Cop.gd" id="1_cu7d0"]
 [ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_tcl5t"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="3_uw1wd"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="5_gc1n0"]

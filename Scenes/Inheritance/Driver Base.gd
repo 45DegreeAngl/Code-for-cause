@@ -3,6 +3,7 @@ class_name BaseDriver
 
 @export var target:BaseCar = null
 @export var hunt_dist:float = 15
+@export var backwards : bool = false
 @export var reverse_timer:Timer
 var hunt:bool = false
 var parked : bool = false

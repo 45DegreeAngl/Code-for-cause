@@ -1,4 +1,5 @@
 extends Node
+
 func _process(_delta: float) -> void:
 	if Globals.game_over or $"Game Over".visible or $"YOU WIN".visible:
 		return

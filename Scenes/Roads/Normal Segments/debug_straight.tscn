@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cg6h1skr0ri2m" path="res://Scenes/Objects/Terrain Add Ins/Grass/Simple Tree.tscn" id="11_gs8ns"]
 [ext_resource type="Script" uid="uid://dhp8yld20r6dg" path="res://Optimizers/tree_multimesh.gd" id="12_dcffh"]
 [ext_resource type="ArrayMesh" uid="uid://c5tvfihe4mtg6" path="res://Scenes/Objects/Terrain Add Ins/Grass/Simple Tree Mesh.tres" id="13_eaglc"]
-[ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Scenes/AI/Navigation/Smart Cop.tscn" id="15_ayi28"]
+[ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Deprecated/AI/Navigation/Smart Cop.tscn" id="15_ayi28"]
 
 [sub_resource type="Curve3D" id="Curve3D_j1r2w"]
 _data = {

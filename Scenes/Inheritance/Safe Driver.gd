@@ -1,6 +1,5 @@
 extends BaseDriver
 class_name SafeDriver
-@export var backwards : bool = false
 @export var point_accept_distance : float = 15
 @onready var cur_road : RoadSegment = null
 func get_cur_road():
