@@ -21,6 +21,13 @@ var cur_lin_vel:Vector3 = Vector3.ZERO
 @export var stuck_timer : Timer
 var stuck : bool = false
 
+# lag reduction stats
+@export_subgroup("Performance Settings")
+# how often navigation should be updated, in ms
+@export var update_interval : float = 200
+# the variable we'll use to keep track of the time till the next update. We apply a random offset to prevent two cars spawned at the same time from updating at the same time
+@onready var time_to_update = randf() * update_interval
+
 func get_max_steer():
 	if linear_velocity.length() >= 60:
 		return deg_to_rad(MAX_STEER_DEG) * 0.1
@@ -48,16 +55,21 @@ func xz_plane_dist(a:Vector3, b:Vector3):
 func xz_triangle_area(a:Vector3,b:Vector3,c:Vector3):
 	return (b.x-a.x)*(c.z-a.z) - (b.z-a.z)*(c.x-a.x)
 
-func _process(delta: float) -> void:
-	driver_process(delta)
-	update_context_variables(delta)
-	update_steer(delta)
-	update_cosmetics(delta)
+func _physics_process(delta: float) -> void:
+	time_to_update += delta * 1000
 	
-	#steering = steer_input
-	#engine_force = engine_input
-	cur_lin_vel = linear_velocity
-	check_stuck()
+	if time_to_update >= update_interval:
+		time_to_update = 0
+		driver_process(delta)
+		update_context_variables(delta)
+		update_steer(delta)
+		update_cosmetics(delta)
+		
+		#steering = steer_input
+		#engine_force = engine_input
+		cur_lin_vel = linear_velocity
+		check_stuck()
+	
 
 func driver_process(_delta):
 	pass

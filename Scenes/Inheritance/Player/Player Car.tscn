@@ -1091,6 +1091,7 @@ script = ExtResource("1_ofp5c")
 cosmetic_node = NodePath("Cosmetic")
 STEERING_CURVE = ExtResource("2_dujto")
 stuck_timer = NodePath("Stuck Timer")
+update_interval = 0.0
 
 [node name="Cosmetic" type="Node" parent="." node_paths=PackedStringArray("voice", "wheel", "speedometer_tick", "radio", "car_ref", "randomize_color_meshes", "head_lights", "back_lights", "engine_player", "crash_player")]
 script = ExtResource("3_xwpol")
