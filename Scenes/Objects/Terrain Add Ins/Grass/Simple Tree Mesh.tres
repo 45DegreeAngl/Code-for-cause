@@ -1,17 +1,35 @@
-[gd_resource type="ArrayMesh" load_steps=6 format=4 uid="uid://c5tvfihe4mtg6"]
+[gd_resource type="ArrayMesh" load_steps=7 format=4 uid="uid://c5tvfihe4mtg6"]
 
 [ext_resource type="Texture2D" uid="uid://cly5vyrxya5ie" path="res://Assets/Models/Debris/super_optimized_tree_Cylinder Base Color.png" id="1_c0rv5"]
-[ext_resource type="Texture2D" uid="uid://dpy0u4mmk4ry4" path="res://Assets/Models/Debris/super_optimized_tree_Cone.png" id="2_met3f"]
+[ext_resource type="Shader" uid="uid://5lj6l2j885e7" path="res://Shaders/tree shader.gdshader" id="2_wl7pb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1ris"]
 resource_name = "Material.002"
 albedo_texture = ExtResource("1_c0rv5")
 roughness = 0.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3u5yb"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_how5f"]
+load_path = "res://.godot/imported/super_optimized_tree_Cone.png-e7b04faf3c8e8ca87d11fb3cdff55ba7.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6w05t"]
 resource_name = "Material.001"
-albedo_texture = ExtResource("2_met3f")
-roughness = 0.5
+render_priority = 0
+shader = ExtResource("2_wl7pb")
+shader_parameter/wind_strength = 0.1
+shader_parameter/wind_speed = 1.0
+shader_parameter/wind_rustle_scale = 9.0
+shader_parameter/wind_phase_variation = 2.0
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_how5f")
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.5
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_t6qw5"]
 _surfaces = [{
@@ -57,7 +75,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 234,
 "index_data": PackedByteArray("FgBDAD4AFgATAEMANQAlACEAJQArACgAKwAvAC0ALwA1ADIANQArACUAKwA1AC8ANgAeAAEANgAiAB4AMQAGAAsAMQAzAAYAKQAMABAAKQAsAAwAJAAVABoAJAAnABUANAADAAcANAA3AAMALgAJAA4ALgAwAAkAJgASABQAJgAqABIAIAAYABwAIAAjABgARwBiAGsARwBOAGIADwBNAEYADwAKAE0AAgBTAFYAAgAfAFMABQBUAEkABQAAAFQAGwA/ADsAGwAXAD8AEQBFAEEAEQANAEUACABIAEwACAAEAEgAHQA5AFEAHQAZADkAXACUAHwAXAB0AJQAVQBfAFoAVQBSAF8ASwBbAGcASwBXAFsAOgBwAHYAOgA8AHAAQABpAG0AQABEAGkATwBmAGMATwBKAGYAUAB1AF0AUAA4AHUAPQBuAHEAPQBCAG4AjQCJAJkAcwCPAJMAcwBvAI8AagCBAIoAagBhAIEAWQB+AHkAWQBeAH4AZAB4AIQAZABYAHgAdwCSAJcAdwByAJIAbACIAIwAbABoAIgAYACFAIAAYABlAIUAgwCGAJ4AfQCVAJgAkQCbAJYAiwCCAJ0AegB/AJwAhwB7AJ8AjgCaAJAA"),
-"material": SubResource("StandardMaterial3D_3u5yb"),
+"material": SubResource("ShaderMaterial_6w05t"),
 "name": "Material.001",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bfe2n5yc1ofd5"]
+[gd_scene load_steps=24 format=3 uid="uid://bfe2n5yc1ofd5"]
 
 [ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_j1r2w"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Scenes/Roads/road_segment.gd" id="2_0313u"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cg6h1skr0ri2m" path="res://Scenes/Objects/Terrain Add Ins/Grass/Simple Tree.tscn" id="11_gs8ns"]
 [ext_resource type="Script" uid="uid://dhp8yld20r6dg" path="res://Optimizers/tree_multimesh.gd" id="12_dcffh"]
 [ext_resource type="ArrayMesh" uid="uid://c5tvfihe4mtg6" path="res://Scenes/Objects/Terrain Add Ins/Grass/Simple Tree Mesh.tres" id="13_eaglc"]
-[ext_resource type="PackedScene" uid="uid://cxp2kocirrm37" path="res://Deprecated/AI/Navigation/Smart Cop.tscn" id="15_ayi28"]
 
 [sub_resource type="Curve3D" id="Curve3D_j1r2w"]
 _data = {
@@ -940,8 +939,5 @@ transform = Transform3D(-0.511908, 0, 0.85904, 0, 1, 0, -0.85904, 0, -0.511908, 
 
 [node name="Tree_1947" parent="Grass/Trees" instance=ExtResource("11_gs8ns")]
 transform = Transform3D(-0.302535, 0, 0.953138, 0, 1, 0, -0.953138, 0, -0.302535, 42.4478, 0.495, -290.262)
-
-[node name="The_Cop" parent="." instance=ExtResource("15_ayi28")]
-transform = Transform3D(0.506907, 0, -0.862001, 0, 1, 0, 0.862001, 0, 0.506907, 29.244, 0, -57.9955)
 
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]
