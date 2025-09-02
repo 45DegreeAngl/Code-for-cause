@@ -51,8 +51,9 @@ pedestrians_node = NodePath("Pedestrians")
 road_node = NodePath("Roads")
 previous_road = NodePath("Roads/Cul de Sac Tutorial")
 
-[node name="Player Car" parent="Segment Spawner" instance=ExtResource("6_tfqb6")]
+[node name="Player Car" parent="Segment Spawner" node_paths=PackedStringArray("cop_node") instance=ExtResource("6_tfqb6")]
 transform = Transform3D(0.0265784, 0, 0.999647, 0, 1, 0, -0.999647, 0, 0.0265784, 264.276, 0.726802, -69.4266)
+cop_node = NodePath("../Cops")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Segment Spawner"]
 transform = Transform3D(-1, 0, -8.74228e-08, -3.01411e-08, 0.938686, 0.344774, 8.20625e-08, 0.344774, -0.938686, 0, 0, 0)
