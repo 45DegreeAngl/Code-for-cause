@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wb4xhroexlmq"]
+[gd_scene load_steps=14 format=3 uid="uid://wb4xhroexlmq"]
 
 [ext_resource type="Script" uid="uid://cvdb3mhbhm6an" path="res://Scenes/SinglePlayer/game.gd" id="1_w7y0x"]
 [ext_resource type="PackedScene" uid="uid://craox76r56bvq" path="res://Scenes/UI/Main Menu/Options Menu/Options Menu.tscn" id="2_v5bp6"]
@@ -6,17 +6,28 @@
 [ext_resource type="PackedScene" uid="uid://w7ute86vb38e" path="res://Scenes/UI/Misc/Win_Screen.tscn" id="4_akwyd"]
 [ext_resource type="PackedScene" uid="uid://c0isynyusocwo" path="res://Scenes/Roads/segment_spawner.tscn" id="5_akwyd"]
 [ext_resource type="PackedScene" uid="uid://cpluashr5x3of" path="res://Scenes/Inheritance/Player/Player Car.tscn" id="6_tfqb6"]
-[ext_resource type="Shader" uid="uid://cxg1wrbqy04o0" path="res://Shaders/sky_shader.gdshader" id="7_bj6j6"]
+[ext_resource type="Shader" uid="uid://cuggjrkq2iqtb" path="res://Shaders/debug_stars with moon.gdshader" id="7_64cng"]
 [ext_resource type="PackedScene" uid="uid://fuvj7j3go7xh" path="res://Scenes/Roads/Misc Segments/cul_de_sac_tutorial.tscn" id="8_bj6j6"]
+[ext_resource type="Texture2D" uid="uid://bbn68hy42iy5a" path="res://Assets/Streets_Concreate.jpg" id="8_t505o"]
 [ext_resource type="Script" uid="uid://cnmbor1oxnhpn" path="res://Scenes/SinglePlayer/world_environment.gd" id="10_t505o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ygm4a"]
-shader = ExtResource("7_bj6j6")
-shader_parameter/planet_radius = 150.0
-shader_parameter/planet_z = 150.0
-shader_parameter/glow_color = Color(0.4, 0.45, 0.6, 1)
-shader_parameter/glow_size = 70.0
-shader_parameter/glow_intensity = 1.5
+shader = ExtResource("7_64cng")
+shader_parameter/sky_color = Color(0, 0, 0, 1)
+shader_parameter/moon_texture = ExtResource("8_t505o")
+shader_parameter/moon_rotation_x_deg = 11.3
+shader_parameter/moon_rotation_y_deg = -0.499997
+shader_parameter/moon_phase_int = 0
+shader_parameter/moon_size = 0.011
+shader_parameter/moon_tex_rotation = Vector2(0, 0)
+shader_parameter/moon_glow_strength = 10.0
+shader_parameter/moon_glow_falloff = 1.0
+shader_parameter/moon_glow_color = Color(0.8, 0.85098, 1, 1)
+shader_parameter/star_density = 0.002
+shader_parameter/star_glow_falloff = 2.0
+shader_parameter/twinkle_speed = 2.0
+shader_parameter/twinkle_intensity = 0.6
+shader_parameter/star_color = Color(1, 0.95, 0.85, 1)
 
 [sub_resource type="Sky" id="Sky_31a3a"]
 sky_material = SubResource("ShaderMaterial_ygm4a")
@@ -24,7 +35,6 @@ sky_material = SubResource("ShaderMaterial_ygm4a")
 [sub_resource type="Environment" id="Environment_ygm4a"]
 background_mode = 2
 sky = SubResource("Sky_31a3a")
-sky_rotation = Vector3(0, 3.14159, 0)
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.0
