@@ -1,7 +1,7 @@
 [gd_resource type="ArrayMesh" load_steps=7 format=4 uid="uid://c5tvfihe4mtg6"]
 
 [ext_resource type="Texture2D" uid="uid://cly5vyrxya5ie" path="res://Assets/Models/Debris/super_optimized_tree_Cylinder Base Color.png" id="1_c0rv5"]
-[ext_resource type="Shader" uid="uid://5lj6l2j885e7" path="res://Shaders/tree shader.gdshader" id="2_wl7pb"]
+[ext_resource type="Shader" path="res://Shaders/tree shader.gdshader" id="2_wl7pb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1ris"]
 resource_name = "Material.002"
@@ -15,9 +15,9 @@ load_path = "res://.godot/imported/super_optimized_tree_Cone.png-e7b04faf3c8e8ca
 resource_name = "Material.001"
 render_priority = 0
 shader = ExtResource("2_wl7pb")
-shader_parameter/wind_strength = 0.1
+shader_parameter/wind_strength = 0.25
 shader_parameter/wind_speed = 1.0
-shader_parameter/wind_rustle_scale = 9.0
+shader_parameter/wind_rustle_scale = 4.0
 shader_parameter/wind_phase_variation = 2.0
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = SubResource("CompressedTexture2D_how5f")

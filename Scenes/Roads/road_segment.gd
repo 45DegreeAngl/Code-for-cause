@@ -112,6 +112,8 @@ func spawn_timer_timeout():
 			driver_spawned.emit(result)
 
 func spawn_residual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleBody3D:
+	if driver_spawns.get_child_count()<1:
+		return null
 	var chosen_marker:Marker3D = driver_spawns.get_children().pick_random()
 	if chosen_marker == null:
 		return null
