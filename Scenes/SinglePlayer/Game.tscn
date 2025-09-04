@@ -81,6 +81,7 @@ sky_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Segment Spawner"]
 environment = SubResource("Environment_ygm4a")
 script = ExtResource("10_t505o")
+set_phase_on_ready = true
 
 [node name="Cops" type="Node3D" parent="Segment Spawner"]
 
