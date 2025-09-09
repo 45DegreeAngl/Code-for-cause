@@ -124,12 +124,22 @@ func cycle_target(parent_node:Node3D,cur_index:int):
 			set_target(children[cur_index])
 	return cur_index
 
+signal cam_switched(cam_type:int,me:Window)
+
 func switch_camera(new_camera: Camera3D):
 	if new_camera:
 		free.current = new_camera == free
 		car.current = new_camera == car
 		first_person.current = new_camera == first_person
 		wheel.current = new_camera == wheel
+		if free.current:
+			cam_switched.emit(0,self)
+		elif car.current:
+			cam_switched.emit(1,self)
+		elif first_person.current:
+			cam_switched.emit(2,self)
+		else:
+			cam_switched.emit(3,self)
 
 var focus_player:bool = true
 
