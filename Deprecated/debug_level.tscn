@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxwqiv7jwr7gx"]
 
 [ext_resource type="PackedScene" uid="uid://d14r56j2s6lbi" path="res://Deprecated/debug_camera.tscn" id="1_u1282"]
-[ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Scenes/User/Car/The Car.tscn" id="2_n266j"]
+[ext_resource type="PackedScene" uid="uid://diakwvg84vkiw" path="res://Deprecated/Car/The Car.tscn" id="2_n266j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7r7xq"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=4 uid="uid://bup5hafnqfbh2"]
 
-[ext_resource type="Script" uid="uid://bgnr8nj6c2j1i" path="res://Scenes/User/Car/The Car.gd" id="1_dt86f"]
+[ext_resource type="Script" uid="uid://bgnr8nj6c2j1i" path="res://Deprecated/Car/The Car.gd" id="1_dt86f"]
 [ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="2_sfu7x"]
 
 [sub_resource type="Curve" id="Curve_1dypo"]

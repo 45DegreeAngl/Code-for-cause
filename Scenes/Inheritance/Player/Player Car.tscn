@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://6ok3wwem53q" path="res://Deprecated/godot-prototype-texture/PNG/checker_blue_512x512.png" id="12_30p0i"]
 [ext_resource type="Texture2D" uid="uid://crhdx7ojehre8" path="res://Deprecated/godot-prototype-texture/PNG/checker_lime_512x512.png" id="13_7eypj"]
 [ext_resource type="Texture2D" uid="uid://dc5kiekdkk2lc" path="res://Deprecated/godot-prototype-texture/PNG/checker_red_512x512.png" id="14_iuv7v"]
-[ext_resource type="PackedScene" uid="uid://lvgwnfheptfj" path="res://Scenes/User/Car/Alcohol Crate.tscn" id="15_0goqt"]
+[ext_resource type="PackedScene" uid="uid://lvgwnfheptfj" path="res://Scenes/User/Alcohol Crate.tscn" id="15_0goqt"]
 [ext_resource type="PackedScene" uid="uid://ft4n32wk55a8" path="res://Assets/Models/Car/radio.tscn" id="16_vcdkw"]
 [ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="17_84ch0"]
 [ext_resource type="Theme" uid="uid://ccmgdq4tewmwx" path="res://Assets/Themes/Kaph.tres" id="18_g8eum"]

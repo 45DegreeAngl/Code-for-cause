@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cvna312hss44a"]
 
-[ext_resource type="Script" uid="uid://dfr48gjyc7dye" path="res://Scenes/Multiplayer/multiplayer_level.gd" id="1_mf4e4"]
+[ext_resource type="Script" uid="uid://dfr48gjyc7dye" path="res://Deprecated/Multiplayer/multiplayer_level.gd" id="1_mf4e4"]
 
 [node name="Multiplayer Level" type="Node3D"]
 script = ExtResource("1_mf4e4")
