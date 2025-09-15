@@ -12,11 +12,12 @@ var sky_material: ShaderMaterial
 
 
 func _ready()->void:
-	sky_material = environment.sky.sky_material
-	# If the feature is enabled and the material is linked, set the phase.
-	if set_phase_on_ready and sky_material != null:
-		var current_phase = get_moon_phase_int()
-		sky_material.set_shader_parameter("moon_phase_int", current_phase)
+	pass
+	#sky_material = environment.sky.sky_material
+	## If the feature is enabled and the material is linked, set the phase.
+	#if set_phase_on_ready and sky_material != null:
+		#var current_phase = get_moon_phase_int()
+		#sky_material.set_shader_parameter("moon_phase_int", current_phase)
 
 
 ## Calculates the current phase of the moon (0-31) based on the system date.

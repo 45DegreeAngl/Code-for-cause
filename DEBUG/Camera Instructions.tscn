@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7eejackdu145"]
+
+[ext_resource type="Script" uid="uid://dhws3dkv4trr8" path="res://DEBUG/camera_instructions.gd" id="1_6pg5g"]
+
+[node name="Window" type="Window"]
+title = "Camera Instructions"
+initial_position = 1
+size = Vector2i(400, 400)
+script = ExtResource("1_6pg5g")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Intro" type="RichTextLabel" parent="TabContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Press [code]~[/code] (Tilde) to open or close the console.
+[b]Note:[/b] Opening the console will flag you as a cheater!
+
+[b]Available Commands[/b]
+[indent][code]H[/code] - Toggle Beer Meter visibility.[/indent]
+[indent][code]=[/code] - Increase drunkenness level.[/indent]
+[indent][code]-[/code] - Decrease drunkenness level.[/indent]
+[indent][code]G[/code] - Toggle debug mode for the player vehicle.[/indent]
+[indent][code]C[/code] - Spawn the Debug Camera Control Panel.[/indent]
+[indent][code]Insert[/code] - (Dev) Increment current road index.[/indent]
+[indent][code]Home[/code] - (Dev) Append a temp road segment.[/indent]"
+metadata/_tab_index = 0
+
+[node name="Control Panel" type="RichTextLabel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "This panel creates and manages separate debug camera windows.
+
+[b]How to Use[/b]
+[indent]• Press the [code]+[/code] button to spawn a new camera window.[/indent]
+[indent]• Each new window gets its own control row in this panel.[/indent]
+
+[b]Per-Camera Controls[/b]
+[indent]• [b]Dropdown:[/b] Sets the camera type ([code]Free[/code], [code]Car[/code], etc.) for that specific window.[/indent]
+[indent]• [b]View Checkbox:[/b] Shows or hides the corresponding camera window.[/indent]
+[indent]• [b][code]X[/code] Button:[/b] Closes and removes the camera window and its control row.[/indent]"
+metadata/_tab_index = 1
+
+[node name="Camera" type="RichTextLabel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]General[/b]
+[indent][code].[/code] (period) - Capture/Release Mouse[/indent]
+
+[b]Camera Modes[/b]
+[indent][code]1[/code] - Free Camera[/indent]
+[indent][code]2[/code] - Car/Orbit Camera[/indent]
+[indent][code]3[/code] - First-Person Camera[/indent]
+[indent][code]4[/code] - Wheel Camera[/indent]
+
+[b]Target Selection[/b]
+[indent][code]Numpad 1[/code] - Target Player[/indent]
+[indent][code]Numpad 2[/code] - Cycle Next Civilian[/indent]
+[indent][code]Numpad 3[/code] - Cycle Next Cop[/indent]
+
+[b]Free Camera Mode[/b]
+[indent][code]Numpad 8/5[/code] - Forward/Backward[/indent]
+[indent][code]Numpad 4/6[/code] - Strafe Left/Right[/indent]
+[indent][code]Numpad 9/7[/code] - Move Up/Down[/indent]
+[indent][code]Mouse[/code] - Look Around[/indent]
+[indent][code]Mouse Wheel[/code] - Change Speed[/indent]
+[indent][code]+/-[/code] - Adjust Sensitivity[/indent]
+[indent][code]L[/code] - Toggle Target Lock-on[/indent]
+[indent][code]Spacebar[/code] - Teleport to Target[/indent]
+[indent][code]Numpad 0[/code] - Toggle Player Model[/indent]
+
+[b]Car/Orbit Camera Mode[/b]
+[indent][code]Mouse[/code] - Orbit Target[/indent]
+[indent][code]=[/code] - Zoom In[/indent]
+[indent][code]-[/code] - Zoom Out[/indent]"
+metadata/_tab_index = 2
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

@@ -1,20 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://cq5f46bfyiki"]
+[gd_scene load_steps=19 format=3 uid="uid://cq5f46bfyiki"]
 
 [ext_resource type="Script" uid="uid://byq6uh5o17nwt" path="res://Assets/3D Skybox/skybox.gd" id="1_20elq"]
 [ext_resource type="ArrayMesh" uid="uid://df4rkehrbbltd" path="res://Assets/3D Skybox/star.tres" id="1_alxtr"]
 [ext_resource type="ArrayMesh" uid="uid://bids6fx1rcrt7" path="res://Assets/3D Skybox/separated.tres" id="1_iiele"]
 [ext_resource type="Shader" uid="uid://cuggjrkq2iqtb" path="res://Shaders/debug_stars with moon.gdshader" id="2_nmopk"]
-[ext_resource type="Texture2D" uid="uid://bbn68hy42iy5a" path="res://Assets/Streets_Concreate.jpg" id="3_wpswt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wpswt"]
 shader = ExtResource("2_nmopk")
 shader_parameter/sky_color = Color(0.05, 0.08, 0.15, 1)
-shader_parameter/moon_texture = ExtResource("3_wpswt")
+shader_parameter/moon_color = Color(0.9, 0.9, 0.85, 1)
 shader_parameter/moon_rotation_x_deg = 30.0
 shader_parameter/moon_rotation_y_deg = -45.0
 shader_parameter/moon_phase_int = 2
 shader_parameter/moon_size = 0.194
-shader_parameter/moon_tex_rotation = Vector2(0, 0)
 shader_parameter/moon_glow_strength = 3.0
 shader_parameter/moon_glow_falloff = 3.5
 shader_parameter/moon_glow_color = Color(1, 1, 1, 0.3)

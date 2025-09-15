@@ -61,7 +61,7 @@ func _input(event):
 	if !window_focus:
 		return  # Skip processing if the window isn't focused
 
-	if event is InputEventKey and event.keycode == KEY_ESCAPE and event.is_pressed():
+	if event is InputEventKey and event.keycode == KEY_PERIOD and event.is_pressed():
 		toggle_mouse_capture()
 	
 	#if event is InputEventKey and event.keycode == KEY_L and event.is_pressed():
@@ -99,12 +99,12 @@ func _input(event):
 				distance = lerpf(distance,target_distance,0.1)
 
 		# Rotate camera based on mouse movement
-		if event is InputEventMouseMotion and !mouse_captured:
+		if event is InputEventMouseMotion and mouse_captured:
 			yaw -= event.relative.x * rotation_speed
 			pitch = clamp(pitch - event.relative.y * rotation_speed, -PI/4, PI/4)  # Limit up/down rotation
 
 	# Mouse look (only in free mode)
-	if free.current and event is InputEventMouseMotion and !mouse_captured and !is_locked_on:
+	if free.current and event is InputEventMouseMotion and mouse_captured and !is_locked_on:
 		mouse_input = event.relative * fp_sensitivity *20
 
 func set_target(target:Node3D):

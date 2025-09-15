@@ -1,47 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhghjh1piqkm"]
+[gd_scene load_steps=3 format=3 uid="uid://dd2n1bwxgj4ho"]
 
 [ext_resource type="Script" uid="uid://dsj5i47kavef8" path="res://DEBUG/debug_cam_controls.gd" id="1_so7dr"]
+[ext_resource type="PackedScene" uid="uid://cmd7g853vm7pb" path="res://DEBUG/Debug Popout Cam.tscn" id="2_okm3c"]
 
 [node name="DebugCamControls" type="Window"]
 initial_position = 1
 size = Vector2i(400, 400)
 script = ExtResource("1_so7dr")
+debug_cam_scene = ExtResource("2_okm3c")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/PanelContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 4
 
-[node name="Cams Label" type="Label" parent="PanelContainer/ScrollContainer/GridContainer"]
+[node name="Cams Label" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Name"
 
-[node name="Setting" type="Label" parent="PanelContainer/ScrollContainer/GridContainer"]
+[node name="Setting" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Setting"
 
-[node name="View" type="Label" parent="PanelContainer/ScrollContainer/GridContainer"]
+[node name="View" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "View"
 
-[node name="Add Camera" type="Button" parent="PanelContainer/ScrollContainer/GridContainer"]
+[node name="Add Camera" type="Button" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "add"
 
+[node name="Instructions" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Instructions"
+
 [connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/ScrollContainer/GridContainer/Add Camera" to="." method="add_camera"]
+[connection signal="pressed" from="VBoxContainer/Instructions" to="." method="_on_instructions_pressed"]

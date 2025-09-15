@@ -1,22 +1,21 @@
+// Filename: sky_solid_moon.gdshader
 shader_type sky;
 
 // -- Sky Settings --
 uniform vec4 sky_color : source_color = vec4(0.05, 0.08, 0.15, 1.0);
 
 // -- Moon Settings --
-uniform sampler2D moon_texture : source_color, filter_linear_mipmap, repeat_disable;
+uniform vec4 moon_color : source_color = vec4(0.9, 0.9, 0.85, 1.0); // The new solid color for the moon
 uniform float moon_rotation_x_deg : hint_range(-90.0, 90.0, 0.1) = 30.0;
 uniform float moon_rotation_y_deg : hint_range(-180.0, 180.0, 0.1) = -45.0;
-// ** CHANGE: Phase range is now 0 to 31 for a full lunar cycle. **
-uniform int moon_phase_int : hint_range(0, 31, 1) = 0; // 0:New, 8:FirstQ, 16:Full, 24:LastQ
+uniform int moon_phase_int : hint_range(0, 31, 1) = 10; // 0:New, 8:FirstQ, 16:Full, 24:LastQ
 uniform float moon_size : hint_range(0.0, 0.2, 0.001) = 0.05;
-uniform vec2 moon_tex_rotation = vec2(0.0, 0.0); // X and Y rotation in radians
 uniform float moon_glow_strength : hint_range(0.0, 10.0, 0.1) = 3.0;
 uniform float moon_glow_falloff : hint_range(1.0, 8.0, 0.1) = 3.5;
 uniform vec4 moon_glow_color : source_color = vec4(0.8, 0.85, 1.0, 1.0);
 
 // -- Star Settings --
-uniform float star_density : hint_range(0.0, 0.2, 0.001) = 0.002; // Higher is more stars
+uniform float star_density : hint_range(0.0, 0.2, 0.001) = 0.002;
 uniform float star_glow_falloff : hint_range(1.0, 5.0, 0.1) = 2.0;
 uniform float twinkle_speed : hint_range(0.0, 10.0, 0.1) = 1.5;
 uniform float twinkle_intensity : hint_range(0.0, 1.0, 0.01) = 0.6;
@@ -81,32 +80,20 @@ void sky() {
 	if (moon_disk > 0.0) {
 		vec3 moon_up_ref = abs(norm_moon_dir.y) < 0.99 ? vec3(0.0, 1.0, 0.0) : vec3(1.0, 0.0, 0.0);
 		vec3 moon_right = normalize(cross(norm_moon_dir, moon_up_ref));
-		vec3 moon_up = normalize(cross(moon_right, norm_moon_dir));
-		vec3 p = normalize(dir - norm_moon_dir * moon_dot);
-		vec2 moon_uv = vec2(dot(p, moon_right), dot(p, moon_up)) / (moon_size * 2.0) + 0.5;
 		
-		moon_uv -= 0.5;
-		moon_uv = rotate(moon_tex_rotation.y) * moon_uv;
-		moon_uv = rotate(moon_tex_rotation.x) * moon_uv;
-		moon_uv += 0.5;
-
-		vec3 moon_albedo = vec3(0.0);
-		if (moon_uv.x > 0.0 && moon_uv.x < 1.0 && moon_uv.y > 0.0 && moon_uv.y < 1.0){
-			moon_albedo = texture(moon_texture, moon_uv).rgb;
-		}
+		// The moon's surface color is now taken directly from the moon_color uniform.
+		// All texture and UV mapping code has been removed.
+		vec3 moon_albedo = moon_color.rgb;
 
 		vec3 point_on_sphere = dir * moon_dot - norm_moon_dir;
 		vec3 moon_normal = normalize(norm_moon_dir + point_on_sphere / moon_size);
 		
 		float phase;
-		
-		// ** CHANGE: Updated special cases and angle math for the 0-31 range. **
 		if (moon_phase_int == 0) {
-			phase = 0.0; // New Moon is completely dark/invisible.
+			phase = 0.0;
 		} else if (moon_phase_int == 16) {
-			phase = 1.0; // Full Moon is completely lit.
+			phase = 1.0;
 		} else {
-			// This angle maps the 32 phases to a full 360-degree circle.
 			float phase_angle = (float(moon_phase_int) / 16.0) * PI; 
 			vec3 phase_light_dir = -norm_moon_dir * cos(phase_angle) + moon_right * sin(phase_angle);
 			float phase_lighting = dot(moon_normal, phase_light_dir);
@@ -123,8 +110,8 @@ void sky() {
 
 	// --- FINAL COMPOSITION ---
 	vec3 color = sky_color.rgb + final_stars;
-	color = mix(color, final_moon_color, final_moon_mask);
 	color += final_moon_glow;
-	
+	color = mix(color, final_moon_color, final_moon_mask);
+
 	COLOR = color;
 }

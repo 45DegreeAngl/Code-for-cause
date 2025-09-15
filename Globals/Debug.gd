@@ -12,7 +12,8 @@ var debug_camera_spawned : bool = false
 @onready var player_model : Node3D
 @export var cops_node : Node3D
 @export var sober_node : Node3D
-@onready var debug_camera_packed = preload("res://DEBUG/Debug Popout Cam.tscn")
+#@onready var debug_camera_packed = preload("res://DEBUG/Debug Popout Cam.tscn")
+@onready var debug_camera_controls = preload("res://DEBUG/Debug Cam Controls.tscn")
 
 @onready var temp_road_packed = preload("res://Scenes/Roads/Normal Segments/TEMP ROAD.tscn")
 
@@ -43,7 +44,7 @@ func _input(event: InputEvent) -> void:
 					return
 				debug_camera_spawned = true
 				#print("WAL:OUJSDIOHJW")
-				var debug_cam : Window = debug_camera_packed.instantiate()
+				var debug_cam : Window = debug_camera_controls.instantiate()
 				add_child(debug_cam)
 				debug_cam.first_person_cam = fp_cam
 				debug_cam.world_wheel_cam = wheel_cam
