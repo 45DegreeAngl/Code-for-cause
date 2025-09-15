@@ -1090,6 +1090,7 @@ linear_damp = 0.2
 script = ExtResource("1_ofp5c")
 cosmetic_node = NodePath("Cosmetic")
 STEERING_CURVE = ExtResource("2_dujto")
+ENGINE_POWER = 400.0
 stuck_timer = NodePath("Stuck Timer")
 update_interval = 0.0
 

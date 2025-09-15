@@ -42,20 +42,13 @@ func driver_process(delta):
 func update_context_variables(_delta):
 	if $"Ground Ray".get_collider():
 		var collision_thing = $"Ground Ray".get_collider()
-		#print("balls",collision_thing)
-		if collision_thing is GridMap and collision_thing.has_meta("Road") and !collision_thing.get_meta("Road"):
-			print("AHHH THIS IS GRASS ITS GRASSSS")
-			ENGINE_POWER = original_engine_power/2
+		if collision_thing.has_meta("Road"):
+			if collision_thing.get_meta("Road"):
+				ENGINE_POWER = original_engine_power
+			else:
+				ENGINE_POWER = original_engine_power/2
 		else:
-			ENGINE_POWER = original_engine_power
-		#if collision_thing.has_meta("Road"):
-			#print("Has Meta: Road %s"%collision_thing.has_meta("Road"))
-			#if collision_thing.get_meta("Road"):
-				#print("Meta: %s"%[collision_thing.get_meta("Road")])
-			#else:
-				#print("no road")
-		#else:
-			#print("Collider has no road :(")
+			ENGINE_POWER = original_engine_power/2
 
 func update_steer(delta):
 	if !occupied or Globals.game_over or Globals.game_paused:
