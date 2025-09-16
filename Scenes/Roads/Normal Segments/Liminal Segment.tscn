@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=4 uid="uid://bsawvuh1yr6x3"]
+[gd_scene load_steps=29 format=4 uid="uid://bsawvuh1yr6x3"]
 
 [ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_r0pfw"]
+[ext_resource type="PackedScene" uid="uid://dhwf0xivi7yl7" path="res://Scenes/Objects/Terrain Add Ins/Grass/boundary_forest.tscn" id="2_awuph"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Scenes/Roads/road_segment.gd" id="2_d4v6j"]
 [ext_resource type="PackedScene" uid="uid://cmk8hsh2rcdkm" path="res://Scenes/Objects/Terrain Add Ins/Street/lamp_post.tscn" id="3_h7e8l"]
 [ext_resource type="MeshLibrary" uid="uid://cqrvpxgdtlk7k" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/grass.tres" id="3_qk62e"]
-[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Environment/Tree_wall.png" id="5_x711k"]
+[ext_resource type="Shader" uid="uid://8mbpp8q1cyls" path="res://Scenes/Objects/Terrain Add Ins/Grass/boundary_forest.gdshader" id="3_svvk2"]
 [ext_resource type="Texture2D" uid="uid://jj4h3poeat31" path="res://Assets/Models/Debris/Tree_1_Cylinder Base Color.png" id="7_0l6xj"]
 [ext_resource type="Texture2D" uid="uid://c7sl5akbr3rnv" path="res://Assets/Models/Debris/Tree_1_Cone.png" id="8_855v1"]
 [ext_resource type="PackedScene" uid="uid://cg6h1skr0ri2m" path="res://Scenes/Objects/Terrain Add Ins/Grass/Simple Tree.tscn" id="9_37rol"]
@@ -21,14 +22,30 @@ point_count = 31
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ylrxo"]
 plane = Plane(0, 0, 1, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jc7e"]
-transparency = 1
-albedo_texture = ExtResource("5_x711k")
-uv1_scale = Vector3(4.24, 1, 1)
+[sub_resource type="Gradient" id="Gradient_bsb6r"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_svvk0"]
-material = SubResource("StandardMaterial3D_7jc7e")
-size = Vector2(422.8, 21)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dpb1e"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jhiwd"]
+color_ramp = SubResource("Gradient_bsb6r")
+noise = SubResource("FastNoiseLite_dpb1e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpb1e"]
+render_priority = 0
+shader = ExtResource("3_svvk2")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jhiwd")
+shader_parameter/height_scale = 0.2
+shader_parameter/noise_scale = 5.0
+shader_parameter/low_color = Color(0.2, 0.5, 0.1, 1)
+shader_parameter/high_color = Color(0.4, 0.6, 0.2, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_no7g0"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(40, 416)
+subdivide_width = 50
+subdivide_depth = 50
 
 [sub_resource type="MultiMesh" id="MultiMesh_r0pfw"]
 transform_format = 1
@@ -148,35 +165,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -310.58)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0215, 0)
 shape = SubResource("WorldBoundaryShape3D_ylrxo")
 
-[node name="Boundary" type="Node3D" parent="."]
+[node name="Boundary 3D" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -284.39, 10, -207.834)
-mesh = SubResource("QuadMesh_svvk0")
+[node name="Boundary Forest" parent="Boundary 3D" instance=ExtResource("2_awuph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -309.996, 0, -208)
+mesh = SubResource("PlaneMesh_no7g0")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Boundary/MeshInstance3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-visible = false
-use_collision = true
-size = Vector3(1, 21, 435.44)
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -284.39, 10, -218.774)
-mesh = SubResource("QuadMesh_svvk0")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 308.546, 10, -209.6)
-mesh = SubResource("QuadMesh_svvk0")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Boundary/MeshInstance3D2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-visible = false
-use_collision = true
-size = Vector3(1, 21, 430)
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 308.546, 10, -218.694)
-mesh = SubResource("QuadMesh_svvk0")
+[node name="Boundary Forest2" parent="Boundary 3D" instance=ExtResource("2_awuph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330, 0, -208)
+mesh = SubResource("PlaneMesh_no7g0")
 
 [node name="Road Spawns" type="Node3D" parent="."]
 

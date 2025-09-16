@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://fuvj7j3go7xh"]
+[gd_scene load_steps=25 format=3 uid="uid://fuvj7j3go7xh"]
 
 [ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_d8cqh"]
+[ext_resource type="PackedScene" uid="uid://dhwf0xivi7yl7" path="res://Scenes/Objects/Terrain Add Ins/Grass/boundary_forest.tscn" id="2_mlf5o"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Scenes/Roads/road_segment.gd" id="2_vcq83"]
 [ext_resource type="MeshLibrary" uid="uid://cqrvpxgdtlk7k" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/grass.tres" id="3_7agfs"]
-[ext_resource type="Texture2D" uid="uid://crbxck5vtpqa4" path="res://Assets/Textures/Environment/Tree_wall.png" id="4_iudb2"]
+[ext_resource type="Shader" uid="uid://8mbpp8q1cyls" path="res://Scenes/Objects/Terrain Add Ins/Grass/boundary_forest.gdshader" id="3_8o1na"]
 [ext_resource type="PackedScene" uid="uid://draf67p2ehgfx" path="res://Scenes/Objects/Terrain Add Ins/Street/house_1.tscn" id="5_ueshl"]
 [ext_resource type="PackedScene" uid="uid://b4jd38ifumhg7" path="res://Scenes/Objects/Terrain Add Ins/Street/gabes_mart.tscn" id="6_i5ttn"]
 [ext_resource type="Script" uid="uid://dtk5ji61ml077" path="res://Deprecated/debris_group.gd" id="7_0xqex"]
@@ -21,72 +22,44 @@ point_count = 2
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ylrxo"]
 plane = Plane(0, 0, 1, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldlsn"]
-transparency = 1
-albedo_texture = ExtResource("4_iudb2")
-uv1_scale = Vector3(6, 1, 1)
+[sub_resource type="Gradient" id="Gradient_bsb6r"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_sasok"]
-material = SubResource("StandardMaterial3D_ldlsn")
-size = Vector2(360, 21)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dpb1e"]
+noise_type = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yesdx"]
-size = Vector3(1, 21, 360)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jhiwd"]
+color_ramp = SubResource("Gradient_bsb6r")
+noise = SubResource("FastNoiseLite_dpb1e")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgs63"]
-transparency = 1
-albedo_texture = ExtResource("4_iudb2")
-uv1_scale = Vector3(6, 1, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpb1e"]
+render_priority = 0
+shader = ExtResource("3_8o1na")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jhiwd")
+shader_parameter/height_scale = 0.2
+shader_parameter/noise_scale = 5.0
+shader_parameter/low_color = Color(0.2, 0.5, 0.1, 1)
+shader_parameter/high_color = Color(0.4, 0.6, 0.2, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_xbhla"]
-material = SubResource("StandardMaterial3D_pgs63")
-size = Vector2(18, 1)
+[sub_resource type="PlaneMesh" id="PlaneMesh_hx06i"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(600, 40)
+subdivide_width = 50
+subdivide_depth = 50
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dpxbs"]
-size = Vector3(1, 21, 619.62)
+[sub_resource type="PlaneMesh" id="PlaneMesh_b2ih6"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(40, 360)
+subdivide_width = 50
+subdivide_depth = 50
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3lkfw"]
-load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmyff"]
-transparency = 1
-albedo_texture = SubResource("CompressedTexture2D_3lkfw")
-uv1_scale = Vector3(9.34, 1, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_whbdn"]
-material = SubResource("StandardMaterial3D_hmyff")
-size = Vector2(640, 21)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01nt0"]
-load_path = "res://.godot/imported/Tree_wall.png-7641d51fce278056189db5a4dfc1efa3.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enla3"]
-transparency = 1
-albedo_texture = SubResource("CompressedTexture2D_01nt0")
-uv1_scale = Vector3(9, 1, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_t7c1h"]
-material = SubResource("StandardMaterial3D_enla3")
-size = Vector2(640, 21)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tf65"]
-transparency = 1
-albedo_texture = ExtResource("4_iudb2")
-uv1_scale = Vector3(6, 1, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_aorjo"]
-material = SubResource("StandardMaterial3D_7tf65")
-size = Vector2(360, 21)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qhubf"]
-size = Vector3(357.04, 21, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8cqh"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_7agfs"]
-material = SubResource("StandardMaterial3D_d8cqh")
-size = Vector2(32.36, 1)
+[sub_resource type="PlaneMesh" id="PlaneMesh_mlf5o"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(40, 360)
+subdivide_width = 50
+subdivide_depth = 50
 
 [sub_resource type="QuadMesh" id="QuadMesh_756db"]
 
@@ -120,61 +93,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -302.04)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
 shape = SubResource("WorldBoundaryShape3D_ylrxo")
 
-[node name="Boundary" type="Node3D" parent="."]
+[node name="Boundary3D" type="Node3D" parent="."]
 
-[node name="Left trees" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -289.596, 10, -158.848)
-mesh = SubResource("QuadMesh_sasok")
-skeleton = NodePath("../../NavigationRegion3D/Cul de Sac Tutorial")
+[node name="Boundary Forest" parent="Boundary3D" instance=ExtResource("2_mlf5o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.098, 0, 20.0642)
+mesh = SubResource("PlaneMesh_hx06i")
+forest_density = 0.04
+tree_scale_randomness = 2.0
 
-[node name="Boundary box" type="StaticBody3D" parent="Boundary/Left trees"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+[node name="Boundary Forest2" parent="Boundary3D" instance=ExtResource("2_mlf5o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 329.88, 7.62939e-06, -140.032)
+mesh = SubResource("PlaneMesh_b2ih6")
+forest_density = 0.04
+tree_scale_randomness = 2.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Left trees/Boundary box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603683, 2.57542, 0)
-shape = SubResource("BoxShape3D_yesdx")
-
-[node name="Left trees secondary" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -292.322, 0.973994, -165.669)
-mesh = SubResource("QuadMesh_xbhla")
-skeleton = NodePath("../../NavigationRegion3D/Cul de Sac Tutorial")
-
-[node name="Boundary box" type="StaticBody3D" parent="Boundary"]
-transform = Transform3D(-0.0183075, 0, 0.999832, 0, 1, 0, -0.999832, 0, -0.0183075, 0, 10, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Boundary box"]
-transform = Transform3D(1, 0, 6.14667e-08, 0, 1, 0, -6.14667e-08, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_dpxbs")
-
-[node name="Left trees2" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-0.999832, 0, -0.0183075, 0, 1, 0, 0.0183075, 0, -0.999832, 10.7656, 10, -0.148806)
-mesh = SubResource("QuadMesh_whbdn")
-skeleton = NodePath("../../NavigationRegion3D/Cul de Sac Tutorial")
-
-[node name="Left trees secondary2" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-0.999832, 0, -0.0183075, 0, 1, 0, 0.0183075, 0, -0.999832, 3.99546, 10, 2.70161)
-mesh = SubResource("QuadMesh_t7c1h")
-skeleton = NodePath("../../NavigationRegion3D/Cul de Sac Tutorial")
-
-[node name="Right trees" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 308.846, 10, -173.334)
-mesh = SubResource("QuadMesh_aorjo")
-skeleton = NodePath("../../NavigationRegion3D/Cul de Sac Tutorial")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Boundary/Right trees"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/Right trees/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.56686, -0.484188)
-shape = SubResource("BoxShape3D_qhubf")
-
-[node name="Right trees2" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 313.042, 10, -181.342)
-mesh = SubResource("QuadMesh_aorjo")
-skeleton = NodePath("../../NavigationRegion3D/Cul de Sac Tutorial")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundary"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, 0)
-mesh = SubResource("QuadMesh_7agfs")
+[node name="Boundary Forest3" parent="Boundary3D" instance=ExtResource("2_mlf5o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -309.904, 7.62939e-06, -140.032)
+mesh = SubResource("PlaneMesh_mlf5o")
+forest_density = 0.04
+tree_scale_randomness = 2.0
 
 [node name="Tutorial end" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -307.58)

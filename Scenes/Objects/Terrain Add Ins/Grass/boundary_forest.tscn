@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhwf0xivi7yl7"]
+
+[ext_resource type="Script" uid="uid://djns683fkqdf6" path="res://Scenes/Objects/Terrain Add Ins/Grass/boundary_forest.gd" id="1_7dj7m"]
+[ext_resource type="Shader" uid="uid://8mbpp8q1cyls" path="res://Scenes/Objects/Terrain Add Ins/Grass/boundary_forest.gdshader" id="1_bsb6r"]
+[ext_resource type="ArrayMesh" uid="uid://c5tvfihe4mtg6" path="res://Scenes/Objects/Terrain Add Ins/Grass/Simple Tree Mesh.tres" id="1_rtwji"]
+
+[sub_resource type="Gradient" id="Gradient_bsb6r"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dpb1e"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jhiwd"]
+color_ramp = SubResource("Gradient_bsb6r")
+noise = SubResource("FastNoiseLite_dpb1e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpb1e"]
+render_priority = 0
+shader = ExtResource("1_bsb6r")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jhiwd")
+shader_parameter/height_scale = 0.2
+shader_parameter/noise_scale = 5.0
+shader_parameter/low_color = Color(0.2, 0.5, 0.1, 1)
+shader_parameter/high_color = Color(0.4, 0.6, 0.2, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7dj7m"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(40, 40)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="MultiMesh" id="MultiMesh_bsb6r"]
+transform_format = 1
+mesh = ExtResource("1_rtwji")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dpb1e"]
+size = Vector3(40, 200, 40)
+
+[node name="Boundary Forest" type="MeshInstance3D" node_paths=PackedStringArray("static_body_col_shape", "tree_multimesh")]
+mesh = SubResource("PlaneMesh_7dj7m")
+script = ExtResource("1_7dj7m")
+static_body_col_shape = NodePath("StaticBody3D/CollisionShape3D")
+tree_multimesh = NodePath("Tree Meshes")
+tree_mesh = ExtResource("1_rtwji")
+forest_density = 0.1
+
+[node name="Tree Meshes" type="MultiMeshInstance3D" parent="."]
+custom_aabb = AABB(-20, 0, -20, 40, 0, 40)
+multimesh = SubResource("MultiMesh_bsb6r")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_dpb1e")
+metadata/_edit_lock_ = true
+
+[node name="Worm Hair Ground" type="MultiMeshInstance3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("1_rtwji")
+metadata/_edit_lock_ = true

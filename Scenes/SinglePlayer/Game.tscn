@@ -19,6 +19,7 @@ sky_material = SubResource("PanoramaSkyMaterial_64cng")
 [sub_resource type="Environment" id="Environment_ygm4a"]
 background_mode = 2
 sky = SubResource("Sky_31a3a")
+sky_rotation = Vector3(0, 3.14159, 0)
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.0
