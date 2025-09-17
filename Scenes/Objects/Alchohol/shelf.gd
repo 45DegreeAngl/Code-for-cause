@@ -16,5 +16,5 @@ func _ready() -> void:
 
 func spawn_bottle(bottle_instance:Node3D):
 	add_child(bottle_instance)
-	bottle_instance.scale = Vector3(0.3,0.6,0.3)
+	#bottle_instance.scale = Vector3(0.3,0.6,0.3)
 	bottle_instance.global_position = $Spawns.get_children().pick_random().global_position

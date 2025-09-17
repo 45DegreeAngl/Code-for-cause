@@ -560,7 +560,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ru4jr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4nvhj"]
-size = Vector3(1.7616, 1.73108, 1.78894)
+size = Vector3(1.92749, 2.00333, 1.89844)
 
 [node name="Alchohol crate" type="RigidBody3D"]
 script = ExtResource("1_xg0dx")
@@ -568,38 +568,38 @@ metadata/Bottle = "Crate"
 metadata/Bottle_Type = "Beer"
 
 [node name="Milk_Crate" type="Node3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.1771, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1771, 0)
 
 [node name="MilkCrate" type="MeshInstance3D" parent="Milk_Crate"]
-transform = Transform3D(3.90392, 0, 0, 0, 0.336463, 0, 0, 0, 3.90392, -0.0237885, 1.32846, -0.012454)
+transform = Transform3D(0.937, 0, 0, 0, 0.081, 0, 0, 0, 0.937, -0.0047577, 0.265692, -0.0024908)
 mesh = SubResource("ArrayMesh_yhxvu")
 skeleton = NodePath("")
 
 [node name="Bottles" type="Node3D" parent="Milk_Crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.70394, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.740788, 0)
 visible = false
 
 [node name="Jaeger" type="MeshInstance3D" parent="Milk_Crate/Bottles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55534, -1.05253, -2.07327)
+transform = Transform3D(0.3, 0, 0, 0, 0.6, 0, 0, 0, 0.3, 0.467703, 0.347951, -0.543498)
 mesh = SubResource("ArrayMesh_kajm2")
 
 [node name="Sake" type="MeshInstance3D" parent="Milk_Crate/Bottles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56083, -1.04937, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.6, 0, 0, 0, 0.3, -0.65326, 0.330583, 0.666658)
 mesh = SubResource("ArrayMesh_jcbdh")
 
 [node name="Beer" type="MeshInstance3D" parent="Milk_Crate/Bottles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423436, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.6, 0, 0, 0, 0.3, 0, 0.96881, 0)
 mesh = SubResource("ArrayMesh_up2s3")
 
 [node name="instances" type="Node3D" parent="Milk_Crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74, 0)
 
 [node name="Beginning" type="Marker3D" parent="Milk_Crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.22901, -9.53674e-07, -3.32001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645802, -1.90735e-07, -0.664002)
 
 [node name="End" type="Marker3D" parent="Milk_Crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88693, 9.53674e-07, 2.75353)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.577386, 1.90735e-07, 0.550706)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0108032, 0.790836, -0.0131209)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0108032, 0.926959, -0.0131209)
 shape = SubResource("BoxShape3D_4nvhj")

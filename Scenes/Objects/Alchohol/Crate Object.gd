@@ -40,6 +40,7 @@ func update_bottles():
 		var new_mesh : MeshInstance3D = MeshInstance3D.new()
 		$Milk_Crate/instances.add_child(new_mesh)
 		new_mesh.mesh = drinks[bottle_type].mesh
+		new_mesh.scale = drinks[bottle_type].scale
 		
 		if beg_marker_pos.x+x*bottle_step_count>end_marker_pos.x:
 			z+=1
