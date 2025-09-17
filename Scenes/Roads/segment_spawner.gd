@@ -249,6 +249,7 @@ func give_new_nav_region(vehicle:VehicleBody3D,road_completed:bool = false):
 	if vehicle.has_signal("request_new_nav_region"):
 		if !vehicle.is_connected("request_new_nav_region",give_new_nav_region):
 			vehicle.request_new_nav_region.connect(give_new_nav_region)
+			give_new_nav_region(vehicle,false)
 		
 #change this to give Array [prev, next]
 ##we move in the -z direction

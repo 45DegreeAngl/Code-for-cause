@@ -1,6 +1,6 @@
 extends BaseDriver
 class_name SafeDriver
-@export var point_accept_distance : float = 15
+@export var point_accept_distance : float = 30
 @onready var cur_road : RoadSegment = null
 func get_cur_road():
 	return cur_road
@@ -34,10 +34,10 @@ var cur_nav_index: int = 0
 
 signal request_new_nav_region(vehicle: BaseDriver,road_completed:bool)
 
-func _ready()->void:
-	#if !request_new_nav_region.is_connected(Globals.world_node.give_new_nav_region):
-		#request_new_nav_region.connect(Globals.world_node.give_new_nav_region)
-	request_new_nav_region.emit(self)
+#func _ready()->void:
+	##if !request_new_nav_region.is_connected(Globals.world_node.give_new_nav_region):
+		##request_new_nav_region.connect(Globals.world_node.give_new_nav_region)
+	#request_new_nav_region.emit(self)
 
 func update_context_variables(_delta):
 	# Check if the target is within hunting distance

@@ -1,7 +1,6 @@
 [gd_scene load_steps=67 format=4 uid="uid://cv4f50qjg3ghe"]
 
 [ext_resource type="Script" uid="uid://mn4agrk7yugq" path="res://Scenes/Inheritance/Super Driver.gd" id="1_h3i1n"]
-[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_i102e"]
 [ext_resource type="Script" uid="uid://dtvcfto64iskt" path="res://Scenes/Inheritance/Ped/PedCosmetic.gd" id="3_i102e"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="3_v5xge"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="4_40s8n"]
@@ -13,6 +12,10 @@
 [ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="10_ry4bm"]
 [ext_resource type="ArrayMesh" uid="uid://cfbsxooyw7uf0" path="res://Assets/Models/Car/Average Sober Driver.tres" id="11_aq5td"]
 [ext_resource type="Texture2D" uid="uid://c3x201xerafi4" path="res://Assets/Models/Car/Milk_Crate_Material Base Color.png" id="12_hkgm3"]
+
+[sub_resource type="Curve" id="Curve_h3i1n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1tvv8"]
 points = PackedVector3Array(1.74461, -0.575504, -0.875132, 1.74461, -0.755339, -0.875132, 1.27464, -1.10055, -2.82608, 1.1592, -0.961626, -2.93354, 1.15101, 0.135463, -0.0101008, 1.15101, 0.135463, 1.76056, 1.73061, -0.575504, -0.713946, 1.27464, -1.80866, -2.82608, 1.73061, -0.755339, -0.713946, 1.27464, -1.80866, 3.16467, 1.1592, -1.33633, -2.93354, -1.15954, -0.961626, -2.93354, -1.15135, 0.135463, -0.0101008, -1.15135, 0.135463, 1.76056, 1.05127, 0.0625778, 1.88115, 1.17901, -0.662282, 3.0787, 1.27464, -0.714424, 3.16467, -1.27499, -1.80866, -2.82608, -1.27499, -1.80866, 3.16467, -1.15954, -1.33633, -2.93354, -1.27499, -1.10055, -2.82608, -1.74461, -0.575504, -0.875132, -1.27499, -0.714424, 3.16467, -1.17935, -0.662282, 3.0787, -1.05162, 0.0625778, 1.88115, -1.73095, -0.575504, -0.713946, -1.74461, -0.755339, -0.875132, -1.73095, -0.755339, -0.713946)
@@ -877,7 +880,7 @@ center_of_mass = Vector3(0, 0, -1.3)
 linear_damp = 0.1
 script = ExtResource("1_h3i1n")
 reverse_timer = NodePath("ReverseTimer")
-STEERING_CURVE = ExtResource("2_i102e")
+STEERING_CURVE = SubResource("Curve_h3i1n")
 stuck_timer = NodePath("StuckTimer")
 
 [node name="PedestrianCosmetic" type="Node" parent="." node_paths=PackedStringArray("car_ref", "randomize_color_meshes", "head_lights", "back_lights", "engine_player", "crash_player")]
