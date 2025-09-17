@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bfe2n5yc1ofd5"]
+[gd_scene load_steps=28 format=3 uid="uid://bfe2n5yc1ofd5"]
 
 [ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_j1r2w"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Scenes/Roads/road_segment.gd" id="2_0313u"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" uid="uid://dhp8yld20r6dg" path="res://Optimizers/tree_multimesh.gd" id="12_dcffh"]
 [ext_resource type="ArrayMesh" uid="uid://c5tvfihe4mtg6" path="res://Scenes/Objects/Terrain Add Ins/Grass/Simple Tree Mesh.tres" id="13_eaglc"]
 [ext_resource type="MeshLibrary" uid="uid://bucywl3ljfj6f" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/square grass.tres" id="14_ayi28"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ayi28"]
+size = Vector3(121.6, 20, 317.314)
 
 [sub_resource type="Curve3D" id="Curve3D_j1r2w"]
 _data = {
@@ -84,6 +87,13 @@ driver_spawns = NodePath("Spawns")
 
 [node name="Exit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -320)
+
+[node name="Nav Region" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3123, 0, -162.381)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Nav Region"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.17365, 0, 1.34277)
+shape = SubResource("BoxShape3D_ayi28")
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_j1r2w")

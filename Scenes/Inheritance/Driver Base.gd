@@ -5,6 +5,10 @@ class_name BaseDriver
 @export var hunt_dist:float = 15
 @export var backwards : bool = false
 @export var reverse_timer:Timer
+@export_group("AI Tuning")
+@export var max_speed = 80.0
+@export var min_speed_on_curve = 25.0
+@export var steer_responsiveness = 1.0
 var hunt:bool = false
 var parked : bool = false
 var reversing:bool = false

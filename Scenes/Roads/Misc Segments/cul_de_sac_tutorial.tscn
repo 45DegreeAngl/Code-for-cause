@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://fuvj7j3go7xh"]
+[gd_scene load_steps=26 format=3 uid="uid://fuvj7j3go7xh"]
 
 [ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_d8cqh"]
 [ext_resource type="PackedScene" uid="uid://dhwf0xivi7yl7" path="res://Scenes/Objects/Terrain Add Ins/Grass/boundary_forest.tscn" id="2_mlf5o"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://cyf4gwwy1p5ut" path="res://Scenes/Objects/Debris/Individuals/cone_debris.tscn" id="8_24eo5"]
 [ext_resource type="PackedScene" uid="uid://gq811rsmjlhl" path="res://Scenes/Objects/Debris/Individuals/tire_debris.tscn" id="9_615do"]
 [ext_resource type="MeshLibrary" uid="uid://bucywl3ljfj6f" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/square grass.tres" id="11_eb647"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eb647"]
+size = Vector3(500, 20, 320)
 
 [sub_resource type="Curve3D" id="Curve3D_d8cqh"]
 _data = {
@@ -83,6 +86,14 @@ nav_curve = NodePath("Path3D")
 
 [node name="Exit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -320)
+
+[node name="Nav Region Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.6091, 9.48913, -159.401)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Nav Region Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52112, 0, -0.493652)
+shape = SubResource("BoxShape3D_eb647")
+metadata/_edit_lock_ = true
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_d8cqh")
@@ -239,5 +250,6 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Lamps" type="Node3D" parent="NavigationRegion3D2"]
 
+[connection signal="body_entered" from="Nav Region Area" to="." method="_nav_region_body_entered"]
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]
 [connection signal="body_entered" from="Tutorial end" to="." method="disable_tutorial"]

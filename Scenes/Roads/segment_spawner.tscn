@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0isynyusocwo"]
+[gd_scene load_steps=4 format=3 uid="uid://c0isynyusocwo"]
 
 [ext_resource type="Script" uid="uid://bknkigk4grssx" path="res://Scenes/Roads/segment_spawner.gd" id="1_rkbci"]
 [ext_resource type="PackedScene" uid="uid://cr75h2k10e6eh" path="res://Scenes/Roads/Ex Segments/Ex Straight.tscn" id="11_3gyvj"]
 
+[sub_resource type="Curve3D" id="Curve3D_bnrfm"]
+
 [node name="Segment Spawner" type="Node"]
 script = ExtResource("1_rkbci")
 exes_house = ExtResource("11_3gyvj")
+
+[node name="Global Path" type="Path3D" parent="."]
+curve = SubResource("Curve3D_bnrfm")

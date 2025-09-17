@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cgk8q7mcfa465"]
+[gd_scene load_steps=25 format=3 uid="uid://cgk8q7mcfa465"]
 
 [ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_5d3j5"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Scenes/Roads/road_segment.gd" id="2_w5cpr"]
@@ -17,6 +17,9 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 29
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ti0ju"]
+size = Vector3(250, 150, 620)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ylrxo"]
 plane = Plane(0, 0, 1, 0)
@@ -97,6 +100,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -620)
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_5d3j5")
+
+[node name="Car Entere" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.41266, -24.4839, -310.79)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car Entere"]
+shape = SubResource("BoxShape3D_ti0ju")
 
 [node name="Debris" type="Node3D" parent="."]
 
@@ -4207,4 +4216,5 @@ transform = Transform3D(0.301669, -0.0346513, -0.952783, -0.282629, 0.951171, -0
 [node name="Tree_1102" parent="NavigationRegion3D2/MasterTrees" instance=ExtResource("7_5g6y1")]
 transform = Transform3D(0.301669, -0.0346513, -0.952783, -0.282629, 0.951171, -0.124078, 0.910558, 0.306715, 0.277145, -5.30896, -10.6826, -567.724)
 
+[connection signal="body_entered" from="Car Entere" to="." method="_nav_region_body_entered"]
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

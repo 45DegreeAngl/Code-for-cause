@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://6ohj54i0nwum"]
+[gd_scene load_steps=32 format=3 uid="uid://6ohj54i0nwum"]
 
 [ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_w276f"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Scenes/Roads/road_segment.gd" id="2_i3xtw"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://dlibula3h5obv" path="res://Scenes/Objects/Debris/Layouts/Default Layout.tscn" id="8_i7qsk"]
 [ext_resource type="ArrayMesh" uid="uid://c5tvfihe4mtg6" path="res://Scenes/Objects/Terrain Add Ins/Grass/Simple Tree Mesh.tres" id="10_flr6d"]
 [ext_resource type="Script" uid="uid://dhp8yld20r6dg" path="res://Optimizers/tree_multimesh.gd" id="10_hmta6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_416a1"]
+size = Vector3(305.451, 20, 318.69)
 
 [sub_resource type="Curve3D" id="Curve3D_gn41k"]
 _data = {
@@ -69,6 +72,34 @@ size = Vector2(190, 40)
 subdivide_width = 50
 subdivide_depth = 50
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_416a1"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_qujso")
+size = Vector2(190, 40)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oqvf2"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(40, 240)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_otk1m"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_qujso")
+size = Vector2(190, 40)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qujso"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_qujso")
+size = Vector2(190, 40)
+subdivide_width = 50
+subdivide_depth = 50
+
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ylrxo"]
 plane = Plane(0, 0, 1, 0)
 
@@ -98,6 +129,13 @@ debris_node = NodePath("Debris")
 [node name="Exit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -320)
 
+[node name="Nav Region" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87634, 0, -175.703)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Nav Region"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.7585)
+shape = SubResource("BoxShape3D_416a1")
+
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_gn41k")
 
@@ -113,19 +151,19 @@ mesh = SubResource("PlaneMesh_p7o5w")
 
 [node name="Boundary Forest4" parent="Boundary 3D" instance=ExtResource("2_oqvf2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 255, 0, -300)
-mesh = SubResource("PlaneMesh_p7o5w")
+mesh = SubResource("PlaneMesh_416a1")
 
 [node name="Boundary Forest5" parent="Boundary 3D" instance=ExtResource("2_oqvf2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.925, 0, -160)
-mesh = SubResource("PlaneMesh_4ah3h")
+mesh = SubResource("PlaneMesh_oqvf2")
 
 [node name="Boundary Forest6" parent="Boundary 3D" instance=ExtResource("2_oqvf2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234.922, 0, -20)
-mesh = SubResource("PlaneMesh_p7o5w")
+mesh = SubResource("PlaneMesh_otk1m")
 
 [node name="Boundary Forest7" parent="Boundary 3D" instance=ExtResource("2_oqvf2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234.922, 0, -300)
-mesh = SubResource("PlaneMesh_p7o5w")
+mesh = SubResource("PlaneMesh_qujso")
 
 [node name="Exit Area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -171.002)
@@ -2602,4 +2640,5 @@ script = ExtResource("10_hmta6")
 tree_mesh = ExtResource("10_flr6d")
 tree_parent = NodePath("../grass/Trees")
 
+[connection signal="body_entered" from="Nav Region" to="." method="_nav_region_body_entered"]
 [connection signal="body_entered" from="Exit Area" to="." method="_on_exit_area_body_entered"]

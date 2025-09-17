@@ -42,6 +42,10 @@ func _ready():
 						#else:
 							#nav_region.bake_navigation_mesh(true)#bake on thread
 
+func _nav_region_body_entered(body):
+	# This will update any driver, SafeDriver or otherwise, that enters this road segment.
+	if body.has_method("set_current_road"):
+		body.set_current_road(self)
 
 func spawn_debris():
 	for child in debris_node.get_children():
@@ -64,20 +68,16 @@ func disable_tutorial(body:Node3D):
 			Globals.tutorial = false
 
 @export var driver_spawns : Node3D = null
-signal driver_spawned(driver:VehicleBody3D)
 #$Pedestrians $Cops
 func spawn_drivers():
 	if !driver_spawns or randi_range(0,9)==0:
 		print("not spawning driver")
 		return
 	if randi_range(0,2) == 0:#Cop Spawn
-		var result = spawn_individual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
-		if result:
-			driver_spawned.emit(result)
+		spawn_individual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
 	if randi_range(0,3)!=0:#Pedestrian Spawn
-		var result = spawn_individual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
-		if result:
-			driver_spawned.emit(result)
+		spawn_individual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
+
 
 func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleBody3D:
 	var chosen_marker:Marker3D = driver_spawns.get_children().pick_random()
@@ -103,13 +103,9 @@ func spawn_timer_timeout():
 		return
 	print("SPAWNING RESIDUAL DRIVERS")
 	if randi_range(0,1) == 0:#Cop Spawn
-		var result = spawn_residual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
-		if result:
-			driver_spawned.emit(result)
+		spawn_residual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
 	if randi_range(0,3)!=0:#Pedestrian Spawn
-		var result = spawn_residual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
-		if result:
-			driver_spawned.emit(result)
+		spawn_residual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
 
 func spawn_residual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleBody3D:
 	if driver_spawns.get_child_count()<1:

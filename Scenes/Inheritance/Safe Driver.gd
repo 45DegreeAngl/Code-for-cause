@@ -1,125 +1,77 @@
 extends BaseDriver
 class_name SafeDriver
-@export var point_accept_distance : float = 30
-@onready var cur_road : RoadSegment = null
-func get_cur_road():
-	return cur_road
+# How far ahead on the path the driver will set its next target.
+@export var lookahead_distance: float = 50.0
+@export var navigation_agent: NavigationAgent3D
 
-@export var navigation_region : NavigationRegion3D
-func set_nav_region(nav: NavigationRegion3D):
-	if nav == navigation_region:
-		#printerr("Attempting to set current nav region to current nav region")
-		return false
-	navigation_region = nav
-	navigation_agent.set_navigation_map(nav.get_navigation_map())
-	return true
+# This will be updated by the Area3D triggers on each road segment.
+var current_road: RoadSegment = null
+var navigation_endpoint: Vector3
 
-@export var navigation_path : Path3D
-func set_nav_path(path_node: Path3D):
-	if path_node == navigation_path:
-		#printerr("Attempting to set current path node to current nav path")
-		return false
-	navigation_path = path_node
-	
-	# Reset navigation index when a new path is given
-	cur_nav_index = get_closest_nav_point() 
-	if navigation_path:
-		navigation_endpoint = navigation_path.global_transform * navigation_path.curve.get_point_position(cur_nav_index)
-	return true
+# This function is called by the road segment's Area3D trigger.
+func set_current_road(road: RoadSegment):
+	if road == current_road:
+		return # Already on this road.
 
-@export var navigation_agent : NavigationAgent3D
-
-var navigation_endpoint : Vector3
-var cur_nav_index: int = 0
-
-signal request_new_nav_region(vehicle: BaseDriver,road_completed:bool)
-
-#func _ready()->void:
-	##if !request_new_nav_region.is_connected(Globals.world_node.give_new_nav_region):
-		##request_new_nav_region.connect(Globals.world_node.give_new_nav_region)
-	#request_new_nav_region.emit(self)
+	current_road = road
+	if current_road and current_road.nav_region:
+		# Critical step: Update the navigation agent with the new road's nav map.
+		navigation_agent.set_navigation_map(current_road.nav_region.get_navigation_map())
+	else:
+		printerr("SafeDriver entered a road with no nav_region!")
 
 func update_context_variables(_delta):
-	# Check if the target is within hunting distance
 	if target:
 		var distance_to_target = self.global_position.distance_to(target.global_position)
-		if distance_to_target < hunt_dist:
-			hunt = true
-		else:
-			hunt = false
-			cur_nav_index = get_closest_nav_point()
-		
-		if target.global_position.z - 300 > self.global_position.z:
-			if !hunt and !backwards:
-				parked = true
-		else:
-			parked = false
-			cur_nav_index = get_closest_nav_point()
+		hunt = distance_to_target < hunt_dist
+	
+	# The AI is "parked" if it's not hunting and the global path is invalid.
+	var path_is_valid = Globals.driving_path != null and Globals.driving_path.curve.get_point_count() > 1
+	parked = !hunt and not path_is_valid
 
 func update_steer(delta):
 	nav_control(delta)
 	steering = move_toward(steering, steer_input * get_max_steer(), delta * 2.5)
+	
 	if parked:
-		engine_input = move_toward(engine_input,0,delta*2.5)
+		engine_input = move_toward(engine_input, 0, delta * 2.5)
+		
 	engine_force = max(engine_input * ENGINE_POWER, -ENGINE_POWER / 1.5)
 
-func get_closest_nav_point() -> int:
-	if !navigation_path or navigation_path.curve.point_count == 0:
-		return 0  # Default to the first point
-
-	var result: int
-	if backwards:
-		result = navigation_path.curve.point_count-1
-	else:
-		result = 0
-	var closest_distance = INF
-
-	for point in range(navigation_path.curve.point_count):
-		var world_point = navigation_path.global_transform * navigation_path.curve.get_point_position(point)
-		var distance = global_position.distance_to(world_point)
-
-		if distance < closest_distance:
-			closest_distance = distance
-			result = point
-
-	return result
-
 func nav_control(_delta: float) -> void:
-	if !navigation_path or navigation_path.curve.point_count == 0:
-		return  # No valid path
-	
-	if reversing:
-		engine_input=-1
-		steer_input=0
+	if reversing or parked:
+		engine_input = -1 if reversing else 0
+		steer_input = 0
 		return
-	# Follow path normally
-	if global_position.distance_to(navigation_endpoint) <= point_accept_distance:
-		if backwards:
-			cur_nav_index -= 1
-		else:
-			cur_nav_index += 1
+	
+	var path_to_follow: Path3D = Globals.driving_path
+	if not path_to_follow:
+		return
 
-		# If at the last point, request a new navigation region
-		if cur_nav_index >= navigation_path.curve.point_count or cur_nav_index <0:
-			await get_tree().create_timer(0.25).timeout  # Delay to prevent instant switching
-			request_new_nav_region.emit(self,true)
-			return
-
-		# Update the next target position along the path
-		navigation_endpoint = navigation_path.global_transform * navigation_path.curve.get_point_position(cur_nav_index)
-	# If hunting, override normal navigation and chase target
+	# --- Determine the Target Endpoint ---
 	if hunt:
+		# When hunting, the target is the player.
 		navigation_endpoint = target.global_position
-	# Set navigation agent target position
+	else:
+		# When driving normally, find a point ahead on the global path.
+		var closest_offset = path_to_follow.curve.get_closest_offset(self.global_position)
+		var target_offset = closest_offset + (lookahead_distance if not backwards else -lookahead_distance)
+		
+		# Get the position of that point in world space.
+		navigation_endpoint = path_to_follow.curve.sample_baked(target_offset, true)
+
+	# --- Navigate to the Endpoint ---
 	navigation_agent.set_target_position(navigation_endpoint)
 
-	# Get next path position
-	var next_position = navigation_agent.get_next_path_position()
-	var direction_vector = (next_position - global_position).normalized()
+	var next_nav_point = navigation_agent.get_next_path_position()
+	var direction_vector = (next_nav_point - global_position).normalized()
 
 	# Compute steering input
 	var angle_to_target = (-basis.z).signed_angle_to(direction_vector, Vector3.UP)
-	steer_input = clampf(angle_to_target / deg_to_rad(MAX_STEER_DEG), -1, 1)
+	steer_input = clamp(angle_to_target * 2.0, -1.0, 1.0) # A simple gain often works well here
 
-	# Compute engine input based on distance
-	engine_input = 1.0 if global_position.distance_to(next_position) > 1.0 else 0.0
+	# Compute engine input based on angle and distance. Slow down for sharp turns.
+	var turn_severity = abs(angle_to_target) / (PI / 4) # Normalize by 45 degrees
+	var target_speed = lerp(max_speed, 20.0, turn_severity)
+	var speed_error = target_speed - linear_velocity.length()
+	engine_input = clamp(speed_error * 0.1, -1.0, 1.0)

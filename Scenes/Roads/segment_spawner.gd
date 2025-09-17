@@ -10,6 +10,7 @@ var road_seg_to_load : Dictionary = {}
 var gabesmart_seg_to_load : Dictionary = {}
 
 #nickname : road
+@onready var glob_path:Path3D = $"Global Path"
 var road_segments : Dictionary = {}
 var gabesmart_segments : Dictionary = {}
 @export var exes_house : PackedScene = null
@@ -32,6 +33,7 @@ signal road_generated
 
 func _ready():
 	Globals.world_node = self
+	Globals.driving_path = glob_path
 	if not gabesmart_chance:
 		@warning_ignore("integer_division")
 		gabesmart_chance = 1/(2*max_gabesmart_pity)
@@ -168,99 +170,74 @@ func append_segment(segment:PackedScene = null):
 	
 	road_node.add_child(instanced_segment)
 	instanced_segment.global_position = previous_road.find_child("Exit").global_position
+	
+	# Connect player road counter signal.
 	if instanced_segment.has_signal("increment_player_road_counter"):
 		instanced_segment.increment_player_road_counter.connect(increment_player_road)
-	if instanced_segment.has_signal("driver_spawned"):
-		instanced_segment.driver_spawned.connect(give_new_nav_region)
+	
 	previous_road = instanced_segment
+	
+	# Append this segment's path to the global path.
+	if "nav_curve" in instanced_segment and instanced_segment.nav_curve is Path3D:
+		var local_path: Path3D = instanced_segment.nav_curve
+		var local_curve: Curve3D = local_path.curve
+		if local_curve:
+			var start_index = 1 if glob_path.curve.get_point_count() > 0 else 0
+			for i in range(start_index, local_curve.get_point_count()):
+				var local_pos = local_curve.get_point_position(i)
+				var local_in = local_curve.get_point_in(i)
+				var local_out = local_curve.get_point_out(i)
+				
+				var world_pos = local_path.to_global(local_pos)
+				var world_in = local_path.to_global(local_in + local_pos) - world_pos
+				var world_out = local_path.to_global(local_out + local_pos) - world_pos
+				
+				glob_path.curve.add_point(world_pos, world_in, world_out)
+	else:
+		print("Warning: Road segment '", instanced_segment.name, "' script is missing 'nav_curve' variable.")
+	
 	instanced_segment.visible = true
 	instanced_segment.spawn_drivers()
 
-var cur_player_road:int = 0:
+var cur_player_road: int = 0:
 	set(value):
-		print(value)
-		if value > Globals.roads_to_win and Globals.roads_to_win!=int(INF):
-			print("no road for you")
+		if value > Globals.roads_to_win and Globals.roads_to_win != int(INF):
 			pass
-		elif value == int(Globals.roads_to_win) and Globals.roads_to_win!=int(INF):
+		elif value == int(Globals.roads_to_win) and Globals.roads_to_win != int(INF):
 			if exes_house:
 				append_segment(exes_house)
 		else:
-			print("spawning new road")
 			append_segment()
 
-		cur_player_road=value
-		if road_node.get_child_count()>8:
-			var temp_array:Array[Node3D] = [road_node.get_child(0)]
-			
-			for temp:Node3D in temp_array:
-				for cop : Node3D in Globals.world_node.find_child("Cops").get_children():
-					if cop.global_position.z > temp.global_position.z:
-						print("Deleting this cop: ",cop)
-						cop.call_deferred("queue_free")
-				for pedestrian : Node3D in Globals.world_node.find_child("Pedestrians").get_children():
-					if pedestrian.global_position.z > temp.global_position.z:
-						print("Deleting this pedestrian: ",pedestrian)
-						pedestrian.call_deferred("queue_free")
-				temp.queue_free()
-
-var debug_dic : Dictionary = {}
-
-##driver management
-func give_new_nav_region(vehicle:VehicleBody3D,road_completed:bool = false):
-	var cur_entry = debug_dic.get_or_add(vehicle.name,0)
-	debug_dic[vehicle.name] = cur_entry+1
-	#print("I ",vehicle.name," called this function #:",debug_dic[vehicle.name])
-	var vehicle_road : RoadSegment 
-	
-	if vehicle.has_method("get_cur_road"):
-		var cur_road = vehicle.get_cur_road()
-		if cur_road and road_completed:
-			vehicle_road = get_next_road(cur_road,vehicle.backwards)
-			#print(vehicle_road)
-		else:
-			vehicle_road = get_road_at_pos(vehicle.global_position)
-
-		vehicle.cur_road = vehicle_road
-	else:
-		vehicle_road = get_road_at_pos(vehicle.global_position)
-	#= get_road_at_pos(vehicle.global_position)
-	#print(vehicle_road.name)
-	if !vehicle_road:
-		printerr("ERROR: vehicle_road is null!")
-		return
-	#now i should have a vehicle road that IS proper, now we just need to assign the proper
-	if !vehicle_road.nav_region:
-		print("Missing Nav_Region for road")
-	if !vehicle_road.nav_curve:
-		print("Missing Nav_Curve for road")
-	#variables to the vehicle that was given
-	if vehicle.has_method("set_nav_region"):
-		var _result:bool = vehicle.set_nav_region(vehicle_road.nav_region)
-		#if result:
-			#print("Nav Region Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_region)
-	if vehicle.has_method("set_nav_path"):
-		var _result = vehicle.set_nav_path(vehicle_road.nav_curve)
-		#if result:
-			#print("Nav Path Set for Vehicle: ",vehicle,"\nSet to: ",vehicle_road.nav_curve)
-	#if vehicle.has_method("adjust_cur_nav_index"):
-		#vehicle.adjust_cur_nav_index()
-		#print("Adjusting Nav Index for Vehicle: ",vehicle)
-	if vehicle.has_signal("request_new_nav_region"):
-		if !vehicle.is_connected("request_new_nav_region",give_new_nav_region):
-			vehicle.request_new_nav_region.connect(give_new_nav_region)
-			give_new_nav_region(vehicle,false)
+		cur_player_road = value
 		
+		# Manage the number of active road segments.
+		if road_node.get_child_count() > 8:
+			var road_to_remove: Node3D = road_node.get_child(0)
+			
+			# ADDED: Critical logic to remove old points from the global path.
+			if "nav_curve" in road_to_remove and road_to_remove.nav_curve is Path3D:
+				var path_to_remove: Path3D = road_to_remove.nav_curve
+				# -1 because the first point is skipped during append.
+				var points_to_remove = path_to_remove.curve.get_point_count() - 1
+				points_to_remove = max(0, points_to_remove)
+				
+				for i in range(points_to_remove):
+					if glob_path.curve.get_point_count() > 0:
+						glob_path.curve.remove_point(0)
+			
+			for cop : Node3D in Globals.world_node.find_child("Cops").get_children():
+				if cop.global_position.z > road_to_remove.global_position.z:
+					cop.call_deferred("queue_free")
+			for pedestrian : Node3D in Globals.world_node.find_child("Pedestrians").get_children():
+				if pedestrian.global_position.z > road_to_remove.global_position.z:
+					pedestrian.call_deferred("queue_free")
+			road_to_remove.queue_free()
+
 #change this to give Array [prev, next]
 ##we move in the -z direction
 func get_road_at_pos(glob_pos:Vector3)->RoadSegment:
-	#if glob_pos.z>first_road.global_position.z:
-		#return first_road
-	#if glob_pos is less than the position of the last road, return last road
 	var last_road : RoadSegment = road_node.get_children().back()
-	#if glob_pos.z>last_road.global_position.z:
-		#return last_road
-	#var segment_arrays : Array[RoadSegment] = [$Roads.get_children()[0],$Roads.get_children()[1]]
 	var cur_road : RoadSegment
 	#loop through all roads
 	for index:int in road_node.get_child_count():
