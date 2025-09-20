@@ -14,17 +14,17 @@ func _on_lose(reason:String):
 	visible = true
 	match reason:
 		"Sober":
-			GlobalSteam.setAchievement("BECOME SOBER")
+			SteamAchievements.setAchievement("BECOME SOBER")
 			$RichTextLabel.append_text(tr("SOBER_END_RICH"))
 		"Cops":
-			GlobalSteam.setAchievement("GET ARRESTED")
+			SteamAchievements.setAchievement("GET ARRESTED")
 			$RichTextLabel.append_text(tr("ARRESTED_END_RICH"))
 	$Label.text = tr("TIME_SURVIVED_LABEL").format([Globals.format_seconds_as_time(Globals.timer)])
 	#print(Globals.roads_to_win)
 	if Globals.roads_to_win == int(INF):
 		$Label.text += str(tr("ROADS_PASSED_LABEL").format([Globals.world_node.cur_player_road]))
 		GlobalSteam.upload_win()
-	GlobalSteam.update_stats()
+	SteamStatistics.update_stats()
 	MainShaderCanvas.visible = false
 	Globals.tutorial = true
 	Globals.game_paused = false

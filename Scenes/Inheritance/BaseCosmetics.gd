@@ -1,6 +1,6 @@
 extends Node
 class_name BaseCosmetic
-@export var car_ref : VehicleBody3D
+@export var car_ref : VehicleBody3D = null
 
 @export_category("Color")
 @export var randomize_color_meshes: Array[MeshInstance3D] = []
@@ -55,7 +55,7 @@ func toggle_rear_lights():
 func _ready()->void:
 	for mesh in randomize_color_meshes:
 		randomize_mesh_colors(mesh)
-	if !car_ref.body_entered.is_connected(_on_collide):
+	if car_ref and !car_ref.body_entered.is_connected(_on_collide):
 		car_ref.body_entered.connect(_on_collide)
 	context_ready()
 
@@ -63,7 +63,8 @@ func context_ready()->void:
 	pass
 
 func _process(delta: float) -> void:
-	change_engine_pitch()
+	if car_ref:
+		change_engine_pitch()
 	context_process(delta)
 
 func context_process(_delta:float)->void:

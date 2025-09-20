@@ -229,7 +229,7 @@ func enter_car():
 			elif object.get_meta("Bottle")==("Jaeger"):
 				Globals.car_contents["Jaeger"] +=1
 			elif object.get_meta("Bottle")==("Crate"):
-				GlobalSteam.setAchievement("BULK BUYER")
+				SteamAchievements.setAchievement("BULK BUYER")
 				Globals.car_contents[object.get_meta("Bottle_Type")] += 6
 				Globals.total_alcohol_bought+=5
 			object.call_deferred("queue_free")

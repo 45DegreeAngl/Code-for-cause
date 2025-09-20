@@ -9,7 +9,7 @@ func _ready()->void:
 	print(OS.get_locale_language())
 	TranslationServer.set_locale(OS.get_locale_language())
 	$"Main Menu/PanelContainer/VBoxContainer/Start".grab_focus()
-	#GlobalSteam.set_up_leaderboards()
+	#SteamLeaderboard.set_up_leaderboards()
 	#save_options()
 
 func _on_start_pressed() -> void:

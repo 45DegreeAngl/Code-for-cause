@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InfoResource" load_steps=2 format=3 uid="uid://7psoyropah6d"]
 
-[ext_resource type="Script" uid="uid://cs76qfi4tydb5" path="res://Globals/WorkshopItemInfoResource.gd" id="1_gkmkf"]
+[ext_resource type="Script" uid="uid://cs76qfi4tydb5" path="res://Globals/Steam Functionality/WorkshopItemInfoResource.gd" id="1_gkmkf"]
 
 [resource]
 script = ExtResource("1_gkmkf")

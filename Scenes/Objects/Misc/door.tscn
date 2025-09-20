@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu55new0m77rc"]
+
+[ext_resource type="Script" uid="uid://bprmex4k1e3i7" path="res://Scenes/Objects/Misc/door.gd" id="1_sjdhr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6bpu1"]
+resource_local_to_scene = true
+
+[node name="Door" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_6bpu1")
+script = ExtResource("1_sjdhr")

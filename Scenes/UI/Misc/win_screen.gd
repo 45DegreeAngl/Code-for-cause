@@ -7,7 +7,7 @@ func _on_win():
 	if Globals.game_over:
 		return
 	if !Globals.detected:
-		GlobalSteam.setAchievement("SILENT DRIVER")
+		SteamAchievements.setAchievement("SILENT DRIVER")
 	visible = true
 	Globals.game_over = true
 	$Label2.text = tr("YOUR_TIME_LABEL").format([Globals.format_seconds_as_time(Globals.timer)])
@@ -16,8 +16,8 @@ func _on_win():
 	Globals.tutorial = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	GlobalSteam.upload_win()
-	GlobalSteam.upload_records()
-	GlobalSteam.update_stats()
+	SteamLeaderboard.upload_records()
+	SteamStatistics.update_stats()
 	$"Main Menu".grab_focus()
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 

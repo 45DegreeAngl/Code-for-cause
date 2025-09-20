@@ -6,8 +6,8 @@ var cur_range_min:int = 1
 var cur_range_max:int = 25
 
 func _ready() -> void:
-	GlobalSteam.set_up_leaderboards()
-	GlobalSteam.leaderboard_download.connect(choose_leaderboard_entries)
+	SteamLeaderboard.set_up_leaderboards()
+	SteamLeaderboard.leaderboard_download.connect(choose_leaderboard_entries)
 	
 	_on_leaderboard_container_tab_selected($"Leaderboard/Leaderboard Container".current_tab)
 
@@ -17,22 +17,22 @@ func choose_leaderboard_entries(arr:Array)->void:
 	return
 
 func _on_leaderboard_container_tab_selected(tab: int) -> void:
-	if!(GlobalSteam.boardhandles.get("RECORD TIME PRACTICE",null)):
+	if!(SteamLeaderboard.boardhandles.get("RECORD TIME PRACTICE",null)):
 		return
 	match tab:
 		0:#Practice
-			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME PRACTICE"][0],cur_range_min,cur_range_max)
+			SteamLeaderboard.download_leaderboard_entries(SteamLeaderboard.boardhandles["RECORD TIME PRACTICE"][0],cur_range_min,cur_range_max)
 		1:#Easy
-			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME EASY"][0],cur_range_min,cur_range_max)
+			SteamLeaderboard.download_leaderboard_entries(SteamLeaderboard.boardhandles["RECORD TIME EASY"][0],cur_range_min,cur_range_max)
 		2:#Normal
-			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME NORMAL"][0],cur_range_min,cur_range_max)
+			SteamLeaderboard.download_leaderboard_entries(SteamLeaderboard.boardhandles["RECORD TIME NORMAL"][0],cur_range_min,cur_range_max)
 		3:#Hard
-			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME HARD"][0],cur_range_min,cur_range_max)
+			SteamLeaderboard.download_leaderboard_entries(SteamLeaderboard.boardhandles["RECORD TIME HARD"][0],cur_range_min,cur_range_max)
 		4:#Endless
-			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD TIME ENDLESS"][0],cur_range_min,cur_range_max)
+			SteamLeaderboard.download_leaderboard_entries(SteamLeaderboard.boardhandles["RECORD TIME ENDLESS"][0],cur_range_min,cur_range_max)
 		5:#Sober Hater
-			GlobalSteam.download_leaderboard_entries(GlobalSteam.boardhandles["RECORD SOBER HATER"][0],cur_range_min,cur_range_max)
-	await GlobalSteam.leaderboard_download
+			SteamLeaderboard.download_leaderboard_entries(SteamLeaderboard.boardhandles["RECORD SOBER HATER"][0],cur_range_min,cur_range_max)
+	await SteamLeaderboard.leaderboard_download
 	
 	for child in $"Leaderboard/Leaderboard Container".get_child(prev_tab).get_child(0).get_children():
 		#print(child)

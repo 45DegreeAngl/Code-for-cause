@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmvkxhgvaoir2" path="res://Scenes/Objects/Terrain Add Ins/Street/gabes_mart.gd" id="1_h44nx"]
 [ext_resource type="AudioStream" uid="uid://l8iyubif54al" path="res://Assets/Sounds/Voice Lines/Ty_Come_Again.mp3" id="3_5xhl1"]
-[ext_resource type="PackedScene" uid="uid://4m6vw24xei21" path="res://Assets/Models/Buildings/Gabesmart/gabes_mart_sep_16.tscn" id="5_g57q0"]
+[ext_resource type="PackedScene" uid="uid://b21yyekxbddcn" path="res://Assets/Models/Buildings/newest gabesmart/newest_gabes_mart.tscn" id="5_g57q0"]
 [ext_resource type="Texture2D" uid="uid://bj4w8upb3fxue" path="res://Assets/Models/Character/Gabes_Mart_Man (1)_Cylinder Base Color.png" id="9_gi0xe"]
 [ext_resource type="PackedScene" uid="uid://ebcvdgabjsw6" path="res://Scenes/Objects/Alchohol/shelf.tscn" id="10_mx2it"]
 
@@ -227,9 +227,6 @@ omni_range = 8.37792
 transform = Transform3D(1, 0, 0, 0, 0.30009, 0.953911, 0, -0.953911, 0.30009, 2.88687, -1.70855, 0.770771)
 mesh = SubResource("ArrayMesh_1m7w0")
 
-[node name="GabesMartSep16" parent="." instance=ExtResource("5_g57q0")]
-metadata/_edit_lock_ = true
-
 [node name="Collision" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 
@@ -301,6 +298,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.44925, -2.52918, 2.46326)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/StaticBody3D7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0172119, 0.0326843, -0.500854)
 shape = SubResource("BoxShape3D_xgypu")
+
+[node name="NEWEST GABES MART" parent="." instance=ExtResource("5_g57q0")]
 
 [connection signal="body_entered" from="Interactibles/Buy Area" to="." method="_on_buy_area_body_entered"]
 [connection signal="area_entered" from="Interactibles/VoiceLine" to="." method="_on_voice_line_area_entered"]

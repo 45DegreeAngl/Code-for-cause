@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d1tim74aeuxyu"]
+
+[resource]
+resource_name = "FUN sign"
+cull_mode = 2
+albedo_color = Color(1, 0, 0, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
