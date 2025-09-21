@@ -850,15 +850,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58249, 1.33931)
 mesh = SubResource("ArrayMesh_asbhe")
 skeleton = NodePath("")
 
-[node name="Left_Mirror" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58522, 1.83675, -2.18483)
-
-[node name="Right_Mirror" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58522, 1.83675, -2.18483)
-
-[node name="Top_Mirror" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47319, -1.41985)
-
 [node name="Engine" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
 stream = ExtResource("10_a1d8w")

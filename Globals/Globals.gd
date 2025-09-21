@@ -5,6 +5,7 @@ signal game_lost()
 signal game_won()
 
 @onready var player_packed : PackedScene = preload("res://Scenes/User/Character/Ragdoll Character.tscn")
+@onready var multiplayer_packed : PackedScene = preload("res://Scenes/Multiplayer/Character/MRagdoll Character.tscn")
 @onready var player_voice_lines:Array = [
 	preload("res://Assets/Sounds/Voice Lines/MoreBeer_Sad.mp3"),
 	preload("res://Assets/Sounds/Voice Lines/MoreBeer_Angry.mp3"),
@@ -25,8 +26,69 @@ signal game_won()
 	"Crash 5":preload("res://Assets/Sounds/Crashes/NewCrash2.mp3")
 }
 
+signal network_tick()
+
+var _network_timer: Timer
+
 func _ready()->void:
 	load_songs_from_folder()
+	# Create and configure the timer in code
+	_network_timer = Timer.new()
+	_network_timer.wait_time = 0.05 # 20 ticks per second
+	_network_timer.autostart = true
+	_network_timer.timeout.connect(_on_network_timer_timeout)
+	add_child(_network_timer)
+
+func _on_network_timer_timeout():
+	# When the timer fires, emit the global signal for anyone who is listening.
+	network_tick.emit()
+
+
+# --- Static, Well-Known Node Registry ---
+# This dictionary holds our main manager nodes, using a string name for clarity.
+var static_nodes = {
+	"player_manager": null,
+	"game_mode": null,
+	"waiting_screen": null,
+	"scene_manager": null,
+	"steam_mic":null
+}
+
+# --- Dynamic Network ID Registry ---
+# This dictionary holds dynamically spawned objects, using an integer ID.
+var network_registry = {}
+var _next_network_id = 100 # Start dynamic IDs at a high number to avoid any possible confusion.
+
+# --- REGISTRY MANAGEMENT ---
+
+# For static manager nodes
+func register_static_node(node_name: String, node):
+	if static_nodes.has(node_name):
+		static_nodes[node_name] = node
+
+func unregister_static_node(node_name: String):
+	if static_nodes.has(node_name):
+		static_nodes[node_name] = null
+
+func get_static_node(node_name: String) -> Node:
+	return static_nodes.get(node_name, null)
+
+# For dynamic gameplay objects
+func generate_network_id() -> int:
+	var new_id = _next_network_id
+	_next_network_id += 1
+	return new_id
+
+func register_node(node, id: int):
+	network_registry[id] = node
+	node.tree_exiting.connect(func(): unregister_node(id))
+
+func unregister_node(id: int):
+	if network_registry.has(id):
+		network_registry.erase(id)
+
+func get_node_by_id(id: int) -> Node:
+	return network_registry.get(id, null)
 
 signal controls_key_changed
 @onready var current_controls_key:String = "KEYBOARD":
@@ -170,9 +232,9 @@ func load_random_song():
 	Color.GOLD: "Gold"
 }
 
-@onready var pedestrian_array:Array = [preload("res://Scenes/Inheritance/Ped/Safe Ped.tscn")]
+@onready var pedestrian_array:Array = [preload("res://Scenes/Inheritance/Ped/Safe Ped.tscn"),preload("res://Scenes/Inheritance/Ped/Super Ped.tscn")]
 #@onready var pedestrian_packed:PackedScene = preload("res://Prefabs/Car/Average Sober Driver.tscn")
-@onready var cop_array:Array = [preload("res://Scenes/Inheritance/Cop/Safe Cop.tscn"),preload("res://Scenes/Inheritance/Cop/RecklessCop.tscn"),preload("res://Scenes/Inheritance/Cop/Super Cop.tscn")]
+@onready var cop_array:Array = [preload("res://Scenes/Inheritance/Cop/RecklessCop.tscn"),preload("res://Scenes/Inheritance/Cop/Super Cop.tscn")]
 #@onready var cop_packed:PackedScene = preload("res://Prefabs/the_cop.tscn")
 @onready var driving_path:Path3D = null
 
@@ -236,6 +298,7 @@ func reset_stats():
 	total_alcohol_bought = 0
 	litter_count = 0
 	car_flip_count = 0
+
 @onready var sober_drivers_hit : int = 0
 @onready var total_alcohol_bought : int = 0
 @onready var litter_count : int = 0

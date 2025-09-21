@@ -55,6 +55,7 @@ folder_colors={
 "res://Globals/": "gray",
 "res://Localization stuff/": "teal",
 "res://Resources/": "pink",
+"res://Scenes/Multiplayer/": "yellow",
 "res://Shaders/": "blue"
 }
 

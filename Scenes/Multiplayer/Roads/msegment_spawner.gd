@@ -1,3 +1,4 @@
+#segment spawner
 extends Node
 
 const MAX_ROAD_SEGMENTS_LOADED: int = 7
@@ -24,14 +25,15 @@ var gabesmart_segments: Dictionary = {}
 var gabesmart_pity = 0
 
 @export_subgroup("Game Variables")
-@export var cops_node: Node3D
 @export var pedestrians_node: Node3D
 @export var road_node: Node3D
 @export var previous_road: Node
+@export var players_node : Node3D
 
 signal road_generated
 
 func _ready():
+	Globals.register_static_node("segment_spawner",self)
 	Globals.world_node = self
 	Globals.driving_path = glob_path
 	if not gabesmart_chance:
@@ -51,7 +53,6 @@ func _ready():
 	# Step 4: Kick off the background loading system for all FUTURE segments.
 	fill_segment_cache()
 	
-	Debug.cops_node = cops_node
 	Debug.sober_node = pedestrians_node
 	
 	road_generated.emit()
@@ -253,9 +254,6 @@ var cur_player_road: int = 0:
 					if glob_path.curve.get_point_count() > 0:
 						glob_path.curve.remove_point(0)
 			
-			for cop : Node3D in Globals.world_node.find_child("Cops").get_children():
-				if cop.global_position.z > road_to_remove.global_position.z:
-					cop.call_deferred("queue_free")
 			for pedestrian : Node3D in Globals.world_node.find_child("Pedestrians").get_children():
 				if pedestrian.global_position.z > road_to_remove.global_position.z:
 					pedestrian.call_deferred("queue_free")

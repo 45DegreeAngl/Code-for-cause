@@ -1,3 +1,4 @@
+#shelf
 extends Node3D
 
 @export var min_buyables : int = 3
@@ -16,7 +17,6 @@ func _ready() -> void:
 			spawn_bottle(buyable.pick_random().instantiate())
 		else:
 			spawn_bottle(beer_crate.instantiate())
-	spawn_bottle(beer_crate.instantiate())
 
 func spawn_bottle(bottle_instance:Node3D):
 	add_child(bottle_instance)
