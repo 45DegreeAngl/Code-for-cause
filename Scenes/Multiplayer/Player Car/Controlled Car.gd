@@ -133,7 +133,7 @@ func _ready() -> void:
 func set_steam_owner(id: int):
 	owner_steam_id = id
 	# Authority is true if you are the host OR if the car's owner ID is your own Steam ID.
-	is_authority = Network.is_host or GlobalSteam.get_steam_id() == owner_steam_id
+	is_authority = Network.is_host or GlobalSteam.steam_id == owner_steam_id
 	if cosmetic_node:
 		cosmetic_node.set_steam_owner(id)
 
