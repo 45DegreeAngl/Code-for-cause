@@ -1,6 +1,7 @@
-[gd_scene load_steps=108 format=4 uid="uid://c2euabos14050"]
+[gd_scene load_steps=109 format=4 uid="uid://c2euabos14050"]
 
 [ext_resource type="Script" uid="uid://bsiyn036dr0px" path="res://Scenes/Multiplayer/Player Car/Controlled Car.gd" id="1_vjjr5"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_0ceec"]
 [ext_resource type="Script" uid="uid://diiehfjf6dl06" path="res://Scenes/Multiplayer/Player Car/Cosmetic.gd" id="2_ixp32"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="2_vjjr5"]
 [ext_resource type="Texture2D" uid="uid://bjaegt86omsap" path="res://Assets/Models/Car/The_Car_Chassis_Color.png" id="3_ixp32"]
@@ -1078,7 +1079,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3li57")
 
-[node name="Player Car" type="VehicleBody3D"]
+[node name="Player Car" type="VehicleBody3D" node_paths=PackedStringArray("cosmetic_node", "stuck_timer")]
 physics_material_override = SubResource("PhysicsMaterial_eps3w")
 gravity_scale = 2.0
 center_of_mass_mode = 1
@@ -1087,9 +1088,25 @@ contact_monitor = true
 max_contacts_reported = 5
 linear_damp = 0.2
 script = ExtResource("1_vjjr5")
+cosmetic_node = NodePath("Cosmetic")
+STEERING_CURVE = ExtResource("2_0ceec")
+ENGINE_POWER = 400.0
+is_multiplayer = true
+stuck_timer = NodePath("Stuck Timer")
+update_interval = 0.0
 
-[node name="Cosmetic" type="Node" parent="."]
+[node name="Cosmetic" type="Node" parent="." node_paths=PackedStringArray("voice", "wheel", "speedometer_tick", "radio", "car_ref", "randomize_color_meshes", "head_lights", "back_lights", "engine_player", "crash_player")]
 script = ExtResource("2_ixp32")
+voice = NodePath("../Sounds/Voice Lines")
+wheel = NodePath("../Wheel")
+speedometer_tick = NodePath("../Spedometer/MeshInstance3D")
+radio = NodePath("../Sounds/Radio")
+car_ref = NodePath("..")
+randomize_color_meshes = [NodePath("../Mesh/Chassis"), NodePath("../Mesh/Front Seats"), NodePath("../Mesh/Back Seats")]
+head_lights = [NodePath("../Light/HeadRight"), NodePath("../Light/HeadLeft")]
+back_lights = [NodePath("../Light/HindLeft"), NodePath("../Light/HindRight")]
+engine_player = NodePath("../Sounds/Engine")
+crash_player = NodePath("../Sounds/Crash")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30538, 0.702559, -4.30117)

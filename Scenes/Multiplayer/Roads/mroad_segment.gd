@@ -11,15 +11,19 @@ var passed : bool = false
 @export var debris_node : Node3D
 @onready var spawn_driver_timer : Timer
 
+var is_multiplayer: bool = false
+var players_who_have_passed: Array = []
+
 func _ready():
-	spawn_driver_timer =  Timer.new()
-	if debris_node:
-		spawn_debris()
-	add_child(spawn_driver_timer)
-	spawn_driver_timer.autostart = false
-	spawn_driver_timer.one_shot = true
-	spawn_driver_timer.wait_time = randf_range(3.0,10.0)
-	spawn_driver_timer.timeout.connect(spawn_timer_timeout)
+	pass
+	#spawn_driver_timer =  Timer.new()
+	#if debris_node:
+		#spawn_debris()
+	#add_child(spawn_driver_timer)
+	#spawn_driver_timer.autostart = false
+	#spawn_driver_timer.one_shot = true
+	#spawn_driver_timer.wait_time = randf_range(3.0,10.0)
+	#spawn_driver_timer.timeout.connect(spawn_timer_timeout)
 	#for child in get_children():
 		#if child is NavigationRegion3D:
 			#if child.is_baking():
@@ -56,10 +60,24 @@ func spawn_debris():
 func _on_exit_area_body_entered(body: Node3D) -> void:
 	if passed:
 		return
-	if body == Globals.player_vehicle:
-		passed = true
-		increment_player_road_counter.emit()
-		spawn_driver_timer.start()
+	
+	if is_multiplayer:
+		if body.has_method("get_owner_steam_id"): # Check if it's a networked entity with an owner
+			var owner_id = body.get_owner_steam_id()
+			if owner_id != 0 and not players_who_have_passed.has(owner_id):
+				players_who_have_passed.append(owner_id)
+				
+				# Check if all players in the lobby have passed
+				var lobby_members = Network.get_lobby_members()
+				if players_who_have_passed.size() >= lobby_members.size():
+					passed = true
+					increment_player_road_counter.emit()
+					spawn_driver_timer.start()
+	else: # Single player logic
+		if body == Globals.player_vehicle:
+			passed = true
+			increment_player_road_counter.emit()
+			spawn_driver_timer.start()
  
 func disable_tutorial(body:Node3D):
 	if body == Globals.player_vehicle:
@@ -75,7 +93,8 @@ func spawn_drivers():
 		return
 	if randi_range(0,3)!=0:#Pedestrian Spawn
 		spawn_individual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
-
+	if not is_multiplayer and randi_range(0,2) == 0:#Cop Spawn
+		spawn_individual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
 
 func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleBody3D:
 	var chosen_marker:Marker3D = driver_spawns.get_children().pick_random()
@@ -100,6 +119,8 @@ func spawn_timer_timeout():
 		print("not spawning driver")
 		return
 	print("SPAWNING RESIDUAL DRIVERS")
+	if not is_multiplayer and randi_range(0,1) == 0:#Cop Spawn
+		spawn_residual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
 	if randi_range(0,3)!=0:#Pedestrian Spawn
 		spawn_residual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
 

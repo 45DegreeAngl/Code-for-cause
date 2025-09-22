@@ -9,9 +9,11 @@ extends Node3D
 
 @onready var spring_arm = $SpringArm3D
 
-
+var is_authority: bool = false
 
 func _physics_process(delta):
+	if not is_authority: return
+
 	for child in physical_skel.get_children():
 		# prevent the camera from clipping into the character
 		if child is PhysicalBone3D:spring_arm.add_excluded_object(child.get_rid())
@@ -28,6 +30,8 @@ func _physics_process(delta):
 var joy_pad_RStick : Vector2 = Vector2.ZERO
 
 func _input(event):
+	if not is_authority: return
+
 	if Globals.game_paused or Globals.game_over:
 		return
 	# mouse lock
@@ -49,4 +53,3 @@ func _input(event):
 				joy_pad_RStick.x = event.axis_value
 			3:
 				joy_pad_RStick.y = event.axis_value
-		

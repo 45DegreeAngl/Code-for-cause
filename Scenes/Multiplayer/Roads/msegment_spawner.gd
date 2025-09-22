@@ -30,9 +30,13 @@ var gabesmart_pity = 0
 @export var previous_road: Node
 @export var players_node : Node3D
 
+@export var is_multiplayer: bool = false
+var network_id = -1
+
 signal road_generated
 
 func _ready():
+	network_id = Globals.generate_network_id()
 	Globals.register_static_node("segment_spawner",self)
 	Globals.world_node = self
 	Globals.driving_path = glob_path
@@ -43,6 +47,10 @@ func _ready():
 	populate_road_segment_paths()
 	populate_gabe_segment_paths()
 	
+	# In multiplayer, only the host generates the initial layout.
+	if is_multiplayer and not Network.is_host:
+		return
+		
 	# FIX: Step 2: Load the FIRST batch of segments SYNCHRONOUSLY to prevent a crash.
 	_load_initial_segments()
 	
@@ -77,6 +85,7 @@ func _load_initial_segments():
 	print("Initial segments loaded synchronously.")
 
 func _process(_delta):
+	# Background loading can happen on all machines
 	# Check status of normal road segments
 	var finished_roads = []
 	for nickname in _loading_road_requests.keys():
@@ -159,46 +168,71 @@ func request_random_gabe_seg() -> bool:
 	_loading_gabe_requests[chosen_key] = true
 	return true
 
-func spawn_road(segment: PackedScene = null) -> Node3D:
+func spawn_road(segment_key: String = "") -> Node3D:
 	var instanced_segment: Node3D
-	var segment_key: String = ""
 	
-	if segment:
-		instanced_segment = segment.instantiate()
-		return instanced_segment
+	if segment_key.is_empty():
+		# This path is for the host to decide a new road
+		if not Network.is_host and is_multiplayer: return null # Clients can't decide
+		
+		var use_gabesmart = (gabesmart_pity >= max_gabesmart_pity or randf() <= gabesmart_chance)
+		if use_gabesmart and not gabesmart_segments.is_empty():
+			segment_key = gabesmart_segments.keys().pick_random()
+			gabesmart_pity = 0
+		elif not road_segments.is_empty():
+			segment_key = road_segments.keys().pick_random()
+			gabesmart_pity += 1
+		else:
+			printerr("Could not spawn road, no segments are loaded!")
+			return null
+		
+		# Host tells clients to spawn this segment
+		if is_multiplayer:
+			Network.p2p_call_func(network_id, "spawn_segment_from_host", [segment_key])
 
-	var use_gabesmart = (gabesmart_pity >= max_gabesmart_pity or randf() <= gabesmart_chance)
-
-	if use_gabesmart and not gabesmart_segments.is_empty():
-		segment_key = gabesmart_segments.keys().pick_random()
-		gabesmart_pity = 0
+	# All peers (host and clients) instance the segment using the key
+	if gabesmart_segments.has(segment_key):
 		instanced_segment = gabesmart_segments[segment_key].instantiate()
-	elif not road_segments.is_empty():
-		segment_key = road_segments.keys().pick_random()
-		gabesmart_pity += 1
+		gabesmart_segments.erase(segment_key) # Remove from available pool
+	elif road_segments.has(segment_key):
 		instanced_segment = road_segments[segment_key].instantiate()
+		road_segments.erase(segment_key) # Remove from available pool
 	else:
-		printerr("Could not spawn road, no segments are loaded! This should not happen after the startup fix.")
+		# Maybe it's still loading? This is a potential race condition.
+		# For now, we'll just warn. A more robust system might queue the spawn.
+		printerr("Client or host tried to spawn segment '%s' but it was not in the loaded cache." % segment_key)
 		return null
 
-	if road_segments.has(segment_key):
-		road_segments.erase(segment_key)
-
-	if gabesmart_segments.has(segment_key):
-		gabesmart_segments.erase(segment_key)
-	
 	instanced_segment.name = str(cur_player_road + road_node.get_child_count())
 	return instanced_segment
 
-func append_segment(segment: PackedScene = null):
+func spawn_segment_from_host(segment_key: String):
+	# This function is called on clients via P2P call
+	if Network.is_host: return # Host already spawned it
+	append_segment(segment_key)
+
+func append_segment(segment_identifier = ""): # Can be a PackedScene or a String key
 	var instanced_segment
-	if segment:
-		instanced_segment = spawn_road(segment)
+	if segment_identifier is PackedScene:
+		# This handles the special case for exes_house
+		var house_key = "exes_house"
+		instanced_segment = segment_identifier.instantiate()
+		instanced_segment.name = house_key
+		if is_multiplayer and Network.is_host:
+			Network.p2p_call_func(network_id, "spawn_segment_from_host", [house_key])
+
+	elif segment_identifier is String:
+		instanced_segment = spawn_road(segment_identifier)
 	else:
 		instanced_segment = spawn_road()
 
+
 	if not is_instance_valid(instanced_segment):
 		return
+
+	if instanced_segment.has_method("set"): # Check if it's a valid object
+		if "is_multiplayer" in instanced_segment:
+			instanced_segment.set("is_multiplayer", is_multiplayer)
 
 	instanced_segment.visible = false
 	road_node.add_child(instanced_segment)
@@ -228,10 +262,15 @@ func append_segment(segment: PackedScene = null):
 		print("Warning: Road segment '", instanced_segment.name, "' script is missing 'nav_curve' variable.")
 	
 	instanced_segment.visible = true
-	instanced_segment.spawn_drivers()
+	#instanced_segment.spawn_drivers()
 
 var cur_player_road: int = 0:
 	set(value):
+		# This logic should only run on the host in a multiplayer game
+		if is_multiplayer and not Network.is_host:
+			cur_player_road = value
+			return
+			
 		if value > Globals.roads_to_win and Globals.roads_to_win != int(INF):
 			pass
 		elif value == int(Globals.roads_to_win) and Globals.roads_to_win != int(INF):
@@ -242,6 +281,9 @@ var cur_player_road: int = 0:
 
 		cur_player_road = value
 		
+		if is_multiplayer and Network.is_host:
+			Network.p2p_change_value(network_id, "cur_player_road", value)
+
 		if road_node.get_child_count() > 8:
 			var road_to_remove: Node3D = road_node.get_child(0)
 			
@@ -281,4 +323,7 @@ func get_next_road(cur:Node,reverse:bool=false)->Node:
 	return result
 
 func increment_player_road():
+	# In multiplayer, only the host should increment the official road count
+	if is_multiplayer and not Network.is_host:
+		return
 	cur_player_road+=1

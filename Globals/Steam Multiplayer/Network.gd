@@ -18,8 +18,10 @@ var host_id: int = 0
 @onready var lobby_id: int = 0
 var lobby_members: Array = []
 var lobby_members_max: int = 8
+@onready var network_manager = preload("res://Globals/Steam Multiplayer/NetworkManager.gd").new()
 
 func _ready():
+	add_child(network_manager)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	Steam.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_joined.connect(_on_lobby_joined)
@@ -28,6 +30,8 @@ func _ready():
 func _process(_delta: float):
 	if lobby_id > 0:
 		read_all_p2p_packets()
+
+signal game_state_received(game_state)
 
 # --- LOBBY MANAGEMENT ---
 
@@ -160,9 +164,9 @@ func p2p_send_input_to_host(input_dict: Dictionary):
 		ServerFunc.process_player_input(GlobalSteam.steam_id, input_dict)
 	else:
 		# If we are a client, send it to the host
-		var packet = {"player_input": {"id": GlobalSteam.steam_id, "input": input_dict}}
+		var packet = {"player_input": input_dict}
 		var data_bytes = var_to_bytes(packet)
-		Steam.sendP2PPacket(host_id, data_bytes, Steam.P2P_SEND_UNRELIABLE, 0)
+		Steam.sendP2PPacket(host_id, data_bytes, Steam.P2P_SEND_UNRELIABLE, -69)
 
 func _on_p2p_session_request(remote_id: int):
 	Steam.acceptP2PSessionWithUser(remote_id)
@@ -261,6 +265,10 @@ func read_p2p_packet():
 		ServerFunc.call_function(d["id"], d["func"], d["params"])
 		return # Packet handled, we are done.
 
+	if data.has("game_state"):
+		game_state_received.emit(data["game_state"])
+		return
+
 	var is_gameplay_packet = data.has("summon") or data.has("delete") or data.has("call_func")
 
 	if is_gameplay_packet:
@@ -301,3 +309,7 @@ func _process_non_gameplay_packet(sender: int, data: Dictionary):
 		# Adjust if your voice manager has a different name.
 		if Globals.has("steam_mic") and is_instance_valid(Globals.steam_mic):
 			Globals.steam_mic.process_voice_data(data["voice"], "network")
+	elif data.has("player_input"):
+		# This is a new addition to handle the forwarded input.
+		if is_host:
+			ServerFunc.process_player_input(sender, data["player_input"])

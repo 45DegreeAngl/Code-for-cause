@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://p88stdkcx0dp"]
+[gd_scene load_steps=13 format=3 uid="uid://p88stdkcx0dp"]
 
 [ext_resource type="Script" uid="uid://b7si1p7cx7o6u" path="res://Scenes/UI/Main Menu/main_menu.gd" id="1_kvc74"]
 [ext_resource type="PackedScene" uid="uid://c0isynyusocwo" path="res://Scenes/Roads/segment_spawner.tscn" id="2_st1sx"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://v08hwgpj3sac" path="res://Scenes/UI/Main Menu/Leaderboard/leaderboard.tscn" id="7_fa2q1"]
 [ext_resource type="PackedScene" uid="uid://b1kk5a4g2x0yy" path="res://Scenes/UI/Main Menu/Radio Workshop/radio_workshop.tscn" id="7_h5u6l"]
 [ext_resource type="PackedScene" uid="uid://bplsepulhptkc" path="res://Scenes/UI/Main Menu/credits.tscn" id="8_i3q7f"]
+[ext_resource type="Script" uid="uid://bms7ra1cjp0j" path="res://Scenes/UI/Main Menu/multiplayer_lobby.gd" id="11_d6joe"]
+[ext_resource type="PackedScene" uid="uid://cpwi3ro2acio0" path="res://Scenes/UI/Multiplayer/lobby_searcher_and_finder.tscn" id="12_4sedx"]
 [ext_resource type="AudioStream" uid="uid://ci8604r68aib1" path="res://Assets/Sounds/Music/Title Screen.mp3" id="17_jibou"]
 
 [node name="Main Menu" type="Node" node_paths=PackedStringArray("TitleMusicPlayer")]
@@ -74,9 +76,8 @@ theme = ExtResource("4_yo6ho")
 text = "START_GAME_BUTTON"
 
 [node name="Quick Start" type="Button" parent="Main Menu/PanelContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
-text = "Quick Start"
+text = "Multiplayer"
 
 [node name="Label" type="Label" parent="Main Menu/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -151,7 +152,40 @@ visible = false
 [node name="Options" parent="." instance=ExtResource("6_lhp0w")]
 visible = false
 
+[node name="MultiplayerLobby" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_d6joe")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerLobby"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lobby Searcher and Finder" parent="MultiplayerLobby/HBoxContainer" instance=ExtResource("12_4sedx")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerLobby/HBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="MultiplayerLobby/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MultiplayerLobby/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
 [connection signal="pressed" from="Main Menu/PanelContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Main Menu/PanelContainer/VBoxContainer/Quick Start" to="." method="_on_quick_start_pressed"]
 [connection signal="item_selected" from="Main Menu/PanelContainer/VBoxContainer/Difficulty Options" to="." method="_on_difficulty_options_item_selected"]
 [connection signal="pressed" from="Main Menu/PanelContainer/VBoxContainer/Leaderboards" to="." method="_on_leaderboards_pressed"]
 [connection signal="pressed" from="Main Menu/PanelContainer/VBoxContainer/Radio" to="." method="_on_radio_workshop_pressed"]
@@ -162,3 +196,7 @@ visible = false
 [connection signal="back_pressed" from="Leaderboard" to="." method="on_back"]
 [connection signal="back_pressed" from="Radio Workshop" to="." method="on_back"]
 [connection signal="back_pressed" from="Options" to="." method="on_back"]
+[connection signal="back_pressed" from="MultiplayerLobby" to="." method="on_back"]
+[connection signal="pressed" from="MultiplayerLobby/HBoxContainer/VBoxContainer/Start" to="MultiplayerLobby" method="_on_start_pressed"]
+[connection signal="pressed" from="MultiplayerLobby/HBoxContainer/VBoxContainer/Back" to="MultiplayerLobby" method="_on_back_pressed"]
+[connection signal="pressed" from="MultiplayerLobby/HBoxContainer/VBoxContainer/Back" to="MultiplayerLobby/HBoxContainer/Lobby Searcher and Finder" method="_on_leave_lobby_pressed"]

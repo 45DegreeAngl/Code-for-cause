@@ -67,3 +67,9 @@ func _on_leaderboards_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_quick_start_pressed() -> void:
+	$"Main Menu".visible = false
+	$MultiplayerLobby.visible = true
+	$MultiplayerLobby/HBoxContainer/VBoxContainer/Back.grab_focus()

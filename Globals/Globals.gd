@@ -257,6 +257,9 @@ var car_contents:Dictionary = {"Beer":1,"Sake":0,"Jaeger":0}:
 ##change this boolean when tutorial ends
 @onready var tutorial:bool = true
 @onready var motion_sickness:bool = false
+
+var is_multiplayer: bool = false # Will be set by the car/character
+
 @onready var drunkenness : float = 20:
 	set(value):
 		if tutorial and value<drunkenness:
@@ -292,6 +295,18 @@ var car_contents:Dictionary = {"Beer":1,"Sake":0,"Jaeger":0}:
 						#1 red
 						var red = 1
 						shader_mat.set_shader_parameter("red_shift",red)
+
+		if is_multiplayer and drunkenness <= 0:
+			var game_mode_manager = Globals.get_static_node("game_mode_manager")
+			if game_mode_manager:
+				var owner_id = 0
+				if player_character and player_character.has_method("get_owner_steam_id"):
+					owner_id = player_character.get_owner_steam_id()
+				elif player_vehicle and player_vehicle.has_method("get_owner_steam_id"):
+					owner_id = player_vehicle.get_owner_steam_id()
+				
+				if owner_id != 0:
+					game_mode_manager.player_sobered_up(owner_id)
 
 func reset_stats():
 	sober_drivers_hit = 0

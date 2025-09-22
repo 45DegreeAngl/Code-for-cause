@@ -18,7 +18,7 @@ var debug_camera_spawned : bool = false
 @onready var temp_road_packed = preload("res://Scenes/Roads/Normal Segments/TEMP ROAD.tscn")
 
 func _process(_delta)->void:
-	if Input.is_action_just_pressed("Tilde"):
+	if Input.is_action_just_pressed("Tilde") and Network.lobby_id==0:
 		if !Globals.is_cheater:
 			Globals.is_cheater = true
 		console_active = !console_active

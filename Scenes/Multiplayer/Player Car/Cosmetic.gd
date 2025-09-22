@@ -91,6 +91,17 @@ var step : int = 1
 var cur_index : int = 0
 var cur_song : String = ""
 
+var is_multiplayer: bool = false
+var network_id = -1
+var owner_steam_id = 0
+
+func set_steam_owner(id):
+	owner_steam_id = id
+
+func _init():
+	network_id = Globals.generate_network_id()
+	Globals.register_node(self, network_id)
+
 func context_ready()->void:
 	if radio_on:
 		radio.volume_db = -25
@@ -177,3 +188,72 @@ func update_cop_detector():
 	else:
 		$"../Cop_Detector/Green/OmniLight3D".light_energy = 0.1
 		$"../Cop_Detector/Red/OmniLight3D".light_energy = 0
+
+func _ready()->void:
+	# The base _ready() handles color randomization and collision signals.
+	# We need to override this for multiplayer.
+	if is_multiplayer:
+		if GlobalSteam.is_steam_authority(owner_steam_id):
+			# Host/owner decides the color and tells everyone else.
+			var color = Globals.car_colors[Globals.car_colors.keys().pick_random()]
+			Network.p2p_call_func(network_id, "set_car_color", [color])
+			set_car_color(color) # Set for self
+	else:
+		# Original single-player logic
+		for mesh in randomize_color_meshes:
+			randomize_mesh_colors(mesh)
+
+	if car_ref and !car_ref.body_entered.is_connected(_on_collide):
+		car_ref.body_entered.connect(_on_collide)
+	context_ready()
+
+func set_car_color(color: Color):
+	for mesh in randomize_color_meshes:
+		if mesh == null or mesh.mesh == null:
+			continue
+		
+		var original_mesh := mesh.mesh
+		var sel_mesh := original_mesh.duplicate()
+		
+		if sel_mesh.get_surface_count() == 0:
+			continue
+		
+		var material :StandardMaterial3D= sel_mesh.surface_get_material(0)
+		if material == null or not material is StandardMaterial3D:
+			continue
+		
+		var sel_material := material.duplicate()
+		sel_material.albedo_color = color
+		sel_mesh.surface_set_material(0, sel_material)
+		mesh.mesh = sel_mesh
+
+func toggle_head_lights():
+	if is_multiplayer:
+		if GlobalSteam.is_steam_authority(owner_steam_id):
+			Network.p2p_call_func(network_id, "set_headlights_state", [!head_lights[0].visible])
+			set_headlights_state(!head_lights[0].visible)
+	else:
+		# Original single-player logic
+		for light:SpotLight3D in head_lights:
+			light.visible = !light.visible
+
+func set_headlights_state(is_visible: bool):
+	for light:SpotLight3D in head_lights:
+		light.visible = is_visible
+
+func _on_collide(_body):
+	var velocity_diff = abs(car_ref.linear_velocity.length() - car_ref.cur_lin_vel.length())
+	if velocity_diff > 1 and !crash_player.playing:
+		if is_multiplayer:
+			if GlobalSteam.is_steam_authority(owner_steam_id):
+				var sound_key = Globals.crash_sounds.keys().pick_random()
+				Network.p2p_call_func(network_id, "play_crash_sound", [sound_key])
+				play_crash_sound(sound_key)
+		else:
+			crash_player.stream = Globals.crash_sounds[Globals.crash_sounds.keys().pick_random()]
+			crash_player.play()
+
+func play_crash_sound(sound_key: String):
+	if !crash_player.playing:
+		crash_player.stream = Globals.crash_sounds[sound_key]
+		crash_player.play()

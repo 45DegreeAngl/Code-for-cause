@@ -93,7 +93,7 @@ class_name ControlledCar
 ##Nissan GTR by David Sirera [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/a_HKCtYAv2W)
 @export var DEBUG_MODE : bool = false
 
-@export var cosmetic_node : PlayerCosmetic
+@export var cosmetic_node : ControlledCosmetic
 @export var cop_node : Node
 
 var occupied:bool = true
@@ -101,8 +101,15 @@ var occupied:bool = true
 @onready var driver_look_area:Area3D = $Cameras/Windshield/Area3D
 @onready var character_raycast : RayCast3D
 
+var network_id = -1
+var owner_steam_id: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if is_multiplayer:
+		network_id = Globals.generate_network_id()
+		Globals.register_node(self, network_id)
+
 	original_engine_power = ENGINE_POWER
 	Globals.player_vehicle = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -123,6 +130,13 @@ func _ready() -> void:
 	Debug.car_target = self
 	Debug.player_model = $Mesh/Character
 
+func set_steam_owner(id: int):
+	owner_steam_id = id
+	# Authority is true if you are the host OR if the car's owner ID is your own Steam ID.
+	is_authority = Network.is_host or GlobalSteam.get_steam_id() == owner_steam_id
+	if cosmetic_node:
+		cosmetic_node.set_steam_owner(id)
+
 func driver_process(delta):
 	Globals.timer+=delta
 
@@ -138,6 +152,8 @@ func update_context_variables(_delta):
 			ENGINE_POWER = original_engine_power/2
 
 func update_steer(delta):
+	if is_multiplayer and not is_authority: return
+
 	if !occupied or Globals.game_over or Globals.game_paused:
 		if abs(linear_velocity):
 			engine_force = move_toward(linear_velocity.length(),-linear_velocity.length(),delta)
@@ -145,39 +161,46 @@ func update_steer(delta):
 			engine_force = move_toward(engine_force,0,delta)
 		return
 
-	if Input.is_action_just_pressed("KEYWORD_INTERACT"):
+	var input_payload = {
+		"interact": Input.is_action_just_pressed("KEYWORD_INTERACT"),
+		"alt_interact": Input.is_action_just_pressed("KEYWORD_ALT_INTERACT"),
+		"steer_axis": Input.get_axis("KEYWORD_RIGHT", "KEYWORD_LEFT"),
+		"engine_axis": Input.get_axis("KEYWORD_BACKWARD", "KEYWORD_FORWARD"),
+		"misc_interact": Input.is_action_just_pressed("KEYWORD_MISC_INTERACT"),
+		"delta": delta # Include delta time for consistent physics
+	}
+	
+	if is_multiplayer:
+		Network.p2p_send_input_to_host(input_payload)
+	else:
+		handle_input(input_payload)
+
+func handle_input(input_payload: Dictionary):
+	# This function is now the single point of authority for applying input.
+	# It's called directly for single-player, and by the host for multiplayer.
+	var delta = input_payload.get("delta", get_physics_process_delta_time())
+	steering = move_toward(steering, input_payload.get("steer_axis", 0.0) * get_max_steer(), delta * 2.5)
+	engine_force = max(input_payload.get("engine_axis", 0.0) * ENGINE_POWER, -ENGINE_POWER / 1.5)
+
+	if input_payload.get("interact", false):
 		match cur_look_at:
-			looking_at.Door:#spawn human player, switch camera
+			looking_at.Door:
 				if !door_blocked:
-					spawned_player = spawn_player_character()
-					Globals.player_character = spawned_player
-					cur_look_at = null
-					update_tooltip_text()
-				else:
-					print($"Interactibles/Door box".get_overlapping_bodies())
-				 
-			looking_at.Alchohol:#check globals to see how many beers in car, drink one if present, frown if no
-				#print(Globals.player_voice_lines.size())
+					spawn_player_character()
+			looking_at.Alchohol:
 				drink_random()
-				update_tooltip_text()
-				#print("glug glug glug")
-			looking_at.Radio:#change radio 
+			looking_at.Radio:
 				cosmetic_node.toggle_radio()
 					
-	elif Input.is_action_just_pressed("KEYWORD_ALT_INTERACT"):#change radio track if playing
+	elif input_payload.get("alt_interact", false):
 		if cur_look_at == looking_at.Radio:
 			cosmetic_node.change_frequency()
 		else:
 			throw_debris()
-	if joy_pad_RStick:
-		rot_x += joy_pad_RStick.x * Globals.car_cont_sens * delta *25
-		rot_y += joy_pad_RStick.y * Globals.car_cont_sens * delta *25
-		rot_y = clampf(rot_y,-1.5,0.75)
-		handle_cam_rotation()
+	
+	if input_payload.get("misc_interact", false):
+		cosmetic_node.toggle_head_lights()
 
-	steering = move_toward(steering,Input.get_axis("KEYWORD_RIGHT","KEYWORD_LEFT") * get_max_steer(),delta*2.5)
-	var forward_axis = Input.get_axis("KEYWORD_BACKWARD","KEYWORD_FORWARD")
-	engine_force = max(forward_axis * ENGINE_POWER,-ENGINE_POWER/1.5)
 
 func update_cosmetics(delta):
 	if Input.is_action_just_pressed("KEYWORD_MISC_INTERACT"):#toggle Headlights
@@ -197,19 +220,24 @@ func _on_collide(body):
 	if body is VehicleBody3D and !body.has_meta("Cop"):
 		Globals.sober_drivers_hit+=1
 
-func flip_car():
+func flip_car_rpc():
 	process_mode = PROCESS_MODE_DISABLED
 	rotation = Vector3.ZERO
 	global_position += Vector3(0,10,0)
 	process_mode = PROCESS_MODE_INHERIT
-	#print(Globals.car_flip_count)
 	Globals.car_flip_count+=1
+
+func flip_car():
+	if is_multiplayer:
+		Network.p2p_call_func(network_id, "flip_car_rpc")
+	else:
+		flip_car_rpc()
 
 func die_by_cop():
 	if !DEBUG_MODE:
 		Globals.game_lost.emit("Cops")
 
-func drink_random():
+func drink_random_rpc():
 	var temp_array :Array = []
 	for bottle in Globals.car_contents:
 		if Globals.car_contents[bottle]>0:
@@ -231,6 +259,12 @@ func drink_random():
 	
 	Globals.car_contents[picked_bottle] -= 1
 	Globals.update_bottles.emit()
+
+func drink_random():
+	if is_multiplayer:
+		Network.p2p_call_func(network_id, "drink_random_rpc")
+	else:
+		drink_random_rpc()
 
 var rot_x = 0
 var rot_y = 0
@@ -280,11 +314,12 @@ func get_max_steer():
 var spawned_player : Node3D = null
 var door_blocked : bool = false
 
-func spawn_player_character()->Node3D:
+func spawn_player_character_rpc():
 	if spawned_player:
 		return
 	#instantiate player character
 	var player_instance : Node3D = Globals.multiplayer_packed.instantiate()
+	player_instance.set_steam_owner(owner_steam_id)
 	#update car occupation
 	occupied = false
 	#add character to scene
@@ -298,9 +333,16 @@ func spawn_player_character()->Node3D:
 	player_instance.car = self
 	#activate player_instance
 	player_instance.physical_skel.physical_bones_start_simulation()
-	return player_instance
+	spawned_player = player_instance
 
-func enter_car():
+func spawn_player_character()->Node3D:
+	if is_multiplayer:
+		Network.p2p_call_func(network_id, "spawn_player_character_rpc")
+	else:
+		spawn_player_character_rpc()
+	return spawned_player
+
+func enter_car_rpc():
 	cur_look_at = null
 	occupied = true
 	$Cameras/Windshield.current = true
@@ -332,7 +374,13 @@ func enter_car():
 	Globals.set_deferred("player_character",null)
 	await spawned_player.tree_exiting
 
-func throw_debris():
+func enter_car():
+	if is_multiplayer:
+		Network.p2p_call_func(network_id, "enter_car_rpc")
+	else:
+		enter_car_rpc()
+
+func throw_debris_rpc():
 	if $Debrie.get_child_count()>0:
 		var chosen:RigidBody3D = $Debrie.get_children().pick_random()
 		print(chosen)
@@ -342,6 +390,12 @@ func throw_debris():
 		chosen.reparent(Globals.world_node.previous_road,true)
 		chosen.process_mode = Node.PROCESS_MODE_INHERIT
 		Globals.litter_count+=1
+
+func throw_debris():
+	if is_multiplayer:
+		Network.p2p_call_func(network_id, "throw_debris_rpc")
+	else:
+		throw_debris_rpc()
 
 enum looking_at{Door,Alchohol,Radio,Outside}
 var cur_look_at = null
@@ -376,15 +430,17 @@ func _on_door_box_body_exited(_body: Node3D=null) -> void:
 	update_tooltip_text()
 
 func _on_enter_exit_area_entered(area: Area3D) -> void:
+	if not area:
+		return
 	if area == driver_look_area:
 		cur_look_at = looking_at.Door
 		door_blocked = !$"Interactibles/Door box".get_overlapping_bodies().is_empty()
 		update_tooltip_text()
 		#print("door")
-	elif spawned_player == area.get_parent().get_parent().get_parent().get_parent().get_parent():
-		spawned_player.set_car_door("Car")
-		cur_look_at = looking_at.Outside
-		update_tooltip_text()
+	#elif spawned_player == area.get_parent().get_parent().get_parent().get_parent().get_parent():
+		#spawned_player.set_car_door("Car")
+		#cur_look_at = looking_at.Outside
+		#update_tooltip_text()
 		
 
 func _on_alcholol_area_entered(area: Area3D) -> void:
@@ -406,14 +462,16 @@ func flip_car_option(state:bool):
 		$CanvasLayer/Tooltips/Label.text = ""
 
 func _on_raycast_exit(area:Area3D)->void:
+	if not area:
+		return
 	if area == driver_look_area:
 		cur_look_at = null
 		update_tooltip_text()
 		#print("null")
-	if spawned_player == area.get_parent().get_parent().get_parent().get_parent().get_parent():
-		spawned_player.set_car_door(null)
-		cur_look_at = null
-		update_tooltip_text()
+	#if spawned_player == area.get_parent().get_parent().get_parent().get_parent().get_parent():
+		#spawned_player.set_car_door(null)
+		#cur_look_at = null
+		#update_tooltip_text()
 
 func _on_sobriety_timer_timeout() -> void:
 	print(Globals.drunkenness)
@@ -428,3 +486,22 @@ func _on_sobriety_timer_timeout() -> void:
 		$"Sounds/Sobriety Alarm".play()
 	else:
 		$"Sounds/Sobriety Alarm".stop()
+
+func get_network_state():
+	return {
+		"pos": global_transform.origin,
+		"rot": global_transform.basis,
+		"lin_vel": linear_velocity,
+		"ang_vel": angular_velocity,
+		"steering": steering,
+		"engine_force": engine_force
+	}
+
+func set_network_state(state: Dictionary):
+	if not is_authority:
+		global_transform.origin = state.pos
+		global_transform.basis = state.rot
+		linear_velocity = state.lin_vel
+		angular_velocity = state.ang_vel
+		steering = state.steering
+		engine_force = state.engine_force

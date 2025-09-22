@@ -117,3 +117,16 @@ func change_value_encoded(object_identifier, obj_name: String, encoded_data: Str
 		print("JSON Parse Error: ", json.get_error_message(), " in ", encoded_data, " at line ", json.get_error_line())
 	
 	change_value_encoded_finished.emit()
+
+# This function is now responsible for finding the correct player's car
+# and calling the handle_input method on it.
+func process_player_input(player_id: int, input_dict: Dictionary):
+	var player_manager = Globals.get_static_node("player_manager")
+	if player_manager and player_manager.player_cars.has(player_id):
+		var car = player_manager.player_cars[player_id]
+		if is_instance_valid(car) and car.has_method("handle_input"):
+			car.handle_input(input_dict)
+		else:
+			printerr("Car for player %d is not valid or has no handle_input method." % player_id)
+	else:
+		printerr("Could not find car for player %d to process input." % player_id)
