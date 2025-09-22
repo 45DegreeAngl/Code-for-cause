@@ -50,7 +50,7 @@ func remove_player_car_rpc(player_id: int):
 		if is_instance_valid(car):
 			car.queue_free()
 		player_cars.erase(player_id)
-		print("Removed car for player %s" % GlobalSteam.get_friend_persona_name(player_id))
+		print("Removed car for player %s" % Steam.getFriendPersonaName(player_id))
 
 func _on_player_left(player_id: int):
 	if Network.is_host:
