@@ -52,6 +52,7 @@ visible = false
 visible = false
 
 [node name="Segment Spawner" parent="." node_paths=PackedStringArray("cops_node", "pedestrians_node", "road_node", "previous_road") instance=ExtResource("5_akwyd")]
+gabesmart_chance = 0.05
 cops_node = NodePath("Cops")
 pedestrians_node = NodePath("Pedestrians")
 road_node = NodePath("Roads")

@@ -76,6 +76,7 @@ theme = ExtResource("4_yo6ho")
 text = "START_GAME_BUTTON"
 
 [node name="Quick Start" type="Button" parent="Main Menu/PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Multiplayer"
 

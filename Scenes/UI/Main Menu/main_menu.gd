@@ -24,6 +24,7 @@ func _on_start_pressed() -> void:
 	MainShaderCanvas.visible = false
 	Globals.detected = false
 	get_tree().change_scene_to_packed(intro_packed)
+	#get_tree().change_scene_to_file("res://Scenes/SinglePlayer/tutorial.tscn")
 
 func _on_options_pressed() -> void:
 	$Options.open_options()

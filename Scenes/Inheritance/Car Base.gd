@@ -93,3 +93,8 @@ func update_steer(_delta):
 
 func update_cosmetics(_delta):
 	pass
+
+func on_collision(body):
+	if body.has_method("destroy_self"):
+		print('hitting thing')
+		body.destroy_self()

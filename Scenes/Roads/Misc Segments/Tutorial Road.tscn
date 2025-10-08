@@ -1,0 +1,245 @@
+[gd_scene load_steps=25 format=3 uid="uid://b1bknmj53eqsl"]
+
+[ext_resource type="PackedScene" uid="uid://dhwf0xivi7yl7" path="res://Scenes/Objects/Terrain Add Ins/Grass/boundary_forest.tscn" id="1_1icjm"]
+[ext_resource type="Shader" uid="uid://8mbpp8q1cyls" path="res://Scenes/Objects/Terrain Add Ins/Grass/boundary_forest.gdshader" id="2_2tui8"]
+[ext_resource type="PackedScene" uid="uid://draf67p2ehgfx" path="res://Scenes/Objects/Terrain Add Ins/Street/house_1.tscn" id="3_xivwu"]
+[ext_resource type="PackedScene" uid="uid://b4jd38ifumhg7" path="res://Scenes/Objects/Terrain Add Ins/Street/gabes_mart.tscn" id="4_b5u4l"]
+[ext_resource type="Script" uid="uid://dg3rvytiyjdtj" path="res://Scenes/Objects/Terrain Add Ins/Street/Tutorial Billboard 1.gd" id="5_3wiob"]
+[ext_resource type="Script" uid="uid://dtk5ji61ml077" path="res://Deprecated/debris_group.gd" id="6_d3tfu"]
+[ext_resource type="PackedScene" uid="uid://cyf4gwwy1p5ut" path="res://Scenes/Objects/Debris/Individuals/cone_debris.tscn" id="7_2kims"]
+[ext_resource type="PackedScene" uid="uid://gq811rsmjlhl" path="res://Scenes/Objects/Debris/Individuals/tire_debris.tscn" id="8_373bg"]
+[ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="9_pmlpi"]
+[ext_resource type="MeshLibrary" uid="uid://bucywl3ljfj6f" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/square grass.tres" id="10_40i5j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eb647"]
+size = Vector3(500, 20, 320)
+
+[sub_resource type="Curve3D" id="Curve3D_d8cqh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -187.379, 2.11229, -31.3811, 0, 0, 0, 0, 0, 0, -86.3343, 2.41402, -31.2614, 0, 0, 0, 0, 0, 0, 2.293, 2.67868, -31.1564, 0, 0, 0, 0, 0, 0, 111.83, 3.00577, -31.0267, 0, 0, 0, 0, 0, 0, 215.51, 3.31538, -30.9039, 0, 0, 0, 0, 0, 0, 289.926, 3.5376, -30.8158, 0, 0, 0, 0, 0, 0, 288.254, 3.5376, -69.278, 0, 0, 0, 0, 0, 0, 217.182, 3.5376, -71.7864, 0, 0, 0, 0, 0, 0, 111.829, 3.5376, -71.7864, 0, 0, 0, 0, 0, 0, 0.623299, 3.5376, -70.9503, 0, 0, 0, 0, 0, 0, -93.0239, 3.5376, -71.7864, 0, 0, 0, 0, 0, 0, -188.343, 3.5376, -69.278, 0, 0, 0, 0, 0, 0, -188.795, 3.5376, -113.58, 0, 0, 0, 0, 0, 0, -137.784, 3.50647, -110.441, 0, 0, 0, 0, 0, 0, -81.8414, 3.50363, -109.773, 0, 0, 0, 0, 0, 0, -18.7625, 3.50751, -110.787, 0, 0, 0, 0, 0, 0, 53.9321, 3.50455, -110.821, 0, 0, 0, 0, 0, 0, 138.215, 3.50687, -111.094, 0, 0, 0, 0, 0, 0, 225.688, 3.508, -110.613, 0, 0, 0, 0, 0, 0, 284.317, 3.50928, -113.068, 0, 0, 0, 0, 0, 0, 287.479, 3.53702, -148.34, 0, 0, 0, 0, 0, 0, 220.056, 3.53761, -151.607, 0, 0, 0, 0, 0, 0, 92.0154, 3.53348, -151.306, 0, 0, 0, 0, 0, 0, -52.1132, 3.52856, -150.549, 0, 0, 0, 0, 0, 0, -183.302, 3.52518, -151.913, 0, 0, 0, 0, 0, 0, -190.047, 3.54764, -179.811, 0, 0, 0, 0, 0, 0, -187.627, 3.60254, -211.891, 0, 0, 0, 0, 0, 0, -175.454, 3.62039, -228.834, 0, 0, 0, 0, 0, 0, -125.273, 3.62387, -229.011, 0, 0, 0, 0, 0, 0, -77.0877, 3.62454, -227.329, 0, 0, 0, 0, 0, 0, -46.2041, 3.62677, -227.537, 0, 0, 0, 0, 0, 0, -10.1136, 3.63107, -229.492, 0, 0, 0, 0, 0, 0, 12.3584, 3.64688, -246.718, 0, 0, 0, 0, 0, 0, 12.5235, 3.66589, -269.869, 0, 0, 0, 0, 0, 0, 11.5609, 3.68845, -297.562),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 35
+
+[sub_resource type="Gradient" id="Gradient_bsb6r"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dpb1e"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jhiwd"]
+color_ramp = SubResource("Gradient_bsb6r")
+noise = SubResource("FastNoiseLite_dpb1e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpb1e"]
+render_priority = 0
+shader = ExtResource("2_2tui8")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jhiwd")
+shader_parameter/height_scale = 0.2
+shader_parameter/noise_scale = 5.0
+shader_parameter/low_color = Color(0.2, 0.5, 0.1, 1)
+shader_parameter/high_color = Color(0.4, 0.6, 0.2, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hx06i"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(500, 40)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1icjm"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(500, 40)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b2ih6"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(40, 360)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mlf5o"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_dpb1e")
+size = Vector2(140, 360)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="QuadMesh" id="QuadMesh_756db"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_y4bgl"]
+size = Vector2(2.665, 1.71)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_d8cqh"]
+sample_partition_type = 2
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_7agfs"]
+sample_partition_type = 2
+
+[node name="Tutorial Lot" type="Node3D"]
+
+[node name="Exit" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -320)
+
+[node name="Nav Region Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.6091, 9.48913, -159.401)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Nav Region Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52112, 0, -0.493652)
+shape = SubResource("BoxShape3D_eb647")
+metadata/_edit_lock_ = true
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_d8cqh")
+
+[node name="Boundary3D" type="Node3D" parent="."]
+
+[node name="Boundary Forest" parent="Boundary3D" instance=ExtResource("1_1icjm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 20)
+mesh = SubResource("PlaneMesh_hx06i")
+forest_density = 0.04
+tree_scale_randomness = 2.0
+
+[node name="Boundary Forest4" parent="Boundary3D" instance=ExtResource("1_1icjm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -299.807)
+mesh = SubResource("PlaneMesh_1icjm")
+forest_density = 0.04
+tree_scale_randomness = 2.0
+
+[node name="Boundary Forest2" parent="Boundary3D" instance=ExtResource("1_1icjm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.028, 7.62939e-06, -140.032)
+mesh = SubResource("PlaneMesh_b2ih6")
+forest_density = 0.04
+tree_scale_randomness = 2.0
+
+[node name="Boundary Forest3" parent="Boundary3D" instance=ExtResource("1_1icjm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270, 0, -140)
+mesh = SubResource("PlaneMesh_mlf5o")
+forest_density = 0.04
+tree_scale_randomness = 2.0
+
+[node name="House_1" parent="." instance=ExtResource("3_xivwu")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 280.83, 0.495, -198.096)
+
+[node name="House_2" parent="." instance=ExtResource("3_xivwu")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 281.948, 0.494999, -182.23)
+
+[node name="House_3" parent="." instance=ExtResource("3_xivwu")]
+transform = Transform3D(4.99797, 0, 0.1424, 0, 5, 0, -0.1424, 0, 4.99797, 281.282, 0.495008, -259.333)
+
+[node name="House_4" parent="." instance=ExtResource("3_xivwu")]
+transform = Transform3D(-0.162811, 0, 4.99735, 0, 5, 0, -4.99735, 0, -0.162811, 251.518, 0.495, -263.788)
+
+[node name="House_5" parent="." instance=ExtResource("3_xivwu")]
+transform = Transform3D(-0.162811, 0, 4.99735, 0, 5, 0, -4.99735, 0, -0.162811, 235.4, 0.495, -263.906)
+
+[node name="Gabes_Mart" parent="." instance=ExtResource("4_b5u4l")]
+transform = Transform3D(0.998757, 0, -0.0498434, 0, 1, 0, 0.0498434, 0, 0.998757, 274.838, 4.73318, -228.991)
+
+[node name="Billboards" type="Node3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+visible = false
+script = ExtResource("5_3wiob")
+
+[node name="Tutorial Sign" type="CSGMesh3D" parent="Billboards"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.85469, 1.00973, -3.52579)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Billboards/Tutorial Sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0.183417, 0.0127182)
+text = "TUTORIAL_BILLBOARD_1"
+
+[node name="Tutorial Sign2" type="CSGMesh3D" parent="Billboards"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.822646, 1.35784, -11.3291)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Billboards/Tutorial Sign2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97948, 0, 0.0127182)
+text = "TUTORIAL_BILLBOARD_2"
+
+[node name="Tutorial Sign3" type="CSGMesh3D" parent="Billboards"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.10927, 1.15587, -5.70732)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Billboards/Tutorial Sign3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
+text = "TUTORIAL_BILLBOARD_3"
+
+[node name="Tutorial Sign4" type="CSGMesh3D" parent="Billboards"]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, -7.027, 0.5, -7.371)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Billboards/Tutorial Sign4"]
+text = "TUTORIAL_BILLBOARD_4"
+
+[node name="Tutorial Sign5" type="CSGMesh3D" parent="Billboards"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44999, 1.15587, -13.3972)
+mesh = SubResource("QuadMesh_y4bgl")
+
+[node name="Label3D" type="Label3D" parent="Billboards/Tutorial Sign5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
+text = "TUTORIAL_BILLBOARD_5"
+
+[node name="Tutorial Sign6" type="CSGMesh3D" parent="Billboards"]
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, -6.94675, 0.278829, -6.94643)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Billboards/Tutorial Sign6"]
+text = "TUTORIAL_BILLBOARD_6"
+font_size = 25
+
+[node name="Tutorial Sign7" type="CSGMesh3D" parent="Billboards"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.53186, 1.46354, -3.52579)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Billboards/Tutorial Sign7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44219, -0.13255, -2.29859)
+text = "TUTORIAL_BILLBOARD_7"
+
+[node name="Tutorial Sign8" type="CSGMesh3D" parent="Billboards"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.10927, 1.15587, -9.27788)
+mesh = SubResource("QuadMesh_756db")
+
+[node name="Label3D" type="Label3D" parent="Billboards/Tutorial Sign8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493655, 0, 0.0127182)
+text = "TUTORIAL_BILLBOARD_8"
+
+[node name="Debris" type="Node3D" parent="."]
+script = ExtResource("6_d3tfu")
+
+[node name="Cone Debris" parent="Debris" instance=ExtResource("7_2kims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132.518, 0.262709, -137.655)
+
+[node name="Tire Debris" parent="Debris" instance=ExtResource("8_373bg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132.518, 0.262709, -140.194)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_d8cqh")
+
+[node name="Cul de Sac Tutorial" type="GridMap" parent="NavigationRegion3D"]
+mesh_library = ExtResource("9_pmlpi")
+cell_size = Vector3(20, 20, 20)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 65521, 1441792, 0, 65520, 1441792, 0, 0, 1048576, 0, 1, 1048576, 65527, 65530, 0, 65528, 65530, 0, 65529, 65530, 0, 65530, 65530, 0, 65531, 65530, 0, 65532, 65530, 0, 65533, 65530, 0, 65534, 65530, 0, 65535, 65530, 0, 0, 65530, 0, 1, 65530, 0, 2, 65530, 0, 3, 65530, 0, 4, 65530, 0, 5, 65530, 0, 6, 65530, 0, 7, 65530, 0, 8, 65530, 0, 9, 65530, 0, 10, 65530, 0, 11, 65530, 0, 12, 65530, 0, 13, 65530, 0, 65527, 65528, 655360, 65528, 65528, 655360, 65529, 65528, 655360, 65530, 65528, 655360, 65531, 65528, 655360, 65532, 65528, 655360, 65533, 65528, 655360, 65534, 65528, 655360, 65535, 65528, 655360, 0, 65528, 655360, 1, 65528, 655360, 2, 65528, 655360, 3, 65528, 655360, 4, 65528, 655360, 5, 65528, 655360, 6, 65528, 655360, 7, 65528, 655360, 8, 65528, 655360, 9, 65528, 655360, 10, 65528, 655360, 11, 65528, 655360, 12, 65528, 655360, 13, 65528, 655360, 65526, 65534, 2, 65527, 65534, 0, 65528, 65532, 655360, 65528, 65534, 0, 65529, 65532, 655360, 65529, 65534, 0, 65530, 65532, 655360, 65530, 65534, 0, 65531, 65532, 655360, 65531, 65534, 0, 65532, 65532, 655360, 65532, 65534, 0, 65533, 65532, 655360, 65533, 65534, 0, 65534, 65532, 655360, 65534, 65534, 0, 65535, 65532, 655360, 65535, 65534, 0, 0, 65532, 655360, 0, 65534, 0, 1, 65532, 655360, 1, 65534, 0, 2, 65532, 0, 2, 65534, 0, 3, 65532, 655360, 3, 65534, 0, 4, 65532, 655360, 4, 65534, 0, 5, 65532, 655360, 5, 65534, 0, 6, 65532, 655360, 6, 65534, 0, 7, 65532, 655360, 7, 65534, 0, 8, 65532, 655360, 8, 65534, 0, 9, 65532, 655360, 9, 65534, 0, 10, 65532, 655360, 10, 65534, 0, 11, 65532, 655360, 11, 65534, 0, 12, 65532, 655360, 12, 65534, 0, 13, 65532, 655360, 13, 65534, 0, 14, 65532, 655362, 14, 65533, 1441792, 14, 65534, 1048578, 65526, 65528, 2, 14, 65528, 655362, 14, 65529, 1441792, 14, 65530, 1048578, 65526, 65532, 4, 65526, 65530, 1441794, 65526, 65527, 1441792, 12, 65524, 655360, 11, 65524, 655360, 10, 65524, 655360, 9, 65524, 655360, 8, 65524, 655360, 7, 65524, 655360, 6, 65524, 655360, 5, 65524, 655360, 4, 65524, 655360, 3, 65524, 655360, 2, 65524, 655360, 65534, 65524, 655360, 65533, 65524, 655360, 65532, 65524, 655360, 65531, 65524, 655360, 65530, 65524, 655360, 65529, 65524, 655360, 65528, 65524, 655360, 65527, 65524, 655360, 0, 65524, 1048580, 0, 65522, 1048576, 65526, 65526, 1441792, 65526, 65524, 1441794, 65526, 65525, 1441792)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+metadata/Road = true
+
+[node name="NavigationRegion3D2" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_7agfs")
+enter_cost = 1.0
+travel_cost = 1.5
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D2"]
+mesh_library = ExtResource("10_40i5j")
+cell_size = Vector3(20, 20, 20)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 65532, 0, 0, 65531, 0, 0, 65530, 0, 0, 65529, 0, 0, 65528, 0, 0, 65527, 0, 0, 65526, 0, 0, 65525, 0, 0, 65524, 0, 0, 65523, 0, 0, 65522, 0, 1, 65535, 0, 1, 65534, 0, 1, 65533, 0, 1, 65532, 0, 1, 65531, 0, 1, 65530, 0, 1, 65529, 0, 65535, 65534, 0, 65535, 65535, 0, 65535, 65527, 0, 65535, 65528, 0, 65535, 65529, 0, 65535, 65530, 0, 65535, 65531, 0, 65535, 65532, 0, 65535, 65533, 0, 65535, 65526, 0, 65535, 65525, 0, 65535, 65524, 0, 65535, 65523, 0, 65535, 65522, 0, 65527, 65522, 0, 65527, 65523, 0, 65527, 65524, 0, 65527, 65525, 0, 65527, 65526, 0, 65527, 65527, 0, 65527, 65528, 0, 65527, 65529, 0, 65527, 65530, 0, 65527, 65531, 0, 65527, 65532, 0, 65527, 65533, 0, 65527, 65534, 0, 65527, 65535, 0, 65528, 65535, 0, 65528, 65534, 0, 65529, 65534, 0, 65530, 65534, 0, 65531, 65534, 0, 65531, 65535, 0, 65530, 65535, 0, 65529, 65535, 0, 65532, 65534, 0, 65533, 65534, 0, 65534, 65534, 0, 2, 65534, 0, 3, 65535, 0, 2, 65535, 0, 65534, 65535, 0, 65533, 65535, 0, 65532, 65535, 0, 4, 65535, 0, 5, 65535, 0, 5, 65534, 0, 6, 65534, 0, 7, 65534, 0, 8, 65534, 0, 8, 65535, 0, 7, 65535, 0, 6, 65535, 0, 6, 65533, 0, 5, 65533, 0, 4, 65534, 0, 3, 65534, 0, 2, 65533, 0, 2, 65532, 0, 3, 65532, 0, 4, 65532, 0, 3, 65531, 0, 4, 65531, 0, 4, 65533, 0, 3, 65533, 0, 2, 65531, 0, 3, 65530, 0, 4, 65530, 0, 2, 65530, 0, 3, 65529, 0, 4, 65529, 0, 5, 65529, 0, 6, 65530, 0, 6, 65532, 0, 5, 65532, 0, 2, 65529, 0, 3, 65528, 0, 4, 65527, 0, 5, 65528, 0, 6, 65529, 0, 5, 65531, 0, 1, 65527, 0, 2, 65526, 0, 3, 65525, 0, 4, 65525, 0, 5, 65526, 0, 5, 65527, 0, 5, 65530, 0, 2, 65525, 0, 4, 65528, 0, 2, 65524, 0, 3, 65526, 0, 3, 65527, 0, 2, 65528, 0, 2, 65527, 0, 1, 65526, 0, 1, 65524, 0, 1, 65525, 0, 65534, 65525, 0, 65533, 65525, 0, 65533, 65524, 0, 65533, 65523, 0, 65533, 65522, 0, 65534, 65524, 0, 65534, 65522, 0, 65534, 65523, 0, 65534, 65526, 0, 65533, 65526, 0, 65533, 65527, 0, 65532, 65522, 0, 65532, 65523, 0, 65532, 65526, 0, 65532, 65528, 0, 65532, 65529, 0, 65532, 65530, 0, 65532, 65531, 0, 65532, 65532, 0, 65531, 65533, 0, 65532, 65527, 0, 65532, 65525, 0, 65532, 65524, 0, 65532, 65533, 0, 65531, 65532, 0, 65531, 65531, 0, 65531, 65530, 0, 65531, 65528, 0, 65531, 65527, 0, 65530, 65526, 0, 65530, 65525, 0, 65530, 65524, 0, 65530, 65523, 0, 65530, 65522, 0, 65531, 65524, 0, 65531, 65525, 0, 65531, 65526, 0, 65531, 65529, 0, 65531, 65523, 0, 65531, 65522, 0, 65530, 65527, 0, 65530, 65528, 0, 65530, 65533, 0, 65530, 65532, 0, 65530, 65530, 0, 65530, 65529, 0, 65529, 65530, 0, 65529, 65531, 0, 65529, 65532, 0, 65530, 65531, 0, 65529, 65533, 0, 65528, 65533, 0, 65528, 65532, 0, 65528, 65531, 0, 65528, 65530, 0, 65528, 65529, 0, 65528, 65528, 0, 65528, 65527, 0, 65528, 65526, 0, 65528, 65525, 0, 65528, 65524, 0, 65528, 65523, 0, 65528, 65522, 0, 65529, 65522, 0, 65529, 65523, 0, 65529, 65524, 0, 65529, 65525, 0, 65529, 65526, 0, 65529, 65527, 0, 65529, 65528, 0, 65529, 65529, 0, 65533, 65529, 0, 65533, 65528, 0, 65533, 65530, 0, 65533, 65531, 0, 65533, 65532, 0, 65533, 65533, 0, 65534, 65533, 0, 65534, 65532, 0, 65534, 65531, 0, 65534, 65530, 0, 65534, 65529, 0, 65534, 65528, 0, 65534, 65527, 0, 9, 65522, 0, 9, 65523, 0, 9, 65524, 0, 9, 65525, 0, 9, 65526, 0, 9, 65527, 0, 9, 65528, 0, 9, 65529, 0, 9, 65530, 0, 9, 65531, 0, 9, 65532, 0, 9, 65533, 0, 9, 65534, 0, 9, 65535, 0, 8, 65533, 0, 7, 65533, 0, 6, 65531, 0, 7, 65531, 0, 7, 65530, 0, 7, 65532, 0, 7, 65529, 0, 8, 65528, 0, 8, 65529, 0, 8, 65530, 0, 8, 65531, 0, 7, 65528, 0, 7, 65527, 0, 7, 65526, 0, 7, 65525, 0, 8, 65525, 0, 8, 65526, 0, 8, 65527, 0, 6, 65526, 0, 6, 65525, 0, 7, 65524, 0, 7, 65523, 0, 7, 65522, 0, 8, 65523, 0, 8, 65524, 0, 8, 65522, 0, 6, 65522, 0, 6, 65523, 0, 6, 65527, 0, 5, 65525, 0, 5, 65524, 0, 5, 65523, 0, 5, 65522, 0, 4, 65522, 0, 4, 65523, 0, 4, 65524, 0, 4, 65526, 0, 3, 65524, 0, 3, 65523, 0, 3, 65522, 0, 2, 65522, 0, 1, 65522, 0, 1, 65523, 0, 2, 65523, 0, 65526, 65524, 0, 65526, 65525, 0, 65526, 65526, 0, 65526, 65527, 0, 65526, 65528, 0, 65526, 65529, 0, 65526, 65530, 0, 65526, 65531, 0, 65526, 65532, 0, 65526, 65533, 0, 65526, 65534, 0, 65526, 65535, 0, 13, 65522, 0, 13, 65523, 0, 13, 65524, 0, 13, 65525, 0, 14, 65523, 0, 14, 65522, 0, 14, 65524, 0, 14, 65525, 0, 12, 65522, 0, 12, 65523, 0, 12, 65524, 0, 11, 65524, 0, 11, 65522, 0, 10, 65523, 0, 10, 65522, 0, 10, 65524, 0, 10, 65525, 0, 10, 65527, 0, 10, 65526, 0, 11, 65523, 0, 12, 65525, 0, 12, 65526, 0, 12, 65527, 0, 11, 65527, 0, 11, 65526, 0, 11, 65525, 0, 13, 65526, 0, 13, 65527, 0, 13, 65528, 0, 13, 65529, 0, 13, 65530, 0, 14, 65526, 0, 14, 65527, 0, 14, 65528, 0, 14, 65529, 0, 14, 65530, 0, 14, 65531, 0, 14, 65532, 0, 14, 65533, 0, 14, 65534, 0, 14, 65535, 0, 13, 65535, 0, 12, 65535, 0, 11, 65535, 0, 10, 65535, 0, 10, 65534, 0, 10, 65533, 0, 10, 65532, 0, 10, 65531, 0, 10, 65530, 0, 10, 65529, 0, 10, 65528, 0, 11, 65528, 0, 11, 65529, 0, 12, 65529, 0, 12, 65530, 0, 12, 65531, 0, 11, 65531, 0, 11, 65530, 0, 12, 65528, 0, 12, 65532, 0, 13, 65531, 0, 13, 65532, 0, 12, 65533, 0, 13, 65533, 0, 13, 65534, 0, 12, 65534, 0, 11, 65534, 0, 11, 65533, 0, 65526, 65523, 0, 65526, 65522, 0, 1, 65528, 0, 6, 65524, 0, 6, 65528, 0, 8, 65532, 0, 11, 65532, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Lamps" type="Node3D" parent="NavigationRegion3D2"]

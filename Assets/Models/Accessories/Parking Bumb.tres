@@ -1,0 +1,39 @@
+[gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://d2mu2kajnt1bc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wheaf"]
+resource_name = "Material.062"
+cull_mode = 2
+albedo_color = Color(0.879994, 0.871202, 0.332666, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_we4cw"]
+_surfaces = [{
+"aabb": AABB(-23.1089, -3.57368, -9.0508, 37.7724, 8.93419, 18.1016),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAwACAAEAAAAEAAEAAgADAAUAAgAFAAAABgAFAAMAAwABAAYABgAHAAUABQAIAAAAAAAIAAQABQAHAAgAAQAEAAkAAQAJAAYACAAJAAQABgAJAAcACAAHAAkA"),
+"name": "Material.062",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("i4cAAAAAAACLh///AAAAAAAAAAAAAAAAAAAAAP//AAD/////AAAAAIuHAAD//wAAi4f/////AAD//wAA//8AAP//AAAAAAAA////////AAA=")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "NEWEST GABES MART_Cube_031"
+_surfaces = [{
+"aabb": AABB(-23.1089, -3.57368, -9.0508, 37.7724, 8.93419, 18.1016),
+"attribute_data": PackedByteArray("/1//f/+f/3//H/9//5//f/9f/3//H/8//5//f/+f/z//H/9//5//f/+f/z//n/8//5//f/9f/3//n/8//5//f/9f/z//H/9//1//P/9f/3//H/8//1//f/9f/z//n/8//1//P/8f/z//X/8//5//Pw=="),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAAAEAAMABQAGAAcABQAIAAYACQAKAAsACQAMAAoADQAOAA8ADQAQAA4AEQASABMAEQAUABIAEgAVABMAEgAWABUAFwAYABkAFwAaABgAFwAbABoA"),
+"material": SubResource("StandardMaterial3D_wheaf"),
+"name": "Material.062",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 28,
+"vertex_data": PackedByteArray("i4cAAAAA//+Lh///AAD//wAAAAAAAP///////wAA/////wAAAAD//wAAAAD//zo+i4f//wAAOj6Lh/////86PgAAAAAAADo+i4f//wAA/7//////////v4uH//////+//////wAA/7///wAAAABU1f///////1TV/////wAAVNX//wAA//9U1QAAAAAAAP+/i4cAAP///7+LhwAAAAD/vwAAAAD///+///8AAAAA/7///wAA////v4uH//////5/i4cAAP///n8AAAAA///+f///AAD///5//////////n////9/////f////3////9/////f9zsQ6bc7EOm3OxDptzsQ6b///9/////f////3////9/qiqqKqoqqiqqKqoqqiqqKgAA/38AAP9/AAD/fwAA/38AAP9/AAD/f/9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_we4cw")

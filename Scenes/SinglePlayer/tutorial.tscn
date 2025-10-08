@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://b6uin0vctf1t5"]
+
+[ext_resource type="PackedScene" uid="uid://craox76r56bvq" path="res://Scenes/UI/Main Menu/Options Menu/Options Menu.tscn" id="1_r5qqm"]
+[ext_resource type="Script" uid="uid://cvdb3mhbhm6an" path="res://Scenes/SinglePlayer/game.gd" id="1_xjyoa"]
+[ext_resource type="PackedScene" uid="uid://c6btg6wb1cmm6" path="res://Scenes/UI/Misc/game_over.tscn" id="2_hbiq7"]
+[ext_resource type="PackedScene" uid="uid://w7ute86vb38e" path="res://Scenes/UI/Misc/Win_Screen.tscn" id="3_xjyoa"]
+[ext_resource type="Texture2D" uid="uid://bvk6p748nx6p5" path="res://Assets/Models/Skybox/AllSky_Night_MoonBurst Equirect.png" id="4_nryc2"]
+[ext_resource type="PackedScene" uid="uid://c0isynyusocwo" path="res://Scenes/Roads/segment_spawner.tscn" id="5_nryc2"]
+[ext_resource type="Script" uid="uid://cnmbor1oxnhpn" path="res://Scenes/SinglePlayer/world_environment.gd" id="5_vdau4"]
+[ext_resource type="PackedScene" uid="uid://b1bknmj53eqsl" path="res://Scenes/Roads/Misc Segments/Tutorial Road.tscn" id="6_wmtys"]
+[ext_resource type="PackedScene" uid="uid://cpluashr5x3of" path="res://Scenes/Inheritance/Player/Player Car.tscn" id="7_hbiq7"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_o1r77"]
+panorama = ExtResource("4_nryc2")
+
+[sub_resource type="Sky" id="Sky_ygm4a"]
+sky_material = SubResource("PanoramaSkyMaterial_o1r77")
+
+[sub_resource type="Environment" id="Environment_iuoik"]
+background_mode = 2
+sky = SubResource("Sky_ygm4a")
+sky_rotation = Vector3(0, 3.14159, 0)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
+reflected_light_source = 1
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0, 0.00474154, 0.00474154, 1)
+fog_sun_scatter = 0.2
+fog_density = 0.0244
+fog_sky_affect = 0.49
+fog_depth_begin = 717.2
+fog_depth_end = 717.2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.014
+adjustment_enabled = true
+adjustment_brightness = 1.5
+adjustment_contrast = 1.1
+adjustment_saturation = 0.8
+
+[node name="Tutorial" type="Node"]
+script = ExtResource("1_xjyoa")
+
+[node name="Options" parent="." instance=ExtResource("1_r5qqm")]
+visible = false
+
+[node name="Game Over" parent="." instance=ExtResource("2_hbiq7")]
+visible = false
+
+[node name="YOU WIN" parent="." instance=ExtResource("3_xjyoa")]
+visible = false
+
+[node name="Segment Spawner" parent="." instance=ExtResource("5_nryc2")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Segment Spawner"]
+transform = Transform3D(-1, -1.24345e-14, -8.74228e-08, -3.01411e-08, 0.938686, 0.344774, 8.20625e-08, 0.344774, -0.938686, 0, 0, 0)
+light_color = Color(0.623529, 0.772549, 0.94902, 1)
+light_energy = 0.1
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Segment Spawner"]
+environment = SubResource("Environment_iuoik")
+script = ExtResource("5_vdau4")
+set_phase_on_ready = true
+
+[node name="Cops" type="Node3D" parent="Segment Spawner"]
+
+[node name="Pedestrians" type="Node3D" parent="Segment Spawner"]
+
+[node name="Roads" type="Node3D" parent="Segment Spawner"]
+
+[node name="Tutorial Lot" parent="Segment Spawner/Roads" instance=ExtResource("6_wmtys")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Segment Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 151.765, -206.331)
+light_energy = 16.0
+light_volumetric_fog_energy = 0.0
+omni_range = 338.241
+
+[node name="Player Car" parent="Segment Spawner" node_paths=PackedStringArray("cop_node") instance=ExtResource("7_hbiq7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 267.187, 12.8091, -223.578)
+cop_node = NodePath("../Cops")

@@ -880,6 +880,7 @@ front_ray = NodePath("Center of mass/RayCast3D")
 reverse_timer = NodePath("ReverseTimer")
 STEERING_CURVE = ExtResource("2_3f8pa")
 stuck_timer = NodePath("StuckTimer")
+update_interval = 0.0
 
 [node name="PedestrianCosmetic" type="Node" parent="." node_paths=PackedStringArray("car_ref", "randomize_color_meshes", "head_lights", "back_lights", "engine_player", "crash_player")]
 script = ExtResource("3_3f8pa")

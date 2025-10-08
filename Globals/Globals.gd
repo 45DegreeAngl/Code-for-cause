@@ -232,9 +232,9 @@ func load_random_song():
 	Color.GOLD: "Gold"
 }
 
-@onready var pedestrian_array:Array = [preload("res://Scenes/Inheritance/Ped/Safe Ped.tscn"),preload("res://Scenes/Inheritance/Ped/Super Ped.tscn")]
+@onready var pedestrian_array:Array = [preload("res://Scenes/Inheritance/Ped/Reckless Ped.tscn"),preload("res://Scenes/Inheritance/Ped/Safe Ped.tscn")]#,preload("res://Scenes/Inheritance/Ped/Super Ped.tscn")]
 #@onready var pedestrian_packed:PackedScene = preload("res://Prefabs/Car/Average Sober Driver.tscn")
-@onready var cop_array:Array = [preload("res://Scenes/Inheritance/Cop/RecklessCop.tscn"),preload("res://Scenes/Inheritance/Cop/Super Cop.tscn")]
+@onready var cop_array:Array = [preload("res://Scenes/Inheritance/Cop/RecklessCop.tscn"),preload("res://Scenes/Inheritance/Cop/Safe Cop.tscn")]#,preload("res://Scenes/Inheritance/Cop/Super Cop.tscn")]
 #@onready var cop_packed:PackedScene = preload("res://Prefabs/the_cop.tscn")
 @onready var driving_path:Path3D = null
 

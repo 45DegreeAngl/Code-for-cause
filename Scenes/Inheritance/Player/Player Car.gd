@@ -107,6 +107,10 @@ func _on_collide(body):
 	elif body is Debris:
 		#play debris hit effect
 		pass
+	else:
+		if body.has_method("destroy_self"):
+			print('hitting thing')
+			body.destroy_self()
 	if body is VehicleBody3D and !body.has_meta("Cop"):
 		Globals.sober_drivers_hit+=1
 
@@ -235,7 +239,7 @@ func enter_car():
 			object.call_deferred("queue_free")
 			Globals.total_alcohol_bought+=1
 			Globals.update_bottles.emit()
-		elif object is Debris:
+		elif object.has_meta("Debris"):
 			object.process_mode = Node.PROCESS_MODE_DISABLED
 			object.reparent($Debrie)
 			object.position = $"Debrie Spawns".get_children().pick_random().position
