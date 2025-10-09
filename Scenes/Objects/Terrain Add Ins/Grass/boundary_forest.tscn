@@ -10,8 +10,8 @@
 noise_type = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jhiwd"]
-color_ramp = SubResource("Gradient_bsb6r")
 noise = SubResource("FastNoiseLite_dpb1e")
+color_ramp = SubResource("Gradient_bsb6r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dpb1e"]
 render_priority = 0

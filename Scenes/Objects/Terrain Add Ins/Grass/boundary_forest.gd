@@ -18,7 +18,8 @@ extends MeshInstance3D
 @export_tool_button("Clear Forest") var clr_for_but = clear_forest
 
 
-#func _ready():
+func _ready():
+	pass
 	#if not Engine.is_editor_hint():
 		#generate_forest()
 

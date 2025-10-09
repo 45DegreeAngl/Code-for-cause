@@ -4,7 +4,7 @@ extends MultiMeshInstance3D
 @export var tree_mesh : ArrayMesh
 @export var tree_parent : Node3D
 @export_tool_button("Generate Meshes") var balls = replace_meshes
-@export_tool_button("Show Tree Meshes") var show = show_trees
+@export_tool_button("Show Tree Meshes") var testes = show_trees
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():

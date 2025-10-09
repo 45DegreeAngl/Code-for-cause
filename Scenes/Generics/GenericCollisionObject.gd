@@ -29,8 +29,10 @@ var _collision_shape_node: CollisionShape3D
 
 
 func _ready() -> void:
-	_update_visuals()
-	_update_collision()
+	if Engine.is_editor_hint():
+		_update_visuals()
+		_update_collision()
+		printerr("This function is intended for editor use only.")
 
 func _update_visuals() -> void:
 	var mesh_instance: MeshInstance3D = get_node_or_null("MeshInstance")

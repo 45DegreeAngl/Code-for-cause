@@ -42,7 +42,12 @@ func open_options(in_game:bool=false):
 signal back_pressed()
 
 func _on_back_pressed():
+	Globals.game_paused = false
 	visible = false
+	MainShaderCanvas.filter_dict["BeerMeter"][0].visible = true
+	MainShaderCanvas.filter_dict["drunk"][0].visible = true
+	#$"Game World".process_mode = Node.PROCESS_MODE_INHERIT
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	back_pressed.emit()
 
 func _on_become_sober_pressed() -> void:

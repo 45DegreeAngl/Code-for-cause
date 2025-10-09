@@ -294,7 +294,7 @@ func throw_debris_rpc():
 		chosen.global_position = $"Debrie Launch".global_position
 		print(chosen.global_position)
 		print($"Debrie Launch".global_position)
-		chosen.reparent(Globals.world_node.previous_road,true)
+		chosen.reparent(Globals.world_node,true)
 		chosen.process_mode = Node.PROCESS_MODE_INHERIT
 		Globals.litter_count+=1
 

@@ -1,8 +1,8 @@
 extends Node
 
 func _ready()->void:
-	Debug.cops_node = $"Segment Spawner/Cops"
-	Debug.sober_node = $"Segment Spawner/Pedestrians"
+	Debug.cops_node = $"Segment Manager/Cops"
+	Debug.sober_node = $"Segment Manager/Pedestrians"
 
 func _process(_delta: float) -> void:
 	if Globals.game_over or $"Game Over".visible or $"YOU WIN".visible:
