@@ -34,6 +34,8 @@ var loaded_workshop_items : Dictionary = {"Music":[],"Road":[],"Misc":[]}
 
 func initialize_workshop():
 	prepare_files()
+	if not GlobalSteam.is_on_steam:
+		return
 	print(Steam.getSubscribedItems())
 	Steam.item_created.connect(_on_item_created)
 	Steam.item_updated.connect(_on_item_update)
@@ -55,6 +57,8 @@ var sub_num = 0
 var subscribed_counter = 0
 
 func download_subbed_items():
+	if not GlobalSteam.is_on_steam:
+		return
 	sub_num = Steam.getSubscribedItems().size()
 	for item in Steam.getSubscribedItems():
 		item_downloading_now.emit()

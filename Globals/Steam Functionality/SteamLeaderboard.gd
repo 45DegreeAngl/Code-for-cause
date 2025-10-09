@@ -8,6 +8,8 @@ func _ready()->void:
 ##LEADERBOARDS
 var boardhandles:Dictionary = {}
 func set_up_leaderboards():
+	if not GlobalSteam.is_on_steam:
+		return
 	Steam.findLeaderboard("RECORD TIME PRACTICE")
 	await leaderboard_update
 	Steam.findLeaderboard("RECORD TIME EASY")

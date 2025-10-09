@@ -5,7 +5,8 @@ extends Node
 @export var TitleMusicPlayer :AudioStreamPlayer
 
 func _ready()->void:
-	Steam.getCurrentGameLanguage()
+	if GlobalSteam.is_on_steam:
+		Steam.getCurrentGameLanguage()
 	print(OS.get_locale_language())
 	TranslationServer.set_locale(OS.get_locale_language())
 	$"Main Menu/PanelContainer/VBoxContainer/Start".grab_focus()
