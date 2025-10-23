@@ -30,13 +30,13 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_xeqlp")
-text = "You lived"
+text = "YOU_LIVED_LABEL"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Main Menu" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Main Menu
+text = "MAIN_MENU_BUTTON
 "
 metadata/_edit_use_anchors_ = true
 
