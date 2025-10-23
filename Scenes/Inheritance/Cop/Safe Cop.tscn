@@ -798,7 +798,6 @@ damping_relaxation = 2.0
 [node name="Back_Left" type="MeshInstance3D" parent="Back_Left"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_8j4td")
-skeleton = NodePath("")
 
 [node name="Back_Right" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.27066, 0.891, 0.692075)
@@ -810,7 +809,6 @@ damping_relaxation = 2.0
 [node name="Back_Right" type="MeshInstance3D" parent="Back_Right"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gg6f8")
-skeleton = NodePath("")
 
 [node name="Front_Right" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.28903, 0.891, -3.07874)
@@ -822,7 +820,6 @@ damping_relaxation = 2.0
 [node name="Front_Right" type="MeshInstance3D" parent="Front_Right"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_5kv0l")
-skeleton = NodePath("")
 
 [node name="Front_Left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.32195, 0.891, -3.07874)
@@ -834,7 +831,6 @@ damping_relaxation = 2.0
 [node name="Front_Left" type="MeshInstance3D" parent="Front_Left"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gv2vx")
-skeleton = NodePath("")
 
 [node name="Mesh" type="Node3D" parent="."]
 
@@ -845,12 +841,10 @@ mesh = SubResource("ArrayMesh_0wx8f")
 [node name="Front Seats" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58249, 0)
 mesh = SubResource("ArrayMesh_nloa0")
-skeleton = NodePath("")
 
 [node name="Back Seats" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58249, 1.33931)
 mesh = SubResource("ArrayMesh_asbhe")
-skeleton = NodePath("")
 
 [node name="Engine" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
