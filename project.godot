@@ -25,11 +25,11 @@ GlobalSteam="*res://Globals/Steam Functionality/GlobalSteam.gd"
 GlobalWorkshop="*res://Globals/Steam Functionality/SteamWorkshop.gd"
 Debug="*res://Globals/Debug.gd"
 Network="*res://Globals/Steam Multiplayer/Network.gd"
-ServerFunc="*res://Globals/Steam Multiplayer/Server Function.gd"
 SteamMic="*res://Globals/Steam Multiplayer/steam_mic.tscn"
 SteamAchievements="*res://Globals/Steam Functionality/SteamAchievements.gd"
 SteamLeaderboard="*res://Globals/Steam Functionality/SteamLeaderboard.gd"
 SteamStatistics="*res://Globals/Steam Functionality/SteamStatistics.gd"
+ServerFunc="*res://Globals/Steam Multiplayer/Server Function.gd"
 
 [display]
 

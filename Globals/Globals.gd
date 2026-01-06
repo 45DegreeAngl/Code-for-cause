@@ -25,23 +25,8 @@ signal game_won()
 	"Crash 5":preload("res://Assets/Sounds/Crashes/NewCrash2.mp3")
 }
 
-signal network_tick()
-
-var _network_timer: Timer
-
 func _ready()->void:
 	load_songs_from_folder()
-	# Create and configure the timer in code
-	_network_timer = Timer.new()
-	_network_timer.wait_time = 0.05 # 20 ticks per second
-	_network_timer.autostart = true
-	_network_timer.timeout.connect(_on_network_timer_timeout)
-	add_child(_network_timer)
-
-func _on_network_timer_timeout():
-	# When the timer fires, emit the global signal for anyone who is listening.
-	network_tick.emit()
-
 
 # --- Static, Well-Known Node Registry ---
 # This dictionary holds our main manager nodes, using a string name for clarity.
