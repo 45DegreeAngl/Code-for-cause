@@ -7,6 +7,8 @@ class_name RecklessDriver
 	#engine_input = ENGINE_POWER
 
 func update_steer(delta):
+	if not Globals.player_vehicle:
+		return
 	var target_pos = to_local(Globals.player_vehicle.global_position)
 	var direction = front_ray.target_position
 	var angle = direction.direction_to(target_pos)

@@ -1,8 +1,12 @@
 extends Node
 
+@export var cops_node:Node3D
+@export var ped_node:Node3D
+
+
 func _ready()->void:
-	Debug.cops_node = $"Segment Manager/Cops"
-	Debug.sober_node = $"Segment Manager/Pedestrians"
+	Debug.cops_node = cops_node
+	Debug.sober_node = ped_node
 
 func _process(_delta: float) -> void:
 	if Globals.game_over or $"Game Over".visible or $"YOU WIN".visible:

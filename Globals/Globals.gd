@@ -5,7 +5,6 @@ signal game_lost()
 signal game_won()
 
 @onready var player_packed : PackedScene = preload("res://Scenes/User/Character/Ragdoll Character.tscn")
-@onready var multiplayer_packed : PackedScene = preload("res://Scenes/Multiplayer/Character/MRagdoll Character.tscn")
 @onready var player_voice_lines:Array = [
 	preload("res://Assets/Sounds/Voice Lines/MoreBeer_Sad.mp3"),
 	preload("res://Assets/Sounds/Voice Lines/MoreBeer_Angry.mp3"),

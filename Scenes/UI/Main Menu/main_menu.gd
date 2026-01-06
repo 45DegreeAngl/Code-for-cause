@@ -75,3 +75,8 @@ func _on_quick_start_pressed() -> void:
 	$"Main Menu".visible = false
 	$MultiplayerLobby.visible = true
 	$MultiplayerLobby/HBoxContainer/VBoxContainer/Back.grab_focus()
+
+
+func _on_debug_pressed() -> void:
+	get_tree().change_scene_to_file("res://DEBUG/driver_debug.tscn")
+	pass # Replace with function body.

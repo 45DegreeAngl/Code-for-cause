@@ -29,18 +29,17 @@ func append_segment(segment_scene: PackedScene):
 		printerr("Spawner received an invalid scene to append.")
 		return
 	var instanced_segment = segment_scene.instantiate()
+	await get_tree().physics_frame
 	instanced_segment.visible = false
 	road_node.add_child(instanced_segment)
 	instanced_segment.global_position = previous_road.find_child("Exit").global_position
-	
+	#instanced_segment.ready_road()
 	# Connect to the manager's increment function
 	if instanced_segment.has_signal("increment_player_road_counter"):
 		# Assumes RoadManager is this node's parent
 		var road_manager = get_parent() 
 		instanced_segment.increment_player_road_counter.connect(road_manager.increment_player_road)
-	
 	previous_road = instanced_segment
-	
 	_stitch_nav_path(instanced_segment)
 	
 	instanced_segment.visible = true

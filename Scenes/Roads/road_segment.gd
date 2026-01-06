@@ -11,7 +11,7 @@ var passed : bool = false
 @export var debris_node : Node3D
 @onready var spawn_driver_timer : Timer
 
-func _ready():
+func _ready() -> void:
 	spawn_driver_timer =  Timer.new()
 	if debris_node:
 		spawn_debris()

@@ -207,7 +207,7 @@ func handle_free_camera_movement(delta):
 		direction += free.transform.basis.y
 	if Input.is_action_pressed("Numpad 7"):  # E key
 		direction -= free.transform.basis.y
-	if Input.is_action_just_pressed("Numpad 0"):
+	if Input.is_action_just_pressed("Numpad 0") and player_model:
 		player_model.visible = !player_model.visible
 
 	direction = direction.normalized()

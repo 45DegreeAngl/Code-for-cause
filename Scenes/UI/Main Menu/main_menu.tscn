@@ -135,6 +135,10 @@ focus_neighbor_top = NodePath("../Credits")
 focus_neighbor_bottom = NodePath("../Start")
 text = "QUIT_BUTTON"
 
+[node name="Debug" type="Button" parent="Main Menu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Debug"
+
 [node name="Title Music" type="AudioStreamPlayer" parent="Main Menu"]
 stream = ExtResource("17_jibou")
 volume_db = -25.0
@@ -193,6 +197,7 @@ text = "Back"
 [connection signal="pressed" from="Main Menu/PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Main Menu/PanelContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Main Menu/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Main Menu/PanelContainer/VBoxContainer/Debug" to="." method="_on_debug_pressed"]
 [connection signal="back_pressed" from="Credits" to="." method="main_menu"]
 [connection signal="back_pressed" from="Leaderboard" to="." method="on_back"]
 [connection signal="back_pressed" from="Radio Workshop" to="." method="on_back"]

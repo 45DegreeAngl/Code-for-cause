@@ -31,7 +31,7 @@ signal road_generated
 var cur_player_road: int = 0:
 	set(value):
 		cur_player_road = value
-		
+		print("cur player road: ",cur_player_road)
 		# Tell the spawner what to do based on game state
 		if value > Globals.roads_to_win and Globals.roads_to_win != int(INF):
 			pass
@@ -55,6 +55,7 @@ func _ready():
 	Globals.world_node = self
 	if not gabesmart_chance:
 		gabesmart_chance = 1.0 / (2.0 * max_gabesmart_pity)
+	
 	
 	# Step 1: Find all available segment file paths
 	populate_road_segment_paths()
