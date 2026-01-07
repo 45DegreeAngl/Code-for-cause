@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _on_host_pressed() -> void:
 	# Network.create_lobby now triggers peer initialization
-	Network.create_lobby()
+	Network.host_lobby()
 
 func _on_lobby_created_success() -> void:
 	

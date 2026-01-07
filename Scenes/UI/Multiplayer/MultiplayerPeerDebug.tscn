@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://uw0es0ba0art"]
+
+[ext_resource type="Script" uid="uid://cda3xs0jjx6a" path="res://Scenes/UI/Multiplayer/multiplayer_peer_debug.gd" id="1_7bcr5"]
+[ext_resource type="PackedScene" uid="uid://dgkei51lvpclb" path="res://Scenes/UI/Multiplayer/MultPlay.tscn" id="2_xpwsd"]
+
+[node name="MultiplayerPeerDebug" type="Control" node_paths=PackedStringArray("player_holder", "host_but", "join_but", "id_prompt")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7bcr5")
+play_packed = ExtResource("2_xpwsd")
+player_holder = NodePath("ScrollContainer/VBoxContainer")
+host_but = NodePath("Controls/Host")
+join_but = NodePath("Controls/Join")
+id_prompt = NodePath("Controls/id_prompt")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.0
+offset_top = -181.0
+offset_right = 203.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://dgkei51lvpclb")
+spawn_path = NodePath("../ScrollContainer/VBoxContainer")
+
+[node name="Controls" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 277.0
+offset_bottom = 101.0
+
+[node name="Host" type="Button" parent="Controls"]
+layout_mode = 2
+text = "Host"
+
+[node name="id_prompt" type="LineEdit" parent="Controls"]
+layout_mode = 2
+placeholder_text = "Lobby ID"
+alignment = 1
+
+[node name="Join" type="Button" parent="Controls"]
+layout_mode = 2
+disabled = true
+text = "Join"
+
+[connection signal="text_changed" from="Controls/id_prompt" to="." method="_on_id_prompt_text_changed"]
