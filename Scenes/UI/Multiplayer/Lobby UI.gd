@@ -22,6 +22,7 @@ func _on_host_pressed() -> void:
 	Network.create_lobby()
 
 func _on_lobby_created_success() -> void:
+	
 	# UI updates once we know the lobby actually exists
 	$"HSplitContainer/Current Lobby Container/Leave Lobby".disabled = false
 	$"HSplitContainer/Current Lobby Container/Host".disabled = true
@@ -65,17 +66,17 @@ func update_lobby_browser():
 	for child in lobbies_elem_container.get_children():
 		child.queue_free()
 		
-	var lobby_filter = Steam.LOBBY_DISTANCE_FILTER_DEFAULT
-	match $"HSplitContainer/Lobbies Container/Region".selected:
-		1: lobby_filter = Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE
-		2: lobby_filter = Steam.LOBBY_DISTANCE_FILTER_CLOSE
-		3: lobby_filter = Steam.LOBBY_DISTANCE_FILTER_FAR
+	#var lobby_filter = Steam.LOBBY_DISTANCE_FILTER_DEFAULT
+	#match $"HSplitContainer/Lobbies Container/Region".selected:
+		#1: lobby_filter = Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE
+		#2: lobby_filter = Steam.LOBBY_DISTANCE_FILTER_CLOSE
+		#3: lobby_filter = Steam.LOBBY_DISTANCE_FILTER_FAR
 		
-	var search_text : String = $"HSplitContainer/Lobbies Container/SearchEdit".text
-	if !search_text.is_empty():
-		Steam.addRequestLobbyListStringFilter("name", search_text, Steam.LOBBY_COMPARISON_EQUAL_TO_OR_LESS_THAN)
+	#var search_text : String = $"HSplitContainer/Lobbies Container/SearchEdit".text
+	#if !search_text.is_empty():
+		#Steam.addRequestLobbyListStringFilter("name", search_text, Steam.LOBBY_COMPARISON_EQUAL_TO_OR_LESS_THAN)
 	
-	Steam.addRequestLobbyListDistanceFilter(lobby_filter)
+	#Steam.addRequestLobbyListDistanceFilter(lobby_filter)
 	Steam.requestLobbyList()
 
 func update_players():
@@ -92,7 +93,10 @@ func update_players():
 # --- ELEMENT CREATION ---
 
 func create_lobby_entries(lobbies: Array):
+	print(lobbies)
 	for lobby in lobbies:
+		if Steam.getLobbyOwner(lobby) == GlobalSteam.steam_id:
+			print("Found my own lobby in the list!")
 		lobbies_elem_container.add_child(create_lobby_entry(lobby))
 	lobbies_count.text = "Total Lobbies: %d" % lobbies.size()
 
@@ -132,3 +136,15 @@ func create_player_entry(playerData: Dictionary) -> Node:
 	hbox.add_child(user_label)
 	hbox.add_child(profile_button)
 	return hbox
+
+
+func _on_join_code_pressed() -> void:
+	Network.join_lobby(int($"HSplitContainer/Lobbies Container/LineEdit".text))
+
+func ping_pressed():
+	print_members.rpc()
+
+@rpc("any_peer")
+func print_members():
+	print(multiplayer.get_unique_id())
+	print(Network.lobby_members)
