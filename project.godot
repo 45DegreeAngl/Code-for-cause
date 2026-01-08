@@ -29,7 +29,7 @@ SteamMic="*res://Globals/Steam Multiplayer/steam_mic.tscn"
 SteamAchievements="*res://Globals/Steam Functionality/SteamAchievements.gd"
 SteamLeaderboard="*res://Globals/Steam Functionality/SteamLeaderboard.gd"
 SteamStatistics="*res://Globals/Steam Functionality/SteamStatistics.gd"
-ServerFunc="*res://Globals/Steam Multiplayer/Server Function.gd"
+BMult="*res://Globals/Basic Multiplayer/BMult.gd"
 
 [display]
 

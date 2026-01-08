@@ -1,0 +1,147 @@
+[gd_scene load_steps=11 format=3 uid="uid://hm2kxsjbodnm"]
+
+[ext_resource type="Shader" uid="uid://qng8wl8txtjs" path="res://Shaders/Axilirate_Sky_Shader.gdshader" id="1_lojw0"]
+[ext_resource type="Script" uid="uid://csydvxq22sdnn" path="res://Scenes/UI/Multiplayer/d_mult_3d_test.gd" id="1_wu2no"]
+[ext_resource type="Script" uid="uid://cnmbor1oxnhpn" path="res://Scenes/SinglePlayer/world_environment.gd" id="2_aheg0"]
+[ext_resource type="PackedScene" uid="uid://37qm3rjc3rl6" path="res://Scenes/UI/Multiplayer/Components/MultiGoober.tscn" id="2_u3apx"]
+[ext_resource type="PackedScene" uid="uid://uw0es0ba0art" path="res://Scenes/UI/Multiplayer/MultiplayerPeerDebug.tscn" id="3_aheg0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3apx"]
+emission_enabled = true
+emission = Color(0.34781694, 0.34781697, 0.3478169, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu2no"]
+shader = ExtResource("1_lojw0")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_ygm4a"]
+sky_material = SubResource("ShaderMaterial_wu2no")
+
+[sub_resource type="Environment" id="Environment_u3apx"]
+background_mode = 2
+sky = SubResource("Sky_ygm4a")
+sky_rotation = Vector3(0, 3.14159, 0)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
+reflected_light_source = 1
+tonemap_mode = 2
+fog_light_color = Color(0, 0.00474154, 0.00474154, 1)
+fog_sun_scatter = 0.2
+fog_density = 0.0244
+fog_sky_affect = 0.49
+fog_depth_begin = 717.2
+fog_depth_end = 717.2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.014
+adjustment_enabled = true
+adjustment_brightness = 1.5
+adjustment_contrast = 1.1
+adjustment_saturation = 0.8
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_u3apx"]
+
+[node name="DMult3dTest" type="Node" node_paths=PackedStringArray("player_node")]
+script = ExtResource("1_wu2no")
+player_node = NodePath("World/Players")
+goob_packed = ExtResource("2_u3apx")
+
+[node name="World" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+use_collision = true
+size = Vector3(30, 1, 30)
+material = SubResource("StandardMaterial3D_u3apx")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, -0.11490247, -0.9933768, 0, 0.9933768, -0.11490247, 0, -8.288042, -14.802155)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, -0.11490247, -0.9933768, 0, 0.9933768, -0.11490247, 0.43048286, -8.288042, 13.419491)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="World"]
+transform = Transform3D(-0.031096734, 0.9928964, -0.11484689, 0, -0.11490247, -0.9933768, -0.99951637, -0.030890774, 0.0035730915, 13.171696, -8.288042, 0.15585423)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="Sun" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.12476188, 4.336986e-08, -0.9921868, 0.9921868, -5.4535114e-09, 0.12476188, 0, -1, -4.371139e-08, 0, 0, 0)
+light_color = Color(0.623529, 0.772549, 0.94902, 1)
+shadow_enabled = true
+
+[node name="Moon" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-1, 1.5180811e-08, 8.609463e-08, 0, -0.9848078, 0.17364824, 8.742278e-08, 0.17364824, 0.9848078, 0, 0, 0)
+light_color = Color(0.623529, 0.772549, 0.94902, 1)
+light_energy = 0.1
+shadow_enabled = true
+sky_mode = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_u3apx")
+script = ExtResource("2_aheg0")
+set_phase_on_ready = true
+
+[node name="Players" type="Node3D" parent="World"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_u3apx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 230.0
+offset_bottom = 649.0
+
+[node name="MultiplayerPeerDebug" parent="CanvasLayer/Control/HBoxContainer" instance=ExtResource("3_aheg0")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://37qm3rjc3rl6")
+spawn_path = NodePath("../Spawns")
+
+[node name="Spawns" type="Node" parent="."]
