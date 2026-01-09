@@ -1296,7 +1296,7 @@ size = Vector2i(36, 128)
 render_target_update_mode = 4
 
 [node name="RearView" type="Camera3D" parent="Cameras/RearViewPort"]
-transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 0, 2.41308, -0.824)
+transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 0, 2.413076, -0.824)
 fov = 80.0
 far = 100.0
 
@@ -1310,7 +1310,7 @@ size = Vector2i(128, 152)
 render_target_update_mode = 4
 
 [node name="LeftView" type="Camera3D" parent="Cameras/LeftViewPort"]
-transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -1.53068, 1.87316, -2.11568)
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -1.53068, 1.8731561, -2.11568)
 fov = 28.3
 far = 100.0
 
@@ -1324,7 +1324,7 @@ size = Vector2i(128, 152)
 render_target_update_mode = 4
 
 [node name="RightView" type="Camera3D" parent="Cameras/RightViewPort"]
-transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 1.63082, 1.87316, -2.11568)
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 1.63082, 1.8731561, -2.11568)
 fov = 28.3
 far = 100.0
 

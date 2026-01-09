@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://bsawvuh1yr6x3"]
+[gd_scene load_steps=58 format=4 uid="uid://bsawvuh1yr6x3"]
 
 [ext_resource type="MeshLibrary" uid="uid://ta6efjx45rhe" path="res://Assets/Models/NEW ROADS/MESH LIBRARY/street.tres" id="1_r0pfw"]
 [ext_resource type="Script" uid="uid://b0c4gbe2qhime" path="res://Scenes/Roads/road_segment.gd" id="2_d4v6j"]
@@ -21,6 +21,9 @@ point_count = 31
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_awuph"]
 size = Vector3(462.499, 20, 420.107)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ylrxo"]
+plane = Plane(0, 0, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_bsb6r"]
 
@@ -370,6 +373,9 @@ shape = SubResource("BoxShape3D_awuph")
 
 [node name="Exit Area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -310.58)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Area"]
+shape = SubResource("WorldBoundaryShape3D_ylrxo")
 
 [node name="Boundary 3D" type="Node3D" parent="."]
 

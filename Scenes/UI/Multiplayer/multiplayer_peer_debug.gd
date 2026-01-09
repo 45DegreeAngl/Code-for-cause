@@ -56,8 +56,7 @@ func on_player_registered(id:int):
 		$MultiplayerSpawner.spawn({"name":"line","value":id})
 
 func sync_lobby_ui():
-	grab_focus()
-	release_focus()
+	lose_focus()
 	
 	# If we aren't in a network session, just clear the UI and stop
 	if multiplayer.multiplayer_peer == null:
@@ -124,3 +123,11 @@ func _on_error():
 func _on_id_prompt_text_changed(new_text: String) -> void:
 	# Keep join button disabled if no address/ID is entered
 	join_but.disabled = new_text.is_empty()
+
+func _on_ping_pressed() -> void:
+	_rpc_play_test_audio.rpc(multiplayer.get_unique_id())
+
+@rpc("any_peer","reliable")
+func _rpc_play_test_audio(id:int):
+	print("PINGED BY : ",str(id))
+	$AudioStreamPlayer.play()

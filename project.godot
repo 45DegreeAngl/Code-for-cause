@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="res://Assets/Textures/Disclaimer.png"
 config/icon="res://icon Image.png"
 
+[audio]
+
+driver/enable_input=true
+
 [autoload]
 
 Actions="*res://Globals/Actions.gd"

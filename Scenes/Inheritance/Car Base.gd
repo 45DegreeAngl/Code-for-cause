@@ -37,6 +37,8 @@ func get_max_steer():
 	return deg_to_rad(MAX_STEER_DEG) * STEERING_CURVE.sample(linear_velocity.length()/60)
 
 func check_stuck():
+	if not stuck_timer:
+		return
 	if !stuck_timer.is_connected("timeout",on_stuck_timer_ended):
 		stuck_timer.connect("timeout",on_stuck_timer_ended)
 	if linear_velocity.length() < 1:
