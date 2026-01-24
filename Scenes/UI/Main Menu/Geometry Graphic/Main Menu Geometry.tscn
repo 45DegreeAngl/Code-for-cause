@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=4 uid="uid://rspnwkp8wd2b"]
+[gd_scene load_steps=158 format=4 uid="uid://rspnwkp8wd2b"]
 
 [ext_resource type="Script" uid="uid://cllhy2r1csmue" path="res://Scenes/UI/Main Menu/Geometry Graphic/menu_cam.gd" id="1_yr2ho"]
 [ext_resource type="Texture2D" uid="uid://h4lypd3foqmf" path="res://Assets/Models/splashartscene_WheelTexture.png" id="2_3wru7"]
@@ -14,9 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://bchnjo80jtx7l" path="res://Assets/Models/splashartscene_Untitled_9.png" id="12_7kjwl"]
 [ext_resource type="Texture2D" uid="uid://chn0p20xv0jj" path="res://Assets/Models/splashartscene_Concreate_10.jpg" id="13_wijhv"]
 [ext_resource type="Texture2D" uid="uid://dm2l1bd8gdv6h" path="res://Assets/Models/splashartscene_Asphalt_11.png" id="14_wxy6f"]
-[ext_resource type="Texture2D" uid="uid://bvk6p748nx6p5" path="res://Assets/Models/Skybox/AllSky_Night_MoonBurst Equirect.png" id="15_3wru7"]
 [ext_resource type="Script" uid="uid://bhmda4ogwvkm5" path="res://Scenes/Inheritance/BaseCosmetics.gd" id="16_mtmjp"]
+[ext_resource type="Shader" uid="uid://qng8wl8txtjs" path="res://Shaders/Axilirate_Sky_Shader.gdshader" id="17_61j3a"]
 [ext_resource type="PackedScene" uid="uid://b21yyekxbddcn" path="res://Assets/Models/Buildings/newest gabesmart/newest_gabes_mart.tscn" id="17_obcdo"]
+[ext_resource type="Script" uid="uid://cnmbor1oxnhpn" path="res://Scenes/SinglePlayer/world_environment.gd" id="18_hpos3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_roc0b"]
 resource_name = "Character"
@@ -3155,24 +3156,59 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_iioh3")
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mtmjp"]
-panorama = ExtResource("15_3wru7")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxnr8"]
+shader = ExtResource("17_61j3a")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0, 0, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.00999999977648
+shader_parameter/sun_blur = 0.00999999977648
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
 
-[sub_resource type="Sky" id="Sky_31a3a"]
-sky_material = SubResource("PanoramaSkyMaterial_mtmjp")
+[sub_resource type="Sky" id="Sky_ygm4a"]
+sky_material = SubResource("ShaderMaterial_nxnr8")
 
-[sub_resource type="Environment" id="Environment_obcdo"]
+[sub_resource type="Environment" id="Environment_hpuvv"]
 background_mode = 2
-sky = SubResource("Sky_31a3a")
+sky = SubResource("Sky_ygm4a")
 sky_rotation = Vector3(0, 3.14159, 0)
-ambient_light_source = 2
-ambient_light_color = Color(0.236061, 0.284208, 0.387266, 1)
+ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
-ambient_light_energy = 0.1
+ambient_light_energy = 0.0
+reflected_light_source = 1
 tonemap_mode = 2
 fog_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
-fog_density = 0.001
+fog_mode = 1
+fog_light_color = Color(0, 0.00474154, 0.00474154, 1)
+fog_sun_scatter = 0.2
+fog_density = 1.0
+fog_sky_affect = 0.49
+fog_depth_begin = 717.2
+fog_depth_end = 717.2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.014
 adjustment_enabled = true
 adjustment_brightness = 1.5
 adjustment_contrast = 1.1
@@ -3180,10 +3216,12 @@ adjustment_saturation = 0.8
 
 [node name="MenuGeometry" type="Node3D"]
 
-[node name="MenuCam" type="Camera3D" parent="."]
+[node name="MenuCam" type="Camera3D" parent="." node_paths=PackedStringArray("cop_blue", "cop_red")]
 transform = Transform3D(-0.98728, 0.0657806, -0.144747, 0.14644, 0.730775, -0.666726, 0.0619197, -0.679442, -0.731112, -1.99085, -1.0797, -10.8682)
 fov = 30.0
 script = ExtResource("1_yr2ho")
+cop_blue = NodePath("../Node3D/CopBlue")
+cop_red = NodePath("../Node3D/CopRed")
 
 [node name="splashartscene" type="Node3D" parent="."]
 
@@ -3281,29 +3319,10 @@ transform = Transform3D(2.59643, -2.18331, -4.46656, 4.93924, 1.70697, 2.03681, 
 mesh = SubResource("ArrayMesh_2dgx3")
 skeleton = NodePath("")
 
-[node name="CopBlue" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-1, -1.24345e-14, -8.74228e-08, -3.01411e-08, 0.938686, 0.344774, 8.20625e-08, 0.344774, -0.938686, 0, 0, 0)
-light_color = Color(0, 0.216667, 1, 1)
-light_energy = 0.1
-
-[node name="CopRed" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-1, -1.24345e-14, -8.74228e-08, -3.01411e-08, 0.938686, 0.344774, 8.20625e-08, 0.344774, -0.938686, 0, 0, 0)
-visible = false
-light_color = Color(1, 0, 0, 1)
-light_energy = 0.1
-
-[node name="Environent" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-1, -1.24345e-14, -8.74228e-08, -3.01411e-08, 0.938686, 0.344774, 8.20625e-08, 0.344774, -0.938686, 0, 0, 0)
-light_color = Color(0.532795, 0.434553, 0.941433, 1)
-light_energy = 0.3
-
 [node name="Cop Lights" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.5
 autostart = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_obcdo")
 
 [node name="BaseCosmetic" type="Node" parent="." node_paths=PackedStringArray("randomize_color_meshes")]
 script = ExtResource("16_mtmjp")
@@ -3312,5 +3331,44 @@ metadata/_custom_type_script = "uid://bhmda4ogwvkm5"
 
 [node name="GabesMartSep16" parent="." instance=ExtResource("17_obcdo")]
 transform = Transform3D(-0.112876, -0.0613001, -0.271111, 0.172206, 0.214267, -0.120145, 0.218183, -0.200828, -0.0454314, 7.22684, 24.5053, 10.6456)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.76604444, -0.6427876, 0, 0.6427876, 0.76604444, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+light_energy = 0.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+sky_mode = 2
+
+[node name="Moon" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.78477633, -0.46346948, -0.41148755, 0, -0.6639262, 0.747798, -0.61977893, -0.58685416, -0.52103364, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+light_energy = 0.05
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hpuvv")
+script = ExtResource("18_hpos3")
+set_phase_on_ready = true
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CopBlue" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(-1, -1.2434498e-14, -8.742276e-08, -3.01411e-08, 0.9386858, 0.34477392, 8.20625e-08, 0.34477392, -0.9386858, 0, 0, 0)
+light_color = Color(0, 0.216667, 1, 1)
+light_energy = 0.1
+
+[node name="CopRed" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(-1, -1.2434498e-14, -8.742276e-08, -3.01411e-08, 0.9386858, 0.34477392, 8.20625e-08, 0.34477392, -0.9386858, 0, 0, 0)
+visible = false
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.1
+
+[node name="Environent" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(-1, -1.2434498e-14, -8.742276e-08, -3.01411e-08, 0.9386858, 0.34477392, 8.20625e-08, 0.34477392, -0.9386858, 0, 0, 0)
+light_color = Color(0.532795, 0.434553, 0.941433, 1)
+light_energy = 0.3
 
 [connection signal="timeout" from="Cop Lights" to="MenuCam" method="_on_cop_lights_timeout"]
