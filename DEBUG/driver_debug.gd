@@ -51,9 +51,9 @@ func delete_road():
 	
 	latest.queue_free()
 
-@onready var pedestrian_array:Array = [preload("res://Scenes/Inheritance/Ped/Reckless Ped.tscn"),preload("res://Scenes/Inheritance/Ped/Safe Ped.tscn"),preload("res://Scenes/Inheritance/Ped/Super Ped.tscn")]
-@onready var cop_array:Array = [preload("res://Scenes/Inheritance/Cop/RecklessCop.tscn"),preload("res://Scenes/Inheritance/Cop/Safe Cop.tscn"),preload("res://Scenes/Inheritance/Cop/Super Cop.tscn")]
-const driver_type_names:Array[String] = ["Reckless","Safe","Super"]
+@onready var pedestrian_array:Array = [preload("res://Scenes/Inheritance/Ped/Reckless Ped.tscn"),preload("res://Scenes/Inheritance/Ped/Safe Ped.tscn"),preload("res://Scenes/Inheritance/Ped/Super Ped.tscn"),preload("res://Scenes/Inheritance/Ped/GabePed.tscn")]
+@onready var cop_array:Array = [preload("res://Scenes/Inheritance/Cop/RecklessCop.tscn"),preload("res://Scenes/Inheritance/Cop/Safe Cop.tscn"),preload("res://Scenes/Inheritance/Cop/Super Cop.tscn"),preload("res://Scenes/Inheritance/Cop/GabeCop.tscn")]
+const driver_type_names:Array[String] = ["Reckless","Safe","Super","Gabe"]
 
 var driver_type:int = 1
 func car_setting_selected(index:int):

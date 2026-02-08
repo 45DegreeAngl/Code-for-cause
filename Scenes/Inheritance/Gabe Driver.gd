@@ -23,7 +23,7 @@ func driver_process(_delta) -> void:
 	if reversing:
 		engine_input = -1
 		steer_input = 0
-	elif hunt:
+	elif hunt and target:
 		var target_point_global = Globals.player_vehicle.global_position
 		var target_lookahead_vector = (target_point_global - global_position).normalized()
 		var target_angle_to_lookahead = (-basis.z).signed_angle_to(target_lookahead_vector, global_basis.y)
@@ -39,7 +39,6 @@ func driver_process(_delta) -> void:
 	else:
 		if current_path == null:
 			if Globals.driving_path:
-				print("Nehehehe")
 				current_path = Globals.driving_path
 			else:
 				return
@@ -85,6 +84,10 @@ func driver_process(_delta) -> void:
 			return
 
 func update_context_variables(_delta):
+	if not target:
+		hunt = false
+		return
+	
 	if distance_to(global_position,target.global_position)<hunt_dist:
 		hunt = true
 	else:

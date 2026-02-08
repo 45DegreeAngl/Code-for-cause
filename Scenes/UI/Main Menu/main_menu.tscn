@@ -136,7 +136,6 @@ focus_neighbor_bottom = NodePath("../Start")
 text = "QUIT_BUTTON"
 
 [node name="Debug" type="Button" parent="Main Menu/PanelContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Debug"
 

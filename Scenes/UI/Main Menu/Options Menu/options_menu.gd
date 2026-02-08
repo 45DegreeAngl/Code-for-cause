@@ -59,6 +59,16 @@ func _on_become_sober_pressed() -> void:
 
 func _on_quick_restart_pressed() -> void:
 	Globals.game_lost.emit("Sober")
+	##set game globals to proper values
+	Globals.tutorial = false
+	Globals.drunkenness = 20
+	Globals.tutorial = true
+	Globals.is_cheater = false
+	Debug.console_active = false
+	Globals.reset_stats()
+	Globals.game_over = false
+	MainShaderCanvas.visible = true
+	Globals.detected = false
 	get_tree().reload_current_scene()
 
 
