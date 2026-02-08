@@ -1,13 +1,16 @@
-[gd_scene load_steps=53 format=4 uid="uid://bkobvs8d7edh8"]
+[gd_scene load_steps=65 format=4 uid="uid://bsooks5me7q6a"]
 
-[ext_resource type="Script" uid="uid://c8d0sqjj6ffqw" path="res://Scenes/Inheritance/Safe Driver.gd" id="1_pswpu"]
-[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_t5770"]
-[ext_resource type="Script" uid="uid://bnf1dkak2jpl7" path="res://Scenes/Inheritance/Cop/CopCosmetic.gd" id="3_ocg62"]
-[ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="4_0dmb2"]
-[ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="5_4d3rj"]
-[ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="6_2csn2"]
-[ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="10_a1d8w"]
-[ext_resource type="AudioStream" uid="uid://ue00qj12t8dh" path="res://Assets/Sounds/siren.mp3" id="11_ua8na"]
+[ext_resource type="Script" uid="uid://cc3862txp0a0u" path="res://Scenes/Inheritance/Gabe Driver.gd" id="1_popd1"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_lqvlr"]
+[ext_resource type="Script" uid="uid://bnf1dkak2jpl7" path="res://Scenes/Inheritance/Cop/CopCosmetic.gd" id="3_mrlrk"]
+[ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="4_8ptnj"]
+[ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="5_ourwh"]
+[ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="6_q57v4"]
+[ext_resource type="Texture2D" uid="uid://hnvpgshyy84f" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="7_lkmlr"]
+[ext_resource type="Texture2D" uid="uid://cw8ifdi80fcme" path="res://Assets/Models/Car/The_Car_Right_Mirror_Mat.png" id="8_ehicr"]
+[ext_resource type="Texture2D" uid="uid://bm1ompqyy2io7" path="res://Assets/Models/Car/The_Car_Top_Mirror_Mat.png" id="9_4v4ai"]
+[ext_resource type="AudioStream" uid="uid://dn1chfknmnkcf" path="res://Assets/Sounds/r5_electric_engine.wav" id="10_ql7al"]
+[ext_resource type="AudioStream" uid="uid://ue00qj12t8dh" path="res://Assets/Sounds/siren.mp3" id="11_eo36a"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1tvv8"]
 points = PackedVector3Array(1.74461, -0.575504, -0.875132, 1.74461, -0.755339, -0.875132, 1.27464, -1.10055, -2.82608, 1.1592, -0.961626, -2.93354, 1.15101, 0.135463, -0.0101008, 1.15101, 0.135463, 1.76056, 1.73061, -0.575504, -0.713946, 1.27464, -1.80866, -2.82608, 1.73061, -0.755339, -0.713946, 1.27464, -1.80866, 3.16467, 1.1592, -1.33633, -2.93354, -1.15954, -0.961626, -2.93354, -1.15135, 0.135463, -0.0101008, -1.15135, 0.135463, 1.76056, 1.05127, 0.0625778, 1.88115, 1.17901, -0.662282, 3.0787, 1.27464, -0.714424, 3.16467, -1.27499, -1.80866, -2.82608, -1.27499, -1.80866, 3.16467, -1.15954, -1.33633, -2.93354, -1.27499, -1.10055, -2.82608, -1.74461, -0.575504, -0.875132, -1.27499, -0.714424, 3.16467, -1.17935, -0.662282, 3.0787, -1.05162, 0.0625778, 1.88115, -1.73095, -0.575504, -0.713946, -1.74461, -0.755339, -0.875132, -1.73095, -0.755339, -0.713946)
@@ -16,7 +19,7 @@ points = PackedVector3Array(1.74461, -0.575504, -0.875132, 1.74461, -0.755339, -
 resource_name = "Material.006"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_0dmb2")
+albedo_texture = ExtResource("4_8ptnj")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_8yeru"]
@@ -176,7 +179,7 @@ roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4qm4"]
 resource_name = "Material.014"
 cull_mode = 2
-albedo_color = Color(0.188235, 0.117647, 0.360784, 1)
+albedo_color = Color(0.819994, 0.819994, 0.819994, 1)
 roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lyw35"]
@@ -184,6 +187,7 @@ resource_name = "Material.016"
 cull_mode = 2
 albedo_color = Color(1, 0, 0.208813, 1)
 roughness = 0.5
+emission_enabled = true
 emission = Color(1, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0emaw"]
@@ -367,7 +371,7 @@ shadow_mesh = SubResource("ArrayMesh_176st")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofe1l"]
 resource_name = "Material.004"
 cull_mode = 2
-albedo_texture = ExtResource("5_4d3rj")
+albedo_texture = ExtResource("5_ourwh")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mqrhu"]
@@ -405,7 +409,7 @@ shadow_mesh = SubResource("ArrayMesh_mqrhu")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxvk6"]
 resource_name = "Material.005"
 cull_mode = 2
-albedo_texture = ExtResource("6_2csn2")
+albedo_texture = ExtResource("6_q57v4")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nos5x"]
@@ -439,6 +443,120 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nos5x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgmrs"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("7_lkmlr")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_eccq3"]
+_surfaces = [{
+"aabb": AABB(-0.129458, -0.0576861, -0.0114434, 0.246876, 0.149892, 0.025347),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("XwCNAZn1AAD//wAAAAAAAAAA/////wAAn/9x/mUKAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_co2kh"]
+resource_name = "The_Car_Plane_001"
+_surfaces = [{
+"aabb": AABB(-0.129458, -0.0576861, -0.0114434, 0.246876, 0.149892, 0.025347),
+"attribute_data": PackedByteArray("/3+DgP9////+//9///96/w=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"material": SubResource("StandardMaterial3D_hgmrs"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(1.19801, 2, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("XwCNAZn17r///wAAAADuvwAA/////+6/n/9x/mUK7r9dBR0GXQUdBl0FHQZdBR0G")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_eccq3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs6ok"]
+resource_name = "Material.002"
+cull_mode = 2
+albedo_texture = ExtResource("8_ehicr")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_age31"]
+_surfaces = [{
+"aabb": AABB(-0.12962, -0.0576861, -0.0132319, 0.246952, 0.149892, 0.0264637),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("lACNAQAAAAD//wAA7/YAAAAA//8PCQAAav9x/v//AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ugnnj"]
+resource_name = "The_Car_Plane"
+_surfaces = [{
+"aabb": AABB(-0.12962, -0.0576861, -0.0132319, 0.246952, 0.149892, 0.0264637),
+"attribute_data": PackedByteArray("/3+DgP9////+//9///96/w=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"material": SubResource("StandardMaterial3D_rs6ok"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(1.19801, 2, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("lACNAQAA+L///wAA7/b4vwAA//8PCfi/av9x/v//+L+Y+WL6mPli+pj5YvqY+WL6")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_age31")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j1f8"]
+resource_name = "Material.003"
+cull_mode = 2
+albedo_texture = ExtResource("9_4v4ai")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qxxtn"]
+_surfaces = [{
+"aabb": AABB(-0.226492, -0.048726, -0.00596509, 0.452984, 0.0974521, 0.0119302),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"name": "Material.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//////7/AAD//wAAAAAAAAAA/////wAAAAAAAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5gxrp"]
+resource_name = "The_Car_Plane_002"
+_surfaces = [{
+"aabb": AABB(-0.226492, -0.048726, -0.00596509, 0.452984, 0.0974521, 0.0119302),
+"attribute_data": PackedByteArray("AAD///////8AAAAA//8AAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"material": SubResource("StandardMaterial3D_1j1f8"),
+"name": "Material.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//////7/fPz//wAAAAB8/AAA/////3z8AAAAAAAAfPzjwRs+48EbPuPBGz7jwRs+")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qxxtn")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwl83"]
 resource_name = "Character"
@@ -756,22 +874,22 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cc53l")
 
-[node name="Safe Cop" type="VehicleBody3D" node_paths=PackedStringArray("navigation_agent", "reverse_timer", "stuck_timer")]
+[node name="Gabe Cop" type="VehicleBody3D" node_paths=PackedStringArray("reverse_timer", "stuck_timer")]
 gravity_scale = 2.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, -1.3)
 contact_monitor = true
 max_contacts_reported = 5
 linear_damp = 0.1
-script = ExtResource("1_pswpu")
-navigation_agent = NodePath("Center of mass/NavigationAgent3D")
+script = ExtResource("1_popd1")
 reverse_timer = NodePath("ReverseTimer")
-STEERING_CURVE = ExtResource("2_t5770")
+STEERING_CURVE = ExtResource("2_lqvlr")
 stuck_timer = NodePath("StuckTimer")
+update_interval = 10.0
 metadata/Cop = false
 
 [node name="Cosmetic Node" type="Node" parent="." node_paths=PackedStringArray("siren", "talk", "chassis", "talk_timer", "car_ref", "randomize_color_meshes", "head_lights", "back_lights", "engine_player", "crash_player")]
-script = ExtResource("3_ocg62")
+script = ExtResource("3_mrlrk")
 siren = NodePath("../Siren")
 talk = NodePath("../Announcement")
 chassis = NodePath("../Mesh/Chassis")
@@ -797,6 +915,7 @@ damping_relaxation = 2.0
 [node name="Back_Left" type="MeshInstance3D" parent="Back_Left"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_8j4td")
+skeleton = NodePath("")
 
 [node name="Back_Right" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.27066, 0.891, 0.692075)
@@ -808,6 +927,7 @@ damping_relaxation = 2.0
 [node name="Back_Right" type="MeshInstance3D" parent="Back_Right"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gg6f8")
+skeleton = NodePath("")
 
 [node name="Front_Right" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.28903, 0.891, -3.07874)
@@ -819,6 +939,7 @@ damping_relaxation = 2.0
 [node name="Front_Right" type="MeshInstance3D" parent="Front_Right"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_5kv0l")
+skeleton = NodePath("")
 
 [node name="Front_Left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.32195, 0.891, -3.07874)
@@ -830,24 +951,43 @@ damping_relaxation = 2.0
 [node name="Front_Left" type="MeshInstance3D" parent="Front_Left"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gv2vx")
+skeleton = NodePath("")
 
 [node name="Mesh" type="Node3D" parent="."]
 
 [node name="Chassis" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51981, -1.44867)
 mesh = SubResource("ArrayMesh_0wx8f")
+skeleton = NodePath("")
 
 [node name="Front Seats" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58249, 0)
 mesh = SubResource("ArrayMesh_nloa0")
+skeleton = NodePath("")
 
 [node name="Back Seats" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58249, 1.33931)
 mesh = SubResource("ArrayMesh_asbhe")
+skeleton = NodePath("")
+
+[node name="Left_Mirror" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58522, 1.83675, -2.18483)
+mesh = SubResource("ArrayMesh_co2kh")
+skeleton = NodePath("")
+
+[node name="Right_Mirror" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58522, 1.83675, -2.18483)
+mesh = SubResource("ArrayMesh_ugnnj")
+skeleton = NodePath("")
+
+[node name="Top_Mirror" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47319, -1.41985)
+mesh = SubResource("ArrayMesh_5gxrp")
+skeleton = NodePath("")
 
 [node name="Engine" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
-stream = ExtResource("10_a1d8w")
+stream = ExtResource("10_ql7al")
 volume_db = -16.0
 autoplay = true
 bus = &"Sound Effect"
@@ -856,7 +996,7 @@ bus = &"Sound Effect"
 bus = &"Voice"
 
 [node name="Siren" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("11_ua8na")
+stream = ExtResource("11_eo36a")
 volume_db = -15.0
 autoplay = true
 bus = &"Sound Effect"
@@ -871,6 +1011,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Center of mass"]
 simplify_path = true
 simplify_epsilon = 1.0
+debug_enabled = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Center of mass"]
 target_position = Vector3(0, 0, -1)
@@ -959,7 +1100,7 @@ light_energy = 12.0
 shadow_enabled = true
 omni_range = 10.0
 
-[connection signal="body_entered" from="." to="." method="on_collision"]
+[connection signal="body_entered" from="." to="." method="_on_collide"]
 [connection signal="timeout" from="Timer" to="Cosmetic Node" method="announce"]
 [connection signal="timeout" from="Flicker Timer" to="Cosmetic Node" method="toggle_colors"]
 [connection signal="timeout" from="ReverseTimer" to="." method="on_reverse_timer_ended"]

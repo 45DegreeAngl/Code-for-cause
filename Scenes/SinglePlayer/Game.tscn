@@ -85,8 +85,9 @@ visible = false
 [node name="YOU WIN" parent="." instance=ExtResource("4_akwyd")]
 visible = false
 
-[node name="Segment Spawner" type="Node" parent="." node_paths=PackedStringArray("cops_node", "pedestrians_node", "road_node", "previous_road")]
+[node name="Segment Spawner" type="Node" parent="." node_paths=PackedStringArray("glob_path", "cops_node", "pedestrians_node", "road_node", "previous_road")]
 script = ExtResource("5_64cng")
+glob_path = NodePath("Global Path")
 exes_house = ExtResource("6_gvg2e")
 cops_node = NodePath("Cops")
 pedestrians_node = NodePath("Pedestrians")

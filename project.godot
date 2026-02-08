@@ -28,12 +28,10 @@ MainShaderCanvas="*res://Scenes/UI/Misc/Main Shader Canvas.tscn"
 GlobalSteam="*res://Globals/Steam Functionality/GlobalSteam.gd"
 GlobalWorkshop="*res://Globals/Steam Functionality/SteamWorkshop.gd"
 Debug="*res://Globals/Debug.gd"
-Network="*res://Globals/Steam Multiplayer/Network.gd"
-SteamMic="*res://Globals/Steam Multiplayer/steam_mic.tscn"
 SteamAchievements="*res://Globals/Steam Functionality/SteamAchievements.gd"
 SteamLeaderboard="*res://Globals/Steam Functionality/SteamLeaderboard.gd"
 SteamStatistics="*res://Globals/Steam Functionality/SteamStatistics.gd"
-BMult="*res://Globals/Basic Multiplayer/BMult.gd"
+Network="*res://Globals/Steam Multiplayer/Network.gd"
 
 [display]
 

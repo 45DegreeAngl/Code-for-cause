@@ -35,8 +35,10 @@ func open_options(in_game:bool=false):
 	visible = true
 	if in_game:
 		$"true options/VBoxContainer/Become Sober".visible = true
+		$"true options/VBoxContainer/Quick Restart".visible = true
 	else:
 		$"true options/VBoxContainer/Become Sober".visible = false
+		$"true options/VBoxContainer/Quick Restart".visible = false
 	$"true options/VBoxContainer/Back".grab_focus()
 
 signal back_pressed()
@@ -53,6 +55,12 @@ func _on_back_pressed():
 
 func _on_become_sober_pressed() -> void:
 	Globals.game_lost.emit("Sober")
+
+
+func _on_quick_restart_pressed() -> void:
+	Globals.game_lost.emit("Sober")
+	get_tree().reload_current_scene()
+
 
 func _on_controls_pressed() -> void:
 	if !controller_settings:

@@ -12,7 +12,7 @@ var road_seg_to_load: Dictionary = {}
 var gabesmart_seg_to_load: Dictionary = {}
 
 # Nickname : Road (fully loaded PackedScenes)
-@onready var glob_path: Path3D = $"Global Path"
+@export var glob_path: Path3D 
 var road_segments: Dictionary = {}
 var gabesmart_segments: Dictionary = {}
 @export var exes_house: PackedScene = null

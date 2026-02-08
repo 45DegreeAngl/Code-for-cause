@@ -90,6 +90,9 @@ func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D)->Vehicl
 	driver_instance.backwards = [true,false,false].pick_random()
 	driver_instance.global_position = chosen_marker.global_position
 	driver_instance.process_mode = Node.PROCESS_MODE_INHERIT
+	if "current_path" in driver_instance:
+		print("Adding you")
+		driver_instance.current_path = Globals.driving_path
 	
 	if driver_instance.backwards:
 		print("Spawning backwards")

@@ -136,6 +136,7 @@ focus_neighbor_bottom = NodePath("../Start")
 text = "QUIT_BUTTON"
 
 [node name="Debug" type="Button" parent="Main Menu/PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Debug"
 
@@ -202,7 +203,6 @@ text = "Back"
 [connection signal="back_pressed" from="Leaderboard" to="." method="on_back"]
 [connection signal="back_pressed" from="Radio Workshop" to="." method="on_back"]
 [connection signal="back_pressed" from="Options" to="." method="on_back"]
-[connection signal="back_pressed" from="MultiplayerLobby" to="." method="on_back"]
 [connection signal="pressed" from="MultiplayerLobby/HBoxContainer/VBoxContainer/Start" to="MultiplayerLobby" method="_on_start_pressed"]
 [connection signal="pressed" from="MultiplayerLobby/HBoxContainer/VBoxContainer/Back" to="MultiplayerLobby" method="_on_back_pressed"]
 [connection signal="pressed" from="MultiplayerLobby/HBoxContainer/VBoxContainer/Back" to="MultiplayerLobby/HBoxContainer/Lobby Searcher and Finder" method="_on_leave_lobby_pressed"]

@@ -24,7 +24,7 @@ var peer: SteamMultiplayerPeer
 
 func _ready():
 	# Initializes Steam's networking relay system
-	Steam.initRelayNetworkAccess()
+	#Steam.initRelayNetworkAccess()
 	
 	# Steam Signals
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)

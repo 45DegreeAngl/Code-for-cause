@@ -5,6 +5,7 @@ extends Node
 
 
 func _ready()->void:
+	Globals.game_over = false
 	Debug.cops_node = cops_node
 	Debug.sober_node = ped_node
 
