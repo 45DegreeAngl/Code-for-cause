@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=4 uid="uid://bkobvs8d7edh8"]
 
 [ext_resource type="Script" uid="uid://c8d0sqjj6ffqw" path="res://Scenes/Inheritance/Safe Driver.gd" id="1_pswpu"]
-[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_lnbqn"]
+[ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_t5770"]
 [ext_resource type="Script" uid="uid://bnf1dkak2jpl7" path="res://Scenes/Inheritance/Cop/CopCosmetic.gd" id="3_ocg62"]
 [ext_resource type="Texture2D" uid="uid://bvqwdgpgrggqh" path="res://Assets/Models/Car/The_Car_WheelTexture.png" id="4_0dmb2"]
 [ext_resource type="Texture2D" uid="uid://dfce7gq2x4ifm" path="res://Assets/Models/Car/The_Car_Front Seats Base Color.png" id="5_4d3rj"]
@@ -760,12 +760,13 @@ shadow_mesh = SubResource("ArrayMesh_cc53l")
 gravity_scale = 2.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, -1.3)
+contact_monitor = true
+max_contacts_reported = 5
 linear_damp = 0.1
 script = ExtResource("1_pswpu")
 navigation_agent = NodePath("Center of mass/NavigationAgent3D")
-hunt_dist = 100.0
 reverse_timer = NodePath("ReverseTimer")
-STEERING_CURVE = ExtResource("2_lnbqn")
+STEERING_CURVE = ExtResource("2_t5770")
 stuck_timer = NodePath("StuckTimer")
 metadata/Cop = false
 
@@ -796,7 +797,6 @@ damping_relaxation = 2.0
 [node name="Back_Left" type="MeshInstance3D" parent="Back_Left"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_8j4td")
-skeleton = NodePath("")
 
 [node name="Back_Right" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.27066, 0.891, 0.692075)
@@ -808,7 +808,6 @@ damping_relaxation = 2.0
 [node name="Back_Right" type="MeshInstance3D" parent="Back_Right"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gg6f8")
-skeleton = NodePath("")
 
 [node name="Front_Right" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.28903, 0.891, -3.07874)
@@ -820,7 +819,6 @@ damping_relaxation = 2.0
 [node name="Front_Right" type="MeshInstance3D" parent="Front_Right"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_5kv0l")
-skeleton = NodePath("")
 
 [node name="Front_Left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.32195, 0.891, -3.07874)
@@ -832,7 +830,6 @@ damping_relaxation = 2.0
 [node name="Front_Left" type="MeshInstance3D" parent="Front_Left"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gv2vx")
-skeleton = NodePath("")
 
 [node name="Mesh" type="Node3D" parent="."]
 
@@ -843,12 +840,10 @@ mesh = SubResource("ArrayMesh_0wx8f")
 [node name="Front Seats" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58249, 0)
 mesh = SubResource("ArrayMesh_nloa0")
-skeleton = NodePath("")
 
 [node name="Back Seats" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58249, 1.33931)
 mesh = SubResource("ArrayMesh_asbhe")
-skeleton = NodePath("")
 
 [node name="Engine" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
@@ -964,7 +959,7 @@ light_energy = 12.0
 shadow_enabled = true
 omni_range = 10.0
 
-[connection signal="body_entered" from="." to="." method="_on_collide"]
+[connection signal="body_entered" from="." to="." method="on_collision"]
 [connection signal="timeout" from="Timer" to="Cosmetic Node" method="announce"]
 [connection signal="timeout" from="Flicker Timer" to="Cosmetic Node" method="toggle_colors"]
 [connection signal="timeout" from="ReverseTimer" to="." method="on_reverse_timer_ended"]

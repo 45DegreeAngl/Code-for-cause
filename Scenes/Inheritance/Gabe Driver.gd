@@ -1,0 +1,109 @@
+extends BaseDriver
+
+@export var current_path : Path3D = null
+
+@onready var WHEEL_BASE = $Back_Left.position.distance_to($Front_Left.position)
+
+func curve_point_to_global(point : Vector3, path : Path3D):
+	return path.global_basis * point + path.global_position
+
+func area(a,b,c):
+	return (b.x-a.x)*(c.z-a.z) - (b.z-a.z)*(c.x-a.x)
+
+func distance_to(a, b):
+	return sqrt(pow((a.x-b.x),2) + pow((a.z-b.z),2))
+
+var saved_linear_velocity : Vector3 = Vector3.ZERO
+
+func driver_process(_delta) -> void:
+	saved_linear_velocity = linear_velocity
+	var lookahead_dist = 1.5
+	var throttle_lookahead_dist = 3 + 1* sqrt(linear_velocity.length())
+
+	if reversing:
+		engine_input = -1
+		steer_input = 0
+	elif hunt and target:
+		var target_point_global = Globals.player_vehicle.global_position
+		var target_lookahead_vector = (target_point_global - global_position).normalized()
+		var target_angle_to_lookahead = (-basis.z).signed_angle_to(target_lookahead_vector, global_basis.y)
+		steer_input = target_angle_to_lookahead/(PI/4)
+
+		var vector_to_target = target_point_global-global_position
+		var dot_product = (-basis.z).dot(vector_to_target.normalized())
+
+		if dot_product>0 and linear_velocity.length() > 40:
+			engine_input = -1
+		else:
+			engine_input = 1
+	else:
+		if current_path == null:
+			if Globals.driving_path:
+				current_path = Globals.driving_path
+			else:
+				return
+
+		var global_to_curve_space_pos = current_path.global_basis.inverse() * (global_position - current_path.global_position)
+		var closest_point_offset = current_path.curve.get_closest_offset(global_to_curve_space_pos)
+		var dir_mult = -1 if backwards else 1
+		var lookahead_point = current_path.curve.sample_baked(closest_point_offset + (lookahead_dist*dir_mult))
+		var lookahead_point_global = curve_point_to_global(lookahead_point, current_path)
+		var lookahead_vector = (lookahead_point_global - global_position).normalized()
+		var angle_to_lookahead = (-basis.z).signed_angle_to(lookahead_vector, global_basis.y)
+
+		var closest_point = current_path.curve.get_closest_point(global_to_curve_space_pos)
+		var slightly_ahead_point = current_path.curve.sample_baked(closest_point_offset + 0.1)
+		var global_slightly_ahead_point = curve_point_to_global(slightly_ahead_point, current_path)
+		var global_closest_point = curve_point_to_global(closest_point, current_path)
+		var path_heading = (global_slightly_ahead_point - global_closest_point).normalized()
+		var path_normal = path_heading.rotated(Vector3.UP, PI/2)
+		var cross_track_error = (global_closest_point - global_position).dot(path_normal)
+		var current_heading = -global_basis.z
+
+		var cross_track_error_gain = 2
+		var stanley_steer_angle = current_heading.signed_angle_to(path_heading, Vector3.UP) + atan2((cross_track_error_gain * cross_track_error),linear_velocity.length())
+		stanley_steer_angle = clamp(stanley_steer_angle,-get_max_steer(),get_max_steer())
+		
+		steer_input = stanley_steer_angle / get_max_steer()
+
+		var sample_pts = []
+
+		for i in range(3):
+			var this_lookahead_dist = throttle_lookahead_dist/3.0 * (i+1)
+			var this_lookahead_point = current_path.curve.sample_baked(closest_point_offset + this_lookahead_dist)
+			var this_lookahead_point_global = curve_point_to_global(this_lookahead_point, current_path)
+			sample_pts.append(this_lookahead_point_global)
+
+		var A = area(sample_pts[0], sample_pts[1], sample_pts[2])
+		var curvature = 4*A/(distance_to(sample_pts[0], sample_pts[1]) * distance_to(sample_pts[1], sample_pts[2]) * distance_to(sample_pts[2], sample_pts[0]))
+		var trajectory_curvature = stanley_steer_angle/WHEEL_BASE / linear_velocity.length()
+		if abs(curvature) > abs(trajectory_curvature) and abs(steer_input) >= 1 and linear_velocity.length() > 40:
+			engine_input = -1
+		else:
+			engine_input = 1
+
+		if(closest_point_offset/current_path.curve.get_baked_length() > 0.95):
+			engine_input = 0
+			return
+
+func update_context_variables(_delta):
+	if not target:
+		hunt = false
+		return
+	
+	if distance_to(global_position,target.global_position)<hunt_dist:
+		hunt = true
+	else:
+		hunt = false
+	
+	if target.global_position.z-300>global_position.z:
+		if !hunt:
+			parked = true
+		else:
+			parked = false
+
+func update_steer(delta):
+	#if parked:
+		#return
+	steering = move_toward(steering,steer_input*get_max_steer(),delta*2.5)
+	engine_force = max(engine_input*ENGINE_POWER,-ENGINE_POWER/1.5)

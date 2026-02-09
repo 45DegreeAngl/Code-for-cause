@@ -324,6 +324,11 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Resolution holder/VBoxContainer/Language Options")
 text = "SAVE_OPTIONS_BUTTON"
 
+[node name="Quick Restart" type="Button" parent="true options/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "QUICK_RESTART_BUTTON"
+
 [node name="Become Sober" type="Button" parent="true options/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -356,6 +361,7 @@ layout_mode = 1
 [connection signal="item_selected" from="Resolution holder/VBoxContainer/Window Options" to="." method="_on_window_options_item_selected"]
 [connection signal="item_selected" from="Resolution holder/VBoxContainer/Language Options" to="." method="_on_language_options_item_selected"]
 [connection signal="pressed" from="true options/VBoxContainer/Save To Disk" to="." method="save_options"]
+[connection signal="pressed" from="true options/VBoxContainer/Quick Restart" to="." method="_on_quick_restart_pressed"]
 [connection signal="pressed" from="true options/VBoxContainer/Become Sober" to="." method="_on_become_sober_pressed"]
 [connection signal="pressed" from="true options/VBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="back_pressed" from="Controller Settings" to="." method="_on_return_from_controls"]

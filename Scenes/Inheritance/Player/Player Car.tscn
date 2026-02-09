@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://clpsl2od8y70b" path="res://Assets/Models/Car/The_Car_Back Seats Color.png" id="6_ynsdu"]
 [ext_resource type="Texture2D" uid="uid://hnvpgshyy84f" path="res://Assets/Models/Car/The_Car_Left_Mirror_Mat.png" id="7_pdjdm"]
 [ext_resource type="Texture2D" uid="uid://cw8ifdi80fcme" path="res://Assets/Models/Car/The_Car_Right_Mirror_Mat.png" id="8_bopjo"]
-[ext_resource type="Texture2D" uid="uid://bm1ompqyy2io7" path="res://Assets/Models/Car/The_Car_Top_Mirror_Mat.png" id="9_lol3g"]
 [ext_resource type="ArrayMesh" uid="uid://cfbsxooyw7uf0" path="res://Assets/Models/Car/Average Sober Driver.tres" id="10_uqigb"]
 [ext_resource type="ArrayMesh" uid="uid://jsplx8xq631x" path="res://Assets/Models/worm fur.res" id="11_ov4mc"]
 [ext_resource type="Texture2D" uid="uid://6ok3wwem53q" path="res://Deprecated/godot-prototype-texture/PNG/checker_blue_512x512.png" id="12_30p0i"]
@@ -388,10 +387,14 @@ albedo_texture = SubResource("ViewportTexture_oo0l3")
 emission_enabled = true
 emission_texture = SubResource("ViewportTexture_02si6")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j1f8"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_n8ygm"]
+viewport_path = NodePath("Cameras/RearViewPort")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dujto"]
+resource_local_to_scene = true
 resource_name = "Material.003"
 cull_mode = 2
-albedo_texture = ExtResource("9_lol3g")
+albedo_texture = SubResource("ViewportTexture_n8ygm")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qxxtn"]
@@ -416,7 +419,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 6,
 "index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_1j1f8"),
+"material": SubResource("StandardMaterial3D_dujto"),
 "name": "Material.003",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -1276,6 +1279,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
 [node name="Windshield" type="Camera3D" parent="Cameras"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.522313, 1.64713, -1.12866)
 current = true
+far = 300.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Cameras/Windshield"]
 target_position = Vector3(0, 0, -3)
@@ -1292,8 +1296,9 @@ size = Vector2i(36, 128)
 render_target_update_mode = 4
 
 [node name="RearView" type="Camera3D" parent="Cameras/RearViewPort"]
-transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 0, 2.41308, -0.824)
+transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 0, 2.413076, -0.824)
 fov = 80.0
+far = 100.0
 
 [node name="RearViewRemote" type="RemoteTransform3D" parent="Cameras"]
 transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 0, 1.77, -0.824)
@@ -1305,8 +1310,9 @@ size = Vector2i(128, 152)
 render_target_update_mode = 4
 
 [node name="LeftView" type="Camera3D" parent="Cameras/LeftViewPort"]
-transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -1.53068, 1.87316, -2.11568)
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -1.53068, 1.8731561, -2.11568)
 fov = 28.3
+far = 100.0
 
 [node name="LeftViewRemote" type="RemoteTransform3D" parent="Cameras"]
 transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -1.53068, 1.23008, -2.11568)
@@ -1318,8 +1324,9 @@ size = Vector2i(128, 152)
 render_target_update_mode = 4
 
 [node name="RightView" type="Camera3D" parent="Cameras/RightViewPort"]
-transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 1.63082, 1.87316, -2.11568)
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 1.63082, 1.8731561, -2.11568)
 fov = 28.3
+far = 100.0
 
 [node name="RightViewRemote" type="RemoteTransform3D" parent="Cameras"]
 transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 1.63082, 1.23008, -2.11568)
@@ -1327,6 +1334,7 @@ remote_path = NodePath("../RightViewPort/RightView")
 
 [node name="Camera3D" type="Camera3D" parent="Cameras"]
 transform = Transform3D(0.98944, 0.02914, -0.141984, 0.0301181, 0.916867, 0.398056, 0.14178, -0.398128, 0.906307, -1.86799, 0.635553, -2.32985)
+far = 2000.0
 
 [node name="Light" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)

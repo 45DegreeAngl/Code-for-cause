@@ -30,29 +30,35 @@ uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
 void vertex() {
-	// -- Original UV transform --
-	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	if (INSTANCE_CUSTOM.w>0.5){
+		VERTEX = vec3(0.0);
+	}
+	else{
+			// -- Original UV transform --
+		UV = UV * uv1_scale.xy + uv1_offset.xy;
 
-	// -- WIND SWAY LOGIC (New Code) --
-	// INSTANCE_CUSTOM.x will be a random value unique to each leaf.
-	// This breaks up the synchronized movement.
-	float instance_random = INSTANCE_CUSTOM.x;
+		// -- WIND SWAY LOGIC (New Code) --
+		// INSTANCE_CUSTOM.x will be a random value unique to each leaf.
+		// This breaks up the synchronized movement.
+		float instance_random = INSTANCE_CUSTOM.x;
 
-	// Calculate time with variations for speed and per-instance offset.
-	float time = (TIME * wind_speed) + (instance_random * wind_phase_variation);
+		// Calculate time with variations for speed and per-instance offset.
+		float time = (TIME * wind_speed) + (instance_random * wind_phase_variation);
 
-	// Create two sine waves for a more complex, natural rustle.
-	// We use the vertex's X and Z position to make the rustle vary across the leaf's surface.
-	float rustle = sin(time + VERTEX.x * wind_rustle_scale) + cos(time * 0.5 + VERTEX.z * wind_rustle_scale);
+		// Create two sine waves for a more complex, natural rustle.
+		// We use the vertex's X and Z position to make the rustle vary across the leaf's surface.
+		float rustle = sin(time + VERTEX.x * wind_rustle_scale) + cos(time * 0.5 + VERTEX.z * wind_rustle_scale);
 
-	// Calculate the final wind effect strength.
-	// We multiply by UV.y so that the base of the leaf (where UV.y is 0) stays attached
-	// to the branch, and the tip (where UV.y is 1) moves the most.
-	float strength = rustle * wind_strength * UV.y;
+		// Calculate the final wind effect strength.
+		// We multiply by UV.y so that the base of the leaf (where UV.y is 0) stays attached
+		// to the branch, and the tip (where UV.y is 1) moves the most.
+		float strength = rustle * wind_strength * UV.y;
 
-	// Apply the offset to the vertex position.
-	// Here, we're pushing the vertex along the X-axis in Model Space.
-	VERTEX.x += strength;
+		// Apply the offset to the vertex position.
+		// Here, we're pushing the vertex along the X-axis in Model Space.
+		VERTEX.x += strength;
+	}
+	
 }
 
 void fragment() {
@@ -60,6 +66,7 @@ void fragment() {
 
 	vec4 albedo_tex = texture(texture_albedo, base_uv);
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	
 
 	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
 	METALLIC = metallic_tex * metallic;

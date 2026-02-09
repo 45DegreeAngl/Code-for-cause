@@ -35,18 +35,42 @@ func open_options(in_game:bool=false):
 	visible = true
 	if in_game:
 		$"true options/VBoxContainer/Become Sober".visible = true
+		$"true options/VBoxContainer/Quick Restart".visible = true
 	else:
 		$"true options/VBoxContainer/Become Sober".visible = false
+		$"true options/VBoxContainer/Quick Restart".visible = false
 	$"true options/VBoxContainer/Back".grab_focus()
 
 signal back_pressed()
 
 func _on_back_pressed():
+	Globals.game_paused = false
 	visible = false
+	if not Globals.game_over:
+		MainShaderCanvas.filter_dict["BeerMeter"][0].visible = true
+		MainShaderCanvas.filter_dict["drunk"][0].visible = true
+		#$"Game World".process_mode = Node.PROCESS_MODE_INHERIT
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	back_pressed.emit()
 
 func _on_become_sober_pressed() -> void:
 	Globals.game_lost.emit("Sober")
+
+
+func _on_quick_restart_pressed() -> void:
+	Globals.game_lost.emit("Sober")
+	##set game globals to proper values
+	Globals.tutorial = false
+	Globals.drunkenness = 20
+	Globals.tutorial = true
+	Globals.is_cheater = false
+	Debug.console_active = false
+	Globals.reset_stats()
+	Globals.game_over = false
+	MainShaderCanvas.visible = true
+	Globals.detected = false
+	get_tree().reload_current_scene()
+
 
 func _on_controls_pressed() -> void:
 	if !controller_settings:

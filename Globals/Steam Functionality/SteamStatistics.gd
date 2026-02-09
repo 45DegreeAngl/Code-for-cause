@@ -2,7 +2,8 @@ extends Node
 
 func _ready()->void:
 	Steam.user_stats_received.connect(_on_steam_stats_ready)
-	Steam.requestUserStats(GlobalSteam.steam_id)
+	if GlobalSteam.is_on_steam:
+		Steam.requestUserStats(GlobalSteam.steam_id)
 
 ##STATISTICS AND LEADERBOARDS
 var statistics : Dictionary = {"GABE'S FAVOR":0,"DRUNK MENACE":0,"LITTER COUNT":0,"FLIP COUNT":0}

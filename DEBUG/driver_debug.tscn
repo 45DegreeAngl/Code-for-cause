@@ -1,0 +1,199 @@
+[gd_scene load_steps=17 format=3 uid="uid://d3v2iatm5252j"]
+
+[ext_resource type="Script" uid="uid://bctwolxms464x" path="res://DEBUG/driver_debug.gd" id="1_g0d1l"]
+[ext_resource type="Shader" uid="uid://qng8wl8txtjs" path="res://Shaders/Axilirate_Sky_Shader.gdshader" id="1_wr1nw"]
+[ext_resource type="PackedScene" uid="uid://bfe2n5yc1ofd5" path="res://Scenes/Roads/Normal Segments/debug_straight.tscn" id="2_6epfw"]
+[ext_resource type="Script" uid="uid://cnmbor1oxnhpn" path="res://Scenes/SinglePlayer/world_environment.gd" id="2_g0d1l"]
+[ext_resource type="PackedScene" uid="uid://ci6ln5dw5x4oe" path="res://Scenes/Roads/Normal Segments/Ankle breaker debug.tscn" id="3_5h6qm"]
+[ext_resource type="PackedScene" uid="uid://7yiw8v4t5rt7" path="res://Scenes/Roads/Normal Segments/Death.tscn" id="4_mr014"]
+[ext_resource type="PackedScene" uid="uid://c7afy5ct7o7c1" path="res://Scenes/Roads/Normal Segments/Four Way Segment.tscn" id="5_mrqou"]
+[ext_resource type="PackedScene" uid="uid://n0c15of7b78l" path="res://Scenes/Roads/Normal Segments/Halfpipe Segment.tscn" id="6_b1vsy"]
+[ext_resource type="PackedScene" uid="uid://bsawvuh1yr6x3" path="res://Scenes/Roads/Normal Segments/Liminal Segment.tscn" id="7_3mevr"]
+[ext_resource type="PackedScene" uid="uid://coa1buyxhvtlm" path="res://Scenes/Roads/Normal Segments/Normal Turns Segment.tscn" id="8_kk5pi"]
+[ext_resource type="PackedScene" uid="uid://cgk8q7mcfa465" path="res://Scenes/Roads/Normal Segments/Stairway to Hellven.tscn" id="9_o6b17"]
+[ext_resource type="PackedScene" uid="uid://bs5fwvxntc87g" path="res://Scenes/Roads/Normal Segments/TEMP ROAD.tscn" id="10_l6mhp"]
+
+[sub_resource type="Curve3D" id="Curve3D_6epfw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_msnif"]
+shader = ExtResource("1_wr1nw")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_ygm4a"]
+sky_material = SubResource("ShaderMaterial_msnif")
+
+[sub_resource type="Environment" id="Environment_65jmb"]
+background_mode = 2
+sky = SubResource("Sky_ygm4a")
+sky_rotation = Vector3(0, 3.14159, 0)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
+reflected_light_source = 1
+tonemap_mode = 2
+fog_light_color = Color(0, 0.00474154, 0.00474154, 1)
+fog_sun_scatter = 0.2
+fog_density = 0.0244
+fog_sky_affect = 0.49
+fog_depth_begin = 717.2
+fog_depth_end = 717.2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.014
+adjustment_enabled = true
+adjustment_brightness = 1.5
+adjustment_contrast = 1.1
+adjustment_saturation = 0.8
+
+[node name="Driver Debug" type="Node" node_paths=PackedStringArray("cops_node", "ped_node", "glob_path", "roads", "road_options")]
+script = ExtResource("1_g0d1l")
+cops_node = NodePath("Cops")
+ped_node = NodePath("Pedestrians")
+glob_path = NodePath("Global Path")
+roads = NodePath("Roads")
+road_options = NodePath("CanvasLayer/Control/HBoxContainer/VBoxContainer/GridContainer/Chosen Road")
+road_to_add = Array[PackedScene]([ExtResource("2_6epfw"), ExtResource("3_5h6qm"), ExtResource("4_mr014"), ExtResource("5_mrqou"), ExtResource("6_b1vsy"), ExtResource("7_3mevr"), ExtResource("8_kk5pi"), ExtResource("9_o6b17"), ExtResource("10_l6mhp")])
+
+[node name="Global Path" type="Path3D" parent="."]
+curve = SubResource("Curve3D_6epfw")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_color = Color(0.623529, 0.772549, 0.94902, 1)
+shadow_enabled = true
+
+[node name="Moon" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, 1.5180811e-08, 8.609463e-08, 0, -0.9848078, 0.17364824, 8.742278e-08, 0.17364824, 0.9848078, 0, 0, 0)
+light_color = Color(0.623529, 0.772549, 0.94902, 1)
+light_energy = 0.1
+shadow_enabled = true
+sky_mode = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_65jmb")
+script = ExtResource("2_g0d1l")
+set_phase_on_ready = true
+
+[node name="Cops" type="Node3D" parent="."]
+
+[node name="Pedestrians" type="Node3D" parent="."]
+
+[node name="Roads" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Open Cams" type="Button" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Open Cams"
+
+[node name="Main Menu" type="Button" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Main Menu
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Add road" type="Button" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Add Road"
+
+[node name="Chosen Road" type="OptionButton" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "Debug Straight"
+popup/item_0/id = 0
+
+[node name="Delete Road" type="Button" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Delete Road"
+
+[node name="Car Spawning" type="GridContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Add Car" type="Button" parent="CanvasLayer/Control/HBoxContainer/Car Spawning"]
+layout_mode = 2
+text = "Add Car"
+
+[node name="Car Settings" type="OptionButton" parent="CanvasLayer/Control/HBoxContainer/Car Spawning"]
+layout_mode = 2
+selected = 1
+item_count = 4
+popup/item_0/text = "Reckless"
+popup/item_0/id = 2
+popup/item_1/text = "Safe"
+popup/item_1/id = 1
+popup/item_2/text = "Super"
+popup/item_2/id = 0
+popup/item_3/text = "Gabe"
+popup/item_3/id = 3
+
+[node name="Car Container" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 7, 13)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+use_collision = true
+size = Vector3(500, 1, 30)
+
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/VBoxContainer2/Open Cams" to="." method="open_cams"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/VBoxContainer2/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/VBoxContainer/GridContainer/Add road" to="." method="_on_add_road_pressed"]
+[connection signal="item_selected" from="CanvasLayer/Control/HBoxContainer/VBoxContainer/GridContainer/Chosen Road" to="." method="_on_chosen_road_item_selected"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/VBoxContainer/GridContainer/Delete Road" to="." method="delete_road"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Car Spawning/Add Car" to="." method="spawn_car"]
+[connection signal="item_selected" from="CanvasLayer/Control/HBoxContainer/Car Spawning/Car Settings" to="." method="car_setting_selected"]

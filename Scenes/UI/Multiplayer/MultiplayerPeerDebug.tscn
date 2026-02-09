@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://uw0es0ba0art"]
+
+[ext_resource type="Script" uid="uid://cda3xs0jjx6a" path="res://Scenes/UI/Multiplayer/multiplayer_peer_debug.gd" id="1_7bcr5"]
+[ext_resource type="PackedScene" uid="uid://dgkei51lvpclb" path="res://Scenes/UI/Multiplayer/MultPlay.tscn" id="2_xpwsd"]
+[ext_resource type="AudioStream" uid="uid://b0pqtj1jafjit" path="res://Assets/Sounds/Intro/drunkheeheehaw.mp3" id="3_olyah"]
+
+[node name="MultiplayerPeerDebug" type="Control" node_paths=PackedStringArray("player_holder", "host_but", "join_but", "id_prompt", "leave_but")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7bcr5")
+play_packed = ExtResource("2_xpwsd")
+player_holder = NodePath("VBoxContainer/ScrollContainer/VBoxContainer")
+host_but = NodePath("VBoxContainer/Controls/Host")
+join_but = NodePath("VBoxContainer/Controls/Join")
+id_prompt = NodePath("VBoxContainer/Controls/id_prompt")
+leave_but = NodePath("VBoxContainer/Controls/Leave")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://dgkei51lvpclb")
+spawn_path = NodePath("../VBoxContainer/ScrollContainer/VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Controls" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="VBoxContainer/Controls"]
+layout_mode = 2
+text = "Host"
+
+[node name="id_prompt" type="LineEdit" parent="VBoxContainer/Controls"]
+layout_mode = 2
+text = "localhost"
+placeholder_text = "Lobby ID"
+alignment = 1
+
+[node name="Join" type="Button" parent="VBoxContainer/Controls"]
+layout_mode = 2
+text = "Join"
+
+[node name="Leave" type="Button" parent="VBoxContainer/Controls"]
+layout_mode = 2
+disabled = true
+text = "Leave"
+
+[node name="Ping" type="Button" parent="VBoxContainer/Controls"]
+layout_mode = 2
+text = "Debug Ping"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_olyah")
+bus = &"Prox Chat"
+
+[connection signal="text_changed" from="VBoxContainer/Controls/id_prompt" to="." method="_on_id_prompt_text_changed"]
+[connection signal="pressed" from="VBoxContainer/Controls/Leave" to="." method="_on_leave_pressed"]
+[connection signal="pressed" from="VBoxContainer/Controls/Ping" to="." method="_on_ping_pressed"]

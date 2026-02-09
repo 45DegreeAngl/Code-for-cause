@@ -1,8 +1,14 @@
 extends Node
 
+@export var cops_node:Node3D
+@export var ped_node:Node3D
+
+
 func _ready()->void:
-	Debug.cops_node = $"Segment Spawner/Cops"
-	Debug.sober_node = $"Segment Spawner/Pedestrians"
+	Globals.game_over = false
+	Debug.cops_node = cops_node
+	Debug.sober_node = ped_node
+	Globals.driving_path = $"Segment Spawner/Global Path"
 
 func _process(_delta: float) -> void:
 	if Globals.game_over or $"Game Over".visible or $"YOU WIN".visible:

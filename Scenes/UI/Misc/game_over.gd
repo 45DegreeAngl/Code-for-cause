@@ -1,12 +1,16 @@
 extends Control
 
+@export var descript_text:RichTextLabel 
+@export var menu_button:Button
+@export var timer_label:Label
+
 func _ready() -> void:
 	Globals.game_lost.connect(_on_lose)
 
 func _on_lose(reason:String):
 	if Globals.game_over:
 		return
-	$RichTextLabel.text = ""
+	descript_text.text = ""
 	MainShaderCanvas.toggle_filter("drunk")
 	MainShaderCanvas.filter_dict["BeerMeter"][0].visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -15,21 +19,21 @@ func _on_lose(reason:String):
 	match reason:
 		"Sober":
 			SteamAchievements.setAchievement("BECOME SOBER")
-			$RichTextLabel.append_text(tr("SOBER_END_RICH"))
+			descript_text.append_text(tr("SOBER_END_RICH"))
 		"Cops":
 			SteamAchievements.setAchievement("GET ARRESTED")
-			$RichTextLabel.append_text(tr("ARRESTED_END_RICH"))
-	$Label.text = tr("TIME_SURVIVED_LABEL").format([Globals.format_seconds_as_time(Globals.timer)])
+			descript_text.append_text(tr("ARRESTED_END_RICH"))
+	timer_label.text = tr("TIME_SURVIVED_LABEL").format([Globals.format_seconds_as_time(Globals.timer)])
 	#print(Globals.roads_to_win)
 	if Globals.roads_to_win == int(INF):
-		$Label.text += str(tr("ROADS_PASSED_LABEL").format([Globals.world_node.cur_player_road]))
+		timer_label.text += str(tr("ROADS_PASSED_LABEL").format([Globals.world_node.cur_player_road]))
 		GlobalSteam.upload_win()
 	SteamStatistics.update_stats()
 	MainShaderCanvas.visible = false
 	Globals.tutorial = true
 	Globals.game_paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	$"Main Menu".grab_focus()
+	menu_button.grab_focus()
 	print("DID WE CHEAT?: ", Globals.is_cheater)
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 

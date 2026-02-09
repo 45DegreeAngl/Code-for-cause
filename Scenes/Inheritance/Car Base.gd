@@ -16,6 +16,9 @@ var engine_input : float :
 		engine_input = clampf(val, -1, 1)
 var cur_lin_vel:Vector3 = Vector3.ZERO
 
+var is_authority = false
+@export var is_multiplayer: bool = false
+
 #context stats
 @export_subgroup("Context")
 @export var stuck_timer : Timer
@@ -34,6 +37,8 @@ func get_max_steer():
 	return deg_to_rad(MAX_STEER_DEG) * STEERING_CURVE.sample(linear_velocity.length()/60)
 
 func check_stuck():
+	if not stuck_timer:
+		return
 	if !stuck_timer.is_connected("timeout",on_stuck_timer_ended):
 		stuck_timer.connect("timeout",on_stuck_timer_ended)
 	if linear_velocity.length() < 1:
@@ -56,19 +61,27 @@ func xz_triangle_area(a:Vector3,b:Vector3,c:Vector3):
 	return (b.x-a.x)*(c.z-a.z) - (b.z-a.z)*(c.x-a.x)
 
 func _physics_process(delta: float) -> void:
-	time_to_update += delta * 1000
-	
-	if time_to_update >= update_interval:
-		time_to_update = 0
-		driver_process(delta)
-		update_context_variables(delta)
-		update_steer(delta)
-		update_cosmetics(delta)
+	var should_process = false
+	if is_multiplayer:
+		if is_authority:
+			should_process = true
+	else:
+		should_process = true
+
+	if should_process:
+		time_to_update += delta * 1000
 		
-		#steering = steer_input
-		#engine_force = engine_input
-		cur_lin_vel = linear_velocity
-		check_stuck()
+		if time_to_update >= update_interval:
+			time_to_update = 0
+			driver_process(delta)
+			update_context_variables(delta)
+			update_steer(delta)
+			update_cosmetics(delta)
+			
+			#steering = steer_input
+			#engine_force = engine_input
+			cur_lin_vel = linear_velocity
+			check_stuck()
 	
 
 func driver_process(_delta):
@@ -82,3 +95,8 @@ func update_steer(_delta):
 
 func update_cosmetics(_delta):
 	pass
+
+func on_collision(body):
+	if body.has_method("destroy_self"):
+		print('hitting thing')
+		body.destroy_self()

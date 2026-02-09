@@ -12,7 +12,7 @@ var road_seg_to_load: Dictionary = {}
 var gabesmart_seg_to_load: Dictionary = {}
 
 # Nickname : Road (fully loaded PackedScenes)
-@onready var glob_path: Path3D = $"Global Path"
+@export var glob_path: Path3D 
 var road_segments: Dictionary = {}
 var gabesmart_segments: Dictionary = {}
 @export var exes_house: PackedScene = null
@@ -249,9 +249,9 @@ var cur_player_road: int = 0:
 				var points_to_remove = path_to_remove.curve.get_point_count() - 1
 				points_to_remove = max(0, points_to_remove)
 				
-				for i in range(points_to_remove):
-					if glob_path.curve.get_point_count() > 0:
-						glob_path.curve.remove_point(0)
+				#for i in range(points_to_remove):
+					#if glob_path.curve.get_point_count() > 0:
+						#glob_path.curve.remove_point(0)
 			
 			for cop : Node3D in Globals.world_node.find_child("Cops").get_children():
 				if cop.global_position.z > road_to_remove.global_position.z:

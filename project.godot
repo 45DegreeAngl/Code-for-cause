@@ -12,9 +12,13 @@ config_version=5
 
 config/name="Love Drunk"
 run/main_scene="res://Scenes/UI/Main Menu/main_menu.tscn"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="res://Assets/Textures/Disclaimer.png"
 config/icon="res://icon Image.png"
+
+[audio]
+
+driver/enable_input=true
 
 [autoload]
 
@@ -24,12 +28,10 @@ MainShaderCanvas="*res://Scenes/UI/Misc/Main Shader Canvas.tscn"
 GlobalSteam="*res://Globals/Steam Functionality/GlobalSteam.gd"
 GlobalWorkshop="*res://Globals/Steam Functionality/SteamWorkshop.gd"
 Debug="*res://Globals/Debug.gd"
-Network="*res://Globals/Steam Multiplayer/Network.gd"
-ServerFunc="*res://Globals/Steam Multiplayer/Server Function.gd"
-SteamMic="*res://Globals/Steam Multiplayer/steam_mic.tscn"
 SteamAchievements="*res://Globals/Steam Functionality/SteamAchievements.gd"
 SteamLeaderboard="*res://Globals/Steam Functionality/SteamLeaderboard.gd"
 SteamStatistics="*res://Globals/Steam Functionality/SteamStatistics.gd"
+Network="*res://Globals/Steam Multiplayer/Network.gd"
 
 [display]
 
@@ -55,7 +57,6 @@ folder_colors={
 "res://Globals/": "gray",
 "res://Localization stuff/": "teal",
 "res://Resources/": "pink",
-"res://Scenes/Multiplayer/": "yellow",
 "res://Shaders/": "blue"
 }
 

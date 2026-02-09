@@ -1,5 +1,9 @@
 extends Control
 
+@export var descript_text:RichTextLabel
+@export var player_time_label:Label
+@export var main_menu_button:Button
+
 func _ready() -> void:
 	Globals.game_won.connect(_on_win)
 
@@ -10,7 +14,7 @@ func _on_win():
 		SteamAchievements.setAchievement("SILENT DRIVER")
 	visible = true
 	Globals.game_over = true
-	$Label2.text = tr("YOUR_TIME_LABEL").format([Globals.format_seconds_as_time(Globals.timer)])
+	player_time_label.text = tr("YOUR_TIME_LABEL").format([Globals.format_seconds_as_time(Globals.timer)])
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	MainShaderCanvas.visible = false
 	Globals.tutorial = true
@@ -18,7 +22,7 @@ func _on_win():
 	GlobalSteam.upload_win()
 	SteamLeaderboard.upload_records()
 	SteamStatistics.update_stats()
-	$"Main Menu".grab_focus()
+	descript_text.grab_focus()
 	#$"Game World".process_mode = Node.PROCESS_MODE_DISABLED
 
 

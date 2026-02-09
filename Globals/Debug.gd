@@ -18,7 +18,7 @@ var debug_camera_spawned : bool = false
 @onready var temp_road_packed = preload("res://Scenes/Roads/Normal Segments/TEMP ROAD.tscn")
 
 func _process(_delta)->void:
-	if Input.is_action_just_pressed("Tilde"):
+	if Input.is_action_just_pressed("Tilde") and Network.lobby_id==0:
 		if !Globals.is_cheater:
 			Globals.is_cheater = true
 		console_active = !console_active
@@ -40,26 +40,29 @@ func _input(event: InputEvent) -> void:
 					debug_mode = !debug_mode
 					Globals.player_vehicle.DEBUG_MODE = debug_mode
 			KEY_C:
-				if debug_camera_spawned:
-					return
-				debug_camera_spawned = true
-				#print("WAL:OUJSDIOHJW")
-				var debug_cam : Window = debug_camera_controls.instantiate()
-				add_child(debug_cam)
-				debug_cam.first_person_cam = fp_cam
-				debug_cam.world_wheel_cam = wheel_cam
-				debug_cam.lock_target = lock_target
-				debug_cam.car_target = car_target
-				debug_cam.close_requested.connect(on_cam_close)
-				debug_cam.player_model = player_model
-				debug_cam.cops_node = cops_node
-				debug_cam.player_vehicle = Globals.player_vehicle
-				debug_cam.sober_node = sober_node
-				debug_cam.visible = true
+				spawn_debug_cam()
 			KEY_INSERT:#spawn road
 				Globals.world_node.cur_player_road +=1
 			KEY_HOME:
 				Globals.world_node.append_segment(temp_road_packed)
+
+func spawn_debug_cam():
+	if debug_camera_spawned:
+		return
+	debug_camera_spawned = true
+	#print("WAL:OUJSDIOHJW")
+	var debug_cam : Window = debug_camera_controls.instantiate()
+	add_child(debug_cam)
+	debug_cam.first_person_cam = fp_cam
+	debug_cam.world_wheel_cam = wheel_cam
+	debug_cam.lock_target = lock_target
+	debug_cam.car_target = car_target
+	debug_cam.close_requested.connect(on_cam_close)
+	debug_cam.player_model = player_model
+	debug_cam.cops_node = cops_node
+	debug_cam.player_vehicle = Globals.player_vehicle
+	debug_cam.sober_node = sober_node
+	debug_cam.visible = true
 
 func on_cam_close():
 	debug_camera_spawned = false

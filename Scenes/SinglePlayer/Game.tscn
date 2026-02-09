@@ -1,24 +1,55 @@
-[gd_scene load_steps=13 format=3 uid="uid://wb4xhroexlmq"]
+[gd_scene load_steps=15 format=3 uid="uid://wb4xhroexlmq"]
 
 [ext_resource type="Script" uid="uid://cvdb3mhbhm6an" path="res://Scenes/SinglePlayer/game.gd" id="1_w7y0x"]
 [ext_resource type="PackedScene" uid="uid://craox76r56bvq" path="res://Scenes/UI/Main Menu/Options Menu/Options Menu.tscn" id="2_v5bp6"]
 [ext_resource type="PackedScene" uid="uid://c6btg6wb1cmm6" path="res://Scenes/UI/Misc/game_over.tscn" id="3_cnp2m"]
 [ext_resource type="PackedScene" uid="uid://w7ute86vb38e" path="res://Scenes/UI/Misc/Win_Screen.tscn" id="4_akwyd"]
-[ext_resource type="PackedScene" uid="uid://c0isynyusocwo" path="res://Scenes/Roads/segment_spawner.tscn" id="5_akwyd"]
+[ext_resource type="Script" uid="uid://bknkigk4grssx" path="res://Scenes/Roads/segment_spawner.gd" id="5_64cng"]
+[ext_resource type="PackedScene" uid="uid://cr75h2k10e6eh" path="res://Scenes/Roads/Ex Segments/Ex Straight.tscn" id="6_gvg2e"]
 [ext_resource type="PackedScene" uid="uid://cpluashr5x3of" path="res://Scenes/Inheritance/Player/Player Car.tscn" id="6_tfqb6"]
-[ext_resource type="Texture2D" uid="uid://bvk6p748nx6p5" path="res://Assets/Models/Skybox/AllSky_Night_MoonBurst Equirect.png" id="7_ygm4a"]
 [ext_resource type="PackedScene" uid="uid://fuvj7j3go7xh" path="res://Scenes/Roads/Misc Segments/cul_de_sac_tutorial.tscn" id="8_bj6j6"]
+[ext_resource type="Shader" uid="uid://qng8wl8txtjs" path="res://Shaders/Axilirate_Sky_Shader.gdshader" id="9_t505o"]
 [ext_resource type="Script" uid="uid://cnmbor1oxnhpn" path="res://Scenes/SinglePlayer/world_environment.gd" id="10_t505o"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_64cng"]
-panorama = ExtResource("7_ygm4a")
+[sub_resource type="Curve3D" id="Curve3D_bnrfm"]
 
-[sub_resource type="Sky" id="Sky_31a3a"]
-sky_material = SubResource("PanoramaSkyMaterial_64cng")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvg2e"]
+shader = ExtResource("9_t505o")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0, 0, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.00999999977648
+shader_parameter/sun_blur = 0.00999999977648
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_ygm4a"]
+sky_material = SubResource("ShaderMaterial_gvg2e")
 
 [sub_resource type="Environment" id="Environment_ygm4a"]
 background_mode = 2
-sky = SubResource("Sky_31a3a")
+sky = SubResource("Sky_ygm4a")
 sky_rotation = Vector3(0, 3.14159, 0)
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
@@ -26,9 +57,10 @@ ambient_light_energy = 0.0
 reflected_light_source = 1
 tonemap_mode = 2
 fog_enabled = true
+fog_mode = 1
 fog_light_color = Color(0, 0.00474154, 0.00474154, 1)
 fog_sun_scatter = 0.2
-fog_density = 0.0244
+fog_density = 1.0
 fog_sky_affect = 0.49
 fog_depth_begin = 717.2
 fog_depth_end = 717.2
@@ -39,8 +71,10 @@ adjustment_brightness = 1.5
 adjustment_contrast = 1.1
 adjustment_saturation = 0.8
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" node_paths=PackedStringArray("cops_node", "ped_node")]
 script = ExtResource("1_w7y0x")
+cops_node = NodePath("Segment Spawner/Cops")
+ped_node = NodePath("Segment Spawner/Pedestrians")
 
 [node name="Options" parent="." instance=ExtResource("2_v5bp6")]
 visible = false
@@ -51,22 +85,37 @@ visible = false
 [node name="YOU WIN" parent="." instance=ExtResource("4_akwyd")]
 visible = false
 
-[node name="Segment Spawner" parent="." node_paths=PackedStringArray("cops_node", "pedestrians_node", "road_node", "previous_road") instance=ExtResource("5_akwyd")]
+[node name="Segment Spawner" type="Node" parent="." node_paths=PackedStringArray("glob_path", "cops_node", "pedestrians_node", "road_node", "previous_road")]
+script = ExtResource("5_64cng")
+glob_path = NodePath("Global Path")
+exes_house = ExtResource("6_gvg2e")
 cops_node = NodePath("Cops")
 pedestrians_node = NodePath("Pedestrians")
 road_node = NodePath("Roads")
 previous_road = NodePath("Roads/Cul de Sac Tutorial")
 
+[node name="Global Path" type="Path3D" parent="Segment Spawner"]
+curve = SubResource("Curve3D_bnrfm")
+debug_custom_color = Color(1, 0, 0, 1)
+
 [node name="Player Car" parent="Segment Spawner" node_paths=PackedStringArray("cop_node") instance=ExtResource("6_tfqb6")]
 transform = Transform3D(0.0265784, 0, 0.999647, 0, 1, 0, -0.999647, 0, 0.0265784, 264.276, 0.726802, -69.4266)
 cop_node = NodePath("../Cops")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Segment Spawner"]
-transform = Transform3D(-1, 0, -8.74228e-08, -3.01411e-08, 0.938686, 0.344774, 8.20625e-08, 0.344774, -0.938686, 0, 0, 0)
-light_color = Color(0.623529, 0.772549, 0.94902, 1)
-light_energy = 0.1
+[node name="Sun" type="DirectionalLight3D" parent="Segment Spawner"]
+transform = Transform3D(-1, -4.371139e-08, -7.5710346e-08, 0, 0.8660254, -0.5, 8.742278e-08, -0.5, -0.8660254, 0, 0, 0)
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
 shadow_enabled = true
-sky_mode = 1
+sky_mode = 2
+
+[node name="Moon" type="DirectionalLight3D" parent="Segment Spawner"]
+transform = Transform3D(-1, 1.518081e-08, 8.609463e-08, 0, -0.9848077, 0.17364824, 8.742278e-08, 0.17364822, 0.9848077, 0, 0, 0)
+light_energy = 0.1
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Segment Spawner"]
 environment = SubResource("Environment_ygm4a")

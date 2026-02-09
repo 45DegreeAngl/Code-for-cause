@@ -58,7 +58,7 @@ func _unhandled_input(event):
 func _process(_delta: float) -> void:
 	if !GlobalSteam.is_online:
 		return
-	check_for_voice()
+	#check_for_voice()
 
 
 # --- Core Logic ---
@@ -75,7 +75,7 @@ func set_voice_mode(mode: String):
 
 # Captures voice from Steam and routes it based on the current mode.
 func check_for_voice() -> void:
-	var available_voice: Dictionary = Steam.getAvailableVoice()
+	var available_voice: Dictionary #= Steam.getAvailableVoice()
 
 	if available_voice['result'] == Steam.VOICE_RESULT_OK and available_voice['buffer'] > 0:
 		var voice_data: Dictionary = Steam.getVoice()

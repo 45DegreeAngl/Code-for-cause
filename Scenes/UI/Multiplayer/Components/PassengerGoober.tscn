@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://do48lj8pekl1b"]
+
+[ext_resource type="Texture2D" uid="uid://c5cq3knln5qt7" path="res://icon Image.png" id="1_plw3c"]
+[ext_resource type="Script" uid="uid://dc37wtjdmxa1c" path="res://Scenes/UI/Multiplayer/Components/passenger_goober.gd" id="1_wnugi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnugi"]
+albedo_texture = ExtResource("1_plw3c")
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_7y4t0"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_b350r"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wnugi"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Neck:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="PassengerGoober" type="Node3D" node_paths=PackedStringArray("neck", "cam", "voice", "mic")]
+script = ExtResource("1_wnugi")
+neck = NodePath("Neck")
+cam = NodePath("Neck/Camera3D")
+voice = NodePath("Voice")
+mic = NodePath("Mic")
+
+[node name="Neck" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Neck"]
+near = 0.25
+
+[node name="RayCast3D" type="RayCast3D" parent="Neck/Camera3D"]
+target_position = Vector3(0, 0, -1)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Neck"]
+material = SubResource("StandardMaterial3D_wnugi")
+
+[node name="Voice" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0707835, 0)
+stream = SubResource("AudioStreamGenerator_7y4t0")
+bus = &"Prox Chat"
+
+[node name="Mic" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamMicrophone_b350r")
+bus = &"Record"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_wnugi")

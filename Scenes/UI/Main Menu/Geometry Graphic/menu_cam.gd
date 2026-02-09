@@ -17,6 +17,9 @@ func _physics_process(delta: float) -> void:
 	var mouse_percent = (center - mouse_pos) / center
 	global_position = global_position.slerp(-basis.z * Vector3(mouse_percent.x, mouse_percent.y  * (center.y/center.x),0) * mouse_scale_factor + rest_pos, interp_rate * delta)
 
+@export var cop_blue:DirectionalLight3D
+@export var cop_red:DirectionalLight3D
+
 func _on_cop_lights_timeout() -> void:
-	$"../CopBlue".visible = not $"../CopBlue".visible
-	$"../CopRed".visible = not $"../CopBlue".visible
+	cop_blue.visible = not cop_blue.visible
+	cop_red.visible = not cop_red.visible

@@ -5,7 +5,8 @@ extends Node
 @export var TitleMusicPlayer :AudioStreamPlayer
 
 func _ready()->void:
-	Steam.getCurrentGameLanguage()
+	if GlobalSteam.is_on_steam:
+		Steam.getCurrentGameLanguage()
 	print(OS.get_locale_language())
 	TranslationServer.set_locale(OS.get_locale_language())
 	$"Main Menu/PanelContainer/VBoxContainer/Start".grab_focus()
@@ -24,6 +25,7 @@ func _on_start_pressed() -> void:
 	MainShaderCanvas.visible = false
 	Globals.detected = false
 	get_tree().change_scene_to_packed(intro_packed)
+	#get_tree().change_scene_to_file("res://Scenes/SinglePlayer/tutorial.tscn")
 
 func _on_options_pressed() -> void:
 	$Options.open_options()
@@ -67,3 +69,14 @@ func _on_leaderboards_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_quick_start_pressed() -> void:
+	$"Main Menu".visible = false
+	$MultiplayerLobby.visible = true
+	$MultiplayerLobby/HBoxContainer/VBoxContainer/Back.grab_focus()
+
+
+func _on_debug_pressed() -> void:
+	get_tree().change_scene_to_file("res://DEBUG/driver_debug.tscn")
+	pass # Replace with function body.

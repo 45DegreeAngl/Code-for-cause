@@ -8,6 +8,8 @@ func _ready()->void:
 ##LEADERBOARDS
 var boardhandles:Dictionary = {}
 func set_up_leaderboards():
+	if not GlobalSteam.is_on_steam:
+		return
 	Steam.findLeaderboard("RECORD TIME PRACTICE")
 	await leaderboard_update
 	Steam.findLeaderboard("RECORD TIME EASY")
@@ -36,6 +38,8 @@ func download_leaderboard_entries(handle:int=0 ,start:int=1,end:int=10):
 	Steam.downloadLeaderboardEntries(start,end,Steam.LEADERBOARD_DATA_REQUEST_GLOBAL,handle)
 
 func submit_leaderboard_score(leaderboard_name:String,value):
+	if not GlobalSteam.is_online:
+		return
 	print("SETTING LEADERBOARD : ",leaderboard_name," TO : ", value)
 	Steam.uploadLeaderboardScore(value,true,PackedInt32Array(),boardhandles[leaderboard_name][0])
 
