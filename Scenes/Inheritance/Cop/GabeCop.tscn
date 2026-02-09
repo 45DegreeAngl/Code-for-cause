@@ -882,10 +882,11 @@ contact_monitor = true
 max_contacts_reported = 5
 linear_damp = 0.1
 script = ExtResource("1_popd1")
+hunt_dist = 50.0
 reverse_timer = NodePath("ReverseTimer")
 STEERING_CURVE = ExtResource("2_lqvlr")
 stuck_timer = NodePath("StuckTimer")
-update_interval = 10.0
+update_interval = 50.0
 metadata/Cop = false
 
 [node name="Cosmetic Node" type="Node" parent="." node_paths=PackedStringArray("siren", "talk", "chassis", "talk_timer", "car_ref", "randomize_color_meshes", "head_lights", "back_lights", "engine_player", "crash_player")]

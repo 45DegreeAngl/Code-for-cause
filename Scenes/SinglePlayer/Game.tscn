@@ -96,6 +96,7 @@ previous_road = NodePath("Roads/Cul de Sac Tutorial")
 
 [node name="Global Path" type="Path3D" parent="Segment Spawner"]
 curve = SubResource("Curve3D_bnrfm")
+debug_custom_color = Color(1, 0, 0, 1)
 
 [node name="Player Car" parent="Segment Spawner" node_paths=PackedStringArray("cop_node") instance=ExtResource("6_tfqb6")]
 transform = Transform3D(0.0265784, 0, 0.999647, 0, 1, 0, -0.999647, 0, 0.0265784, 264.276, 0.726802, -69.4266)

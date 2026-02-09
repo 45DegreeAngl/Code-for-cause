@@ -20,6 +20,9 @@ func _ready() -> void:
 	spawn_driver_timer.one_shot = true
 	spawn_driver_timer.wait_time = randf_range(3.0,10.0)
 	spawn_driver_timer.timeout.connect(spawn_timer_timeout)
+	if Globals.world_node:
+		cops_node = Globals.world_node.get_node("Cops")
+		ped_node = Globals.world_node.get_node("Pedestrians")
 	#for child in get_children():
 		#if child is NavigationRegion3D:
 			#if child.is_baking():
@@ -68,15 +71,19 @@ func disable_tutorial(body:Node3D):
 			Globals.tutorial = false
 
 @export var driver_spawns : Node3D = null
+var cops_node:Node3D
+var ped_node:Node3D
 #$Pedestrians $Cops
 func spawn_drivers():
 	if !driver_spawns or randi_range(0,9)==0:
 		print("not spawning driver")
 		return
 	if randi_range(0,2) == 0:#Cop Spawn
-		spawn_individual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
+		if cops_node.get_child_count()<4:
+			spawn_individual_driver(Globals.cop_array.pick_random(),cops_node)
 	if randi_range(0,3)!=0:#Pedestrian Spawn
-		spawn_individual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
+		if ped_node.get_child_count()<4:
+			spawn_individual_driver(Globals.pedestrian_array.pick_random(),ped_node)
 
 
 func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleBody3D:
@@ -89,11 +96,11 @@ func spawn_individual_driver(packed:PackedScene,driver_type_node:Node3D)->Vehicl
 	driver_instance.process_mode = Node.PROCESS_MODE_DISABLED
 	driver_instance.backwards = [true,false,false].pick_random()
 	driver_instance.global_position = chosen_marker.global_position
-	driver_instance.process_mode = Node.PROCESS_MODE_INHERIT
 	if "current_path" in driver_instance:
 		print("Adding you")
 		driver_instance.current_path = Globals.driving_path
-	
+	driver_instance.process_mode = Node.PROCESS_MODE_INHERIT
+
 	if driver_instance.backwards:
 		print("Spawning backwards")
 	chosen_marker.reparent(self)
@@ -106,9 +113,11 @@ func spawn_timer_timeout():
 		return
 	print("SPAWNING RESIDUAL DRIVERS")
 	if randi_range(0,1) == 0:#Cop Spawn
-		spawn_residual_driver(Globals.cop_array.pick_random(),Globals.world_node.get_node("Cops"))
+		if cops_node.get_child_count()<4:
+			spawn_residual_driver(Globals.cop_array.pick_random(),cops_node)
 	if randi_range(0,3)!=0:#Pedestrian Spawn
-		spawn_residual_driver(Globals.pedestrian_array.pick_random(),Globals.world_node.get_node("Pedestrians"))
+		if ped_node.get_child_count()<4:
+			spawn_residual_driver(Globals.pedestrian_array.pick_random(),ped_node)
 
 func spawn_residual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleBody3D:
 	if driver_spawns.get_child_count()<1:
@@ -122,6 +131,8 @@ func spawn_residual_driver(packed:PackedScene,driver_type_node:Node3D)->VehicleB
 	driver_instance.process_mode = Node.PROCESS_MODE_DISABLED
 	driver_instance.backwards = false
 	driver_instance.global_position = chosen_marker.global_position
+	if "current_path" in driver_instance:
+		driver_instance.current_path = Globals.driving_path
 	driver_instance.process_mode = Node.PROCESS_MODE_INHERIT
 	chosen_marker.reparent(self)
 	chosen_marker.queue_free()

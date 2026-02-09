@@ -8,6 +8,7 @@ func _ready()->void:
 	Globals.game_over = false
 	Debug.cops_node = cops_node
 	Debug.sober_node = ped_node
+	Globals.driving_path = $"Segment Spawner/Global Path"
 
 func _process(_delta: float) -> void:
 	if Globals.game_over or $"Game Over".visible or $"YOU WIN".visible:

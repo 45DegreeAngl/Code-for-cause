@@ -45,7 +45,8 @@ func driver_process(_delta) -> void:
 
 		var global_to_curve_space_pos = current_path.global_basis.inverse() * (global_position - current_path.global_position)
 		var closest_point_offset = current_path.curve.get_closest_offset(global_to_curve_space_pos)
-		var lookahead_point = current_path.curve.sample_baked(closest_point_offset + lookahead_dist)
+		var dir_mult = -1 if backwards else 1
+		var lookahead_point = current_path.curve.sample_baked(closest_point_offset + (lookahead_dist*dir_mult))
 		var lookahead_point_global = curve_point_to_global(lookahead_point, current_path)
 		var lookahead_vector = (lookahead_point_global - global_position).normalized()
 		var angle_to_lookahead = (-basis.z).signed_angle_to(lookahead_vector, global_basis.y)
@@ -61,7 +62,9 @@ func driver_process(_delta) -> void:
 
 		var cross_track_error_gain = 2
 		var stanley_steer_angle = current_heading.signed_angle_to(path_heading, Vector3.UP) + atan2((cross_track_error_gain * cross_track_error),linear_velocity.length())
-		steer_input = angle_to_lookahead * 4
+		stanley_steer_angle = clamp(stanley_steer_angle,-get_max_steer(),get_max_steer())
+		
+		steer_input = stanley_steer_angle / get_max_steer()
 
 		var sample_pts = []
 
@@ -100,7 +103,7 @@ func update_context_variables(_delta):
 			parked = false
 
 func update_steer(delta):
-	if parked:
-		return
+	#if parked:
+		#return
 	steering = move_toward(steering,steer_input*get_max_steer(),delta*2.5)
 	engine_force = max(engine_input*ENGINE_POWER,-ENGINE_POWER/1.5)

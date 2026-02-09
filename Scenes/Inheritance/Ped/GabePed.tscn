@@ -879,7 +879,7 @@ script = ExtResource("1_0d6cb")
 reverse_timer = NodePath("ReverseTimer")
 STEERING_CURVE = ExtResource("2_83eho")
 stuck_timer = NodePath("StuckTimer")
-update_interval = 10.0
+update_interval = 50.0
 
 [node name="PedestrianCosmetic" type="Node" parent="." node_paths=PackedStringArray("car_ref", "randomize_color_meshes", "head_lights", "back_lights", "engine_player", "crash_player")]
 script = ExtResource("3_3cvjh")
