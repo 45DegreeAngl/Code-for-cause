@@ -1,13 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmd7g853vm7pb"]
+[gd_scene format=3 uid="uid://cmd7g853vm7pb"]
 
 [ext_resource type="Script" uid="uid://dmgsrdnqxd8d4" path="res://DEBUG/Debug Popout Cam.gd" id="1_8c1mq"]
 
-[node name="DebugCamera" type="Window"]
+[node name="DebugCamera" type="Window" unique_id=1026409043]
+oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(425, 250)
 script = ExtResource("1_8c1mq")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1349861810]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,20 +18,24 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1381463973]
 handle_input_locally = false
 size = Vector2i(425, 250)
 render_target_update_mode = 4
 
-[node name="CAMERAS" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="CAMERAS" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1300270558]
 
-[node name="Free" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS"]
+[node name="Free" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS" unique_id=59612272]
+cull_mask = 1048565
 
-[node name="Car" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS"]
+[node name="Car" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS" unique_id=633065406]
+cull_mask = 1048565
 
-[node name="First Person" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS"]
+[node name="First Person" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS" unique_id=824730281]
+cull_mask = 1048571
 
-[node name="Wheel" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS"]
+[node name="Wheel" type="Camera3D" parent="SubViewportContainer/SubViewport/CAMERAS" unique_id=1774908622]
+cull_mask = 1048565
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

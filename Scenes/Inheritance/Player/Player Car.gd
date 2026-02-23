@@ -96,7 +96,8 @@ func update_cosmetics(delta):
 	if Input.is_action_just_pressed("KEYWORD_MISC_INTERACT"):#toggle Headlights
 		cosmetic_node.toggle_head_lights()
 	cosmetic_node.update_wheel(steering*2*PI)
-	cosmetic_node.update_speedometer_tick(-Vector3(deg_to_rad(0),deg_to_rad(-90),deg_to_rad(30)).normalized(),move_toward((engine_force/ENGINE_POWER),(engine_force/ENGINE_POWER),delta))
+	var angle = lerp(0.0, deg_to_rad(30), engine_force / ENGINE_POWER)
+	cosmetic_node.update_speedometer_tick(angle)
 
 func _on_collide(body):
 	if body.has_meta("Cop"):

@@ -1,55 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd2n1bwxgj4ho"]
+[gd_scene format=3 uid="uid://dd2n1bwxgj4ho"]
 
 [ext_resource type="Script" uid="uid://dsj5i47kavef8" path="res://DEBUG/debug_cam_controls.gd" id="1_so7dr"]
 [ext_resource type="PackedScene" uid="uid://cmd7g853vm7pb" path="res://DEBUG/Debug Popout Cam.tscn" id="2_okm3c"]
 
-[node name="DebugCamControls" type="Window"]
+[node name="DebugCamControls" type="Window" unique_id=1988281339]
+oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(400, 400)
 script = ExtResource("1_so7dr")
 debug_cam_scene = ExtResource("2_okm3c")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1885855197]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=117538624]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer" unique_id=1957631546]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/PanelContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/PanelContainer/ScrollContainer" unique_id=1236533701]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 4
 
-[node name="Cams Label" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+[node name="Cams Label" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer" unique_id=1233026167]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Name"
 
-[node name="Setting" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+[node name="Setting" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer" unique_id=792369201]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Setting"
 
-[node name="View" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+[node name="View" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer" unique_id=2119673824]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "View"
 
-[node name="Add Camera" type="Button" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer"]
+[node name="Add Camera" type="Button" parent="VBoxContainer/PanelContainer/ScrollContainer/GridContainer" unique_id=1724679593]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "add"
 
-[node name="Instructions" type="Button" parent="VBoxContainer"]
+[node name="Instructions" type="Button" parent="VBoxContainer" unique_id=2050496747]
 layout_mode = 2
 text = "Instructions"
 

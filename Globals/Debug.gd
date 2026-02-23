@@ -41,6 +41,8 @@ func _input(event: InputEvent) -> void:
 					Globals.player_vehicle.DEBUG_MODE = debug_mode
 			KEY_C:
 				spawn_debug_cam()
+			KEY_B:
+				add_beer()
 			KEY_INSERT:#spawn road
 				Globals.world_node.cur_player_road +=1
 			KEY_HOME:
@@ -63,6 +65,10 @@ func spawn_debug_cam():
 	debug_cam.player_vehicle = Globals.player_vehicle
 	debug_cam.sober_node = sober_node
 	debug_cam.visible = true
+
+func add_beer():
+	if Globals.player_vehicle:
+		Globals.car_contents[["Beer","Sake","Jaeger"].pick_random()] += 1
 
 func on_cam_close():
 	debug_camera_spawned = false

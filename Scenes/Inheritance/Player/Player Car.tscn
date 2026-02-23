@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=4 uid="uid://cpluashr5x3of"]
+[gd_scene format=4 uid="uid://cpluashr5x3of"]
 
 [ext_resource type="Script" uid="uid://bwoeec037lhb0" path="res://Scenes/Inheritance/Player/Player Car.gd" id="1_ofp5c"]
 [ext_resource type="Curve" uid="uid://dbyxlgsqrgkow" path="res://Resources/Steering Curve.tres" id="2_dujto"]
@@ -1082,7 +1082,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3li57")
 
-[node name="Player Car" type="VehicleBody3D" node_paths=PackedStringArray("cosmetic_node", "stuck_timer")]
+[node name="Player Car" type="VehicleBody3D" unique_id=1021640332 node_paths=PackedStringArray("cosmetic_node", "stuck_timer")]
 physics_material_override = SubResource("PhysicsMaterial_eps3w")
 gravity_scale = 2.0
 center_of_mass_mode = 1
@@ -1097,7 +1097,7 @@ ENGINE_POWER = 400.0
 stuck_timer = NodePath("Stuck Timer")
 update_interval = 0.0
 
-[node name="Cosmetic" type="Node" parent="." node_paths=PackedStringArray("voice", "wheel", "speedometer_tick", "radio", "car_ref", "randomize_color_meshes", "head_lights", "back_lights", "engine_player", "crash_player")]
+[node name="Cosmetic" type="Node" parent="." unique_id=1843288896 node_paths=PackedStringArray("voice", "wheel", "speedometer_tick", "radio", "car_ref", "randomize_color_meshes", "head_lights", "back_lights", "engine_player", "crash_player")]
 script = ExtResource("3_xwpol")
 voice = NodePath("../Sounds/Voice Lines")
 wheel = NodePath("../Wheel")
@@ -1111,367 +1111,372 @@ back_lights = [NodePath("../Light/HindLeft"), NodePath("../Light/HindRight")]
 engine_player = NodePath("../Sounds/Engine")
 crash_player = NodePath("../Sounds/Crash")
 
-[node name="Marker3D" type="Marker3D" parent="."]
+[node name="Marker3D" type="Marker3D" parent="." unique_id=925336613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30538, 0.702559, -4.30117)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=501259111]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00600743, 2.53772, -1.44675)
 shape = SubResource("ConvexPolygonShape3D_1tvv8")
 
-[node name="Back_Left" type="VehicleWheel3D" parent="."]
+[node name="Back_Left" type="VehicleWheel3D" parent="." unique_id=951211559]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.28712, 0.891, 0.692075)
 use_as_traction = true
 suspension_stiffness = 75.0
 damping_compression = 1.9
 damping_relaxation = 2.0
 
-[node name="Back_Left" type="MeshInstance3D" parent="Back_Left"]
+[node name="Back_Left" type="MeshInstance3D" parent="Back_Left" unique_id=385743536]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_8j4td")
 skeleton = NodePath("")
 
-[node name="Back_Right" type="VehicleWheel3D" parent="."]
+[node name="Back_Right" type="VehicleWheel3D" parent="." unique_id=1144875774]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.27066, 0.891, 0.692075)
 use_as_traction = true
 suspension_stiffness = 75.0
 damping_compression = 1.9
 damping_relaxation = 2.0
 
-[node name="Back_Right" type="MeshInstance3D" parent="Back_Right"]
+[node name="Back_Right" type="MeshInstance3D" parent="Back_Right" unique_id=1645152355]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gg6f8")
 skeleton = NodePath("")
 
-[node name="Front_Right" type="VehicleWheel3D" parent="."]
+[node name="Front_Right" type="VehicleWheel3D" parent="." unique_id=478018821]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.28903, 0.891, -3.07874)
 use_as_steering = true
 suspension_stiffness = 75.0
 damping_compression = 1.9
 damping_relaxation = 2.0
 
-[node name="Front_Right" type="MeshInstance3D" parent="Front_Right"]
+[node name="Front_Right" type="MeshInstance3D" parent="Front_Right" unique_id=1155674771]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_5kv0l")
 skeleton = NodePath("")
 
-[node name="Front_Left" type="VehicleWheel3D" parent="."]
+[node name="Front_Left" type="VehicleWheel3D" parent="." unique_id=439495949]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.32195, 0.891, -3.07874)
 use_as_steering = true
 suspension_stiffness = 75.0
 damping_compression = 1.9
 damping_relaxation = 2.0
 
-[node name="Front_Left" type="MeshInstance3D" parent="Front_Left"]
+[node name="Front_Left" type="MeshInstance3D" parent="Front_Left" unique_id=1442909974]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gv2vx")
 skeleton = NodePath("")
 
-[node name="Mesh" type="Node3D" parent="."]
+[node name="Mesh" type="Node3D" parent="." unique_id=617121665]
 
-[node name="Chassis" type="MeshInstance3D" parent="Mesh"]
+[node name="Chassis" type="MeshInstance3D" parent="Mesh" unique_id=1611266429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51981, -1.44867)
 mesh = SubResource("ArrayMesh_llvle")
 skeleton = NodePath("")
 
-[node name="Front Seats" type="MeshInstance3D" parent="Mesh"]
+[node name="Front Seats" type="MeshInstance3D" parent="Mesh" unique_id=1333452502]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58249, 0)
 mesh = SubResource("ArrayMesh_nloa0")
 skeleton = NodePath("")
 
-[node name="Back Seats" type="MeshInstance3D" parent="Mesh"]
+[node name="Back Seats" type="MeshInstance3D" parent="Mesh" unique_id=1628495504]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58249, 1.33931)
 mesh = SubResource("ArrayMesh_asbhe")
 skeleton = NodePath("")
 
-[node name="Left_Mirror" type="MeshInstance3D" parent="Mesh"]
+[node name="Left_Mirror" type="MeshInstance3D" parent="Mesh" unique_id=783663082]
 transform = Transform3D(0.999622, 0, 0.0274855, 0, 1, 0, -0.0274855, 0, 0.999622, -1.57507, 1.83675, -2.16801)
 mesh = SubResource("ArrayMesh_co2kh")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_dxpoq")
 
-[node name="Right_Mirror" type="MeshInstance3D" parent="Mesh"]
+[node name="Right_Mirror" type="MeshInstance3D" parent="Mesh" unique_id=348264922]
 transform = Transform3D(0.993776, 0, -0.1114, 0, 1, 0, 0.1114, 0, 0.993776, 1.57997, 1.83675, -2.15191)
 mesh = SubResource("ArrayMesh_ugnnj")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_5em8d")
 
-[node name="Top_Mirror" type="MeshInstance3D" parent="Mesh"]
+[node name="Top_Mirror" type="MeshInstance3D" parent="Mesh" unique_id=1893710269]
 transform = Transform3D(1, 0, 0, 0, 0.999987, -0.00500922, 0, 0.00500922, 0.999987, 0, 2.47319, -1.41724)
 mesh = SubResource("ArrayMesh_5gxrp")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wndiq")
 
-[node name="HeadlightL" type="MeshInstance3D" parent="Mesh"]
+[node name="HeadlightL" type="MeshInstance3D" parent="Mesh" unique_id=556303490]
 transform = Transform3D(-0.28, 0, -4.22788e-08, 0, 0.28, 0, 4.22788e-08, 0, -0.28, -0.968968, 1.37803, -4.37133)
 mesh = SubResource("QuadMesh_wqgg5")
 surface_material_override/0 = SubResource("StandardMaterial3D_wqgg5")
 
-[node name="HeadlightR" type="MeshInstance3D" parent="Mesh"]
+[node name="HeadlightR" type="MeshInstance3D" parent="Mesh" unique_id=634726067]
 transform = Transform3D(-0.28, 0, -4.22788e-08, 0, 0.28, 0, 4.22788e-08, 0, -0.28, 0.957881, 1.37803, -4.37133)
 mesh = SubResource("QuadMesh_wqgg5")
 surface_material_override/0 = SubResource("StandardMaterial3D_wqgg5")
 
-[node name="Character" type="MeshInstance3D" parent="Mesh"]
+[node name="Character" type="MeshInstance3D" parent="Mesh" unique_id=1505378809]
 transform = Transform3D(-0.399964, 0.052781, -0.0442085, 0, 0.248029, 0.289794, 0.0732629, 0.288147, -0.241348, -0.782691, 1.48227, -1.24801)
-visible = false
+layers = 4
 mesh = ExtResource("10_uqigb")
+metadata/Player = false
 
-[node name="Hair" type="MeshInstance3D" parent="Mesh/Character"]
+[node name="Hair" type="MeshInstance3D" parent="Mesh/Character" unique_id=1795604904]
 transform = Transform3D(1, -3.72529e-08, 2.08616e-07, -2.98023e-08, 0.908275, -0.418374, -1.2666e-07, 0.418374, 0.908275, -0.00766563, 1.54439, 1.58849)
+layers = 4
 mesh = SubResource("SphereMesh_3jv2o")
 
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Mesh/Character/Hair"]
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Mesh/Character/Hair" unique_id=1435307395]
 transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 0, 0, 0)
+layers = 4
 multimesh = SubResource("MultiMesh_v3yky")
 
-[node name="Interactibles" type="Node3D" parent="."]
+[node name="Interactibles" type="Node3D" parent="." unique_id=182563818]
 
-[node name="EnterExit" type="Area3D" parent="Interactibles"]
+[node name="EnterExit" type="Area3D" parent="Interactibles" unique_id=1498150922]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17055, 1.51428, -1.43528)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/EnterExit"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/EnterExit" unique_id=768502078]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.275611, 0)
 shape = SubResource("BoxShape3D_mde6f")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/EnterExit"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/EnterExit" unique_id=2044230700]
 visible = false
 size = Vector3(0.234375, 1.35938, 2.21973)
 material = SubResource("StandardMaterial3D_055nn")
 
-[node name="Alcholol" type="Area3D" parent="Interactibles"]
+[node name="Alcholol" type="Area3D" parent="Interactibles" unique_id=1479083439]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539667, 1.33833, -1.25203)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Alcholol"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Alcholol" unique_id=397284020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0442871)
 shape = SubResource("BoxShape3D_67v7v")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/Alcholol"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/Alcholol" unique_id=567095357]
 visible = false
 size = Vector3(0.65, 0.875, 0.6)
 material = SubResource("StandardMaterial3D_pfpqe")
 
-[node name="Radio" type="Area3D" parent="Interactibles"]
+[node name="Radio" type="Area3D" parent="Interactibles" unique_id=1066468138]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37649, -1.88388)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Radio"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Radio" unique_id=534153458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281055, 0)
 shape = SubResource("BoxShape3D_csasn")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/Radio"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Interactibles/Radio" unique_id=1596903354]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0283496, 0)
 visible = false
 size = Vector3(0.435547, 0.823301, 0.45)
 material = SubResource("StandardMaterial3D_nlc4a")
 
-[node name="Player Location" type="Marker3D" parent="Interactibles"]
+[node name="Player Location" type="Marker3D" parent="Interactibles" unique_id=291292487]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71618, 1.79814, -1.19713)
 
-[node name="Door box" type="Area3D" parent="Interactibles"]
+[node name="Door box" type="Area3D" parent="Interactibles" unique_id=615115621]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71618, 1.79814, -1.19713)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Door box"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactibles/Door box" unique_id=1616250975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00596571, 0)
 shape = SubResource("CapsuleShape3D_87j7j")
 
-[node name="Cameras" type="Node3D" parent="."]
+[node name="Cameras" type="Node3D" parent="." unique_id=377167990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
 
-[node name="Windshield" type="Camera3D" parent="Cameras"]
+[node name="Windshield" type="Camera3D" parent="Cameras" unique_id=91458722]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.522313, 1.64713, -1.12866)
+cull_mask = 1048571
 current = true
 far = 300.0
 
-[node name="RayCast3D" type="RayCast3D" parent="Cameras/Windshield"]
+[node name="RayCast3D" type="RayCast3D" parent="Cameras/Windshield" unique_id=1271878816]
 target_position = Vector3(0, 0, -3)
 
-[node name="Area3D" type="Area3D" parent="Cameras/Windshield"]
+[node name="Area3D" type="Area3D" parent="Cameras/Windshield" unique_id=582449050]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cameras/Windshield/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cameras/Windshield/Area3D" unique_id=1397709279]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1.02363)
 shape = SubResource("CylinderShape3D_u68fw")
 
-[node name="RearViewPort" type="SubViewport" parent="Cameras"]
+[node name="RearViewPort" type="SubViewport" parent="Cameras" unique_id=423267244]
 handle_input_locally = false
 size = Vector2i(36, 128)
 render_target_update_mode = 4
 
-[node name="RearView" type="Camera3D" parent="Cameras/RearViewPort"]
+[node name="RearView" type="Camera3D" parent="Cameras/RearViewPort" unique_id=1674519555]
 transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 0, 2.413076, -0.824)
 fov = 80.0
 far = 100.0
 
-[node name="RearViewRemote" type="RemoteTransform3D" parent="Cameras"]
+[node name="RearViewRemote" type="RemoteTransform3D" parent="Cameras" unique_id=2029408454]
 transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 0, 1.77, -0.824)
 remote_path = NodePath("../RearViewPort/RearView")
 
-[node name="LeftViewPort" type="SubViewport" parent="Cameras"]
+[node name="LeftViewPort" type="SubViewport" parent="Cameras" unique_id=305632481]
 handle_input_locally = false
 size = Vector2i(128, 152)
 render_target_update_mode = 4
 
-[node name="LeftView" type="Camera3D" parent="Cameras/LeftViewPort"]
+[node name="LeftView" type="Camera3D" parent="Cameras/LeftViewPort" unique_id=1831488502]
 transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -1.53068, 1.8731561, -2.11568)
 fov = 28.3
 far = 100.0
 
-[node name="LeftViewRemote" type="RemoteTransform3D" parent="Cameras"]
+[node name="LeftViewRemote" type="RemoteTransform3D" parent="Cameras" unique_id=698640305]
 transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -1.53068, 1.23008, -2.11568)
 remote_path = NodePath("../LeftViewPort/LeftView")
 
-[node name="RightViewPort" type="SubViewport" parent="Cameras"]
+[node name="RightViewPort" type="SubViewport" parent="Cameras" unique_id=526013748]
 handle_input_locally = false
 size = Vector2i(128, 152)
 render_target_update_mode = 4
 
-[node name="RightView" type="Camera3D" parent="Cameras/RightViewPort"]
+[node name="RightView" type="Camera3D" parent="Cameras/RightViewPort" unique_id=801907128]
 transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 1.63082, 1.8731561, -2.11568)
 fov = 28.3
 far = 100.0
 
-[node name="RightViewRemote" type="RemoteTransform3D" parent="Cameras"]
+[node name="RightViewRemote" type="RemoteTransform3D" parent="Cameras" unique_id=1548254282]
 transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 1.63082, 1.23008, -2.11568)
 remote_path = NodePath("../RightViewPort/RightView")
 
-[node name="Camera3D" type="Camera3D" parent="Cameras"]
+[node name="Camera3D" type="Camera3D" parent="Cameras" unique_id=1727106556]
 transform = Transform3D(0.98944, 0.02914, -0.141984, 0.0301181, 0.916867, 0.398056, 0.14178, -0.398128, 0.906307, -1.86799, 0.635553, -2.32985)
 far = 2000.0
 
-[node name="Light" type="Node3D" parent="."]
+[node name="Light" type="Node3D" parent="." unique_id=2079470368]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
 
-[node name="HeadRight" type="SpotLight3D" parent="Light"]
+[node name="HeadRight" type="SpotLight3D" parent="Light" unique_id=1762798632]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.967911, 0.688462, -4.49881)
 light_energy = 5.0
 spot_range = 20.0
 
-[node name="HeadLeft" type="SpotLight3D" parent="Light"]
+[node name="HeadLeft" type="SpotLight3D" parent="Light" unique_id=1088167989]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.918241, 0.702295, -4.48549)
 light_energy = 5.0
 spot_range = 20.0
 
-[node name="HindLeft" type="SpotLight3D" parent="Light"]
+[node name="HindLeft" type="SpotLight3D" parent="Light" unique_id=1071514365]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.768202, 0.641177, 1.82246)
 light_color = Color(1, 0, 0, 1)
 light_energy = 2.0
 spot_range = 2.0
 
-[node name="HindRight" type="SpotLight3D" parent="Light"]
+[node name="HindRight" type="SpotLight3D" parent="Light" unique_id=1679857413]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.766225, 0.689082, 1.81121)
 light_color = Color(1, 0, 0, 1)
 light_energy = 2.0
 spot_range = 2.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Light"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Light" unique_id=141780638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78123, -0.242204)
 light_volumetric_fog_energy = 0.0
 
-[node name="Debrie" type="Node3D" parent="."]
+[node name="Debrie" type="Node3D" parent="." unique_id=772293655]
 
-[node name="Debrie Spawns" type="Node3D" parent="."]
+[node name="Debrie Spawns" type="Node3D" parent="." unique_id=1239399895]
 
-[node name="Marker3D" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D" type="Marker3D" parent="Debrie Spawns" unique_id=1858724666]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43718, 0)
 
-[node name="Marker3D2" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D2" type="Marker3D" parent="Debrie Spawns" unique_id=976063734]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.239454, 1.43718, 0)
 
-[node name="Marker3D3" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D3" type="Marker3D" parent="Debrie Spawns" unique_id=987190417]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.482544, 1.43718, 0)
 
-[node name="Marker3D4" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D4" type="Marker3D" parent="Debrie Spawns" unique_id=1788091052]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.682246, 1.43718, 0)
 
-[node name="Marker3D5" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D5" type="Marker3D" parent="Debrie Spawns" unique_id=1744716023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19137, 1.43718, 0)
 
-[node name="Marker3D6" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D6" type="Marker3D" parent="Debrie Spawns" unique_id=1840114716]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.444881, 1.43718, 0)
 
-[node name="Marker3D7" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D7" type="Marker3D" parent="Debrie Spawns" unique_id=2136265037]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.669937, 1.43718, 0)
 
-[node name="Marker3D8" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D8" type="Marker3D" parent="Debrie Spawns" unique_id=965782335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.669937, 1.43718, 0.98422)
 
-[node name="Marker3D9" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D9" type="Marker3D" parent="Debrie Spawns" unique_id=164142209]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275415, 1.4201, 0.972271)
 
-[node name="Marker3D10" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D10" type="Marker3D" parent="Debrie Spawns" unique_id=874366373]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00162548, 1.43718, 0.984293)
 
-[node name="Marker3D11" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D11" type="Marker3D" parent="Debrie Spawns" unique_id=910824510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.231349, 1.43718, 0.984293)
 
-[node name="Marker3D12" type="Marker3D" parent="Debrie Spawns"]
+[node name="Marker3D12" type="Marker3D" parent="Debrie Spawns" unique_id=1508191140]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.550176, 1.43718, 0.984293)
 
-[node name="Center of mass" type="Marker3D" parent="."]
+[node name="Center of mass" type="Marker3D" parent="." unique_id=1396488679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
 
-[node name="Sobriety Timer" type="Timer" parent="."]
+[node name="Sobriety Timer" type="Timer" parent="." unique_id=8378021]
 wait_time = 3.0
 autostart = true
 
-[node name="Milk_Crate" parent="." instance=ExtResource("15_0goqt")]
+[node name="Milk_Crate" parent="." unique_id=747411284 instance=ExtResource("15_0goqt")]
 transform = Transform3D(0.047724, 0, 0.0149137, 0, 0.05, 0, -0.0149137, 0, 0.047724, 0.44709, 1.14082, -1.31478)
 
-[node name="Debrie Launch" type="Marker3D" parent="."]
+[node name="Debrie Launch" type="Marker3D" parent="." unique_id=1336930331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28392, 2.65554)
 
-[node name="Wheel" type="Node3D" parent="."]
+[node name="Wheel" type="Node3D" parent="." unique_id=482862745]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -0.601772, 1.7438, -1.77272)
 
-[node name="Wheel2" type="MeshInstance3D" parent="Wheel"]
+[node name="Wheel2" type="MeshInstance3D" parent="Wheel" unique_id=165197416]
 transform = Transform3D(-0.215, -3.24641e-08, -1.41905e-15, 0, -9.39795e-09, 0.215, -3.24641e-08, 0.215, 9.39795e-09, 0.00774461, 0, 0)
 mesh = SubResource("ArrayMesh_pdkh6")
 skeleton = NodePath("../..")
 
-[node name="Spedometer" type="Node3D" parent="."]
+[node name="Spedometer" type="Node3D" parent="." unique_id=946007411]
 transform = Transform3D(-3.02841e-09, 1.74846e-09, -0.08, 0.04, 0.069282, 0, 0.069282, -0.04, -3.49691e-09, -0.956976, 1.7726, -1.85972)
+visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Spedometer"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spedometer" unique_id=1648414560]
 transform = Transform3D(-0.00232952, 0.152343, 0.00129189, -0.996359, -0.000370369, 0.0852165, 0.0852193, -0.000165853, 0.996362, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h2lvo")
 
-[node name="Cylinder 1" type="MeshInstance3D" parent="Spedometer"]
+[node name="Cylinder 1" type="MeshInstance3D" parent="Spedometer" unique_id=129909739]
 transform = Transform3D(-0.0020126, 0.131617, 0.00111613, -0.860807, -0.000319981, 0.073623, 0.0736255, -0.000143289, 0.860809, -0.0772328, 0, 0)
 mesh = SubResource("ArrayMesh_roqvb")
 
-[node name="Tick" type="MeshInstance3D" parent="Spedometer"]
-transform = Transform3D(0.0189082, 0.015821, 0.00599962, 0.00292377, 0.0255068, -0.0375941, -0.00123497, 0.302618, 0.00285504, 0.0189537, -0.0291031, -0.00465584)
+[node name="Tick" type="MeshInstance3D" parent="Spedometer" unique_id=577436311]
+transform = Transform3D(0.0189082, 0.015821066, 0.005999631, 0.0029237666, 0.02550678, -0.0375941, -0.0012349688, 0.302618, 0.0028550308, 0.0189537, -0.0291031, -0.00465584)
 mesh = SubResource("ArrayMesh_qhugh")
 
-[node name="radio" parent="." instance=ExtResource("16_vcdkw")]
+[node name="radio" parent="." unique_id=691166104 instance=ExtResource("16_vcdkw")]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 1.69655, -1.9228)
 
-[node name="Sounds" type="Node3D" parent="."]
+[node name="Sounds" type="Node3D" parent="." unique_id=1113220194]
 
-[node name="Sobriety Alarm" type="AudioStreamPlayer" parent="Sounds"]
+[node name="Sobriety Alarm" type="AudioStreamPlayer" parent="Sounds" unique_id=330915169]
 bus = &"Voice"
 
-[node name="Voice Lines" type="AudioStreamPlayer" parent="Sounds"]
+[node name="Voice Lines" type="AudioStreamPlayer" parent="Sounds" unique_id=63141048]
 bus = &"Voice"
 
-[node name="Crash" type="AudioStreamPlayer3D" parent="Sounds"]
+[node name="Crash" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1820407553]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32381, -3.78877)
 volume_db = -15.0
 bus = &"Sound Effect"
 
-[node name="Engine" type="AudioStreamPlayer3D" parent="Sounds"]
+[node name="Engine" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1720263805]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643076, 0)
 stream = ExtResource("17_84ch0")
 volume_db = -20.0
 autoplay = true
 bus = &"Sound Effect"
 
-[node name="Radio" type="AudioStreamPlayer3D" parent="Sounds"]
+[node name="Radio" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1163974946]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68233, -1.74312)
 volume_db = -80.0
 bus = &"Radio"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1247009699]
 
-[node name="Tooltips" type="Control" parent="CanvasLayer"]
+[node name="Tooltips" type="Control" parent="CanvasLayer" unique_id=365816911]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -1485,7 +1490,7 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Tooltips"]
+[node name="Label" type="Label" parent="CanvasLayer/Tooltips" unique_id=146626429]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1502,78 +1507,78 @@ theme = ExtResource("18_g8eum")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Cop_Detector" type="Node3D" parent="."]
+[node name="Cop_Detector" type="Node3D" parent="." unique_id=568065384]
 transform = Transform3D(-0.0441172, 0, -0.210425, 0, 0.215, 0, 0.210425, 0, -0.0441172, -0.268712, 1.8412, -2.04156)
 
-[node name="Cube" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="Cube" type="MeshInstance3D" parent="Cop_Detector" unique_id=829680779]
 transform = Transform3D(0.993465, 0, 0, 0, 0.993465, 0, 0, 0, 0.993465, 0, 1.08927, 0)
 mesh = SubResource("ArrayMesh_l4kk5")
 skeleton = NodePath("")
 
-[node name="Torus" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="Torus" type="MeshInstance3D" parent="Cop_Detector" unique_id=57718672]
 transform = Transform3D(0, -0.207693, -2.73217e-09, 0.105185, -2.35237e-09, 0.198989, -0.228309, -1.08376e-09, 0.0916765, -0.160395, 0.591695, 0.887027)
 mesh = SubResource("ArrayMesh_aubky")
 skeleton = NodePath("")
 
-[node name="Torus_001" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="Torus_001" type="MeshInstance3D" parent="Cop_Detector" unique_id=1132902076]
 transform = Transform3D(0, -0.153016, -2.065e-09, 0.0822572, -1.73309e-09, 0.150398, -0.178544, -7.98454e-10, 0.06929, -0.0746422, 0.602325, 0.866993)
 mesh = SubResource("ArrayMesh_16t5n")
 skeleton = NodePath("")
 
-[node name="Cylinder" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="Cylinder" type="MeshInstance3D" parent="Cop_Detector" unique_id=2079701467]
 transform = Transform3D(0.0914111, 0, 0, 0, 0, -0.0914111, 0, 0.0914111, 0, 0.0582505, 0.499324, -0.963596)
 mesh = SubResource("ArrayMesh_7xqsb")
 skeleton = NodePath("")
 
-[node name="Cylinder_001" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="Cylinder_001" type="MeshInstance3D" parent="Cop_Detector" unique_id=1863890777]
 transform = Transform3D(0.0914111, 0, 0, 0, 0, -0.0914111, 0, 0.0914111, 0, 0.0582505, 0.257915, -0.963596)
 mesh = SubResource("ArrayMesh_ybhy4")
 skeleton = NodePath("")
 
-[node name="Text" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="Text" type="MeshInstance3D" parent="Cop_Detector" unique_id=673779170]
 transform = Transform3D(0.0281602, 0.161782, -8.39238e-10, -4.89399e-09, 0, -0.164215, -0.161782, 0.0281602, 4.82149e-09, -0.129374, 0.752791, 0.201716)
 mesh = SubResource("ArrayMesh_sk1ao")
 skeleton = NodePath("")
 
-[node name="Red" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="Red" type="MeshInstance3D" parent="Cop_Detector" unique_id=2091657345]
 transform = Transform3D(0.0691898, 0, 0, 0, 0.0691898, 0, 0, 0, 0.0691898, 0.0611246, 0.500266, -1.05462)
 mesh = SubResource("ArrayMesh_bl4xp")
 skeleton = NodePath("")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Cop_Detector/Red"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Cop_Detector/Red" unique_id=344247548]
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.0
 light_indirect_energy = 0.1
 light_volumetric_fog_energy = 0.1
 omni_range = 0.2
 
-[node name="Green" type="MeshInstance3D" parent="Cop_Detector"]
+[node name="Green" type="MeshInstance3D" parent="Cop_Detector" unique_id=1907920892]
 transform = Transform3D(0.0691898, 0, 0, 0, 0.0691898, 0, 0, 0, 0.0691898, 0.0611246, 0.257946, -1.05462)
 mesh = SubResource("ArrayMesh_ijcum")
 skeleton = NodePath("")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Cop_Detector/Green"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Cop_Detector/Green" unique_id=1176464874]
 light_color = Color(0, 1, 0, 1)
 light_energy = 0.1
 light_indirect_energy = 0.1
 light_volumetric_fog_energy = 0.1
 omni_range = 0.2
 
-[node name="Label3D" type="Label3D" parent="Cop_Detector"]
+[node name="Label3D" type="Label3D" parent="Cop_Detector" unique_id=229644813]
 transform = Transform3D(0.00898814, 0, 0.999961, 0, 1, 0, -0.999961, 0, 0.00898814, 0.0642061, 0.331797, -0.0190637)
 modulate = Color(0.8909, 0.827478, 0.986341, 1)
 text = "-NONE-"
 font = ExtResource("19_1qahn")
 font_size = 67
 
-[node name="Cop Detector timer" type="Timer" parent="Cop_Detector"]
+[node name="Cop Detector timer" type="Timer" parent="Cop_Detector" unique_id=1014669206]
 wait_time = 0.5
 autostart = true
 
-[node name="Ground Ray" type="RayCast3D" parent="."]
+[node name="Ground Ray" type="RayCast3D" parent="." unique_id=174162133]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.727834, -2.88534)
 
-[node name="Stuck Timer" type="Timer" parent="."]
+[node name="Stuck Timer" type="Timer" parent="." unique_id=52904850]
 
 [connection signal="body_entered" from="." to="." method="_on_collide"]
 [connection signal="area_entered" from="Interactibles/EnterExit" to="." method="_on_enter_exit_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://lvgwnfheptfj"]
+[gd_scene format=4 uid="uid://lvgwnfheptfj"]
 
 [ext_resource type="Script" uid="uid://dvc35drcvrmxx" path="res://Scenes/User/alcohol_crate.gd" id="1_aaufp"]
 [ext_resource type="Texture2D" uid="uid://c3x201xerafi4" path="res://Assets/Models/Car/Milk_Crate_Material Base Color.png" id="1_ci6gi"]
@@ -559,47 +559,48 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ru4jr")
 
-[node name="Milk_Crate" type="Node3D"]
+[node name="Milk_Crate" type="Node3D" unique_id=1055054430]
 script = ExtResource("1_aaufp")
 
-[node name="MilkCrate" type="MeshInstance3D" parent="."]
+[node name="MilkCrate" type="MeshInstance3D" parent="." unique_id=1921951803]
 transform = Transform3D(3.90392, 0, 0, 0, 0.336463, 0, 0, 0, 3.90392, -0.0237885, 1.32846, -0.012454)
 mesh = SubResource("ArrayMesh_yhxvu")
 skeleton = NodePath("")
 
-[node name="Bottles" type="Node3D" parent="."]
+[node name="Bottles" type="Node3D" parent="." unique_id=1911422245]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.70394, 0)
 visible = false
 
-[node name="Jaeger" type="MeshInstance3D" parent="Bottles"]
+[node name="Jaeger" type="MeshInstance3D" parent="Bottles" unique_id=1257174036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55534, -1.05253, -2.07327)
 mesh = SubResource("ArrayMesh_kajm2")
 
-[node name="Sake" type="MeshInstance3D" parent="Bottles"]
+[node name="Sake" type="MeshInstance3D" parent="Bottles" unique_id=987559023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56083, -1.04937, 0)
 mesh = SubResource("ArrayMesh_jcbdh")
 
-[node name="Beer" type="MeshInstance3D" parent="Bottles"]
+[node name="Beer" type="MeshInstance3D" parent="Bottles" unique_id=1043174642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423436, 0)
 mesh = SubResource("ArrayMesh_up2s3")
 
-[node name="instances" type="Node3D" parent="."]
+[node name="instances" type="Node3D" parent="." unique_id=1626969696]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7, 0)
 
-[node name="Beer" type="MultiMeshInstance3D" parent="."]
+[node name="Beer" type="MultiMeshInstance3D" parent="." unique_id=1167106253]
 
-[node name="Sake" type="MultiMeshInstance3D" parent="."]
+[node name="Sake" type="MultiMeshInstance3D" parent="." unique_id=1943388574]
 
-[node name="Jaeger" type="MultiMeshInstance3D" parent="."]
+[node name="Jaeger" type="MultiMeshInstance3D" parent="." unique_id=1494002613]
 
-[node name="Beginning" type="Marker3D" parent="."]
+[node name="Beginning" type="Marker3D" parent="." unique_id=846019618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.22901, -9.53674e-07, -3.32001)
 
-[node name="End" type="Marker3D" parent="."]
+[node name="End" type="Marker3D" parent="." unique_id=523900891]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88693, 9.53674e-07, 2.75353)
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Label3D" type="Label3D" parent="." unique_id=1094350041]
 transform = Transform3D(-1.74846e-07, 0, -4, 0, 4, 0, 4, 0, -1.74846e-07, -4.49723, 4.11638, 0)
+layers = 2
 no_depth_test = true
 text = "0"
 font_size = 300

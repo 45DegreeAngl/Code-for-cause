@@ -50,8 +50,10 @@ func add_camera() -> void:
 	var cam_index: int = window_arr.size()
 
 	# 2. Create the UI controls for this new window (No changes here)
-	var cam_label = Label.new()
+	var cam_label = LineEdit.new()
 	cam_label.text = "Cam " + str(cam_index)
+	new_cam_window.title = cam_label.text
+	cam_label.text_changed.connect(_on_window_title_changed.bind(new_cam_window))
 
 	var cam_options = OptionButton.new()
 	for option in CAM_OPTIONS:
@@ -111,6 +113,9 @@ func _on_window_close_requested(window: Window) -> void:
 ## Called when the View/Hide button is toggled.
 func _on_view_button_toggled(toggled_on: bool, window: Window) -> void:
 	window.visible = toggled_on
+
+func _on_window_title_changed(new_text:String, window:Window):
+	window.title = new_text
 
 ## Called when an item in the OptionButton dropdown is selected.
 func _on_cam_type_selected(item_index: int, window: Window) -> void:

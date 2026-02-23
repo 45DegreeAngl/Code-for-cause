@@ -30,6 +30,8 @@ func randomize_mesh_colors(mesh: MeshInstance3D):
 	sel_material.albedo_color = chosen_color
 	sel_mesh.surface_set_material(0, sel_material)
 	mesh.mesh = sel_mesh
+	if mesh.has_meta("Player"):
+		Globals.skin_color = chosen_color
 
 func change_engine_pitch():
 	if (not engine_player.playing) and engine_player.pitch_scale > 0.01:

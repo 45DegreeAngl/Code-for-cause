@@ -11,10 +11,13 @@ class_name PlayerCosmetic
 var step : int = 1
 var cur_index : int = 0
 var cur_song : String = ""
+var basis_speedometer
 
 func context_ready()->void:
 	if radio_on:
 		radio.volume_db = -25
+	if speedometer_tick:
+		basis_speedometer = speedometer_tick.basis.orthonormalized()
 
 func context_process(_delta):
 	pass
@@ -22,8 +25,9 @@ func context_process(_delta):
 func update_wheel(value):
 	wheel.rotation.z = value
 
-func update_speedometer_tick(a,b):
-	speedometer_tick.rotate_object_local(a,b)
+func update_speedometer_tick(angle_radians):
+	var axis = basis_speedometer.z.normalized()  # or x/y depending on hinge
+	speedometer_tick.transform = basis_speedometer.rotated(axis, angle_radians)
 
 func toggle_radio()->void:
 	#toggle on and off

@@ -112,10 +112,10 @@ func spawn_timer_timeout():
 		print("not spawning driver")
 		return
 	print("SPAWNING RESIDUAL DRIVERS")
-	if randi_range(0,1) == 0:#Cop Spawn
+	if randi_range(0,1) == 0 and cops_node:#Cop Spawn
 		if cops_node.get_child_count()<4:
 			spawn_residual_driver(Globals.cop_array.pick_random(),cops_node)
-	if randi_range(0,3)!=0:#Pedestrian Spawn
+	if randi_range(0,3)!=0 and ped_node:#Pedestrian Spawn
 		if ped_node.get_child_count()<4:
 			spawn_residual_driver(Globals.pedestrian_array.pick_random(),ped_node)
 

@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=185 format=4 uid="uid://ta6efjx45rhe"]
+[gd_resource type="MeshLibrary" format=4 uid="uid://ta6efjx45rhe"]
 
 [ext_resource type="Texture2D" uid="uid://5t7iqxx44d5w" path="res://Assets/Models/NEW ROADS/Streets_NOGRASS_Concreate.jpg" id="1_yljis"]
 [ext_resource type="Texture2D" uid="uid://toru4d1nh7lh" path="res://Assets/Models/NEW ROADS/Streets_NOGRASS_Concreate_n.jpg" id="2_q0f34"]

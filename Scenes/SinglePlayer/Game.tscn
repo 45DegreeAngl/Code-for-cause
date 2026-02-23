@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wb4xhroexlmq"]
+[gd_scene format=3 uid="uid://wb4xhroexlmq"]
 
 [ext_resource type="Script" uid="uid://cvdb3mhbhm6an" path="res://Scenes/SinglePlayer/game.gd" id="1_w7y0x"]
 [ext_resource type="PackedScene" uid="uid://craox76r56bvq" path="res://Scenes/UI/Main Menu/Options Menu/Options Menu.tscn" id="2_v5bp6"]
@@ -71,21 +71,21 @@ adjustment_brightness = 1.5
 adjustment_contrast = 1.1
 adjustment_saturation = 0.8
 
-[node name="Game" type="Node" node_paths=PackedStringArray("cops_node", "ped_node")]
+[node name="Game" type="Node" unique_id=1807486754 node_paths=PackedStringArray("cops_node", "ped_node")]
 script = ExtResource("1_w7y0x")
 cops_node = NodePath("Segment Spawner/Cops")
 ped_node = NodePath("Segment Spawner/Pedestrians")
 
-[node name="Options" parent="." instance=ExtResource("2_v5bp6")]
+[node name="Options" parent="." unique_id=900568904 instance=ExtResource("2_v5bp6")]
 visible = false
 
-[node name="Game Over" parent="." instance=ExtResource("3_cnp2m")]
+[node name="Game Over" parent="." unique_id=1784117885 instance=ExtResource("3_cnp2m")]
 visible = false
 
-[node name="YOU WIN" parent="." instance=ExtResource("4_akwyd")]
+[node name="YOU WIN" parent="." unique_id=1048814546 instance=ExtResource("4_akwyd")]
 visible = false
 
-[node name="Segment Spawner" type="Node" parent="." node_paths=PackedStringArray("glob_path", "cops_node", "pedestrians_node", "road_node", "previous_road")]
+[node name="Segment Spawner" type="Node" parent="." unique_id=12713160 node_paths=PackedStringArray("glob_path", "cops_node", "pedestrians_node", "road_node", "previous_road")]
 script = ExtResource("5_64cng")
 glob_path = NodePath("Global Path")
 exes_house = ExtResource("6_gvg2e")
@@ -94,15 +94,15 @@ pedestrians_node = NodePath("Pedestrians")
 road_node = NodePath("Roads")
 previous_road = NodePath("Roads/Cul de Sac Tutorial")
 
-[node name="Global Path" type="Path3D" parent="Segment Spawner"]
+[node name="Global Path" type="Path3D" parent="Segment Spawner" unique_id=248686320]
 curve = SubResource("Curve3D_bnrfm")
 debug_custom_color = Color(1, 0, 0, 1)
 
-[node name="Player Car" parent="Segment Spawner" node_paths=PackedStringArray("cop_node") instance=ExtResource("6_tfqb6")]
+[node name="Player Car" parent="Segment Spawner" unique_id=1853631253 node_paths=PackedStringArray("cop_node") instance=ExtResource("6_tfqb6")]
 transform = Transform3D(0.0265784, 0, 0.999647, 0, 1, 0, -0.999647, 0, 0.0265784, 264.276, 0.726802, -69.4266)
 cop_node = NodePath("../Cops")
 
-[node name="Sun" type="DirectionalLight3D" parent="Segment Spawner"]
+[node name="Sun" type="DirectionalLight3D" parent="Segment Spawner" unique_id=36256311]
 transform = Transform3D(-1, -4.371139e-08, -7.5710346e-08, 0, 0.8660254, -0.5, 8.742278e-08, -0.5, -0.8660254, 0, 0, 0)
 light_energy = 0.0
 light_indirect_energy = 0.0
@@ -110,22 +110,22 @@ light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 sky_mode = 2
 
-[node name="Moon" type="DirectionalLight3D" parent="Segment Spawner"]
+[node name="Moon" type="DirectionalLight3D" parent="Segment Spawner" unique_id=121338594]
 transform = Transform3D(-1, 1.518081e-08, 8.609463e-08, 0, -0.9848077, 0.17364824, 8.742278e-08, 0.17364822, 0.9848077, 0, 0, 0)
 light_energy = 0.1
 light_volumetric_fog_energy = 0.0
 light_specular = 0.0
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Segment Spawner"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Segment Spawner" unique_id=997162622]
 environment = SubResource("Environment_ygm4a")
 script = ExtResource("10_t505o")
 set_phase_on_ready = true
 
-[node name="Cops" type="Node3D" parent="Segment Spawner"]
+[node name="Cops" type="Node3D" parent="Segment Spawner" unique_id=2095846104]
 
-[node name="Pedestrians" type="Node3D" parent="Segment Spawner"]
+[node name="Pedestrians" type="Node3D" parent="Segment Spawner" unique_id=596588808]
 
-[node name="Roads" type="Node3D" parent="Segment Spawner"]
+[node name="Roads" type="Node3D" parent="Segment Spawner" unique_id=1866916737]
 
-[node name="Cul de Sac Tutorial" parent="Segment Spawner/Roads" instance=ExtResource("8_bj6j6")]
+[node name="Cul de Sac Tutorial" parent="Segment Spawner/Roads" unique_id=1729189930 instance=ExtResource("8_bj6j6")]

@@ -5,6 +5,7 @@ signal game_lost()
 signal game_won()
 
 @onready var player_packed : PackedScene = preload("res://Scenes/User/Character/Ragdoll Character.tscn")
+var skin_color:Color = Color.BLUE
 @onready var player_voice_lines:Array = [
 	preload("res://Assets/Sounds/Voice Lines/MoreBeer_Sad.mp3"),
 	preload("res://Assets/Sounds/Voice Lines/MoreBeer_Angry.mp3"),
@@ -245,42 +246,13 @@ var car_contents:Dictionary = {"Beer":1,"Sake":0,"Jaeger":0}:
 @onready var motion_sickness:bool = false
 
 var is_multiplayer: bool = false # Will be set by the car/character
-
+signal update_drunkenness(val:float)
 @onready var drunkenness : float = 20:
 	set(value):
 		if tutorial and value<drunkenness:
 			value = drunkenness
-		MainShaderCanvas._update_bar(value)
+		update_drunkenness.emit(value)
 		drunkenness = value
-		
-		if motion_sickness:
-			var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")
-			for shader_mat in shader_mats:
-				for shader_params:Dictionary in shader_mat.shader.get_shader_uniform_list():
-					if shader_params["name"]=="red_mult":
-						#3 red
-						var green = 3 + 3*drunkenness/10.0
-						shader_mat.set_shader_parameter("green_shift",green)
-						#2 red
-						var blue = 2 + 2*drunkenness/10.0
-						shader_mat.set_shader_parameter("blue_shift",blue)
-						#1 red
-						var red = 1+drunkenness/10.0
-						shader_mat.set_shader_parameter("red_shift",red)
-		else:
-			var shader_mats :Array[ShaderMaterial] = MainShaderCanvas.get_shaders("drunk")
-			for shader_mat in shader_mats:
-				for shader_params:Dictionary in shader_mat.shader.get_shader_uniform_list():
-					if shader_params["name"]=="red_mult":
-						#3 red
-						var green = 3
-						shader_mat.set_shader_parameter("green_shift",green)
-						#2 red
-						var blue = 2
-						shader_mat.set_shader_parameter("blue_shift",blue)
-						#1 red
-						var red = 1
-						shader_mat.set_shader_parameter("red_shift",red)
 
 		if is_multiplayer and drunkenness <= 0:
 			var game_mode_manager = Globals.get_static_node("game_mode_manager")
@@ -331,7 +303,7 @@ func _process(_delta: float) -> void:
 				var anger = 1+drunkenness/100.0
 				shader_mat.set_shader_parameter("red_mult",anger)
 
-const roads_to_win_options : Array[int]=[10,25,50,100,int(INF)]
+const roads_to_win_options : Array[int]=[1,25,50,100,int(INF)]
 
 const CAR_CONT_SENS : float = 0.1
 const PER_CONT_SENS : float = 4.0

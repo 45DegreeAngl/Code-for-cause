@@ -52,6 +52,11 @@ func _ready():
 	#physical_skel.physical_bones_start_simulation()# activate ragdoll
 	physics_bones = physical_skel.get_children().filter(func(x): return x is PhysicalBone3D) # get all the physical bones
 	
+	var char_mesh:MeshInstance3D = $Physical/Armature/Skeleton3D/Character
+	var skin_mat:StandardMaterial3D = char_mesh.get_surface_override_material(0)
+	skin_mat.albedo_color = Globals.skin_color
+	char_mesh.set_surface_override_material(0,skin_mat)
+	
 
 func _input(_event):
 	if Globals.game_over or Globals.game_paused:

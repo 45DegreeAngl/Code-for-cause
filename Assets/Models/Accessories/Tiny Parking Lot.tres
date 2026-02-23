@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=8 format=4 uid="uid://vvuaagxu82am"]
+[gd_resource type="ArrayMesh" format=4 uid="uid://vvuaagxu82am"]
 
 [ext_resource type="Texture2D" uid="uid://dncsi52e7wtok" path="res://Assets/Models/Buildings/newest gabesmart/NEWEST GABES MART_Concreate.png" id="1_6yhxd"]
 [ext_resource type="Texture2D" uid="uid://d1xe0wyy15pbo" path="res://Assets/Models/Buildings/newest gabesmart/NEWEST GABES MART_Concreate_n.jpg" id="2_2bmyw"]
